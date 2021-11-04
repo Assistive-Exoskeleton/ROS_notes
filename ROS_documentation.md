@@ -51,6 +51,10 @@ Useful commands for **nodes**:
 - a `rosout` logging node (collects nodes debugging output)
 
 # 3. Master
+The ROS Master provides naming and registration services to the rest of the nodes in the ROS system. It tracks publishers and subscribers to topics as well as services. The role of the Master is to enable individual ROS nodes to locate one another. Once these nodes have located each other they communicate with each other peer-to-peer. Nodes connect to other nodes directly; the Master only provides lookup information, much like a DNS server.
+
+The Master also provides the Parameter Server.
+
 # 4. Parameter server
 Useful commands for **parameters**:
 - To manage parameters use `rosparam`:
