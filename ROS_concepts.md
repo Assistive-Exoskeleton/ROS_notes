@@ -5,11 +5,12 @@ ROS concepts that are similar between ROS and ROS2.
   - [1.1. Table of contents](#11-table-of-contents)
 - [2. ROS graph concepts](#2-ros-graph-concepts)
   - [2.1. Nodes](#21-nodes)
-  - [2.2. Messages](#22-messages)
+  - [2.2. Interfaces](#22-interfaces)
+    - [2.2.1. Messages](#221-messages)
+    - [2.2.2. Services](#222-services)
   - [2.3. Topics](#23-topics)
-  - [2.4. Services](#24-services)
-  - [2.5. Parameters](#25-parameters)
-  - [2.6. Actions (ROS2)](#26-actions-ros2)
+  - [2.4. Parameters](#24-parameters)
+  - [2.5. Actions (ROS2)](#25-actions-ros2)
 - [3. Names](#3-names)
   - [3.1. Graph resource name](#31-graph-resource-name)
   - [3.2. Package resource name](#32-package-resource-name)
@@ -25,14 +26,50 @@ A single executable (C++, Python...) can contain one or more nodes.
 
 All nodes have a [name](#graph-resource-name) that uniquely identifies them to the rest of the system. Nodes also have a [type](#package-resource-name).
 
-## 2.2. Messages
-Communication between nodes happens by exchanging ROS **messages**. A message is a simple data structure.
+## 2.2. [Interfaces](https://docs.ros.org/en/galactic/Concepts/About-ROS-Interfaces.html)
+ROS applications typically communicate through interfaces of one of three types: messages, services and actions. ROS2 uses a simplified description language, the interface definition language (IDL), to describe these interfaces.
 
-For example:
-- Nodes communicate with each other by publishing messages to [topics](#topics).
-- Nodes can also exchange a request and response message as part of a ROS [service](#services) call.
+### 2.2.1. Messages
+Communication between nodes happens by exchanging ROS **messages**. For example:
+- Nodes communicate with each other by publishing messages to [topics](#23-topics).
+- Nodes can also exchange a request and response message as part of a ROS [service](#222-services) call.
 
-ROS messages use **YAML** syntax (dictionary/json - like. Note that spaces are important)
+ROS messages use **YAML** syntax.
+
+Messages are described and defined in `.msg` files in the `msg/` directory of a ROS package. 
+
+`.msg` files are composed of two parts: fields and constants.
+- **Fields**: consists of a type and a name:
+  ```
+  fieldtype fieldname
+  ```
+  Field types can be **built-in** (`bool`, `char`,...) or names of **Message descriptions** defined on their own.
+
+  Default values can be set to any field in the message type:
+  ```
+  fieldtype fieldname defaultvalue
+  ```
+- **Constants**: Each constant definition is like a field description with a default value, except that this value can never be changed programatically:
+  ```
+  constanttype CONSTANTNAME=constantvalue
+  ```
+  Constant names have to be UPPERCASE.
+
+### 2.2.2. Services
+Services are another method of communication for nodes. Services are based on a **Request-Response model**. Services only provide data when they are specifically called by a client.
+
+![services](./images/services.gif)
+
+Like topics, service have a **service type** which is the [package resource name](#32-package-resource-name).
+
+Services are described and defined in `.srv` files inside `srv/` directory of a package. A service description file consists of a **request** and a **response** msg type, separated by `---`. Any two message files concatenated with a `---` are a legal service description:
+```python
+fieldtype fieldname #request
+other_pkg/msg value #custom msg from external pkg
+---
+fieldtype fieldname #response
+thispkg_message value #custom msg from this pkg
+```
 
 ## 2.3. Topics
 Topics act as a bus for nodes to exchange messages. Communication via topics is N-to-N through a **Publisher-Subscribe model**:
@@ -43,17 +80,10 @@ Topics act as a bus for nodes to exchange messages. Communication via topics is 
 
 Nodes need to know the **type** of the message to be able to understand the information. A topic type is defined by the message type published on it.
 
-## 2.4. Services
-Services are another method of communication for nodes. Services are based on a **Request-Response model**. Services only provide data when they are specifically called by a client.
-
-![services](./images/services.gif)
-
-Like topics, service have a **service type** which is the **package resource name**
-
-## 2.5. Parameters
+## 2.4. Parameters
 A parameter is a configuration state of a node/system. Parameters are dynamically reconfigurable and built off of ROS services: a shared **parameter server** is used, accessible via network APIs, such that tools can easily inspect and modify parameters.
 
-## 2.6. Actions (ROS2)
+## 2.5. Actions (ROS2)
 Another communication type intended for long-running tasks. They consist of:
 - **goal**
 - **feedback**

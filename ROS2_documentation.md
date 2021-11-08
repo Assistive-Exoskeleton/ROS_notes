@@ -226,6 +226,7 @@ Useful commands for **packages**:
 	
 	-options:
 		--packages-select <package_name>: 'build only selected package'
+		--symlink-install: 'use symlinks instead of copying files where possible'
 	```
 
 - use the new package and executable, adding the workspace to the path (inside `workspace/` main folder):

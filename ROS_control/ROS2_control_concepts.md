@@ -6,6 +6,7 @@
   - [Controller manager](#controller-manager)
   - [Resource Manager](#resource-manager)
   - [Controllers](#controllers)
+  - [Control loop](#control-loop)
   - [User interfaces](#user-interfaces)
 - [Hardware components](#hardware-components)
   - [Hardware description in URDF](#hardware-description-in-urdf)
@@ -16,11 +17,31 @@ The following figure shows the architecture:
 ![ros_control_architecture](./images/ros2_control_architecture.png)
 
 ## Controller manager
-The controller manager ([CM](https://github.com/ros-controls/ros2_control/blob/master/controller_manager/src/controller_manager.cpp)) connects the **controllers** and **HW-abstraction** sides of ros2_control framework. The CM implements a node without an executor so it can be integrated into a custom setup. Still, for a standard user, it is recommended to use the default node-setup implemented in [ros2_control_node](https://github.com/ros-controls/ros2_control/blob/master/controller_manager/src/ros2_control_node.cpp) file from the `controller_manager` package.
+The `controller_manager` ([CM](https://github.com/ros-controls/ros2_control/blob/master/controller_manager/src/controller_manager.cpp)) connects the **controllers** and **HW-abstraction** sides of ros2_control framework. The CM implements a node without an executor so it can be integrated into a custom setup. Still, for a standard user, it is recommended to use the default node-setup implemented in [ros2_control_node](https://github.com/ros-controls/ros2_control/blob/master/controller_manager/src/ros2_control_node.cpp) file from the `controller_manager` package.
 
-On the one side, CM manages (e.g., loading, activating, deactivating, unloading) **controllers** and from them required interfaces. On the other side, it has access to the **hardware components** (through [Resource Manager](#resource-manager)), i.e., their interfaces. 
+CM has two main purposes:
+1. **Robot resource management**: CM has access to the **hardware components** (through [Resource Manager](#resource-manager)), i.e., their interfaces.
+2. **Controller management**: CM manages the **lifecycle** (e.g., loading, activating, deactivating, unloading) and **updates** of controllers and the required interfaces.
 
 The execution of the control-loop is managed by the CM’s `update()` method. The method reads data from the hardware components, updates outputs of all active controllers, and writes the result to the components.
+```
+The CM has an API based on **ROS services** for:
+- Controller lifecycle management
+  ``
+  load_controller
+  unload_controller
+  switch_controller
+  ``
+- Queries
+  ``
+  list_controllers
+  list_controller_types
+  ``
+- Other
+  ``
+  reload_controller_libraries
+  ``
+```
 
 ## Resource Manager
 The Resource Manager ([RM](https://github.com/ros-controls/ros2_control/blob/master/hardware_interface/src/resource_manager.cpp)) **abstracts physical hardware** and its drivers (called hardware components) for the ros2_control framework. The RM loads the components using `pluginlib`-library, manages their lifecycle and components’ state and command interfaces. This abstraction provided by RM enables re-usability of implemented hardware components, and flexible hardware application for state and command interfaces.
@@ -34,6 +55,12 @@ The controlles are objects derived from `controller_interface` [package](https:/
 The controllers’ lifecycle is based on the [LifecycleNode-Class](https://github.com/ros2/rclcpp/blob/master/rclcpp_lifecycle/include/rclcpp_lifecycle/lifecycle_node.hpp) implementing the state machine as described in the [Node Lifecycle Design](https://design.ros2.org/articles/node_lifecycle.html) document
 
 When executing the control-loop `update()` method is called. The method can access the latest hardware states and enable the controller to write the hardware’s command interfaces.
+
+## Control loop
+In the most basic form, the loop consists in:
+1. `read` **state** from HW
+2. update controllers through [CM](#controller-manager)
+3. `write` **command** to HW
 
 ## User interfaces
 Users interact with the ros2_control framework using [Controller Manager](#controller-manager)'s services.
