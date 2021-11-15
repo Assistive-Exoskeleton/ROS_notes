@@ -27,7 +27,7 @@ A single executable (C++, Python...) can contain one or more nodes.
 All nodes have a [name](#graph-resource-name) that uniquely identifies them to the rest of the system. Nodes also have a [type](#package-resource-name).
 
 ## 2.2. [Interfaces](https://docs.ros.org/en/galactic/Concepts/About-ROS-Interfaces.html)
-ROS applications typically communicate through interfaces of one of three types: messages, services and actions. ROS2 uses a simplified description language, the interface definition language (IDL), to describe these interfaces.
+ROS applications typically communicate through interfaces of one of three types: messages, services and actions. ROS2 uses a simplified description language, the **interface definition language** (`IDL`), to describe these interfaces. From the `IDL`, a `Python` or `C++` file is generated (through a `rosidl_default_generators` library) in order to obtain language_specific code (`Python`, `C++`, ...) to interact with the interfaces.
 
 ### 2.2.1. Messages
 Communication between nodes happens by exchanging ROS **messages**. For example:

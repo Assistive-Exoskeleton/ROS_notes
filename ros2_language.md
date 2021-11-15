@@ -58,12 +58,22 @@ Main APIs (python version):
     |`context`|`Context`|optional context
     |`cli_args`|`List(str)`|optional list of command-line arguments
     |`namespace`|`str`|optional namespace to which relative topic/service names will be prefixed
+    ```python
+    #Example
+    class myNode(Node):
+      __init__(self):
+        super.__init__('myNodeName')
+    ```
   - `create_publisher->Publisher`: create a new publisher
     parameter|type|description|
     |--------|----|-----------|
     |`msg_type`|`.msg` imported object|type of ros msg it publishes
     |`topic`|`str`|topic to which it publishes.
     |`qos_profile`|`Union(QosProfile,int)`|[`QoS_profile`](https://docs.ros2.org/latest/api/rclpy/api/qos.html#rclpy.qos.QoSProfile) or history depth/queue size (`int`) to apply to a publisher.
+    ```python
+    #Example
+    myNode.my_pub = myNode.create_publisher(MyType,'myTopic',10)
+    ```
   - `create_subscription->Subscription`: create a subscription:
     |parameter|type|description|
     |--------|----|-----------|
@@ -72,19 +82,62 @@ Main APIs (python version):
     |`qos_profile`|`Union(QosProfile,int)`|[`QoS_profile`](https://docs.ros2.org/latest/api/rclpy/api/qos.html#rclpy.qos.QoSProfile) or history depth/queue size (`int`) to apply to the subscription.
     |`callback`|`Callable`|user-defined callback, called when a message is received by the subscription
     |`raw`|`bool`| If True, then received messages will be stored in raw binary representation.
+    ```python
+    #Example
+    myNode.my_sub = myNode.create_subscription(MyType,'myTopic',10, my_sub_callback)
+    def my_sub_callback(message):
+      #message is like a struct that can be accessed
+      #through message.fieldname
+      ...
+    ```
   - `create_service->Service`: create a new service server:
     |parameter|type|description|
     |---------|----|-----------|
     |`srv_type`|`.srv` imported object|type of service interface
     |`srv_name`|`str`|name of the service
-    |`callback`|`Callable`|user-defined callback, called when a service request is received by the server
+    |`callback`|`Callable [SrvTypeRequest, SrvTypeResponse]`|user-defined callback, called when a service request is received by the server. You can send request and response as parameters.
     |`qos_profile`|`QoSProfile`|Quality of service profile to be applied to the service's server
+    ```python
+    #Example
+    myNode.my_srv = myNode.create_service(MyType,'my_service', my_srv_callback)
+    def my_srv_callback(request, response):
+      ...
+      #request and response are like struct that can be accessed
+      #through request.fieldname or response.fieldname
+      return response
+
+    ```
   - `create_client->Client`: create a new service client
     |parameter|type|description|
     |---------|----|-----------|
     |`srv_type`|`.srv` imported object|type of service interface
     |`srv_name`|`str`|name of the service
     |`qos_profile`|`QoSProfile`|Quality of service profile to be applied to the service's client
+    ```python
+    #Example
+    class MyCli(Node):
+      #...
+      self.my_cli = self.create_client(MyType,'my_service')
+
+      request = MyType.Request() #this method is generated from the .srv file using rosidl generators. See ROS_concepts/interfaces.
+    
+      def send_request(self):
+        #access request field by request.<fieldname>
+        #for example we can use:
+        self.future = myNode.my_cli.call_async(request)
+    
+    #...
+    cli_node = MyCli()
+    #we can get results as:
+    if cli_node.future.done():
+      try:
+        response = cli_node.my_cli.future.result()
+      except Exception as e:
+        #exception, request failed
+      else:
+        #request succeeded, use response to access result
+
+    ```
 
   - `create_timer->Timer`: create a new timer, which calls a callback function every period
     |parameter|type|description|
@@ -115,6 +168,10 @@ Main APIs (python version):
   - `destroy()`
 - **`Client`**: ROS service client
   - `call->SrvTypeResponse`: Make a service request and await result
+    |parameter|type|description|
+    |---------|----|-----------|
+    |`request`|`SrvTypeRequest`|service request
+  - `call_async->Future`: make a service request and asyncronously get the result. The `Future` object completes when the request does.
     |parameter|type|description|
     |---------|----|-----------|
     |`request`|`SrvTypeRequest`|service request
@@ -162,7 +219,7 @@ The main classes are:
 - **`launch.LaunchDescription`**: it encapsulates the intent of the user as a list of discrete **`launch.Action`**'s.
 - **`launch.Action`**: actions can have direct effect (run a process or set a configuration variable) or yield additional actions. 
 
-  Actions may also have arguments affecting their behavior. This is where `launch.Substitution`s can be used to provide more flexibility when describing reusable launch descriptions.
+  Actions may also have arguments affecting their behavior. This is where `launch.Substitution`-s can be used to provide more flexibility when describing reusable launch descriptions.
 
   Basic actions (`launch.actions.`):
   - `DeclareLaunchArgument`: declares a `LaunchDescription` argument, with a `name`, `default_value` and `description`. This argument can be exposed via command line option for a root launch description, or as action configuration.
