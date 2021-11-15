@@ -1,5 +1,4 @@
 # URDF Structure 
-
 <pre>
 Robot
 ├── link1
