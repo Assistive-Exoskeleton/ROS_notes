@@ -9,3 +9,4 @@ ROS Documentation
 Packages:
 - [`ros_control`](ROS_control)
 - [`rviz`](rviz.md)
+- [`gazebo`](gazebo)
