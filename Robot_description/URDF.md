@@ -1,7 +1,6 @@
 # URDF
-## Contents
+**Table of contents**
 - [URDF](#urdf)
-  - [Contents](#contents)
 - [Description](#description)
   - [Link](#link)
   - [Joint](#joint)

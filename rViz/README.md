@@ -8,7 +8,7 @@
   - [Tools](#tools)
 - [Using RViz #TODO](#using-rviz-todo)
 
-[RViz](http://wiki.ros.org/rviz/UserGuide) is a 3D visualization environment. It's a powerful tool for debugging ROS applications. Run RViz through:
+[`rviz`](http://wiki.ros.org/rviz/UserGuide) is a 3D visualization environment. It's a powerful tool for debugging ROS applications. Run RViz through:
 ```powershell
 $ ros2 run rviz2 rviz2
 ```

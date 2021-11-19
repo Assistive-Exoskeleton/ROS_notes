@@ -17,10 +17,12 @@ The following figure shows the architecture:
 ![ros_control_architecture](./images/ros2_control_architecture.png)
 
 ## Controller manager
-The `controller_manager` ([CM](https://github.com/ros-controls/ros2_control/blob/master/controller_manager/src/controller_manager.cpp)) connects the **controllers** and **HW-abstraction** sides of ros2_control framework. The CM implements a node without an executor so it can be integrated into a custom setup. Still, for a standard user, it is recommended to use the default node-setup implemented in [ros2_control_node](https://github.com/ros-controls/ros2_control/blob/master/controller_manager/src/ros2_control_node.cpp) file from the `controller_manager` package.
+The `controller_manager` ([CM](https://github.com/ros-controls/ros2_control/blob/master/controller_manager/src/controller_manager.cpp)) connects the **controllers** and **HW-abstraction** sides of ros2_control framework. It also serves as the entry-point for users through **ROS services**. 
+
+The CM implements a node without an executor so it can be integrated into a custom setup. Still, for a standard user, it is recommended to use the default node-setup implemented in [ros2_control_node](https://github.com/ros-controls/ros2_control/blob/master/controller_manager/src/ros2_control_node.cpp) file from the `controller_manager` package.
 
 CM has two main purposes:
-1. **Robot resource management**: CM has access to the **hardware components** (through [Resource Manager](#resource-manager)), i.e., their interfaces.
+1. **Robot resource management**: CM has access to the **hardware components** (through [Resource Manager](#resource-manager)).
 2. **Controller management**: CM manages the **lifecycle** (e.g., loading, activating, deactivating, unloading) and **updates** of controllers and the required interfaces.
 
 The execution of the control-loop is managed by the CM’s `update()` method. The method reads data from the hardware components, updates outputs of all active controllers, and writes the result to the components.
