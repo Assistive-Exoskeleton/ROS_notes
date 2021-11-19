@@ -9,7 +9,6 @@ Main libraries found:
   > These are **primitive types**, just for prototyping or to build more complex types. Final interfaces should have a **semantic meaning**.
 
 - [x] `rcl` ([rlc.md](rcl.md)): ROS client library
-
-
+- [ ] `pluginlib` ([pluginlib.md](pluginlib.md))
 - [ ] `robot_state_publisher` ([`robot_state_publisher.md](robot_state_publisher.md))
 - [ ] `tf` ([`tf.md`](tf.md))
