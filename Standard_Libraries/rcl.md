@@ -188,3 +188,40 @@ Callbacks are units of work like subscription callbacks, timer callbacks, servic
 
 - **`Executor`**: controls the threading model used to process callbacks (which thread callbacks get executed in).
 - **`CallbackGroup`**: used to enforce concurrency rules for callbacks.
+
+## Quality of service ([QoS](https://docs.ros.org/en/rolling/Concepts/About-Quality-of-Service-Settings.html))
+**QoS policies** allow to tune communication between nodes. A set of QoS policies combine to form a **QoS profile**. ROS2 provides predefined QoS profiles to simplify the choice of correct policies for a given use case.
+
+> A QoS profile can be applied independently to each instance of publishers, subscribers, service servers and clients. However, if different profiles are used it is possible that they will be incompatible, preventing the delivery of messages.
+
+The base QoS profile currently includes settings for the following policies:
+
+- **History**
+  - **Keep last**: only store up to N samples, configurable via the queue depth option.
+  - **Keep all**: store all samples, subject to the configured resource limits of the underlying middleware.
+
+- **Depth**
+  - **Queue size**: only honored if the “history” policy was set to “keep last”.
+
+- **Reliability**
+  - **Best effort**: attempt to deliver samples, but may lose them if the network is not robust.
+  - **Reliable**: guarantee that samples are delivered, may retry multiple times.
+
+- **Durability**
+  - **Transient local**: the publisher becomes responsible for persisting samples for “late-joining” subscriptions.
+  - **Volatile**: no attempt is made to persist samples.
+
+- **Deadline**
+  - **Duration**: the expected maximum amount of time between subsequent messages being published to a topic
+
+- **Lifespan**
+  - **Duration**: the maximum amount of time between the publishing and the reception of a message without the message being considered stale or expired (expired messages are silently dropped and are effectively never received).
+
+- **Liveliness**
+  - **Automatic**: the system will consider all of the node’s publishers to be alive for another “lease duration” when any one of its publishers has published a message.
+  - **Manual by topic**: the system will consider the publisher to be alive for another “lease duration” if it manually asserts that it is still alive (via a call to the publisher API).
+
+- **Lease Duration**
+  - **Duration**: the maximum period of time a publisher has to indicate that it is alive before the system considers it to have lost liveliness (losing liveliness could be an indication of a failure).
+
+For each of the policies that is not a duration, there is also the option of “system default”, which uses the default of the underlying middleware. For each of the policies that is a duration, there also exists a “default” option that means the duration is unspecified, which the underlying middleware will usually interpret as an infinitely long duration.

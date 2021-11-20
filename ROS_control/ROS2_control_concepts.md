@@ -41,6 +41,19 @@ The CM has an API based on **ROS services** for:
 - Other
   ``
   reload_controller_libraries
+  get_loaded_controllers
+  configure_controller
+  add_controller_impl
+  manage_switch
+  stop_controllers
+  start_controllers
+  list_controllers_srv_cb
+  list_controller_types_srv_cb
+  list_hardware_interfaces_srv_cb
+  get_controller_names
+  read
+  write
+  update
   ``
 ```
 

@@ -25,7 +25,7 @@ The description of a robot consists of a set of [link elements](#link) and a set
 ```
 
 ## Link
-The link element describes a **rigid body** with an inertia, visual features and collision properties.
+Links represent the skeleton of the robot. The link element describes a **rigid body** with an inertia, visual features and collision properties.
 
 Attributes:
 - `name`: the name of the link (required)
