@@ -1,5 +1,5 @@
 # Joint State Publisher #TODO [link](https://github.com/ros/joint_state_publisher/tree/ros2/joint_state_publisher)
-Given a URDF (either passed on the command-line or via the `/robot_description` topic), this node
+Given a URDF (either passed on the command-line or via the `/robot_description` topic), the `joint_state_publisher` node
 will continually publish `sensor_msgs/msg/JointState` messages for all of the movable joints in the URDF to the `/joint_states` topic. In combination with `robot_state_publisher`, this ensures that there is a valid transform for all joints, even when the joint doesn't have encoder data.
 
 ## Published Topics
@@ -18,3 +18,6 @@ will continually publish `sensor_msgs/msg/JointState` messages for all of the mo
 - `use_smallest_joint_limits` (bool) - Whether to honor `<safety_controller>` tags in the URDF.  Defaults to True.
 - `source_list` (array of strings) - Each string in this array represents a topic name.  For each string, create a subscription to the named topic of type `sensor_msgs/msg/JointStates`.  Publication to that topic will update the joints named in the message.  Defaults to an empty array.
 - `delta` (double) - How much to automatically move joints during each iteration.  Defaults to 0.0.
+
+# `joint_state_publisher_gui`
+GUI (using Qt libraries) to change data about the position of joints.

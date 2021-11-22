@@ -189,8 +189,8 @@ Callbacks are units of work like subscription callbacks, timer callbacks, servic
 - **`Executor`**: controls the threading model used to process callbacks (which thread callbacks get executed in).
 - **`CallbackGroup`**: used to enforce concurrency rules for callbacks.
 
-## Quality of service ([QoS](https://docs.ros.org/en/rolling/Concepts/About-Quality-of-Service-Settings.html))
-**QoS policies** allow to tune communication between nodes. A set of QoS policies combine to form a **QoS profile**. ROS2 provides predefined QoS profiles to simplify the choice of correct policies for a given use case.
+## Quality of service
+**[QoS](https://docs.ros.org/en/rolling/Concepts/About-Quality-of-Service-Settings.html) policies** allow to tune communication between nodes. A set of QoS policies combine to form a **QoS profile**. ROS2 provides predefined QoS profiles to simplify the choice of correct policies for a given use case.
 
 > A QoS profile can be applied independently to each instance of publishers, subscribers, service servers and clients. However, if different profiles are used it is possible that they will be incompatible, preventing the delivery of messages.
 
