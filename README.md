@@ -2,11 +2,12 @@
 Notes for ROS and ROS packages.
 
 ROS theory and concepts
-- [x] [ROS2 concepts](ROS_concepts.md)
+- [x] [ROS2 concepts](ROS2_concepts.md)
+- [x] [ROS2 filesystem](ROS2_filesystem.md)
 
 ROS programming and application
-- [x] [ROS2 command-line tools](ROS2_documentation.md)
 - [ ] [ROS2 standard libraries](Standard_Libraries)
+  - [x] [ROS2 command-line tools](Standard_Libraries/ros2cli.md)
 - [ ] [ROS2 launch files](launch.md) 
 - [ ] [Robot description](Robot_description)
 
@@ -51,7 +52,7 @@ Packages:
   - [ ] [Using parameters in a class (Python)](https://docs.ros.org/en/galactic/Tutorials/Using-Parameters-In-A-Class-Python.html)
   - [ ] [Getting started with ros2doctor](https://docs.ros.org/en/galactic/Tutorials/Getting-Started-With-Ros2doctor.html)
   - [ ] [Creating and Using Plugins (C++)](https://docs.ros.org/en/galactic/Tutorials/Pluginlib.html)
-  - [ ] [Creating an action](https://docs.ros.org/en/galactic/Tutorials/Actions/Creating-an-Action.html)
+  - [x] [Creating an action](https://docs.ros.org/en/galactic/Tutorials/Actions/Creating-an-Action.html)
   - [ ] [Writing an action server and client (C++)](https://docs.ros.org/en/galactic/Tutorials/Actions/Writing-a-Cpp-Action-Server-Client.html)
   - [ ] [Writing an action server and client (Python)](https://docs.ros.org/en/galactic/Tutorials/Actions/Writing-a-Py-Action-Server-Client.html)
   - [x] [Launching/monitoring multiple nodes with Launch](https://docs.ros.org/en/galactic/Tutorials/Launch-system.html)
@@ -76,6 +77,10 @@ Packages:
 ## docs.ros2.org
 - [x] [rclpy](https://docs.ros2.org/latest/api/rclpy/index.html)
 - [ ] [rclcpp](https://docs.ros2.org/latest/api/rclcpp/)
+
+## design.ros2.org
+- [x] [`Interface Definition Language (IDL)`](https://design.ros2.org/articles/idl_interface_definition.html)
+
 ## wiki.ros.org
 - [ ] [urdf/XML](http://wiki.ros.org/urdf/XML)
   - [x] [model](http://wiki.ros.org/urdf/XML/model)
@@ -96,6 +101,7 @@ Packages:
 - [x] [`robot_state_publisher`](https://github.com/ros/robot_state_publisher/tree/ros2)
 - [x] [`joint_state_publisher`](https://github.com/ros/joint_state_publisher/tree/ros2)
 - [ ] [`ros2_control_demos`](https://github.com/ros-controls/ros2_control_demos)
+- [x] [ubuntu robotics cheat_sheets for CLI](https://github.com/ubuntu-robotics/ros2_cheats_sheet/blob/master/cli/cli_cheats_sheet.pdf)
 
 ## control.ros.org
 - [x] [getting started](https://control.ros.org/getting_started.html)

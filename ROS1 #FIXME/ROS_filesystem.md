@@ -1,18 +1,18 @@
-# 1. Contents
-- [1. Contents](#1-contents)
-- [2. Environment variables](#2-environment-variables)
-- [3. Packages](#3-packages)
-  - [3.1. Catkin](#31-catkin)
-  - [3.2. Common files and directories](#32-common-files-and-directories)
-  - [3.3. Command line tools](#33-command-line-tools)
-  - [3.4. Package manifest](#34-package-manifest)
-    - [3.4.1. Dependencies](#341-dependencies)
-    - [3.4.2. Metapackages](#342-metapackages)
-  - [3.5. CMakeLists.txt](#35-cmakeliststxt)
-- [4. Message types](#4-message-types)
-- [5. Service types](#5-service-types)
+# Contents
+- [Contents](#contents)
+- [Environment variables](#environment-variables)
+- [Packages](#packages)
+  - [Catkin](#catkin)
+  - [Common files and directories](#common-files-and-directories)
+  - [Command line tools](#command-line-tools)
+  - [Package manifest](#package-manifest)
+    - [Dependencies](#dependencies)
+    - [Metapackages](#metapackages)
+  - [CMakeLists.txt](#cmakeliststxt)
+- [Message types](#message-types)
+- [Service types](#service-types)
 
-# 2. Environment variables
+# Environment variables
 In Linux and Unix based systems, environment variables are a set of dynamic named values, stored within the system that are used by applications launched in shells or subshells. In simple words, an environment variable is a variable with a **name** and an associated **value**.
 
 Environment variables serve a variety of purposes for ROS:
@@ -31,7 +31,7 @@ See [ROS guide](http://wiki.ros.org/ROS/EnvironmentVariables) for a list of ROS 
 $ printenv | grep ROS
 ```
 
-# 3. Packages
+# Packages
 Software in ROS is organized in packages, containing anything that constitutes a module. Packages are directories descended from `ROS_PACKAGE_PATH` that have a `package.xml` file in it.
 
 ```powershell
@@ -39,7 +39,7 @@ my_package/
   package.xml
 ```
 
-## 3.1. Catkin
+## Catkin
 Catkin is the official build system for ROS. A catkin **workspace** is like:
 ```powershell
 workspace_folder/         #WORKSPACE
@@ -82,7 +82,7 @@ $ catkin_create_pkg <package_name> [depend1] [depend2] [depend3]
 
 
 
-## 3.2. Common files and directories
+## Common files and directories
 ROS packages follow a common structure:
 ```powershell
 CMakeLists.txt:   #CMake build file
@@ -97,7 +97,7 @@ scripts/          #executable scripts
 
 
 
-## 3.3. Command line tools
+## Command line tools
 To manage packages:
 - `rospack`: find and retrieve information about packages
   ```powershell
@@ -144,7 +144,7 @@ To manage packages:
   $ rosls <pkg>
   ```
 
-## 3.4. Package manifest
+## Package manifest
 The package manifest is an XML file called `package.xml` that defines properties about the package, such as *package name*, *version*, *authors*, *maintainers* and [dependencies](#dependencies). These information are important when the package gets released to the ROS community.
 
 Each `package.xml` has a `<package>` tag as root tag:
@@ -168,7 +168,7 @@ Other tags:
 <author></author>
 <url></url>
 ```
-### 3.4.1. Dependencies
+### Dependencies
 The `package.xml` with minimal tags doesn't specify **dependencies**. There are 6 types of dependencies:
 > **Note**, the tag:
 > ```XML
@@ -201,7 +201,7 @@ The `package.xml` with minimal tags doesn't specify **dependencies**. There are 
   <doc_depend>pkg_name</doc_depend>
   ```
 
-### 3.4.2. Metapackages
+### Metapackages
 It's often convenient to group multiple packages as a single logical package or **metapackage**. A metapackage is a normal package with the following tag in `package.xml`:
 ```XML
 <export>
@@ -210,7 +210,7 @@ It's often convenient to group multiple packages as a single logical package or 
 ```
 Other than a required `<buildtool_depends>` on `catkin`, metapackages can only have *execution dependencies* on packages of which they group.
 
-## 3.5. CMakeLists.txt
+## CMakeLists.txt
 The file `CMakeLists.txt` is the input to the CMake build system for building software packages.
 
 In order to work, it has to follow this exact format in the exact order:
@@ -279,5 +279,5 @@ In order to work, it has to follow this exact format in the exact order:
     install()
     ```
 
-# 4. Message types
-# 5. Service types
+# Message types
+# Service types
