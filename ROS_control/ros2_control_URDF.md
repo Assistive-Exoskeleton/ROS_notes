@@ -1,29 +1,42 @@
 # `ros2_control` URDF
-The ros2_control framework uses the `<ros2_control>` tag in the robot’s URDF file to describe its components, i.e., the hardware setup.
+
+## Hardware components description
+Each [hardware component](ROS2_control_concepts.md#hardware-components) is described in URDF using `<ros2_control>` tag.
 
 ```XML
-<ros2_control name="myRobot" type="hardware_component_type">
-
+<ros2_control name="myComponent" type="hardware_component_type">
+    
     <hardware>
         <plugin>hardware_plugin_path_class</plugin>
         <param name="param_name">value</param>
         ...
     </hardware>
 
-    <joint name="jointName">
+    <joint name="joint_name">
         <command_interface name="command_interface_name">
-            <param name="param_name">value</param>
+            <param ...>...</param>
         </command_interface>
-        <state_interface name="state_interface_name">
+        <state_interface name="state_interface_name"/>
     </joint>
+
+    <sensor name="sensor_name">
+        <state_interface name="state_interface_name"/>
+    </sensor>
+
+    <transmission name="transmission_name">
+        <plugin>transmission_path_class</plugin>
+        <param ...>...</param>
+    </transmission>
+
 </ros2_control>
 ```
 
 - `<hardware>`: declares the hardware components implemented as plugins. 
     - `<plugin>`: name of the plugin class that implements the component
-- `param`: names are not predefined and each component may define its names. Examples:
-  - hardware plugins  `start_duration`, `stop_duration` and `slowdown` {come mai questi parametri?}
-  -  
-- `joint`: declares the joint. It has:
-  - `command_interface`: communication channel to send commands to the joint.
-  - `state_interface`: communication channel to receive states from the joint. 
+- `<param>`: parameters for the current element. 
+  > param names are not predefined and each component may define its names.
+- `joint`: declares a robot joint. Joint names must be compatible with the controller's configuration. It has:
+  - `command_interface`: communication channel to send commands to the joint (i.e. to actuator)
+  - `state_interface`: communication channel to receive states from the joint (i.e. from sensor)
+- `sensor`: declares a robot sensor. Being read-only, sensors only have a `state_interface`.
+- `transmission`: URDF element describing the relationship between an actuator and a joint {e.g. motoriduttore}

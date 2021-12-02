@@ -1,4 +1,4 @@
-# Plugin library
+# Plugin library #TODO
 `pluginlib` is a C++ library for loading and unloading plugins within a ROS package. Plugins are dynamically loadable classes that are loaded from a runtime library.
 
 With pluginlib, one does not have to explicitly link their application against the library containing the classes – instead pluginlib can open a library containing exported classes at any point without the application having any prior awareness of the library or the header file containing the class definition. Plugins are useful for extending/modifying application behavior without needing the application source code.
@@ -17,3 +17,5 @@ namespace myPkg
     }
 }
 ```
+
+Plugins are exported using PLUGINLIB_EXPORT_CLASS macro.

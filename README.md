@@ -101,6 +101,9 @@ Packages:
 - [x] [`robot_state_publisher`](https://github.com/ros/robot_state_publisher/tree/ros2)
 - [x] [`joint_state_publisher`](https://github.com/ros/joint_state_publisher/tree/ros2)
 - [ ] [`ros2_control_demos`](https://github.com/ros-controls/ros2_control_demos)
+- [ ] ros_controls [`roadmap`](https://github.com/ros-controls/roadmap)
+  - [ ] [`design_drafts`](https://github.com/ros-controls/roadmap/tree/master/design_drafts)
+    - [x] [components_architecture_and_urdf_examples.md](https://github.com/ros-controls/roadmap/blob/master/design_drafts/components_architecture_and_urdf_examples.md)
 - [x] [ubuntu robotics cheat_sheets for CLI](https://github.com/ubuntu-robotics/ros2_cheats_sheet/blob/master/cli/cli_cheats_sheet.pdf)
 
 ## control.ros.org
