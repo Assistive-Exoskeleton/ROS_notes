@@ -11,7 +11,7 @@ Main libraries found:
   - ...
 - [x] `ros2cli` ([ros2cli.md](ros2cli.md)): ROS2 command line interface
 - [x] `rcl` ([rlc.md](rcl.md)): ROS client library
-- [ ] `pluginlib` ([pluginlib.md](pluginlib.md))
+- [x] `pluginlib` ([pluginlib.md](pluginlib.md))
 - [ ] `robot_state_publisher` ([`robot_state_publisher.md](robot_state_publisher.md))
 - [ ] `joint_state_publisher` ([`joint_state_publisher.md`](joint_state_publisher.md))
 - [ ] `tf` ([`tf.md`](tf.md))

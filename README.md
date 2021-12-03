@@ -51,7 +51,7 @@ Packages:
   - [ ] [Using parameters in a class (C++)](https://docs.ros.org/en/galactic/Tutorials/Using-Parameters-In-A-Class-CPP.html)
   - [ ] [Using parameters in a class (Python)](https://docs.ros.org/en/galactic/Tutorials/Using-Parameters-In-A-Class-Python.html)
   - [ ] [Getting started with ros2doctor](https://docs.ros.org/en/galactic/Tutorials/Getting-Started-With-Ros2doctor.html)
-  - [ ] [Creating and Using Plugins (C++)](https://docs.ros.org/en/galactic/Tutorials/Pluginlib.html)
+  - [x] [Creating and Using Plugins (C++)](https://docs.ros.org/en/galactic/Tutorials/Pluginlib.html)
   - [x] [Creating an action](https://docs.ros.org/en/galactic/Tutorials/Actions/Creating-an-Action.html)
   - [ ] [Writing an action server and client (C++)](https://docs.ros.org/en/galactic/Tutorials/Actions/Writing-a-Cpp-Action-Server-Client.html)
   - [ ] [Writing an action server and client (Python)](https://docs.ros.org/en/galactic/Tutorials/Actions/Writing-a-Py-Action-Server-Client.html)
@@ -86,6 +86,9 @@ Packages:
   - [x] [model](http://wiki.ros.org/urdf/XML/model)
   - [ ] ...
 - [ ] [rviz/UserGuide](http://wiki.ros.org/rviz/UserGuide)
+- [ ] [pluginlib](http://wiki.ros.org/pluginlib)
+  - [x] [Tutorials](http://wiki.ros.org/pluginlib/Tutorials)
+    - [x] [Writing and Using a Simple Plugin](http://wiki.ros.org/pluginlib/Tutorials/Writing%20and%20Using%20a%20Simple%20Plugin)
 
 ## index.ros.org
 
