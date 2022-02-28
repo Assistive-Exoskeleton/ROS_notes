@@ -3,13 +3,13 @@
 - [ROS2 filesystem](#ros2-filesystem)
 - [Environment variables](#environment-variables)
 - [Packages](#packages)
-	- [Package structure](#package-structure)
-	- [Workspaces](#workspaces)
-	- [Command line tools](#command-line-tools)
-	- [Package Manifest (`package.xml`)](#package-manifest-packagexml)
-		- [Dependencies](#dependencies)
-		- [Metapackages](#metapackages)
-	- [CMakeLists.txt #TODO](#cmakeliststxt-todo)
+  - [Package structure](#package-structure)
+  - [Workspaces](#workspaces)
+  - [Command line tools](#command-line-tools)
+  - [Package Manifest (`package.xml`)](#package-manifest-packagexml)
+    - [Dependencies](#dependencies)
+    - [Metapackages](#metapackages)
+  - [CMakeLists.txt #TODO](#cmakeliststxt-todo)
 
 # Environment variables
 In Linux and Unix based systems, environment variables are a set of dynamic named values, stored within the system that are used by applications launched in shells or subshells. In simple words, an environment variable is a variable with a **name** and an associated **value**.
@@ -90,7 +90,7 @@ Useful commands for **packages**:
   
   To install and update:
   ```powershell
-  # installation on ROS Noetic
+  # installation
   $ sudo apt install python3-rosdep
   # Initialize rosdep (call only once after installation)
   $ sudo rosdep init
@@ -103,11 +103,11 @@ Useful commands for **packages**:
   ```powershell
   $ rosdep install --from-paths src --ignore-src -r -y --rosdistro <my_distro>
   
-  --from-paths: 'the arguments will be considered paths to be searched, acting on all catkin packages found there in'
-  --ignore-src, -i: 'rosdep will ignore keys that are found to be catkin or ament packages anywhere in the ROS_PACKAGE_PATH, AMENT_PREFIX_PATH or in any of the directories given by the --from-paths option'
-  -r: 'Continue installing despite errors'
-  -y: 'Tell the package manager to default to y (yes) or fail when installing'
-  --rosdistro <my_distro>: 'for example rolling, galactic...'
+  # --from-paths: the arguments will be considered paths to be searched, acting on all packages found there in
+  # --ignore-src, -i: rosdep will ignore keys that are found to be packages anywhere in the ROS_PACKAGE_PATH, AMENT_PREFIX_PATH or in any of the directories given by the --from-paths option
+  # -r: Continue installing despite errors
+  # -y: Tell the package manager to default to y (yes) or fail when installing
+  # --rosdistro <my_distro>: e.g. rolling, galactic...
   ```
 
 ## Package Manifest (`package.xml`)

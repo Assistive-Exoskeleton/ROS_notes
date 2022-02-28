@@ -32,7 +32,7 @@ A parameter is a configuration state of a node/system. Parameters are dynamicall
 ROS applications typically communicate through [interfaces](https://docs.ros.org/en/galactic/Concepts/About-ROS-Interfaces.html) of one of three types: messages, services and actions. ROS2 uses a simplified description language, the **interface definition language** ([`IDL`](IDL.md)) to define interfaces.
 
 ### Topics
-Topics act as a bus for nodes to exchange **messages**. Communication via topics is N-to-N through a **Publisher-Subscribe model**:
+Topics act as a bus for nodes to exchange **messages**. Communication via topics is N-to-N through a **Publisher-Subscriber model**:
 - Nodes sending messages are **Publishers** for that topic 
 - Nodes receiving messages are **Subscribers** to that topic
 
@@ -70,7 +70,7 @@ Each resource is defined within a **namespace**, which it may share with other r
 Names are resolved relatively, so resources do not need to be aware of which namespace they are in.
 
 There are 4 types of Graph Resource Names:
-- **base** (`base`)
+- **base** (`basename`)
 - **relative** (`relative/name`): default resolution
 - **global** (`/global/name`)
 - **private** (`~private/name`)
@@ -80,7 +80,7 @@ Example:
 |----------|---------|------|--------------|
 |`/wg/node`|`/wg/foo`|`/foo`|`/wg/node/foo`|
 
->Note: any name within a ROS2 Node can be [remapped](Standard_Libraries/roscli.md/#launch-and-run) when the Node is launched at the command-line.
+>Note: any name within a ROS2 Node can be [remapped](Standard_Libraries/ros2cli.md#launch-and-run) when the Node is launched at the command-line.
 
 ## Package resource name
 Package Resource Names are used in ROS to simplify the process of referring to files and data types on disk. They are just the name of the package that the resource is in plus the name of the resource
