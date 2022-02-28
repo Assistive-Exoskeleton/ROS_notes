@@ -89,6 +89,9 @@ Packages:
 - [ ] [pluginlib](http://wiki.ros.org/pluginlib)
   - [x] [Tutorials](http://wiki.ros.org/pluginlib/Tutorials)
     - [x] [Writing and Using a Simple Plugin](http://wiki.ros.org/pluginlib/Tutorials/Writing%20and%20Using%20a%20Simple%20Plugin)
+- [ ] ros_control
+  - [ ] tutorials
+    - [x] [Create your own hardware interface](http://wiki.ros.org/ros_control/Tutorials/Create%20your%20own%20hardware%20interface)
 
 ## index.ros.org
 
@@ -107,12 +110,16 @@ Packages:
 - [ ] ros_controls [`roadmap`](https://github.com/ros-controls/roadmap)
   - [ ] [`design_drafts`](https://github.com/ros-controls/roadmap/tree/master/design_drafts)
     - [x] [components_architecture_and_urdf_examples.md](https://github.com/ros-controls/roadmap/blob/master/design_drafts/components_architecture_and_urdf_examples.md)
+    - [x] [hardware access through controllers](https://github.com/ros-controls/roadmap/blob/master/design_drafts/hardware_access.md)
 - [x] [ubuntu robotics cheat_sheets for CLI](https://github.com/ubuntu-robotics/ros2_cheats_sheet/blob/master/cli/cli_cheats_sheet.pdf)
 
 ## control.ros.org
 - [x] [getting started](https://control.ros.org/getting_started.html)
-- [ ] ...
-
+- [x] core functionalities
+  - [x] [controller_manager](http://control.ros.org/ros2_control/controller_manager/doc/userdoc.html)
+  - [x] [Hardware components](http://control.ros.org/ros2_control/hardware_interface/doc/hardware_components_userdoc.html)
+  - [x] [Fake components](http://control.ros.org/ros2_control/hardware_interface/doc/fake_components_userdoc.html)  
+  - [x] [ros2_control CLI](http://control.ros.org/ros2_control/ros2controlcli/doc/userdoc.html) 
 ## gazebosim.org
 - [ ] [Gazebo ros control](http://gazebosim.org/tutorials/?tut=ros_control)
 
