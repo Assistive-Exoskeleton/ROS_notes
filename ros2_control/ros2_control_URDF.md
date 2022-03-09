@@ -2,11 +2,12 @@
 
 ## Hardware components description
 > Note: Use XML macro (`XACRO`) files instead of URDF directly.
-1. Each [hardware component](ROS2_control_concepts.md#hardware-components) is described in URDF using `<ros2_control>` tag.
+1. Each [hardware component](ros2_control_HI.md#hardware-components) is described in URDF using `<ros2_control>` tag.
     ```XML
     <ros2_control name="my_component" type="hardware_component_type">
 
     </ros2_control>
+    <!-- other components ... -->
     ```
     |Attribute|Description|
     |-|-|
@@ -23,7 +24,7 @@
     ```
     |Tag|Description|
     |-|-|
-    |`<plugin>`|name of the plugin class that implements the component/hardware interface HI (e.g. `HI_pkg_name/HI_name`) [{#FIXME in some examples `<class>` is used instead?}](https://github.com/ros-controls/roadmap/blob/master/design_drafts/hardware_access.md)
+    |`<plugin>`|name of the plugin class that implements the component/hardware interface HI (e.g. `HI_pkg_name/HI_name`)
     |`<param>`|parameters for the current element (not predefined, each element can have its own)
 
 3. A robot **joint** is a logical component, an abstraction between controller instance and the underlying hardware. A signle joint may be controlled by multiple motors with a non-trivial transmission interface, yet a controller only cares about joint values. A joint can be declared with the `<joint>` tag:
