@@ -171,7 +171,7 @@ There are two main classes:
         |`timeout_sec`|`float`|timeout, returning `False` if it expires|
    - `destroy()`
 
-## `Context` (#TODO)
+## `Context`
 A `Context` encapsulates the lifecycle of init and shutdown. The context is used in the creation of top level entities like nodes and guard conditions, as well as to shutdown a specific instance of init.
 
 ## `RcutilsLogger`
@@ -225,3 +225,36 @@ The base QoS profile currently includes settings for the following policies:
   - **Duration**: the maximum period of time a publisher has to indicate that it is alive before the system considers it to have lost liveliness (losing liveliness could be an indication of a failure).
 
 For each of the policies that is not a duration, there is also the option of “system default”, which uses the default of the underlying middleware. For each of the policies that is a duration, there also exists a “default” option that means the duration is unspecified, which the underlying middleware will usually interpret as an infinitely long duration.
+
+# Lifecycle
+A managed lifecycle allows greater control over the state of ROS system, ensuring all components have been instantiated correctly before starting behaving. This also allows nodes to be restarded/replaced on-line.
+
+A node with managed lifecycle presents a known interface and executes according to known life-cycle state-machine.
+
+![Lifecycle](images/lifecycle.png)
+
+There are 4 **primary states**:
+- `Unconfigured`: this is the state the node is immediately after being instantiated.
+- `Inactive`: represents a node that is currently not performing any processing. The main purpose is to allow a node to be (re-)configured without altering its behavior while running.
+- `Active`: main state of node lifecycle. The node performs processing, responds to service requests, reads data, produces output... 
+- `Finalized`: states in which the node is immediately before being destroyed. This state supports debugging and introspection.
+
+Transition out of a primary state requires an external supervisory process, unless an error is thrown in `Active` state.
+There are 7 **transitions** exposed to supervisory processes:
+- `create()` --> `Unconfigured`
+- `configure()` --> `Configuring`
+- `cleanup()` --> `CleaningUp`
+- `activate()` --> `Activating`
+- `deactivate()` --> `Deactivating`
+- `shutdown()` --> `ShuttingDown`
+- `destroy()` --> []
+
+
+There are also 6 **transition states**:
+1. `Configuring`: the `onConfigure()` callback is used to load node configuration and perform setup. Usually these are the tasks that must be performed once in a node's lifetime, resources that must be hold, permanent subscriptions or publications.
+2. `CleaningUp`: the `onCleanup()` callback is used to clear all state and return the node to a functionally equivalent state as when first created.
+3. `Activating`: the `onActivate()` callback is used to do any final preparation (requiring short time) to start executing. This may include acquiring resources that are only held when the node is actually active (e.g. **hardware access**).
+4. `Deactivating`: the `onDeactivate()` callback is used to reverse changes performed in `Activating` state.
+5. `ShuttingDown`: the `onShutdown()` callback does cleanup before node destruction. The originating state is passed to the method.
+6. `ErrorProcessing`: This state may be entered from any user-code processing. The `onError()` callback is used to handle errors. If this succeeds, the state reverts to `Unconfigured`. Otherwise if it's not possible to handle all errors, the state becomes `Finalized` in preparation for destruction.
+
