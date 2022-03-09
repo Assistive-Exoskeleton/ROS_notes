@@ -48,7 +48,7 @@ Elements:
     - ...
     - `<mesh>`: trimesh element specified by a `filename` and an optional `scale`.
   - `<material>`: material of the element, with attribute `name`
-    - `<color>`: rgba color
+    - `<color rgba="r g b a">`
     - `<texture>`: texture from `filename`
 - `<collision>`: collision properties, with `name`.
   > Note: multiple instances can exists. The final collision model is the union of the instances.
