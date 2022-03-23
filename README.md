@@ -14,7 +14,7 @@ ROS programming and application
 Packages:
 - [ ] [`ros_control`](ROS_control)
 - [ ] [`rViz`](rViz)
-- [ ] [`rQt`](rQt)
+- [x] [`rQt`](rQt)
 - [ ] [`gazebo`](gazebo)
 
 [Raspberry](Raspberry):

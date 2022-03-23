@@ -4,12 +4,12 @@ rqt is a Qt-based framework for GUI development for ROS. It consists of three pa
 * rqt - core infrastucture modules.
 * **rqt_common_plugins** - Backend tools for building tools.
 * **rqt_robot_plugins*** - Tools for interacting with robots during runtime. They need to be installed separately.
-  * [rqt_moveit](rqt_moveit)
-  * [rqt_robot_dashboard](rqt_robot_dashboard)
-  * [rqt_robot_monitor](rqt_robot_monitor)
-  * [rqt_robot_steering](rqt_robot_steering)
-  * [rqt_runtime_monitor](rqt_runtime_monitor)
-  * [rqt_tf_tree](rqt_tf_tree)
+  * [rqt_moveit](rqt_moveit.md)
+  * [rqt_robot_dashboard](rqt_robot_dashboard.md)
+  * [rqt_robot_monitor](rqt_robot_monitor.md)
+  * [rqt_robot_steering](rqt_robot_steering.md)
+  * [rqt_runtime_monitor](rqt_runtime_monitor.md)
+  * [rqt_tf_tree](rqt_tf_tree.md)
   
 
 \*<font size="1">Only ROS2 compatible plugins are listed.</font>
