@@ -13,6 +13,7 @@ ROS programming and application
 
 Packages:
 - [ ] [`ros_control`](ROS_control)
+- [ ] [`MoveIt`](moveit)
 - [ ] [`rViz`](rViz)
 - [x] [`rQt`](rQt)
 - [ ] [`gazebo`](gazebo)
