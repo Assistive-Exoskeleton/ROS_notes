@@ -2,11 +2,10 @@
 MoveIt 2 is the robotic manipulation platform for ROS 2 led by [PickNik Robotics](https://picknik.ai/).
 
 For further informations:
-- [concepts](concepts.md)
-- MoveIt plugins:
-  - [Motion Planning](moveit_motion_planning.md)
-  - [Kinematics](moveit_kinematics.md)
-
+* [concepts](concepts.md)
+* MoveIt plugins:
+  * [Motion Planning](moveit_motion_planning.md)
+  * [Kinematics](moveit_kinematics.md)
 
 
 ## Terminology

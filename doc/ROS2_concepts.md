@@ -76,6 +76,7 @@ There are 4 types of Graph Resource Names:
 - **private** (`~private/name`)
 
 Example:
+
 |Node|Relative `foo`|Global `/foo`|Private `~foo`|
 |----------|---------|------|--------------|
 |`/wg/node`|`/wg/foo`|`/foo`|`/wg/node/foo`|

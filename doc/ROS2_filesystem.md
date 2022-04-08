@@ -35,6 +35,7 @@ Minimum required contents for a package:
 |					|`/<package_name>`	|directory with the same name as the package, containing `__init__.py`
 
 ROS2 packages often contain also:
+
 |directory|description|
 |---------|-----------|
 |`include/pkg_name`|include headers|

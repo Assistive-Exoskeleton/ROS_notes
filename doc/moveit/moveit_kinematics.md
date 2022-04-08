@@ -2,15 +2,20 @@
 
 MoveIt uses a plugin infrastructure, especially targeted towards allowing users to write their own inverse kinematics algorithms. Forward kinematics and finding jacobians is integrated within the RobotState class itself. The default inverse kinematics plugin for MoveIt is configured using the `KDL` numerical jacobian-based solver. This plugin is automatically configured by the MoveIt Setup Assistant.
 
-### IKFast Plugin
-
-Often, users may choose to implement their own kinematics solvers, e.g. the PR2 has its own kinematics solvers. A popular approach to implementing such a solver is using the IKFast package to generate the C++ code needed to work with your particular robot.
 
 ## IKFast Kinematics Solver
 
-[qui](https://moveit.picknik.ai/galactic/doc/examples/ikfast/ikfast_tutorial.html?highlight=ikfast#ikfast-kinematics-solver)
+Often, users may choose to implement their own kinematics solvers. A popular approach to implementing such a solver is using the IKFast package to generate the C++ code needed to work with your particular robot.
 
-[//]: #TODO
+IKFast automatically analyses any complex kinematic chain for common patterns that allow for an analytic solution and generates C++ code to find them. As a consequence, IKFast provides extremely stable solutions that can be found in a few microseconds on recent processors.
+
+MoveIt provides tools to generate an IKFast kinematics plugin for MoveIt using the OpenRAVE generated cpp files. 
+
+> MoveIt IKFast doesn’t currently support >7 degree of freedom arms.
+
+The IKFast plugin can be used as a drop-in replacement for the default `KDL` IK Solver, but with greatly increased performance.
+
+To generate the plugin , follow [this](https://moveit.picknik.ai/galactic/doc/examples/ikfast/ikfast_tutorial.html) guide (make sure to know working principles of [docker](https://www.docker.com/) containers). 
 
 ## Collision Checking
 
