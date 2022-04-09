@@ -1,5 +1,3 @@
-# Install ROS on raspberry 
-
 ## Prerequisites
 
 > ⚠ This guide is written for ROS2 Foxy over Ubuntu 20.04 server. 
@@ -67,6 +65,7 @@ Remember to install ROS on Raspberry or using SSH to connect from a network mach
 ``` bash
 ssh ubuntu@<ip_address>
 ```
+
 
 ### Setup locale
 ``` bash

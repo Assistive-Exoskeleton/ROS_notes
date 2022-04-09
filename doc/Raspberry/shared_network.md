@@ -1,4 +1,4 @@
-# shared network
+# Shared network
 
 ## ROS DOMAIN ID
 Il middleware usato di default da ROS 2 per le comunicazioni è `DDS`. Nel DDS, il `Domain ID` è utilizzato per poter far comunicare diversi network logici condividendo lo stesso network fisico, nello specifico, il Domain ID è usato dal DDS per settare le `porte UDP` che verranno utilizzate per la ricerca dei nodi e la comunicazione (i nodi in ROS 2 che condividono lo stesso dominio possono rintracciarsi e scambiarsi messaggi).

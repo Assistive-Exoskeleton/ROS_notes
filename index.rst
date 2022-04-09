@@ -6,15 +6,51 @@
 Welcome to ROS2 notes's documentation!
 ======================================
 
-Table Of Contents
------------------
+
+ROS theory and concepts
+-----------------------
+
 .. toctree::
-   :maxdepth: 5
+   :maxdepth: 2
    
-   doc/README
-   
+   doc/ROS2/ROS2_concepts.md
+   doc/ROS2/ROS2_filesystem.md
+
+ROS programming and application
+-------------------------------
+
 .. toctree::
-   :maxdepth: 5
+   :maxdepth: 2
+
+   doc/ROS2/Launch.md
+   doc/Robot_description/README.md
+   doc/Standard_Libraries/README.md
+
+Packages
+--------
+
+.. toctree::
+   :maxdepth: 2
+
+   doc/ros2_control/README.md
+   doc/moveit/README.md
+   doc/rViz/README.md
+   doc/rQt/README.md
+   doc/gazebo/README.md
+
+Raspberry
+---------
+
+.. toctree::
+   :maxdepth: 2
+
+   doc/Raspberry/README.md
+   
+
+
+.. toctree::
+   :maxdepth: 2
+   :hidden:
 
    doc/references
 

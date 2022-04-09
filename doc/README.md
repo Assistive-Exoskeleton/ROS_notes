@@ -10,9 +10,9 @@
 
 # Packages
 ## [ ] [ros_control](ROS_control)
-## [ ] [MoveIt](moveit)
+## [MoveIt](moveit/README.md)
 ## [ ] [rViz](rViz)
-## [x] [rQt](rQt/README.md)
+## [RQt](rQt/README.md)
 ## [ ] [gazebo](gazebo)
 
 # Raspberry
