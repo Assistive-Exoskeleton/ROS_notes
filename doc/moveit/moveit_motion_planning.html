@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MoveIt - motion planning plugin &mdash; ROS2 notes 2022 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> ROS2 notes
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html">ROS2 concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html#ros2-graph-concepts">ROS2 graph concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html#names">Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html">ROS2 filesystem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html#environment-variables">Environment variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html#packages">Packages</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/Launch.html">Launch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Robot_description/README.html">Robot description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Standard_Libraries/README.html">ROS2 standard libraries</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html">MoveIt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#rviz-interface">RViz Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#using-rviz-todo">Using RViz #TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rQt/README.html">RQt (formerly RQt2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ROS2 notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>MoveIt - motion planning plugin</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doc/moveit/moveit_motion_planning.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="moveit-motion-planning-plugin">
+<h1>MoveIt - motion planning plugin<a class="headerlink" href="#moveit-motion-planning-plugin" title="Permalink to this headline"></a></h1>
+<p>MoveIt works with motion planners through a plugin interface. This allows MoveIt to communicate with and use different motion planners from multiple libraries, making MoveIt easily extensible. The interface to the motion planners is through a ROS Action or service (offered by the <code class="docutils literal notranslate"><span class="pre">move_group</span></code> node).</p>
+<p>Planners available in MoveIt are (descending order of popularity/support within MoveIt):</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="moveit_OMPL.html"><span class="doc std std-doc">Open Motion Planning Library (OMPL)</span></a></p></li>
+<li><p><strong>Pilz Industrial Motion Planner</strong>, a deterministic generator for circular and linear motions. Additionally, it supports blending multiple motion segments together using a MoveIt capability.</p></li>
+<li><p><strong>Stochastic Trajectory Optimization for Motion Planning (STOMP)</strong>, an optimization-based motion planner based on the PI^2 (Policy Improvement with Path Integrals, Theodorou et al, 2010) algorithm. It can plan smooth trajectories for a robot arm, avoiding obstacles, and optimizing constraints. The algorithm does not require gradients, and can thus optimize arbitrary terms in the cost function like motor efforts. Partially supported.</p></li>
+<li><p><strong>Search-Based Planning Library (SBPL)</strong>, a generic set of motion planners using search based planning that discretize the space. Integration into latest version of MoveIt is work in progress.</p></li>
+<li><p><strong>Covariant Hamiltonian Optimization for Motion Planning (CHOMP)</strong>, a novel gradient-based trajectory optimization procedure that makes many everyday motion planning problems both simple and trainable (Ratliff et al., 2009c). While most high-dimensional motion planners separate trajectory generation into distinct planning and optimization stages, this algorithm capitalizes on covariant gradient and functional gradient approaches to the optimization stage to design a motion planning algorithm based entirely on trajectory optimization. Given an infeasible naive trajectory, CHOMP reacts to the surrounding environment to quickly pull the trajectory out of collision while simultaneously optimizing dynamical quantities such as joint velocities and accelerations. It rapidly converges to a smooth collision-free trajectory that can be executed efficiently on the robot. Integration into latest version of MoveIt is work in progress.</p></li>
+</ul>
+<div class="section" id="the-motion-plan-request">
+<h2>The Motion Plan Request<a class="headerlink" href="#the-motion-plan-request" title="Permalink to this headline"></a></h2>
+<p>The motion plan request specifies what you would like the motion planner to do. Typically, you will be asking the motion planner to move an arm to a different location (in joint space) or the end-effector to a new pose. Collisions are checked for by default (including self-collisions and attached objects). You can also specify the planner via the <code class="docutils literal notranslate"><span class="pre">planning_pipeline</span></code> and <code class="docutils literal notranslate"><span class="pre">planner_id</span></code> parameters, and the constraints for the motion planner to check - the inbuilt constraints provided by MoveIt are kinematic constraints:</p>
+<ul class="simple">
+<li><p><strong>Position constraints</strong>: restrict the position of a link to lie within a region of space.</p></li>
+<li><p><strong>Orientation constraints</strong>: restrict the orientation of a link to lie within specified roll, pitch or yaw limits.</p></li>
+<li><p><strong>Visibility constraints</strong>: restrict a point on a link to lie within the visibility cone for a particular sensor.</p></li>
+<li><p><strong>Joint constraints</strong>: restrict a joint to lie between two values.</p></li>
+<li><p><strong>User-specified constraints</strong>: it is also possible to specify your own constraints with a user-defined callback.</p></li>
+</ul>
+</div>
+<div class="section" id="the-motion-plan-result">
+<h2>The Motion Plan Result<a class="headerlink" href="#the-motion-plan-result" title="Permalink to this headline"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">move_group</span></code> node will generate a desired trajectory in response to your motion plan request. This trajectory will move the arm (or any group of joints) to the desired location. Note that the result coming out of <code class="docutils literal notranslate"><span class="pre">move_group</span></code> is a trajectory and not just a path. <code class="docutils literal notranslate"><span class="pre">move_group</span></code> will use the desired maximum velocities and accelerations (if specified) to generate a trajectory that obeys velocity and acceleration constraints at the joint level.</p>
+</div>
+<div class="section" id="motion-planning-adapters">
+<h2>Motion planning adapters<a class="headerlink" href="#motion-planning-adapters" title="Permalink to this headline"></a></h2>
+<p><img alt="motion planning adapters" src="../../_images/motion_planner.png" /></p>
+<p>The complete motion planning pipeline chains together a motion planner with other components called <strong>planning request adapters</strong>. Planning request adapters allow for pre-processing motion plan requests and post-processing motion plan responses. Pre-processing is useful in several situations, e.g. when a start state for the robot is slightly outside the specified joint limits for the robot. Post-processing is needed for several other operations, e.g. to convert paths generated for a robot into time-parameterized trajectories. MoveIt provides a set of default motion planning adapters that each perform a very specific function:</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Adapter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>FixStartStateBounds</strong></p></td>
+<td><p>Fixes the start state to be within the joint limits specified in the URDF. If the robot is physically outside joint limits, motion planner is unable to plan since it will think that the starting state is outside joint limits.  A parameter for the adapter specifies how much the joint can be outside its limits for it to be “fixable”.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>FixWorkspaceBounds</strong></p></td>
+<td><p>Specify a default workspace for planning: a cube of size 10 m x 10 m x 10 m. This workspace will only be specified if the planning request to the planner does not have these fields filled in.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>FixStartStateCollision</strong></p></td>
+<td><p>It will attempt to sample a new collision-free configuration near a specified configuration (in collision) by perturbing the joint values by a small amount. The amount that it will perturb the values by is specified by the  jiggle_fraction parameter that controls the perturbation as a percentage of the total range of motion for the joint. The other parameter for this adapter specifies how many random perturbations the adapter will sample before giving up.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>FixStartStatePathConstraints</strong></p></td>
+<td><p>Applied when the start state for a motion plan does not obey the specified path constraints. It will attempt to plan a path between the current configuration of the robot to a new location where the path constraint is obeyed. The new location will serve as the start state for planning.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>AddTimeParameterization</strong></p></td>
+<td><p>The motion planners will typically generate “kinematic paths”, i.e., paths that do not obey any velocity or acceleration constraints and are not time parameterized. This adapter will “time parameterize” the motion plans by applying velocity and acceleration constraints.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>ResolveConstraintFrames</strong></p></td>
+<td><p>Goal constraints can be set using subframes (e.g. a pose goal in the frame cup/handle, where handle is a subframe on the object cup). This adapter changes the frame of constraints to an object or robot frame (e.g. cup).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Assistive exoskeleton Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

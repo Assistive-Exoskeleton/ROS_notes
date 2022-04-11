@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RViz &mdash; ROS2 notes 2022 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="RQt (formerly RQt2)" href="../rQt/README.html" />
+    <link rel="prev" title="MoveIt" href="../moveit/README.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> ROS2 notes
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html">ROS2 concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html#ros2-graph-concepts">ROS2 graph concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html#names">Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html">ROS2 filesystem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html#environment-variables">Environment variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html#packages">Packages</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/Launch.html">Launch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Robot_description/README.html">Robot description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Standard_Libraries/README.html">ROS2 standard libraries</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">RViz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#rviz-interface">RViz Interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#displays">Displays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configurations">Configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#views">Views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#frames">Frames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tools">Tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#using-rviz-todo">Using RViz #TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rQt/README.html">RQt (formerly RQt2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ROS2 notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>RViz</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doc/rViz/README.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="rviz">
+<h1>RViz<a class="headerlink" href="#rviz" title="Permalink to this headline"></a></h1>
+<ul class="simple">
+<li><p><span class="xref myst">RViz</span></p></li>
+<li><p><span class="xref myst">RViz Interface</span></p>
+<ul>
+<li><p><span class="xref myst">Displays</span></p></li>
+<li><p><span class="xref myst">Configurations</span></p></li>
+<li><p><span class="xref myst">Views</span></p></li>
+<li><p><span class="xref myst">Frames</span></p></li>
+<li><p><span class="xref myst">Tools</span></p></li>
+</ul>
+</li>
+<li><p><span class="xref myst">Using RViz #TODO</span></p></li>
+</ul>
+<p><a class="reference external" href="http://wiki.ros.org/rviz/UserGuide"><code class="docutils literal notranslate"><span class="pre">rviz</span></code></a> is a 3D visualization environment. It’s a powerful tool for debugging ROS applications. Run RViz through:</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">ros2</span> <span class="n">run</span> <span class="n">rviz2</span> <span class="n">rviz2</span>
+</pre></div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="rviz-interface">
+<h1>RViz Interface<a class="headerlink" href="#rviz-interface" title="Permalink to this headline"></a></h1>
+<p><img alt="rviz2_main" src="../../_images/rviz2_main.png" /></p>
+<div class="section" id="displays">
+<h2>Displays<a class="headerlink" href="#displays" title="Permalink to this headline"></a></h2>
+<p>A display is something that draws in the 3D world (e.g. the robot state). Each display has its own list of <strong>properties</strong> and its <strong>status</strong> visible in the <code class="docutils literal notranslate"><span class="pre">Displays</span></code> panel. Clicking on a display property also visualize a <strong>description</strong> on the bottom.</p>
+<p>To add a display, click the <code class="docutils literal notranslate"><span class="pre">Add</span></code> button in the <code class="docutils literal notranslate"><span class="pre">Displays</span></code> panel. The <a class="reference external" href="http://wiki.ros.org/rviz/UserGuide#Built-in_Display_Types"><strong><code class="docutils literal notranslate"><span class="pre">display</span> <span class="pre">type</span></code></strong></a> details what kind of data this display will visualize. The text box in the middle gives a description of the selected display type. Finally, you must give the display a <strong>unique name</strong>.</p>
+<p><img alt="rviz2_addDisplay" src="../../_images/rviz2_addDisplay.png" /></p>
+</div>
+<div class="section" id="configurations">
+<h2>Configurations<a class="headerlink" href="#configurations" title="Permalink to this headline"></a></h2>
+<p>Different display configurations can be useful for RViz. Therefore, RViz lets us <strong>load</strong> and <strong>save</strong> different configurations.</p>
+<p><img alt="rviz2_menu" src="../../_images/rviz2_menu.png" /></p>
+<p>A configuration contains:</p>
+<ul class="simple">
+<li><p>Displays and their properties</p></li>
+<li><p>Tool properties</p></li>
+<li><p>Camera type and settings of initial viewpoint.</p></li>
+</ul>
+</div>
+<div class="section" id="views">
+<h2>Views<a class="headerlink" href="#views" title="Permalink to this headline"></a></h2>
+<p>There are different camera types available in the <code class="docutils literal notranslate"><span class="pre">Views</span></code> panel. They consists both of different ways to control the camera and different types of projection.</p>
+<p><img alt="rviz2_views_menu" src="../../_images/rviz2_views.png" /></p>
+<ul class="simple">
+<li><p><strong>Orbital camera</strong>: rotates around a focal point while always looking at it.</p></li>
+<li><p><strong>FPS (first person) camera</strong>: rotate along camera axes</p></li>
+<li><p><strong>Top-down orthographic</strong>: looks down along Z axis of the robot frame, with orthographic view (no perspective)</p></li>
+<li><p><strong>XY orbit</strong>: same as orbital camera, with focus point restricted to the XY plane</p></li>
+<li><p><strong>Third person follower</strong>: The camera maintains a constant viewing angle towards the target frame.</p></li>
+</ul>
+<p>A view consists of:</p>
+<ul class="simple">
+<li><p>A <strong>Target</strong> <span class="xref myst"><strong>Frame</strong></span>.</p></li>
+<li><p>A <strong>view configuration</strong>: position, orientation, camera type and pose …</p></li>
+<li><p>A <strong>view controller type</strong>.</p></li>
+</ul>
+</div>
+<div class="section" id="frames">
+<h2>Frames<a class="headerlink" href="#frames" title="Permalink to this headline"></a></h2>
+<p>RViz uses <span class="xref myst"><strong>tf</strong></span> transform system for transforming data from the coordinate frame it arrives in into a global reference frame. There are two important coordinate frames in RViz:</p>
+<ul class="simple">
+<li><p><strong>Fixed Frame</strong>: reference used to denote the “world” frame. For correct results, a fixed frame should not be moving relative to the world.</p></li>
+<li><p><strong>Target Frame</strong>: reference for the camera view.</p></li>
+</ul>
+</div>
+<div class="section" id="tools">
+<h2>Tools<a class="headerlink" href="#tools" title="Permalink to this headline"></a></h2>
+<p>Tools are visible in the toolbar:</p>
+<p><img alt="toolbar" src="../../_images/rviz2_toolbar.png" /></p>
+<ul class="simple">
+<li><p><strong>Move camera</strong>: move camera in 3D view</p></li>
+<li><p><strong>Select</strong>: select items displayed in 3D view</p></li>
+<li><p><strong>2D pose estimate</strong>: used to set an initial pose to seed the localization system (sent on the <code class="docutils literal notranslate"><span class="pre">/initialpose</span></code> ROS topic)</p></li>
+<li><p>…</p></li>
+</ul>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="using-rviz-todo">
+<h1>Using RViz #TODO<a class="headerlink" href="#using-rviz-todo" title="Permalink to this headline"></a></h1>
+<p>There are two main ways to put data into RViz world:</p>
+<ol class="arabic simple">
+<li><p>Sensor and state information, using plugins for many kinds of available topics</p></li>
+<li><p>Visualization markers (primitive shapes)</p></li>
+</ol>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../moveit/README.html" class="btn btn-neutral float-left" title="MoveIt" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../rQt/README.html" class="btn btn-neutral float-right" title="RQt (formerly RQt2)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Assistive exoskeleton Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

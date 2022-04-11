@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ros2_control User Interfaces &mdash; ROS2 notes 2022 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> ROS2 notes
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html">ROS2 concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html#ros2-graph-concepts">ROS2 graph concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html#names">Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html">ROS2 filesystem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html#environment-variables">Environment variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html#packages">Packages</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/Launch.html">Launch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Robot_description/README.html">Robot description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Standard_Libraries/README.html">ROS2 standard libraries</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="README.html">ROS Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#rviz-interface">RViz Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#using-rviz-todo">Using RViz #TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rQt/README.html">RQt (formerly RQt2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ROS2 notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> User Interfaces</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doc/ros2_control/ros2_control_UI.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="ros2-control-user-interfaces">
+<h1><code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> User Interfaces<a class="headerlink" href="#ros2-control-user-interfaces" title="Permalink to this headline"></a></h1>
+<p>Users interact with the <code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> framework using <span class="xref myst">Controller Manager</span>’s <strong>services</strong>.
+While service calls can be used directly from the command line or via nodes, there exists a user-friendly <a class="reference external" href="https://github.com/ros-controls/ros2_control/tree/master/ros2controlcli"><code class="docutils literal notranslate"><span class="pre">ros2_control</span> <span class="pre">CLI</span></code></a> which integrates with the <a class="reference internal" href="../Standard_Libraries/ros2cli.html"><span class="doc std std-doc">ros2 cli</span></a>. This supports auto-complete and has a range of common commands available.</p>
+<div class="section" id="ros2-control-cli">
+<h2><code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> <a class="reference external" href="https://github.com/ros-controls/ros2_control/tree/master/ros2controlcli">CLI</a><a class="headerlink" href="#ros2-control-cli" title="Permalink to this headline"></a></h2>
+<p>The user can interact with the <strong>CM</strong> through command line interface. The basic command is <strong>control</strong>:</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">ros2</span> <span class="n">control</span> <span class="p">&lt;</span><span class="n">verb</span><span class="p">&gt;</span> <span class="p">[</span><span class="n">-options</span><span class="p">]</span>
+<span class="c"># -options:</span>
+<span class="c">#       -h: help</span>
+<span class="c">#       -c &lt;CM&gt;: specify controller manager ROS node</span>
+<span class="c">#       --include-hidden-nodes</span>
+</pre></div>
+</div>
+<div class="section" id="queries">
+<h3>Queries<a class="headerlink" href="#queries" title="Permalink to this headline"></a></h3>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">list_controllers</span></code>: output a lists of loaded controllers, their type and status:</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">ros2</span> <span class="n">control</span> <span class="n">list_controllers</span> <span class="p">[</span><span class="n">-options</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">list_controller_types</span></code>: list available controllers types and their base classes</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">ros2</span> <span class="n">control</span> <span class="n">list_controller_types</span> <span class="p">[</span><span class="n">-options</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">list_hardware_interfaces</span></code>: output the list of interface types (i.e. <code class="docutils literal notranslate"><span class="pre">state</span></code> and <code class="docutils literal notranslate"><span class="pre">command</span></code> interfaces) for loaded controllers and their status</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">ros2</span> <span class="n">control</span> <span class="n">list_hardware_interfaces</span> <span class="p">[</span><span class="n">-options</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="controller-lifecycle-management">
+<h3>Controller lifecycle management<a class="headerlink" href="#controller-lifecycle-management" title="Permalink to this headline"></a></h3>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">load_controller</span></code>: load a controller in the CM</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">ros2</span> <span class="n">control</span> <span class="n">load_controller</span> <span class="p">[</span><span class="n">-options</span><span class="p">]</span> <span class="p">&lt;</span><span class="n">controller_name</span><span class="p">&gt;</span>
+<span class="c"># -options</span>
+<span class="c">#     --set_state {configure,start}: set the state of the loaded controller</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reload_controller_libraries</span></code>: reloads controller libraries (?)</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">ros2</span> <span class="n">control</span> <span class="n">reload_controller_libraries</span> <span class="p">[</span><span class="n">-options</span><span class="p">]</span>
+<span class="c"># -options</span>
+<span class="c">#     --force-kill: force stop loaded controllers</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">set_controller_state</span></code>: set the state of a controller</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">ros2</span> <span class="n">control</span> <span class="n">set_controller_state</span> <span class="p">[</span><span class="n">-options</span><span class="p">]</span> <span class="p">&lt;</span><span class="n">controller_name</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="n">state</span><span class="p">&gt;</span>
+<span class="c"># &lt;state&gt; = {configure,start,stop}: state of the controller to be set</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">switch_controllers</span></code>: switch controllers in a CM:</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">ros2</span> <span class="n">control</span> <span class="n">switch_controllers</span> <span class="p">[</span><span class="n">-options</span><span class="p">]</span>
+<span class="c"># -options:</span>
+<span class="c">#     --stop [STOP[STOP ...]]: name of the controllers to be stopped</span>
+<span class="c">#     --start [START [START ...]]: name of the controllers to be started</span>
+<span class="c">#     --strict: strict switch</span>
+<span class="c">#     --start-asap: start the controllers as soon as possible</span>
+<span class="c">#     --switch-timeout &lt;timeout&gt;: timeout for switching controllers </span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">unload_controller</span></code>: unloads a controller in the CM:</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">ros2</span> <span class="n">control</span> <span class="n">load_controller</span> <span class="p">[</span><span class="n">-options</span><span class="p">]</span> <span class="p">&lt;</span><span class="n">controller_name</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Assistive exoskeleton Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

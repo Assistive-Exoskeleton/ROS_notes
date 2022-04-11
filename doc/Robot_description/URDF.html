@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>URDF &mdash; ROS2 notes 2022 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> ROS2 notes
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html">ROS2 concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html#ros2-graph-concepts">ROS2 graph concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html#names">Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html">ROS2 filesystem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html#environment-variables">Environment variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html#packages">Packages</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/Launch.html">Launch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html">Robot description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Standard_Libraries/README.html">ROS2 standard libraries</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#rviz-interface">RViz Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#using-rviz-todo">Using RViz #TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rQt/README.html">RQt (formerly RQt2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ROS2 notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>URDF</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doc/Robot_description/URDF.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="urdf">
+<h1>URDF<a class="headerlink" href="#urdf" title="Permalink to this headline"></a></h1>
+<p><strong>Table of contents</strong></p>
+<ul class="simple">
+<li><p><span class="xref myst">URDF</span></p></li>
+<li><p><span class="xref myst">Description</span></p>
+<ul>
+<li><p><span class="xref myst">Link</span></p></li>
+<li><p><span class="xref myst">Joint</span></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="description">
+<h1>Description<a class="headerlink" href="#description" title="Permalink to this headline"></a></h1>
+<p>The Unified Robotic Description Format (<strong>URDF</strong>) is an <code class="docutils literal notranslate"><span class="pre">XML</span></code> file format used in ROS to describe all elements of a robot. The drawback is that only <em>tree</em> structures with rigid links can be represented, ruling out parallel robots and flexible elements.</p>
+<p>The specification covers:</p>
+<ul class="simple">
+<li><p>Kinematic and dynamic description of the robot</p></li>
+<li><p>Viual representation of the robot</p></li>
+<li><p>Collision model of the robot</p></li>
+</ul>
+<p>The description of a robot consists of a set of <span class="xref myst">link elements</span> and a set of <span class="xref myst">joint elements</span>:</p>
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;robot</span> <span class="na">name=</span><span class="s">&quot;my_robot&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;link&gt;</span>...<span class="nt">&lt;/link&gt;</span>
+    <span class="nt">&lt;link&gt;</span>...<span class="nt">&lt;/link&gt;</span>
+    ...
+    <span class="nt">&lt;joint&gt;</span>...<span class="nt">&lt;/joint&gt;</span>
+    <span class="nt">&lt;joint&gt;</span>...<span class="nt">&lt;/joint&gt;</span>
+<span class="nt">&lt;/robot&gt;</span>
+</pre></div>
+</div>
+<div class="section" id="link">
+<h2>Link<a class="headerlink" href="#link" title="Permalink to this headline"></a></h2>
+<p>Links represent the skeleton of the robot. The link element describes a <strong>rigid body</strong> with an inertia, visual features and collision properties.</p>
+<p>Attributes:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: the name of the link (required)</p>
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;link</span> <span class="na">name=</span><span class="s">&quot;my_link&quot;</span><span class="nt">&gt;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>Elements:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;inertial&gt;</span></code>: inertial properties of the link</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;origin&gt;</span></code>: pose of the inertial reference frame relative to the reference frame of the link (needs to be at the center of gravity)</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">xyz</span></code>: represents the offset</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rpy</span></code>: represents the fixed axis roll, pitch and yaw angles in radians</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;mass&gt;</span></code>: mass of the link represented by the value attribute (<code class="docutils literal notranslate"><span class="pre">&lt;mass</span> <span class="pre">value=&quot;my_mass&quot;&gt;</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;inertia&gt;</span></code>: 3x3 rotational inertia matrix, represented in the inertia frame. Only 6 DOF as attributes: <code class="docutils literal notranslate"><span class="pre">ixx</span></code>, <code class="docutils literal notranslate"><span class="pre">ixy</span></code>, <code class="docutils literal notranslate"><span class="pre">ixz</span></code>, <code class="docutils literal notranslate"><span class="pre">iyy</span></code>, <code class="docutils literal notranslate"><span class="pre">iyz</span></code>, <code class="docutils literal notranslate"><span class="pre">izz</span></code>.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;visual&gt;</span></code>: visual properties of the link (e.g. shape), with attribute <code class="docutils literal notranslate"><span class="pre">name</span></code>.</p>
+<blockquote>
+<div><p>Note: multiple instances can exist: the union of the geometry they define forms the final representation.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;origin&gt;</span></code>: reference frame of the visual element with respect to that of the link. Same elements as inertial origin.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;geometry&gt;</span></code>: shape of the visual object</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;box&gt;</span></code>, with attributes <code class="docutils literal notranslate"><span class="pre">size</span></code> and origin in the center.</p></li>
+<li><p>…</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;mesh&gt;</span></code>: trimesh element specified by a <code class="docutils literal notranslate"><span class="pre">filename</span></code> and an optional <code class="docutils literal notranslate"><span class="pre">scale</span></code>.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;material&gt;</span></code>: material of the element, with attribute <code class="docutils literal notranslate"><span class="pre">name</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;color</span> <span class="pre">rgba=&quot;r</span> <span class="pre">g</span> <span class="pre">b</span> <span class="pre">a&quot;&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;texture&gt;</span></code>: texture from <code class="docutils literal notranslate"><span class="pre">filename</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;collision&gt;</span></code>: collision properties, with <code class="docutils literal notranslate"><span class="pre">name</span></code>.</p>
+<blockquote>
+<div><p>Note: multiple instances can exists. The final collision model is the union of the instances.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;origin&gt;</span></code>: reference frame of collision element relative to that of the link. Same elements as inertial origin.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;geometry</span></code>&gt; same elements as visual geometry.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="joint">
+<h2>Joint<a class="headerlink" href="#joint" title="Permalink to this headline"></a></h2>
+<p>The joint element describes the kinematics and dynamics of the joint, also specifying safety limits of the joint.</p>
+<p>Attributes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: unique name of the joint</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">type</span></code>: type of joint (<code class="docutils literal notranslate"><span class="pre">&quot;revolute&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;continuous&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;prismatic&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;fixed&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;floating&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;planar&quot;</span></code>)</p></li>
+</ul>
+<p>Elements:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;origin&gt;</span></code>: transform from parent link to child link. The joint is located at the origin of the child link (same attributes <code class="docutils literal notranslate"><span class="pre">xyz</span></code> and <code class="docutils literal notranslate"><span class="pre">rpy</span></code> as before)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;parent&gt;</span></code>: parent link name (<code class="docutils literal notranslate"><span class="pre">link</span></code> attribute)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;child&gt;</span></code>: child link name (<code class="docutils literal notranslate"><span class="pre">link</span></code> attribute)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;axis&gt;</span></code>: joint axis specified in the joint frame. It’s the functional axis (rotation, translation… depending on the joint type), with attribute <code class="docutils literal notranslate"><span class="pre">xyz</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;calibration&gt;</span></code>: reference positions of the joint, used to calibrate the absolute position</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">rising</span></code>: when joint moves in a positive direction, the reference position will trigger a rising edge</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">falling</span></code>: when joint moves in a positive direction, this reference position will trigger a falling edge.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;dynamics&gt;</span></code>: speficy physical properties of the joint.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">damping</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">friction</span></code></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;limit&gt;</span></code>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">lower</span></code>: lower joint limit (omit if joint is continuous)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">upper</span></code> upper joint limit (omit if continuous)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">effort</span></code>: maximum joint effort</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">velocity</span></code>: maximum joint velocity</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;mimic&gt;</span></code>: used to specify that the defined joint mimics another existing joint.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;safety_controller&gt;</span></code>: more strict boundary than lower and upper joint limits, specifying when the safety controller starts limiting the position of the joint (soft limit).</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Assistive exoskeleton Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

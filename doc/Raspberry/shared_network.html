@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shared network &mdash; ROS2 notes 2022 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Raspberry - servo" href="Rpi_servo.html" />
+    <link rel="prev" title="Prerequisites" href="installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> ROS2 notes
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html">ROS2 concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html#ros2-graph-concepts">ROS2 graph concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html#names">Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html">ROS2 filesystem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html#environment-variables">Environment variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html#packages">Packages</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/Launch.html">Launch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Robot_description/README.html">Robot description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Standard_Libraries/README.html">ROS2 standard libraries</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#rviz-interface">RViz Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#using-rviz-todo">Using RViz #TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rQt/README.html">RQt (formerly RQt2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="README.html">Install ROS on Raspberry</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="installation.html">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#ros-installation">ROS installation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Shared network</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ros-domain-id">ROS DOMAIN ID</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#implementazione-automatica-delle-porte-udp">Implementazione automatica delle porte UDP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#specifiche-legate-alla-piattaforma">Specifiche legate alla piattaforma</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#specifiche-sui-processi">Specifiche sui processi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#implementazione-con-simulink">Implementazione con simulink</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Rpi_servo.html">Raspberry - servo</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ROS2 notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="README.html">Install ROS on Raspberry</a> &raquo;</li>
+      <li>Shared network</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doc/Raspberry/shared_network.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="shared-network">
+<h1>Shared network<a class="headerlink" href="#shared-network" title="Permalink to this headline"></a></h1>
+<div class="section" id="ros-domain-id">
+<h2>ROS DOMAIN ID<a class="headerlink" href="#ros-domain-id" title="Permalink to this headline"></a></h2>
+<p>Il middleware usato di default da ROS 2 per le comunicazioni è <code class="docutils literal notranslate"><span class="pre">DDS</span></code>. Nel DDS, il <code class="docutils literal notranslate"><span class="pre">Domain</span> <span class="pre">ID</span></code> è utilizzato per poter far comunicare diversi network logici condividendo lo stesso network fisico, nello specifico, il Domain ID è usato dal DDS per settare le <code class="docutils literal notranslate"><span class="pre">porte</span> <span class="pre">UDP</span></code> che verranno utilizzate per la ricerca dei nodi e la comunicazione (i nodi in ROS 2 che condividono lo stesso dominio possono rintracciarsi e scambiarsi messaggi).</p>
+<p>Di default il Domain ID utilizzato è 0, ma nel caso si vogliano evitando interferenze tra gruppi di computer sullo stesso network, è possibile impostare un diverso Domain ID per ogni gruppo.</p>
+</div>
+<div class="section" id="implementazione-automatica-delle-porte-udp">
+<h2>Implementazione automatica delle porte UDP<a class="headerlink" href="#implementazione-automatica-delle-porte-udp" title="Permalink to this headline"></a></h2>
+<p>Ci sono diverse strategie usate per far sì che le applicazioni DDS comunichino tra di loro nonostante l’utilizzo di un firewall.</p>
+<p>Le porte usate in una implementazione DDS sono specificate dall’ OMG DDS Interoperability Wire Protocol Specification (<strong>DDS-RTPS</strong>), di default, ogni DomainParticipant apre 4 porte UDP/IP: due di queste sono porte <code class="docutils literal notranslate"><span class="pre">multicast</span></code> e sono condivide su tutto il dominio dei partecipanti nello stesso Domain ID. Le altre due sono porte <code class="docutils literal notranslate"><span class="pre">unicast</span></code> e sono differenti per ciascun partecipante.</p>
+<p>L’indirizzo IP del multicast usato per la rilevazione dei nodi è 239.255.0.1 (come da specifiche DDS-RTPS).</p>
+<p>Le porte utilizzate dipendono da una formula legata al Domain ID e il numero di partecipanti (<a class="reference external" href="https://community.rti.com/content/forum-topic/statically-configure-firewall-let-omg-dds-traffic-through">clicca qui</a> per andare nel dettaglio).</p>
+<p>Considerando che le porte UDP sono un unsigned 16-bit integer (massimo 65535 valori), il valore massimo impostabile come Domain ID è <code class="docutils literal notranslate"><span class="pre">232</span></code>.</p>
+</div>
+<div class="section" id="specifiche-legate-alla-piattaforma">
+<h2>Specifiche legate alla piattaforma<a class="headerlink" href="#specifiche-legate-alla-piattaforma" title="Permalink to this headline"></a></h2>
+<p>Per la massima compatibilità, è utile evitare di allocare il Domain ID nel range delle <code class="docutils literal notranslate"><span class="pre">porte</span> <span class="pre">effimere</span></code>; Le porte effimere sono porte temporanee assegnate dallo stack IP di una macchina e vengono assegnate a questo scopo da un intervallo di porte designato. Utilizzando porte all’esterno del pool delle porte effimere permette di ridurre eventuali interferenze con servizi di rete del pc.</p>
+<p>In base al sistema operativo, il pool delle porte effimere è:</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>sistema operativo</p></th>
+<th class="head"><p>Pool porte effimere</p></th>
+<th class="head"><p>Range Domain ID corrispondente</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Linux*</p></td>
+<td><p>32768-60999</p></td>
+<td><p>0-101 e 215-232</p></td>
+</tr>
+<tr class="row-odd"><td><p>Windows**</p></td>
+<td><p>49152-65535</p></td>
+<td><p>0-166</p></td>
+</tr>
+<tr class="row-even"><td><p>macOS</p></td>
+<td><p>49152-65535</p></td>
+<td><p>0-166</p></td>
+</tr>
+</tbody>
+</table>
+<p>*il range delle porte effimere è configurabile editando il file in <code class="docutils literal notranslate"><span class="pre">/proc/sys/net/ipv4/ip_local_port_range</span></code>.</p>
+<p>** il range delle porte effimere è configurabile usando <code class="docutils literal notranslate"><span class="pre">netsh</span></code>.</p>
+</div>
+<div class="section" id="specifiche-sui-processi">
+<h2>Specifiche sui processi<a class="headerlink" href="#specifiche-sui-processi" title="Permalink to this headline"></a></h2>
+<p>Per ogni processo ROS 2 che viene eseguito su un computer, un partecipante DDS è creato; Siccome ogni partecipante DDS occupa fino a due porte su un computer, eseguire più di 120 processi ROS 2 su un computer può intaccare il corretto funzionamento del network (di default sono usati più Domain ID, in generale cosa non voluta). <strong>Importante</strong> ricordare che quando si utilizza un Domain ID al limite superiore (per esempio per linux usando 101 o 232) il massimo numero di processi diminuisce, poiché il range di porte UDP non è completo.</p>
+</div>
+<div class="section" id="implementazione-con-simulink">
+<h2>Implementazione con simulink<a class="headerlink" href="#implementazione-con-simulink" title="Permalink to this headline"></a></h2>
+<p>È possibile implementare un nodo simulink scritto in C++ grazie all’integrazione di ROS morenia da matlab R2020b.</p>
+<p>Ulteriori informazioni <a class="reference external" href="https://it.mathworks.com/help/ros/ug/generate-a-standalone-ros2-node-from-simulink.html">qui</a>.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="installation.html" class="btn btn-neutral float-left" title="Prerequisites" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Rpi_servo.html" class="btn btn-neutral float-right" title="Raspberry - servo" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Assistive exoskeleton Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

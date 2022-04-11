@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ROS theory and concepts &mdash; ROS2 notes 2022 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> ROS2 notes
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="ROS2/ROS2_concepts.html">ROS2 concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ROS2/ROS2_concepts.html#ros2-graph-concepts">ROS2 graph concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ROS2/ROS2_concepts.html#names">Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ROS2/ROS2_filesystem.html">ROS2 filesystem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ROS2/ROS2_filesystem.html#environment-variables">Environment variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ROS2/ROS2_filesystem.html#packages">Packages</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ROS2/Launch.html">Launch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Robot_description/README.html">Robot description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Standard_Libraries/README.html">ROS2 standard libraries</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ros2_control/README.html">ROS Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="moveit/README.html">MoveIt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rViz/README.html">RViz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rViz/README.html#rviz-interface">RViz Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rViz/README.html#using-rviz-todo">Using RViz #TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rQt/README.html">RQt (formerly RQt2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gazebo/README.html">GAZEBO</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Raspberry/README.html">Install ROS on Raspberry</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ROS2 notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>ROS theory and concepts</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/doc/README.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="ros-theory-and-concepts">
+<h1>ROS theory and concepts<a class="headerlink" href="#ros-theory-and-concepts" title="Permalink to this headline"></a></h1>
+<div class="section" id="x-ros2-concepts">
+<h2>[x] <span class="xref myst">ROS2 concepts</span><a class="headerlink" href="#x-ros2-concepts" title="Permalink to this headline"></a></h2>
+</div>
+<div class="section" id="x-ros2-filesystem">
+<h2>[x] <span class="xref myst">ROS2 filesystem</span><a class="headerlink" href="#x-ros2-filesystem" title="Permalink to this headline"></a></h2>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="ros-programming-and-application">
+<h1>ROS programming and application<a class="headerlink" href="#ros-programming-and-application" title="Permalink to this headline"></a></h1>
+<div class="section" id="ros2-standard-libraries">
+<h2>[ ] <span class="xref myst">ROS2 standard libraries</span><a class="headerlink" href="#ros2-standard-libraries" title="Permalink to this headline"></a></h2>
+<div class="section" id="x-ros2-command-line-tools">
+<h3>[x] <a class="reference internal" href="Standard_Libraries/ros2cli.html"><span class="doc std std-doc">ROS2 command-line tools</span></a><a class="headerlink" href="#x-ros2-command-line-tools" title="Permalink to this headline"></a></h3>
+</div>
+</div>
+<div class="section" id="ros2-launch-files">
+<h2>[ ] <span class="xref myst">ROS2 launch files</span><a class="headerlink" href="#ros2-launch-files" title="Permalink to this headline"></a></h2>
+</div>
+<div class="section" id="robot-description">
+<h2>[ ] <span class="xref myst">Robot description</span><a class="headerlink" href="#robot-description" title="Permalink to this headline"></a></h2>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="packages">
+<h1>Packages<a class="headerlink" href="#packages" title="Permalink to this headline"></a></h1>
+<div class="section" id="ros-control">
+<h2>[ ] <span class="xref myst">ros_control</span><a class="headerlink" href="#ros-control" title="Permalink to this headline"></a></h2>
+</div>
+<div class="section" id="moveit">
+<h2><a class="reference internal" href="moveit/README.html"><span class="doc std std-doc">MoveIt</span></a><a class="headerlink" href="#moveit" title="Permalink to this headline"></a></h2>
+</div>
+<div class="section" id="rviz">
+<h2>[ ] <span class="xref myst">rViz</span><a class="headerlink" href="#rviz" title="Permalink to this headline"></a></h2>
+</div>
+<div class="section" id="rqt">
+<h2><a class="reference internal" href="rQt/README.html"><span class="doc std std-doc">RQt</span></a><a class="headerlink" href="#rqt" title="Permalink to this headline"></a></h2>
+</div>
+<div class="section" id="gazebo">
+<h2>[ ] <span class="xref myst">gazebo</span><a class="headerlink" href="#gazebo" title="Permalink to this headline"></a></h2>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="raspberry">
+<h1>Raspberry<a class="headerlink" href="#raspberry" title="Permalink to this headline"></a></h1>
+<div class="section" id="x-installation">
+<h2>[x] <a class="reference internal" href="Raspberry/installation.html"><span class="doc std std-doc">Installation</span></a><a class="headerlink" href="#x-installation" title="Permalink to this headline"></a></h2>
+</div>
+<div class="section" id="x-servo-motor-simple-test">
+<h2>[x] <a class="reference internal" href="Raspberry/Rpi_servo.html"><span class="doc std std-doc">Servo motor simple test</span></a><a class="headerlink" href="#x-servo-motor-simple-test" title="Permalink to this headline"></a></h2>
+</div>
+<div class="section" id="x-shared-network">
+<h2>[x] <span class="xref myst">Shared Network</span><a class="headerlink" href="#x-shared-network" title="Permalink to this headline"></a></h2>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Assistive exoskeleton Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

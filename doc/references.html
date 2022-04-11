@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>References &mdash; ROS2 notes 2022 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Raspberry - servo" href="Raspberry/Rpi_servo.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> ROS2 notes
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="ROS2/ROS2_concepts.html">ROS2 concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ROS2/ROS2_concepts.html#ros2-graph-concepts">ROS2 graph concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ROS2/ROS2_concepts.html#names">Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ROS2/ROS2_filesystem.html">ROS2 filesystem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ROS2/ROS2_filesystem.html#environment-variables">Environment variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ROS2/ROS2_filesystem.html#packages">Packages</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ROS2/Launch.html">Launch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Robot_description/README.html">Robot description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Standard_Libraries/README.html">ROS2 standard libraries</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ros2_control/README.html">ROS Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="moveit/README.html">MoveIt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rViz/README.html">RViz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rViz/README.html#rviz-interface">RViz Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rViz/README.html#using-rviz-todo">Using RViz #TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rQt/README.html">RQt (formerly RQt2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gazebo/README.html">GAZEBO</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Raspberry/README.html">Install ROS on Raspberry</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">References</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#docs-ros-org">docs.ros.org</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#docs-ros2-org">docs.ros2.org</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#design-ros2-org">design.ros2.org</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#wiki-ros-org">wiki.ros.org</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#index-ros-org">index.ros.org</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sir-upc-edu-projects-rostutorials">sir.upc.edu/projects/rostutorials/</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#github-com">github.com</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#control-ros-org">control.ros.org</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gazebosim-org">gazebosim.org</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#others">Others</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ROS2 notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>References</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/doc/references.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="references">
+<h1>References<a class="headerlink" href="#references" title="Permalink to this headline"></a></h1>
+<div class="section" id="docs-ros-org">
+<h2>docs.ros.org<a class="headerlink" href="#docs-ros-org" title="Permalink to this headline"></a></h2>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Concepts/">Concepts</a></p>
+<ul class="contains-task-list">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Concepts/About-Quality-of-Service-Settings.html">About Quality of Service settings</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Concepts/About-ROS-2-Client-Libraries.html">About ROS 2 client libraries</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Concepts/About-ROS-Interfaces.html">About ROS 2 interfaces</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Concepts/About-ROS-2-Parameters.html">About parameters in ROS 2</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> …</p></li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Tutorials.html">Tutorials</a></p>
+<ul class="contains-task-list">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Tutorials/Configuring-ROS2-Environment.html">Configuring your ROS 2 environment</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Tutorials/Turtlesim/Introducing-Turtlesim.html">Introducing turtlesim and rqt</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Tutorials/Understanding-ROS2-Nodes.html">Understanding ROS 2 nodes</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Tutorials/Topics/Understanding-ROS2-Topics.html">Understanding ROS 2 topics</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Tutorials/Services/Understanding-ROS2-Services.html">Understanding ROS 2 services</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Tutorials/Services/Understanding-ROS2-Services.html">Understanding ROS 2 parameters</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Tutorials/Understanding-ROS2-Actions.html">Understanding ROS 2 actions</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Tutorials/Rqt-Console/Using-Rqt-Console.html">Using rqt_console</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Tutorials/Launch-Files/Creating-Launch-Files.html">Creating a launch file</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Tutorials/Ros2bag/Recording-And-Playing-Back-Data.html">Recording and playing back data</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Tutorials/Workspace/Creating-A-Workspace.html">Creating a workspace</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Tutorials/Creating-Your-First-ROS2-Package.html">Creating your first ROS 2 package</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Tutorials/Writing-A-Simple-Cpp-Publisher-And-Subscriber.html">Writing a simple publisher and subscriber (C++)</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Tutorials/Writing-A-Simple-Py-Publisher-And-Subscriber.html">Writing a simple publisher and subscriber (Python)</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Tutorials/Writing-A-Simple-Cpp-Service-And-Client.html">Writing a simple service and client (C++)</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Tutorials/Writing-A-Simple-Py-Service-And-Client.html"> Writing a simple service and client (Python)</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Tutorials/Custom-ROS2-Interfaces.html">Creating custom ROS 2 msg and srv files</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Tutorials/Single-Package-Define-And-Use-Interface.html">Expanding on ROS 2 interfaces</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Tutorials/Using-Parameters-In-A-Class-CPP.html">Using parameters in a class (C++)</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Tutorials/Using-Parameters-In-A-Class-Python.html">Using parameters in a class (Python)</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Tutorials/Getting-Started-With-Ros2doctor.html">Getting started with ros2doctor</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Tutorials/Pluginlib.html">Creating and Using Plugins (C++)</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Tutorials/Actions/Creating-an-Action.html">Creating an action</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Tutorials/Actions/Writing-a-Cpp-Action-Server-Client.html">Writing an action server and client (C++)</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Tutorials/Actions/Writing-a-Py-Action-Server-Client.html">Writing an action server and client (Python)</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Tutorials/Launch-system.html">Launching/monitoring multiple nodes with Launch</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Tutorials/Launch-Files/Using-ROS2-Launch-For-Large-Projects.html">Using ROS2 launch for large projects</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Tutorials/Composition.html">Composing multiple nodes in a single process</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Tutorials/Colcon-Tutorial.html">Using colcon to build packages</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Tutorials/Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Tutorials/Tf2/Tf2-Main.html">tf2 Tutorials</a></p>
+<ul class="contains-task-list">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> …</p></li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Tutorials/URDF/URDF-Main.html">URDF Tutorials</a></p>
+<ul class="contains-task-list">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Tutorials/URDF/Building-a-Visual-Robot-Model-with-URDF-from-Scratch.html">Building a Visual Robot Model with URDF from Scratch</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> …</p></li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> …</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Tutorials/Building-Realtime-rt_preempt-kernel-for-ROS-2.html">Building realtime Linux for ROS 2</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Tutorials/Quality-of-Service.html">Use quality-of-service settings to handle lossy networks</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> …</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/Tutorials/Real-Time-Programming.html">Real-time programming in ROS 2</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> …</p></li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros.org/en/galactic/How-To-Guides.html">How-to Guides</a></p>
+<ul class="contains-task-list">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> …</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="docs-ros2-org">
+<h2>docs.ros2.org<a class="headerlink" href="#docs-ros2-org" title="Permalink to this headline"></a></h2>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros2.org/latest/api/rclpy/index.html">rclpy</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <a class="reference external" href="https://docs.ros2.org/latest/api/rclcpp/">rclcpp</a></p></li>
+</ul>
+</div>
+<div class="section" id="design-ros2-org">
+<h2>design.ros2.org<a class="headerlink" href="#design-ros2-org" title="Permalink to this headline"></a></h2>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="https://design.ros2.org/articles/idl_interface_definition.html"><code class="docutils literal notranslate"><span class="pre">Interface</span> <span class="pre">Definition</span> <span class="pre">Language</span> <span class="pre">(IDL)</span></code></a></p></li>
+</ul>
+</div>
+<div class="section" id="wiki-ros-org">
+<h2>wiki.ros.org<a class="headerlink" href="#wiki-ros-org" title="Permalink to this headline"></a></h2>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <a class="reference external" href="http://wiki.ros.org/urdf/XML">urdf/XML</a></p>
+<ul class="contains-task-list">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="http://wiki.ros.org/urdf/XML/model">model</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> …</p></li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <a class="reference external" href="http://wiki.ros.org/rviz/UserGuide">rviz/UserGuide</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <a class="reference external" href="http://wiki.ros.org/pluginlib">pluginlib</a></p>
+<ul class="contains-task-list">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="http://wiki.ros.org/pluginlib/Tutorials">Tutorials</a></p>
+<ul class="contains-task-list">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="http://wiki.ros.org/pluginlib/Tutorials/Writing%20and%20Using%20a%20Simple%20Plugin">Writing and Using a Simple Plugin</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> ros_control</p>
+<ul class="contains-task-list">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> tutorials</p>
+<ul class="contains-task-list">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="http://wiki.ros.org/ros_control/Tutorials/Create%20your%20own%20hardware%20interface">Create your own hardware interface</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="index-ros-org">
+<h2>index.ros.org<a class="headerlink" href="#index-ros-org" title="Permalink to this headline"></a></h2>
+</div>
+<div class="section" id="sir-upc-edu-projects-rostutorials">
+<h2>sir.upc.edu/projects/rostutorials/<a class="headerlink" href="#sir-upc-edu-projects-rostutorials" title="Permalink to this headline"></a></h2>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> …</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <a class="reference external" href="https://sir.upc.edu/projects/rostutorials/10-gazebo_control_tutorial/index.html">Tutorial 10: Robot Control</a></p></li>
+</ul>
+</div>
+<div class="section" id="github-com">
+<h2>github.com<a class="headerlink" href="#github-com" title="Permalink to this headline"></a></h2>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="https://github.com/ros2/launch/blob/master/launch/doc/source/architecture.rst"><code class="docutils literal notranslate"><span class="pre">launch</span></code></a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="https://github.com/ros2/ros2cli"><code class="docutils literal notranslate"><span class="pre">ros2cli</span></code></a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="https://github.com/ros2/common_interfaces"><code class="docutils literal notranslate"><span class="pre">common_interfaces</span></code></a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="https://github.com/ros2/example_interfaces"><code class="docutils literal notranslate"><span class="pre">example_interfaces</span></code></a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="https://github.com/ros/robot_state_publisher/tree/ros2"><code class="docutils literal notranslate"><span class="pre">robot_state_publisher</span></code></a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="https://github.com/ros/joint_state_publisher/tree/ros2"><code class="docutils literal notranslate"><span class="pre">joint_state_publisher</span></code></a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <a class="reference external" href="https://github.com/ros-controls/ros2_control_demos"><code class="docutils literal notranslate"><span class="pre">ros2_control_demos</span></code></a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> ros_controls <a class="reference external" href="https://github.com/ros-controls/roadmap"><code class="docutils literal notranslate"><span class="pre">roadmap</span></code></a></p>
+<ul class="contains-task-list">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <a class="reference external" href="https://github.com/ros-controls/roadmap/tree/master/design_drafts"><code class="docutils literal notranslate"><span class="pre">design_drafts</span></code></a></p>
+<ul class="contains-task-list">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="https://github.com/ros-controls/roadmap/blob/master/design_drafts/components_architecture_and_urdf_examples.md">components_architecture_and_urdf_examples.md</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="https://github.com/ros-controls/roadmap/blob/master/design_drafts/hardware_access.md">hardware access through controllers</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="https://github.com/ubuntu-robotics/ros2_cheats_sheet/blob/master/cli/cli_cheats_sheet.pdf">ubuntu robotics cheat_sheets for CLI</a></p></li>
+</ul>
+</div>
+<div class="section" id="control-ros-org">
+<h2>control.ros.org<a class="headerlink" href="#control-ros-org" title="Permalink to this headline"></a></h2>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="https://control.ros.org/getting_started.html">getting started</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> core functionalities</p>
+<ul class="contains-task-list">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="http://control.ros.org/ros2_control/controller_manager/doc/userdoc.html">controller_manager</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="http://control.ros.org/ros2_control/hardware_interface/doc/hardware_components_userdoc.html">Hardware components</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="http://control.ros.org/ros2_control/hardware_interface/doc/fake_components_userdoc.html">Fake components</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference external" href="http://control.ros.org/ros2_control/ros2controlcli/doc/userdoc.html">ros2_control CLI</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="gazebosim-org">
+<h2>gazebosim.org<a class="headerlink" href="#gazebosim-org" title="Permalink to this headline"></a></h2>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <a class="reference external" href="http://gazebosim.org/tutorials/?tut=ros_control">Gazebo ros control</a></p></li>
+</ul>
+</div>
+<div class="section" id="others">
+<h2>Others<a class="headerlink" href="#others" title="Permalink to this headline"></a></h2>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <a class="reference external" href="https://vimeo.com/107507546"><code class="docutils literal notranslate"><span class="pre">ros_control</span></code> video presentation</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <a class="reference external" href="https://jeffzzq.medium.com/designing-a-ros2-robot-7c31a62c535a">Designing a ROS2 Robot</a></p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Raspberry/Rpi_servo.html" class="btn btn-neutral float-left" title="Raspberry - servo" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Assistive exoskeleton Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

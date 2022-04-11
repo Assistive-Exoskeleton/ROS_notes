@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Controllers &mdash; ROS2 notes 2022 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> ROS2 notes
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html">ROS2 concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html#ros2-graph-concepts">ROS2 graph concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html#names">Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html">ROS2 filesystem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html#environment-variables">Environment variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html#packages">Packages</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/Launch.html">Launch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Robot_description/README.html">Robot description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Standard_Libraries/README.html">ROS2 standard libraries</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="README.html">ROS Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#rviz-interface">RViz Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#using-rviz-todo">Using RViz #TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rQt/README.html">RQt (formerly RQt2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ROS2 notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Controllers</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doc/ros2_control/ros2_controllers.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="controllers">
+<h1>Controllers<a class="headerlink" href="#controllers" title="Permalink to this headline"></a></h1>
+<p>The controllers in the <code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> framework have the same functionality as defined in control theory. They compare a reference value with the measured output and, based on this error, calculate a system’s input.</p>
+<p>The controlles are objects derived from <code class="docutils literal notranslate"><span class="pre">controller_interface</span></code> <a class="reference external" href="https://github.com/ros-controls/ros2_control/tree/master/controller_interface">package</a> in <code class="docutils literal notranslate"><span class="pre">ros2_control</span></code>.</p>
+<p>As with <a class="reference internal" href="ros2_control_HI.html"><span class="doc std std-doc">hardware resources/interfaces</span></a>, controllers are dynamic libraries exported as plugins using <code class="docutils literal notranslate"><span class="pre">pluginlib</span></code>-library. Moreover, controllers’ lifecycle is based on the <a class="reference external" href="https://github.com/ros2/rclcpp/blob/master/rclcpp_lifecycle/include/rclcpp_lifecycle/lifecycle_node.hpp">LifecycleNode</a> Class, implementing the state-machine <span class="xref myst">lifecycle</span>.</p>
+<p>When executing the control-loop <code class="docutils literal notranslate"><span class="pre">update()</span></code> method is called. The method can access the latest hardware states and enable the controller to write the hardware’s command interfaces.</p>
+<div class="section" id="controller-interface">
+<h2>Controller interface<a class="headerlink" href="#controller-interface" title="Permalink to this headline"></a></h2>
+<p>Once system is bootstrapped and a controller is loaded, it can claim logical components and access their interfaces.</p>
+<ul>
+<li><p><strong>Generic access</strong>: a controller can access a single interface value via a query to the RM for the respective key. For example, if <code class="docutils literal notranslate"><span class="pre">joint_name/position</span></code> is available, it enables the controller to claim the handle that allows to set <code class="docutils literal notranslate"><span class="pre">position</span></code> values on <code class="docutils literal notranslate"><span class="pre">joint_name</span></code> during the controller execution.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">//example</span>
+<span class="kt">void</span> <span class="n">MyController</span><span class="o">::</span><span class="n">init</span><span class="p">(...</span> <span class="n">resource_manager</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">InterfaceCommandHandle</span> <span class="n">joint_name_position_cmd</span> <span class="o">=</span> <span class="n">resource_manager</span><span class="o">-&gt;</span><span class="n">claim_command_interface</span><span class="p">(</span><span class="s">&quot;joint_name/position&quot;</span><span class="p">);</span>
+  <span class="n">InterfaceStateHandle</span> <span class="n">joint_name_velocity_state</span> <span class="o">=</span> <span class="n">resource_manager</span><span class="o">-&gt;</span><span class="n">claim_state_interface</span><span class="p">(</span><span class="s">&quot;joint_name/velocity&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Semantic components</strong>: for more complex setups, there might be quite many handles accumulated. Semantic components wrap a non-zero amount of keys and provide a more meaningful API on top of it. The implementation of classes for the logical components provides more insights on how to interpret the keys, that are pointers of the respective interfaces.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">//example</span>
+<span class="kt">void</span> <span class="n">MyController</span><span class="o">::</span><span class="n">init</span><span class="p">(...</span> <span class="n">resource_manager</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">FTSensor6D</span> <span class="n">ft_sensor</span><span class="p">(</span><span class="n">resource_manager</span><span class="p">,</span> 
+    <span class="s">&quot;sensor1/fx&quot;</span><span class="p">,</span> <span class="s">&quot;sensor1/fy&quot;</span><span class="p">,</span> <span class="s">&quot;sensor1/fz&quot;</span><span class="p">,</span>   <span class="c1">//forces</span>
+    <span class="s">&quot;sensor1/tx&quot;</span><span class="p">,</span> <span class="s">&quot;sensor1/ty&quot;</span><span class="p">,</span> <span class="s">&quot;sensor1/tz&quot;</span><span class="p">);</span>  <span class="c1">//torques</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">torque</span> <span class="o">=</span> <span class="n">ft_sensor</span><span class="p">.</span><span class="n">get_torque_values</span><span class="p">();</span>
+
+  <span class="n">Camera</span> <span class="nf">cam</span><span class="p">(</span><span class="n">resource_manager</span><span class="p">,</span> <span class="s">&quot;camera1/data&quot;</span><span class="p">,</span> <span class="s">&quot;camera1/size&quot;</span><span class="p">);</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="n">img</span> <span class="o">=</span> <span class="n">cam</span><span class="p">.</span><span class="n">get_image</span><span class="p">();</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="standard-controllers">
+<h2>Standard controllers<a class="headerlink" href="#standard-controllers" title="Permalink to this headline"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> framework uses <code class="docutils literal notranslate"><span class="pre">namespaces</span></code> to sort controllers according to the type of interface they use. Standard controllers use <a class="reference external" href="https://github.com/ros-controls/ros2_control/blob/master/hardware_interface/include/hardware_interface/types/hardware_interface_type_values.hpp">common hardware interface definitions</a>, like:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">position_controllers</span></code>: <code class="docutils literal notranslate"><span class="pre">hardware_interface::HW_IF_POSITION</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">velocity_controllers</span></code>: <code class="docutils literal notranslate"><span class="pre">hardware_interface::HW_IF_VELOCITY</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">acceleration_controllers</span></code>: <code class="docutils literal notranslate"><span class="pre">hardware_interface::HW_IF_ACCELERATION</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">effort_controllers</span></code>: <code class="docutils literal notranslate"><span class="pre">hardware_interface::HW_IF_EFFORT</span></code></p></li>
+<li><p>…</p></li>
+</ul>
+<p>Available <a class="reference external" href="https://github.com/ros-controls/ros2_controllers"><code class="docutils literal notranslate"><span class="pre">ros2_controllers</span></code></a> (most still need to be ported from ROS to ROS2, check <a class="reference external" href="https://github.com/ros-controls/ros_controllers"><code class="docutils literal notranslate"><span class="pre">ros_controllers</span></code></a>):</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>controller</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">forward_command_controller</span></code></p></td>
+<td><p>Generic type of controller that simply forwards the reference to its output (joint) without making any processing. It has a <code class="docutils literal notranslate"><span class="pre">type</span></code> parameter that is used to specialize it into the different interfaces (<code class="docutils literal notranslate"><span class="pre">position</span></code>, <code class="docutils literal notranslate"><span class="pre">velocity</span></code>…).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">position_controllers</span></code></p></td>
+<td><p>Collection of controllers that use the <code class="docutils literal notranslate"><span class="pre">position</span></code> <strong>command interface</strong>, but may accept different joint-level commands at controller level (e.g. control <code class="docutils literal notranslate"><span class="pre">position</span></code> to achieve a set <code class="docutils literal notranslate"><span class="pre">velocity</span></code>.)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">velocity_controllers</span></code></p></td>
+<td><p>Collection of controllers that use the <code class="docutils literal notranslate"><span class="pre">velocity</span></code> command interface, but may accept different joint-level commands at controller level (e.g. control <code class="docutils literal notranslate"><span class="pre">velocity</span></code> to achieve a set <code class="docutils literal notranslate"><span class="pre">position</span></code>.)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">effort_controllers</span></code></p></td>
+<td><p>Collection of controllers that use the <code class="docutils literal notranslate"><span class="pre">effort</span></code> command interface, but may accept different joint-level commands at controller level (e.g. control <code class="docutils literal notranslate"><span class="pre">effort</span></code> to achieve a set <code class="docutils literal notranslate"><span class="pre">position</span></code>.)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">diff_drive_controller</span></code></p></td>
+<td><p>controller for mobile robots with differential drive.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="http://control.ros.org/ros2_controllers/joint_trajectory_controller/doc/userdoc.html"><code class="docutils literal notranslate"><span class="pre">joint_trajectory_controller</span></code></a></p></td>
+<td><p>Controller for executing joint state trajectories on a group of joints. Trajectories are specified as a set of waypoints to be reached at specific time instants. Waypoints may consist of <code class="docutils literal notranslate"><span class="pre">position</span></code> and optionally <code class="docutils literal notranslate"><span class="pre">velocity</span></code> or <code class="docutils literal notranslate"><span class="pre">acceleration</span></code>. The controller can work with different <strong>trajectory representations</strong>. By default a spline interpolator is provided.</p></td>
+</tr>
+</tbody>
+</table>
+<p>The available <strong>broadcasters</strong> are:</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>broadcaster</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="http://control.ros.org/ros2_controllers/joint_state_broadcaster/doc/userdoc.html"><code class="docutils literal notranslate"><span class="pre">joint_state_broadcaster</span></code></a></p></td>
+<td><p>reads all state interfaces and reports them on <code class="docutils literal notranslate"><span class="pre">/joint_states</span></code> and <code class="docutils literal notranslate"><span class="pre">/dynamic_joint_states</span></code>. It’s not a real controller and takes no command.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="http://control.ros.org/ros2_controllers/imu_sensor_broadcaster/doc/userdoc.html">IMU sensor broadcaster</a></p></td>
+<td><p>the controller is a wrapper around IMUSensor semantic component.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="writing-a-controller">
+<h1>Writing a controller<a class="headerlink" href="#writing-a-controller" title="Permalink to this headline"></a></h1>
+<p>As hardware interfaces, controllers are libraries dynamically loaded by CM through <code class="docutils literal notranslate"><span class="pre">pluginlib</span></code>. The <a class="reference external" href="http://control.ros.org/ros2_controllers/doc/writing_new_controller.html">implementation</a> is very similar to that of an hardware interface, but the <code class="docutils literal notranslate"><span class="pre">update</span></code> method is used instead of <code class="docutils literal notranslate"><span class="pre">read</span></code> and <code class="docutils literal notranslate"><span class="pre">write</span></code> methods. Note it should be implemented with <strong>real-time</strong> constraints in mind. When this method is called, the state interfaces have the most recent values from the hardware, and new commands for the hardware should be written into command interfaces.</p>
+<div class="section" id="configuring-controller-and-cm-yaml">
+<h2>Configuring controller and CM (YAML)<a class="headerlink" href="#configuring-controller-and-cm-yaml" title="Permalink to this headline"></a></h2>
+<p>#TODO</p>
+<p>In the <code class="docutils literal notranslate"><span class="pre">bringup</span></code> package, include a <code class="docutils literal notranslate"><span class="pre">config/&lt;robot_name_controllers&gt;.yaml</span></code> file. Inside, configure the controller manager and controllers parameters.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1">#example</span>
+<span class="nt">controller_manager</span><span class="p">:</span>
+
+    <span class="nt">ros__parameters</span><span class="p">:</span>
+        <span class="nt">update_rate</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;Hz&gt;</span>
+    
+    <span class="nt">joint_state_broadcaster</span><span class="p">:</span>
+        <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">joint_state_broadcaster/JointStateBroadcaster</span>
+    
+    <span class="nt">forward_position_controller</span><span class="p">:</span>
+        <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">forward_command_controller/ForwardCommandController</span>
+    
+<span class="nt">forward_position_controller</span><span class="p">:</span>
+    <span class="nt">ros__parameters</span><span class="p">:</span>
+        <span class="nt">joints</span><span class="p">:</span>
+            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">joint1</span>
+            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">joint2</span>
+        <span class="nt">interface_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">position</span>
+<span class="c1">#...</span>
+</pre></div>
+</div>
+<p>See more examples on how to write it. <a class="reference external" href="https://github.com/ros-controls/ros2_control_demos/blob/master/ros2_control_demo_bringup/config/diffbot_controllers.yaml">Diffbot</a> contains a custom controller.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Assistive exoskeleton Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

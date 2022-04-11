@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IDL (Interface Definition Language) &mdash; ROS2 notes 2022 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> ROS2 notes
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="ROS2_concepts.html">ROS2 concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ROS2_concepts.html#ros2-graph-concepts">ROS2 graph concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ROS2_concepts.html#names">Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ROS2_filesystem.html">ROS2 filesystem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ROS2_filesystem.html#environment-variables">Environment variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ROS2_filesystem.html#packages">Packages</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Launch.html">Launch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Robot_description/README.html">Robot description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Standard_Libraries/README.html">ROS2 standard libraries</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#rviz-interface">RViz Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#using-rviz-todo">Using RViz #TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rQt/README.html">RQt (formerly RQt2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ROS2 notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>IDL (Interface Definition Language)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doc/ROS2/IDL.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="idl-interface-definition-language">
+<h1>IDL (Interface Definition Language)<a class="headerlink" href="#idl-interface-definition-language" title="Permalink to this headline"></a></h1>
+<p><strong>Contents</strong>:</p>
+<ul class="simple">
+<li><p><span class="xref myst">IDL (Interface Definition Language)</span></p>
+<ul>
+<li><p><span class="xref myst">Messages</span></p></li>
+<li><p><span class="xref myst">Services</span></p></li>
+<li><p><span class="xref myst">Actions</span></p></li>
+</ul>
+</li>
+</ul>
+<p><a class="reference external" href="https://docs.ros.org/en/rolling/Concepts/About-ROS-Interfaces.html"><code class="docutils literal notranslate"><span class="pre">IDL</span></code></a> is the language used by ROS2 to describe interfaces (messages, services, actions). The defined interface in <code class="docutils literal notranslate"><span class="pre">IDL</span></code> is then passed to generators (<code class="docutils literal notranslate"><span class="pre">rosidl_default_generators</span></code> library) in order to obtain language_specific code (<code class="docutils literal notranslate"><span class="pre">Python</span></code>, <code class="docutils literal notranslate"><span class="pre">C++</span></code>, …) to interact with the interfaces.</p>
+<blockquote>
+<div><p>both line (<code class="docutils literal notranslate"><span class="pre">//</span></code>) and block (<code class="docutils literal notranslate"><span class="pre">/*</span> <span class="pre">...</span> <span class="pre">*/</span></code>) comments are supported by <code class="docutils literal notranslate"><span class="pre">IDL</span></code>.</p>
+</div></blockquote>
+<div class="section" id="messages">
+<h2>Messages<a class="headerlink" href="#messages" title="Permalink to this headline"></a></h2>
+<p>Messages are the basic type of interfaces. The other ROS2 interfaces are built upon messages. Messages are described and defined in <code class="docutils literal notranslate"><span class="pre">.msg</span></code> files in the <code class="docutils literal notranslate"><span class="pre">msg/</span></code> directory of a ROS2 package.</p>
+<p>A message definition in <code class="docutils literal notranslate"><span class="pre">IDL</span></code> is written through:</p>
+<ul>
+<li><p><strong>Fields</strong>: consists of a type and a name:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fieldtype</span> <span class="n">fieldname</span>
+</pre></div>
+</div>
+<p>Field types can be:</p>
+<ul class="simple">
+<li><p><strong>built-in</strong> types (<code class="docutils literal notranslate"><span class="pre">bool</span></code>, <code class="docutils literal notranslate"><span class="pre">char</span></code>,…)</p></li>
+<li><p>names of <strong>message descriptions</strong> defined on their own (<code class="docutils literal notranslate"><span class="pre">package_name/msg_type</span></code>)</p></li>
+</ul>
+<p>Default values can be set to any field in the message type:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fieldtype</span> <span class="n">fieldname</span> <span class="n">defaultvalue</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Constants</strong>: Each constant definition is like a field description with a default value, except this value can never be changed programatically:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">constanttype</span> <span class="n">CONSTANTNAME</span><span class="o">=</span><span class="n">constantvalue</span>
+</pre></div>
+</div>
+<p>Constant names have to be UPPERCASE.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="services">
+<h2>Services<a class="headerlink" href="#services" title="Permalink to this headline"></a></h2>
+<p>Services are described and defined in <code class="docutils literal notranslate"><span class="pre">.srv</span></code> files inside <code class="docutils literal notranslate"><span class="pre">srv/</span></code> directory of a package.</p>
+<p>A service description file consists of a <strong>request</strong> and a <strong>response</strong> messages, separated by <code class="docutils literal notranslate"><span class="pre">---</span></code>. Any two <strong>messages</strong> concatenated with a <code class="docutils literal notranslate"><span class="pre">---</span></code> are a legal service description:</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="c1">//REQUEST message</span>
+<span class="o">---</span>
+<span class="c1">//RESPONSE message</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="actions">
+<h2>Actions<a class="headerlink" href="#actions" title="Permalink to this headline"></a></h2>
+<p>Actions are described and defined in <code class="docutils literal notranslate"><span class="pre">.action</span></code> files inside <code class="docutils literal notranslate"><span class="pre">action/</span></code> directory of a package.</p>
+<p>Similar to services, an action description file consists of a <strong>request</strong>, a <strong>result</strong> and a <strong>feedback</strong> messages, separated by <code class="docutils literal notranslate"><span class="pre">---</span></code>:</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="c1">//REQUEST message</span>
+<span class="o">---</span>
+<span class="c1">//RESULT message</span>
+<span class="o">---</span>
+<span class="c1">//FEEDBACK message</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Assistive exoskeleton Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

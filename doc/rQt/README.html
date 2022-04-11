@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RQt (formerly RQt2) &mdash; ROS2 notes 2022 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="rqt_moveit" href="rqt_robot_plugins.html" />
+    <link rel="prev" title="RViz" href="../rViz/README.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> ROS2 notes
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html">ROS2 concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html#ros2-graph-concepts">ROS2 graph concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html#names">Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html">ROS2 filesystem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html#environment-variables">Environment variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html#packages">Packages</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/Launch.html">Launch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Robot_description/README.html">Robot description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Standard_Libraries/README.html">ROS2 standard libraries</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#rviz-interface">RViz Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#using-rviz-todo">Using RViz #TODO</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">RQt (formerly RQt2)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#advantages">Advantages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rqt-plugins">RQt plugins</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rqt_robot_plugins.html">rqt_moveit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rqt_robot_plugins.html#rqt-robot-dashboard">rqt_robot_dashboard</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rqt_robot_plugins.html#rqt-robot-monitor">rqt_robot_monitor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rqt_robot_plugins.html#rqt-robot-steering">rqt_robot_steering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rqt_robot_plugins.html#rqt-runtime-monitor">rqt_runtime_monitor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rqt_robot_plugins.html#rqt-tf-tree">rqt_tf_tree</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#rqt-perspectives">RQt perspectives</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#save-a-perspective">Save a perspective</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#load-a-perspective">Load a perspective</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ROS2 notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>RQt (formerly RQt2)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doc/rQt/README.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="rqt-formerly-rqt2">
+<h1>RQt (formerly RQt2)<a class="headerlink" href="#rqt-formerly-rqt2" title="Permalink to this headline"></a></h1>
+<p>rqt is a Qt-based framework for GUI development for ROS.</p>
+<div class="section" id="advantages">
+<h2>Advantages<a class="headerlink" href="#advantages" title="Permalink to this headline"></a></h2>
+<p>RQt implements various tools and interfaces in the form of plugins and makes it easier to manage all of them in a single screen layout.</p>
+<p>Users can create their own plugins for RQt with either Python or C++. Over 20 plugins were created in ROS 1 and these plugins are currently being ported to ROS 2 (work in progress as of march 2022).</p>
+<p>Compared to building your own GUIs from scratch:</p>
+<ul class="simple">
+<li><p>Standardized common procedures for GUI (start-shutdown hook, restore previous states).</p></li>
+<li><p>Multiple widgets can be docked in a single window.</p></li>
+<li><p>Easily turn your existing Qt widgets into RQt plugins. (see <a class="reference external" href="https://github.com/Assistive-Exoskeleton/Templates_ROS2">this repo</a> for easily create a basic RQt plugin compatible with ROS2)</p></li>
+</ul>
+</div>
+<div class="section" id="rqt-plugins">
+<h2>RQt plugins<a class="headerlink" href="#rqt-plugins" title="Permalink to this headline"></a></h2>
+<p>RQt consists of three parts/metapackages:</p>
+<ul>
+<li><p>rqt - core infrastucture modules.</p></li>
+<li><p><strong>rqt_common_plugins</strong> - Backend tools for building tools.</p></li>
+<li><p><strong>rqt_robot_plugins</strong>* - Tools for interacting with robots during runtime. They need to be installed separately.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="rqt_robot_plugins.html">rqt_moveit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqt_robot_plugins.html#rqt-robot-dashboard">rqt_robot_dashboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqt_robot_plugins.html#rqt-robot-monitor">rqt_robot_monitor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqt_robot_plugins.html#rqt-robot-steering">rqt_robot_steering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqt_robot_plugins.html#rqt-runtime-monitor">rqt_runtime_monitor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqt_robot_plugins.html#rqt-tf-tree">rqt_tf_tree</a></li>
+</ul>
+</div>
+</li>
+</ul>
+<p>*<font size="1">Only ROS2 compatible plugins are listed.</font></p>
+</div>
+<div class="section" id="rqt-perspectives">
+<h2>RQt perspectives<a class="headerlink" href="#rqt-perspectives" title="Permalink to this headline"></a></h2>
+<p>A perspective is a combination of RQT plugins in a defined configuration. In the Perspectives menu you can save, import, export and set perspectives as default.</p>
+<p>A perspective saves the plugins loaded, their layout, and where supported, their settings and last-saved initial parameters (such as what topic we were last plotting).</p>
+<div class="section" id="save-a-perspective">
+<h3>Save a perspective<a class="headerlink" href="#save-a-perspective" title="Permalink to this headline"></a></h3>
+<p>When you’re happy with a dashboard configuration, you can save the perspective by selecting <code class="docutils literal notranslate"><span class="pre">Perspectives</span> <span class="pre">&gt;</span> <span class="pre">Create</span> <span class="pre">Perspective</span></code>, giving it a name, and asking it to clone the current perspective. These perspectives are saved locally and persist between sessions.</p>
+<p>To export a perspective for closer management such as sharing or persisting to a repository, select <code class="docutils literal notranslate"><span class="pre">Perspectives</span> <span class="pre">&gt;</span> <span class="pre">Export</span></code> and give it a name with the filename extension, .perspective.</p>
+</div>
+<div class="section" id="load-a-perspective">
+<h3>Load a perspective<a class="headerlink" href="#load-a-perspective" title="Permalink to this headline"></a></h3>
+<p>A perspective can be loaded interactively in RQT by selecting Perspectives, import. However it’s useful to launch them directly from the command-line, which allows us to wrap them in a script that can be roslaunched:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>rqt -p &lt;path&gt; 
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>rqt --perspective-file &lt;path&gt;
+</pre></div>
+</div>
+<p>If you want to load a perspective from a launch file (ROS2), add following node:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">launch.substitutions</span> <span class="kn">import</span> <span class="n">EnvironmentVariable</span>
+
+    <span class="o">...</span> <span class="n">code</span> <span class="o">...</span>
+
+<span class="n">node_name</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span>
+    <span class="n">package</span><span class="o">=</span><span class="s2">&quot;rqt_gui&quot;</span><span class="p">,</span>
+    <span class="n">executable</span><span class="o">=</span><span class="s2">&quot;rqt_gui&quot;</span><span class="p">,</span>
+    <span class="n">respawn</span> <span class="o">=</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="s2">&quot;screen&quot;</span><span class="p">,</span>
+    <span class="n">arguments</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;--perspective-file&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">EnvironmentVariable</span><span class="p">(</span><span class="s1">&#39;PWD&#39;</span><span class="p">),</span> <span class="s2">&quot;/src/perspectives/FILENAME.perspective&quot;</span><span class="p">]]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>In this example <code class="docutils literal notranslate"><span class="pre">FILENAME.perspective</span></code> is placed into <code class="docutils literal notranslate"><span class="pre">&quot;/WORKSPACE/src/perspectives&quot;</span></code></p>
+<p>Loading perspectives is useful when is necessary to load multiple rqt plugins into the same rqt instance.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../rViz/README.html" class="btn btn-neutral float-left" title="RViz" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="rqt_robot_plugins.html" class="btn btn-neutral float-right" title="rqt_moveit" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Assistive exoskeleton Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ros2_control URDF &mdash; ROS2 notes 2022 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> ROS2 notes
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html">ROS2 concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html#ros2-graph-concepts">ROS2 graph concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html#names">Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html">ROS2 filesystem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html#environment-variables">Environment variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html#packages">Packages</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/Launch.html">Launch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Robot_description/README.html">Robot description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Standard_Libraries/README.html">ROS2 standard libraries</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="README.html">ROS Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#rviz-interface">RViz Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#using-rviz-todo">Using RViz #TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rQt/README.html">RQt (formerly RQt2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ROS2 notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> URDF</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doc/ros2_control/ros2_control_URDF.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="ros2-control-urdf">
+<h1><code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> URDF<a class="headerlink" href="#ros2-control-urdf" title="Permalink to this headline"></a></h1>
+<div class="section" id="hardware-components-description">
+<h2>Hardware components description<a class="headerlink" href="#hardware-components-description" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Note: Use XML macro (<code class="docutils literal notranslate"><span class="pre">XACRO</span></code>) files instead of URDF directly.</p>
+</div></blockquote>
+<ol class="arabic">
+<li><p>Each <span class="xref myst">hardware component</span> is described in URDF using <code class="docutils literal notranslate"><span class="pre">&lt;ros2_control&gt;</span></code> tag.</p>
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;ros2_control</span> <span class="na">name=</span><span class="s">&quot;my_component&quot;</span> <span class="na">type=</span><span class="s">&quot;hardware_component_type&quot;</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/ros2_control&gt;</span>
+<span class="c">&lt;!-- other components ... --&gt;</span>
+</pre></div>
+</div>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Attribute</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">name</span></code></p></td>
+<td><p>name of the hardware component</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">type</span></code></p></td>
+<td><p>hardware component type (i.e. <code class="docutils literal notranslate"><span class="pre">system</span></code>, <code class="docutils literal notranslate"><span class="pre">sensor</span></code>, <code class="docutils literal notranslate"><span class="pre">actuator</span></code>)</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p>Next, the hardware component is declared with the <code class="docutils literal notranslate"><span class="pre">&lt;hardware&gt;</span></code> tag:</p>
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span>...
+    <span class="nt">&lt;hardware&gt;</span>
+        <span class="nt">&lt;plugin&gt;</span>hw_plugin_path_class<span class="nt">&lt;/plugin&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;my_param&quot;</span><span class="nt">&gt;</span>value<span class="nt">&lt;/param&gt;</span>
+    <span class="nt">&lt;/hardware&gt;</span>
+...
+</pre></div>
+</div>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tag</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;plugin&gt;</span></code></p></td>
+<td><p>name of the plugin class that implements the component/hardware interface HI (e.g. <code class="docutils literal notranslate"><span class="pre">HI_pkg_name/HI_name</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;param&gt;</span></code></p></td>
+<td><p>parameters for the current element (not predefined, each element can have its own)</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p>A robot <strong>joint</strong> is a logical component, an abstraction between controller instance and the underlying hardware. A signle joint may be controlled by multiple motors with a non-trivial transmission interface, yet a controller only cares about joint values. A joint can be declared with the <code class="docutils literal notranslate"><span class="pre">&lt;joint&gt;</span></code> tag:</p>
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span>...
+    <span class="nt">&lt;joint</span> <span class="na">name=</span><span class="s">&quot;my_joint&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;command_interface</span> <span class="na">name=</span><span class="s">&quot;interface_type&quot;</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;param&gt;</span>...<span class="nt">&lt;/param&gt;</span>
+            <span class="nt">&lt;/command_interface&gt;</span>
+            <span class="nt">&lt;state_interface</span> <span class="na">name=</span><span class="s">&quot;interface_type&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/joint&gt;</span>
+...
+</pre></div>
+</div>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tag</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;command_interface&gt;</span></code></p></td>
+<td><p>communication channel to send commands to the joint (i.e. to actuator)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;state_interface&gt;</span></code></p></td>
+<td><p>communication channel to receive states from the joint (i.e. from sensor)</p></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><p><strong>Interface types</strong>: <code class="docutils literal notranslate"><span class="pre">&quot;position&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;velocity&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;effort&quot;</span></code> interface types are defined in <code class="docutils literal notranslate"><span class="pre">hardware_interface/types/hardware_interface_type_values.hpp</span></code>. However any interface type can be created defining a custom string (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;position_in_degrees&quot;</span></code>)</p>
+</div></blockquote>
+<blockquote>
+<div><p><strong>Note</strong>: joint names must be compatible with the controller’s configuration</p>
+</div></blockquote>
+</li>
+</ol>
+<ul>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">&lt;sensor&gt;</span></code> tag can be used to declare a read-only component (similar to joint but can have only <code class="docutils literal notranslate"><span class="pre">&lt;state_interface&gt;</span></code>)</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">&lt;transmission&gt;</span></code> tag can be used to define the URDF element describing actuator-joint relationship (e.g. gearboxes {=motoriduttori})</p>
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span>...
+    <span class="nt">&lt;transmission</span> <span class="na">name=</span><span class="s">&quot;my_transmission&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;plugin&gt;</span>transmission_path_class<span class="nt">&lt;/plugin&gt;</span>
+        <span class="nt">&lt;param&gt;</span>...<span class="nt">&lt;/param&gt;</span>    
+    <span class="nt">&lt;/transmission&gt;</span>
+...
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Assistive exoskeleton Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

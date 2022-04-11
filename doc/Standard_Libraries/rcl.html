@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>rlc (ROS Client Library) &mdash; ROS2 notes 2022 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> ROS2 notes
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html">ROS2 concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html#ros2-graph-concepts">ROS2 graph concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html#names">Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html">ROS2 filesystem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html#environment-variables">Environment variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html#packages">Packages</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/Launch.html">Launch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Robot_description/README.html">Robot description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html">ROS2 standard libraries</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#rviz-interface">RViz Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#using-rviz-todo">Using RViz #TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rQt/README.html">RQt (formerly RQt2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ROS2 notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><code class="docutils literal notranslate"><span class="pre">rlc</span></code> (ROS Client Library)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doc/Standard_Libraries/rcl.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="rlc-ros-client-library">
+<h1><code class="docutils literal notranslate"><span class="pre">rlc</span></code> (ROS Client Library)<a class="headerlink" href="#rlc-ros-client-library" title="Permalink to this headline"></a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">rcl</span></code> provides the standard APIs for interacting with ROS2 (<em>node</em>, <em>topic</em>, <em>service</em>, <em>action</em>, <em>parameter</em>, <em>logging</em>, <em>context</em>, …). The language-specific libraries are built on the <a class="reference external" href="https://github.com/ros2/rcl">C-library <code class="docutils literal notranslate"><span class="pre">rcl</span></code></a>.</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>C++</p></th>
+<th class="head"><p>Python</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>source repository</p></td>
+<td><p><a class="reference external" href="https://github.com/ros2/rclcpp"><code class="docutils literal notranslate"><span class="pre">rclcpp</span></code></a></p></td>
+<td><p><a class="reference external" href="https://github.com/ros2/rclpy"><code class="docutils literal notranslate"><span class="pre">rclpy</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>documentation</p></td>
+<td><p><a class="reference external" href="https://docs.ros2.org/latest/api/rclcpp/">rclcpp_doc</a></p></td>
+<td><p><a class="reference external" href="https://docs.ros2.org/latest/api/rclpy/index.html">rclpy_doc</a></p></td>
+</tr>
+</tbody>
+</table>
+<p>import with:</p>
+<ul>
+<li><p>C++</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;rclcpp/rclcpp.hpp&quot;</span><span class="cp"></span>
+</pre></div>
+</div>
+</li>
+<li><p>Python</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rclpy</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>A typical ROS program consists of the following operations:</p>
+<ol class="arabic simple">
+<li><p><strong>Initialization</strong>: done by calling <code class="docutils literal notranslate"><span class="pre">init</span></code> for a particular <strong><code class="docutils literal notranslate"><span class="pre">Context</span></code></strong>. Must be done before any ROS node is generated</p></li>
+<li><p><strong>Nodes generation</strong>: either using <code class="docutils literal notranslate"><span class="pre">create_node</span></code> or by instantiating a <code class="docutils literal notranslate"><span class="pre">Node</span></code>.</p></li>
+<li><p><strong>Process node callbacks</strong>: to process work waiting to be executed, the <code class="docutils literal notranslate"><span class="pre">spin</span></code> functions are used.</p></li>
+<li><p><strong>Shutdown</strong>: when finished with a previously initialized <strong>context</strong>, the <code class="docutils literal notranslate"><span class="pre">shutdown</span></code> function is called, invalidating all entities derived from the context.</p></li>
+</ol>
+<p>Main APIs (python version):</p>
+<ul>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">init</span></code></strong>: initialize ROS communications for a given context</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">shutdown</span></code></strong>: shutdown a previously initialized context</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">spin</span></code></strong>: execute work and block until the context associated with the executor is shutdown. Callbacks are executed by the provided <code class="docutils literal notranslate"><span class="pre">executor</span></code>.</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>parameter</p></th>
+<th class="head"><p>type</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">node</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Node</span></code></p></td>
+<td><p>node to add to the executor to check for work</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">executor</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Executor</span></code></p></td>
+<td><p>executor to use (defaults to global executor if <code class="docutils literal notranslate"><span class="pre">None</span></code>)</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<div class="section" id="nodes-and-node-class">
+<h2>Nodes and <code class="docutils literal notranslate"><span class="pre">Node</span></code> class<a class="headerlink" href="#nodes-and-node-class" title="Permalink to this headline"></a></h2>
+<p>Main methods:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">__init__</span></code>: initialize <code class="docutils literal notranslate"><span class="pre">Node</span></code></p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>parameter</p></th>
+<th class="head"><p>type</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">node_name</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
+<td><p>name of the node</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">context</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Context</span></code></p></td>
+<td><p>optional context</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cli_args</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">List(str)</span></code></p></td>
+<td><p>optional list of command-line arguments</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">namespace</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
+<td><p>optional namespace to which relative topic/service names will be prefixed</p></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#Example</span>
+<span class="k">class</span> <span class="nc">myNode</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
+  <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="nb">super</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;myNodeName&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">create_publisher-&gt;Publisher</span></code>: create a new publisher</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>parameter</p></th>
+<th class="head"><p>type</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">msg_type</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.msg</span></code> imported object</p></td>
+<td><p>type of ros msg it publishes</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">topic</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
+<td><p>topic to which it publishes.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">qos_profile</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Union(QosProfile,int)</span></code></p></td>
+<td><p><a class="reference external" href="https://docs.ros2.org/latest/api/rclpy/api/qos.html#rclpy.qos.QoSProfile"><code class="docutils literal notranslate"><span class="pre">QoS_profile</span></code></a> or history depth/queue size (<code class="docutils literal notranslate"><span class="pre">int</span></code>) to apply to a publisher.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#Example</span>
+<span class="n">myNode</span><span class="o">.</span><span class="n">my_pub</span> <span class="o">=</span> <span class="n">myNode</span><span class="o">.</span><span class="n">create_publisher</span><span class="p">(</span><span class="n">MyType</span><span class="p">,</span><span class="s1">&#39;myTopic&#39;</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">create_subscription-&gt;Subscription</span></code>: create a subscription:</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>parameter</p></th>
+<th class="head"><p>type</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">msg_type</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.msg</span></code> imported object</p></td>
+<td><p>type of ros msg it subscribes to</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">topic</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
+<td><p>topic to which it subscribes</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">qos_profile</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Union(QosProfile,int)</span></code></p></td>
+<td><p><a class="reference external" href="https://docs.ros2.org/latest/api/rclpy/api/qos.html#rclpy.qos.QoSProfile"><code class="docutils literal notranslate"><span class="pre">QoS_profile</span></code></a> or history depth/queue size (<code class="docutils literal notranslate"><span class="pre">int</span></code>) to apply to the subscription.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">callback</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Callable</span></code></p></td>
+<td><p>user-defined callback, called when a message is received by the subscription</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">raw</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bool</span></code></p></td>
+<td><p>If True, then received messages will be stored in raw binary representation.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#Example</span>
+<span class="n">myNode</span><span class="o">.</span><span class="n">my_sub</span> <span class="o">=</span> <span class="n">myNode</span><span class="o">.</span><span class="n">create_subscription</span><span class="p">(</span><span class="n">MyType</span><span class="p">,</span><span class="s1">&#39;myTopic&#39;</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span> <span class="n">my_sub_callback</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">my_sub_callback</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+  <span class="c1">#message is like a struct that can be accessed</span>
+  <span class="c1">#through message.fieldname</span>
+  <span class="o">...</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">create_service-&gt;Service</span></code>: create a new service server:</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>parameter</p></th>
+<th class="head"><p>type</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">srv_type</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.srv</span></code> imported object</p></td>
+<td><p>type of service interface</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">srv_name</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
+<td><p>name of the service</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">callback</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Callable</span> <span class="pre">[SrvTypeRequest,</span> <span class="pre">SrvTypeResponse]</span></code></p></td>
+<td><p>user-defined callback, called when a service request is received by the server. You can send request and response as parameters.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">qos_profile</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QoSProfile</span></code></p></td>
+<td><p>Quality of service profile to be applied to the service’s server</p></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#Example</span>
+<span class="n">myNode</span><span class="o">.</span><span class="n">my_srv</span> <span class="o">=</span> <span class="n">myNode</span><span class="o">.</span><span class="n">create_service</span><span class="p">(</span><span class="n">MyType</span><span class="p">,</span><span class="s1">&#39;my_service&#39;</span><span class="p">,</span> <span class="n">my_srv_callback</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">my_srv_callback</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+  <span class="o">...</span>
+  <span class="c1">#request and response are like struct that can be accessed</span>
+  <span class="c1">#through request.fieldname or response.fieldname</span>
+  <span class="k">return</span> <span class="n">response</span>
+
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">create_client-&gt;Client</span></code>: create a new service client</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>parameter</p></th>
+<th class="head"><p>type</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">srv_type</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.srv</span></code> imported object</p></td>
+<td><p>type of service interface</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">srv_name</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
+<td><p>name of the service</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">qos_profile</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QoSProfile</span></code></p></td>
+<td><p>Quality of service profile to be applied to the service’s client</p></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#Example</span>
+<span class="k">class</span> <span class="nc">MyCli</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
+  <span class="c1">#...</span>
+  <span class="bp">self</span><span class="o">.</span><span class="n">my_cli</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_client</span><span class="p">(</span><span class="n">MyType</span><span class="p">,</span><span class="s1">&#39;my_service&#39;</span><span class="p">)</span>
+
+  <span class="n">request</span> <span class="o">=</span> <span class="n">MyType</span><span class="o">.</span><span class="n">Request</span><span class="p">()</span> <span class="c1">#this method is generated from the .srv file using rosidl generators. See ROS_concepts/interfaces.</span>
+
+  <span class="k">def</span> <span class="nf">send_request</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="c1">#access request field by request.&lt;fieldname&gt;</span>
+    <span class="c1">#for example we can use:</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">future</span> <span class="o">=</span> <span class="n">myNode</span><span class="o">.</span><span class="n">my_cli</span><span class="o">.</span><span class="n">call_async</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+
+<span class="c1">#...</span>
+<span class="n">cli_node</span> <span class="o">=</span> <span class="n">MyCli</span><span class="p">()</span>
+<span class="c1">#we can get results as:</span>
+<span class="k">if</span> <span class="n">cli_node</span><span class="o">.</span><span class="n">future</span><span class="o">.</span><span class="n">done</span><span class="p">():</span>
+  <span class="k">try</span><span class="p">:</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">cli_node</span><span class="o">.</span><span class="n">my_cli</span><span class="o">.</span><span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+  <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="c1">#exception, request failed</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="c1">#request succeeded, use response to access result</span>
+
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">create_timer-&gt;Timer</span></code>: create a new timer, which calls a callback function every period</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>parameter</p></th>
+<th class="head"><p>type</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">timer_period_sec</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">float</span></code></p></td>
+<td><p>Period (s) of timer</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">callback</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Callable</span></code></p></td>
+<td><p>user-defined callback, called when the timer expires.</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_logger()-&gt;RcutilsLogger</span></code>: gets the node logger</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">destroy_node()</span></code>: explicitly destroys the node and frees resources (subscribers, publishers…). Note that this is not always required as resources may be freed by Python’s garbage collector.</p>
+<blockquote>
+<div><p>To destroy individual resources use <code class="docutils literal notranslate"><span class="pre">destroy_&lt;resource&gt;</span> <span class="pre">(&lt;resource&gt;)</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">destroy_publisher(publisher)</span></code>)</p>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="topics">
+<h2>Topics<a class="headerlink" href="#topics" title="Permalink to this headline"></a></h2>
+<p>There are two main classes:</p>
+<ol class="arabic">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Publisher</span></code></strong>, with main methods:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_subscription_count()-&gt;int</span></code>: get amount of subscribers that the publisher has</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">publish</span></code>: publishes a message</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>parameter</p></th>
+<th class="head"><p>type</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">msg</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Union(MsgType,bytes)</span></code></p></td>
+<td><p>ROS message to publish</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">destroy()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;property</span> <span class="pre">topic_name-&gt;str</span></code></p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Subscription</span></code></strong>, with main methods:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">destroy()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;property</span> <span class="pre">topic_name-&gt;str</span></code></p></li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="services">
+<h2>Services<a class="headerlink" href="#services" title="Permalink to this headline"></a></h2>
+<p>There are two main classes:</p>
+<ol class="arabic">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Service</span></code></strong>: ROS service server, with main methods:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">send_response</span></code>: send a service response</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>parameter</p></th>
+<th class="head"><p>type</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">response</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SrvTypeResponse</span></code></p></td>
+<td><p>service response</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">header</span></code></p></td>
+<td><p></p></td>
+<td><p>capsule pointing to the service header from the original request</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">destroy()</span></code></p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Client</span></code></strong>: ROS service client, with main methods:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">call-&gt;SrvTypeResponse</span></code>: Make a service request and await result</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>parameter</p></th>
+<th class="head"><p>type</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">request</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SrvTypeRequest</span></code></p></td>
+<td><p>service request</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">call_async-&gt;Future</span></code>: make a service request and asyncronously get the result. The <code class="docutils literal notranslate"><span class="pre">Future</span></code> object completes when the request does.</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>parameter</p></th>
+<th class="head"><p>type</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">request</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SrvTypeRequest</span></code></p></td>
+<td><p>service request</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">service_is_ready()-&gt;bool</span></code>: check if there’s a service server ready</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wait_for_service-&gt;bool</span></code>: wait until service is ready (<code class="docutils literal notranslate"><span class="pre">True</span></code> if it is)</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>parameter</p></th>
+<th class="head"><p>type</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">timeout_sec</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">float</span></code></p></td>
+<td><p>timeout, returning <code class="docutils literal notranslate"><span class="pre">False</span></code> if it expires</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">destroy()</span></code></p></li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="context">
+<h2><code class="docutils literal notranslate"><span class="pre">Context</span></code><a class="headerlink" href="#context" title="Permalink to this headline"></a></h2>
+<p>A <code class="docutils literal notranslate"><span class="pre">Context</span></code> encapsulates the lifecycle of init and shutdown. The context is used in the creation of top level entities like nodes and guard conditions, as well as to shutdown a specific instance of init.</p>
+</div>
+<div class="section" id="rcutilslogger">
+<h2><code class="docutils literal notranslate"><span class="pre">RcutilsLogger</span></code><a class="headerlink" href="#rcutilslogger" title="Permalink to this headline"></a></h2>
+<p>Main class for logging information about a node. It’s instantiated by <code class="docutils literal notranslate"><span class="pre">Node.get_logger()</span></code> method. Main methods:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">log</span></code>: log a message with a specified severity</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>parameter</p></th>
+<th class="head"><p>type</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">message</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
+<td><p>message to log</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">severity</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">LoggingSeverity</span></code></p></td>
+<td><p>severity of the message (<code class="docutils literal notranslate"><span class="pre">DEBUG</span></code>, <code class="docutils literal notranslate"><span class="pre">INFO</span></code>, <code class="docutils literal notranslate"><span class="pre">WARN</span></code>, <code class="docutils literal notranslate"><span class="pre">ERROR</span></code>, <code class="docutils literal notranslate"><span class="pre">FATAL</span></code> …)</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<blockquote>
+<div><p>There are also individual functions depending on severity: <code class="docutils literal notranslate"><span class="pre">RcutilsLogger.debug(message)</span></code>, <code class="docutils literal notranslate"><span class="pre">RcutilsLogger.info(message)</span></code> … They simply call the <code class="docutils literal notranslate"><span class="pre">log</span></code> function with the <code class="docutils literal notranslate"><span class="pre">severity</span></code> argument predefined.</p>
+</div></blockquote>
+</div>
+<div class="section" id="execution-and-callbacks">
+<h2>Execution and callbacks<a class="headerlink" href="#execution-and-callbacks" title="Permalink to this headline"></a></h2>
+<p>Callbacks are units of work like subscription callbacks, timer callbacks, service calls, and received client responses. There are two components that control the execution of callbacks: <strong>executors</strong> and <strong>callback groups</strong>.</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Executor</span></code></strong>: controls the threading model used to process callbacks (which thread callbacks get executed in).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">CallbackGroup</span></code></strong>: used to enforce concurrency rules for callbacks.</p></li>
+</ul>
+</div>
+<div class="section" id="quality-of-service">
+<h2>Quality of service<a class="headerlink" href="#quality-of-service" title="Permalink to this headline"></a></h2>
+<p><strong><a class="reference external" href="https://docs.ros.org/en/rolling/Concepts/About-Quality-of-Service-Settings.html">QoS</a> policies</strong> allow to tune communication between nodes. A set of QoS policies combine to form a <strong>QoS profile</strong>. ROS2 provides predefined QoS profiles to simplify the choice of correct policies for a given use case.</p>
+<blockquote>
+<div><p>A QoS profile can be applied independently to each instance of publishers, subscribers, service servers and clients. However, if different profiles are used it is possible that they will be incompatible, preventing the delivery of messages.</p>
+</div></blockquote>
+<p>The base QoS profile currently includes settings for the following policies:</p>
+<ul class="simple">
+<li><p><strong>History</strong></p>
+<ul>
+<li><p><strong>Keep last</strong>: only store up to N samples, configurable via the queue depth option.</p></li>
+<li><p><strong>Keep all</strong>: store all samples, subject to the configured resource limits of the underlying middleware.</p></li>
+</ul>
+</li>
+<li><p><strong>Depth</strong></p>
+<ul>
+<li><p><strong>Queue size</strong>: only honored if the “history” policy was set to “keep last”.</p></li>
+</ul>
+</li>
+<li><p><strong>Reliability</strong></p>
+<ul>
+<li><p><strong>Best effort</strong>: attempt to deliver samples, but may lose them if the network is not robust.</p></li>
+<li><p><strong>Reliable</strong>: guarantee that samples are delivered, may retry multiple times.</p></li>
+</ul>
+</li>
+<li><p><strong>Durability</strong></p>
+<ul>
+<li><p><strong>Transient local</strong>: the publisher becomes responsible for persisting samples for “late-joining” subscriptions.</p></li>
+<li><p><strong>Volatile</strong>: no attempt is made to persist samples.</p></li>
+</ul>
+</li>
+<li><p><strong>Deadline</strong></p>
+<ul>
+<li><p><strong>Duration</strong>: the expected maximum amount of time between subsequent messages being published to a topic</p></li>
+</ul>
+</li>
+<li><p><strong>Lifespan</strong></p>
+<ul>
+<li><p><strong>Duration</strong>: the maximum amount of time between the publishing and the reception of a message without the message being considered stale or expired (expired messages are silently dropped and are effectively never received).</p></li>
+</ul>
+</li>
+<li><p><strong>Liveliness</strong></p>
+<ul>
+<li><p><strong>Automatic</strong>: the system will consider all of the node’s publishers to be alive for another “lease duration” when any one of its publishers has published a message.</p></li>
+<li><p><strong>Manual by topic</strong>: the system will consider the publisher to be alive for another “lease duration” if it manually asserts that it is still alive (via a call to the publisher API).</p></li>
+</ul>
+</li>
+<li><p><strong>Lease Duration</strong></p>
+<ul>
+<li><p><strong>Duration</strong>: the maximum period of time a publisher has to indicate that it is alive before the system considers it to have lost liveliness (losing liveliness could be an indication of a failure).</p></li>
+</ul>
+</li>
+</ul>
+<p>For each of the policies that is not a duration, there is also the option of “system default”, which uses the default of the underlying middleware. For each of the policies that is a duration, there also exists a “default” option that means the duration is unspecified, which the underlying middleware will usually interpret as an infinitely long duration.</p>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="lifecycle">
+<h1>Lifecycle<a class="headerlink" href="#lifecycle" title="Permalink to this headline"></a></h1>
+<p>A managed lifecycle allows greater control over the state of ROS system, ensuring all components have been instantiated correctly before starting behaving. This also allows nodes to be restarded/replaced on-line.</p>
+<p>A node with managed lifecycle presents a known interface and executes according to known life-cycle state-machine.</p>
+<p><img alt="Lifecycle" src="../../_images/lifecycle.png" /></p>
+<p>There are 4 <strong>primary states</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Unconfigured</span></code>: this is the state the node is immediately after being instantiated.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Inactive</span></code>: represents a node that is currently not performing any processing. The main purpose is to allow a node to be (re-)configured without altering its behavior while running.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Active</span></code>: main state of node lifecycle. The node performs processing, responds to service requests, reads data, produces output…</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Finalized</span></code>: states in which the node is immediately before being destroyed. This state supports debugging and introspection.</p></li>
+</ul>
+<p>Transition out of a primary state requires an external supervisory process, unless an error is thrown in <code class="docutils literal notranslate"><span class="pre">Active</span></code> state.
+There are 7 <strong>transitions</strong> exposed to supervisory processes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">create()</span></code> –&gt; <code class="docutils literal notranslate"><span class="pre">Unconfigured</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">configure()</span></code> –&gt; <code class="docutils literal notranslate"><span class="pre">Configuring</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cleanup()</span></code> –&gt; <code class="docutils literal notranslate"><span class="pre">CleaningUp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">activate()</span></code> –&gt; <code class="docutils literal notranslate"><span class="pre">Activating</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">deactivate()</span></code> –&gt; <code class="docutils literal notranslate"><span class="pre">Deactivating</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">shutdown()</span></code> –&gt; <code class="docutils literal notranslate"><span class="pre">ShuttingDown</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">destroy()</span></code> –&gt; []</p></li>
+</ul>
+<p>There are also 6 <strong>transition states</strong>:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Configuring</span></code>: the <code class="docutils literal notranslate"><span class="pre">onConfigure()</span></code> callback is used to load node configuration and perform setup. Usually these are the tasks that must be performed once in a node’s lifetime, resources that must be hold, permanent subscriptions or publications.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CleaningUp</span></code>: the <code class="docutils literal notranslate"><span class="pre">onCleanup()</span></code> callback is used to clear all state and return the node to a functionally equivalent state as when first created.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Activating</span></code>: the <code class="docutils literal notranslate"><span class="pre">onActivate()</span></code> callback is used to do any final preparation (requiring short time) to start executing. This may include acquiring resources that are only held when the node is actually active (e.g. <strong>hardware access</strong>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Deactivating</span></code>: the <code class="docutils literal notranslate"><span class="pre">onDeactivate()</span></code> callback is used to reverse changes performed in <code class="docutils literal notranslate"><span class="pre">Activating</span></code> state.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ShuttingDown</span></code>: the <code class="docutils literal notranslate"><span class="pre">onShutdown()</span></code> callback does cleanup before node destruction. The originating state is passed to the method.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ErrorProcessing</span></code>: This state may be entered from any user-code processing. The <code class="docutils literal notranslate"><span class="pre">onError()</span></code> callback is used to handle errors. If this succeeds, the state reverts to <code class="docutils literal notranslate"><span class="pre">Unconfigured</span></code>. Otherwise if it’s not possible to handle all errors, the state becomes <code class="docutils literal notranslate"><span class="pre">Finalized</span></code> in preparation for destruction.</p></li>
+</ol>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Assistive exoskeleton Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Launch &mdash; ROS2 notes 2022 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Robot description" href="../Robot_description/README.html" />
+    <link rel="prev" title="ROS2 filesystem" href="ROS2_filesystem.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> ROS2 notes
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="ROS2_concepts.html">ROS2 concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ROS2_concepts.html#ros2-graph-concepts">ROS2 graph concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ROS2_concepts.html#names">Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ROS2_filesystem.html">ROS2 filesystem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ROS2_filesystem.html#environment-variables">Environment variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ROS2_filesystem.html#packages">Packages</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Launch</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#architecture-of-launch">Architecture of <code class="docutils literal notranslate"><span class="pre">launch</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#architecture-of-launch-ros">Architecture of <code class="docutils literal notranslate"><span class="pre">launch_ros</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#launch-files">Launch files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#launch-for-large-projects">Launch for large projects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Robot_description/README.html">Robot description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Standard_Libraries/README.html">ROS2 standard libraries</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#rviz-interface">RViz Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#using-rviz-todo">Using RViz #TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rQt/README.html">RQt (formerly RQt2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ROS2 notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Launch</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doc/ROS2/Launch.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="launch">
+<h1>Launch<a class="headerlink" href="#launch" title="Permalink to this headline"></a></h1>
+<p>Launch libraries and launch files.</p>
+<p><strong>Table of contents:</strong></p>
+<ul class="simple">
+<li><p><span class="xref myst">Launch</span></p>
+<ul>
+<li><p><span class="xref myst">Architecture of <code class="docutils literal notranslate"><span class="pre">launch</span></code></span></p></li>
+<li><p><span class="xref myst">Architecture of <code class="docutils literal notranslate"><span class="pre">launch_ros</span></code></span></p></li>
+<li><p><span class="xref myst">Launch files</span></p></li>
+<li><p><span class="xref myst">Launch for large projects</span></p></li>
+</ul>
+</li>
+</ul>
+<p>The <a class="reference external" href="https://docs.ros.org/en/galactic/Tutorials/Launch-system.html">launch system</a> in ROS 2 is responsible for helping the user describe the configuration of their system (programs to run, where to run them, arguments, …) and then execute it as described. It is also responsible for monitoring the state of the processes launched, and reporting and/or reacting to changes in the state of those processes.</p>
+<p>Launch files written in Python can start and stop different nodes as well as trigger and act on various events. The package providing this framework is <a class="reference external" href="https://github.com/ros2/launch_ros"><code class="docutils literal notranslate"><span class="pre">launch_ros</span></code></a>, which uses the non-ROS-specific <a class="reference external" href="https://github.com/ros2/launch"><code class="docutils literal notranslate"><span class="pre">launch</span></code></a> framework underneath.</p>
+<div class="section" id="architecture-of-launch">
+<h2>Architecture of <code class="docutils literal notranslate"><span class="pre">launch</span></code><a class="headerlink" href="#architecture-of-launch" title="Permalink to this headline"></a></h2>
+<p>The main classes are:</p>
+<ul>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">launch.LaunchDescription</span></code></strong>: it encapsulates the intent of the user as a list of discrete <strong><code class="docutils literal notranslate"><span class="pre">launch.Action</span></code></strong>’s.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">launch.Action</span></code></strong>: actions can have direct effect (run a process or set a configuration variable) or yield additional actions.</p>
+<p>Actions may also have arguments affecting their behavior. This is where <code class="docutils literal notranslate"><span class="pre">launch.Substitution</span></code>-s can be used to provide more flexibility when describing reusable launch descriptions.</p>
+<p>Basic actions (<code class="docutils literal notranslate"><span class="pre">launch.actions.</span></code>):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">DeclareLaunchArgument</span></code>: declares a <code class="docutils literal notranslate"><span class="pre">LaunchDescription</span></code> argument, with a <code class="docutils literal notranslate"><span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">default_value</span></code> and <code class="docutils literal notranslate"><span class="pre">description</span></code>. This argument can be exposed via command line option for a root launch description, or as action configuration.</p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">launch.Substitution</span></code></strong>: entities evaluated during launch (e.g. a configuration, an environment variable, an arbitrary Python expression…).</p>
+<p>Basic substitutions (<code class="docutils literal notranslate"><span class="pre">launch.substitutions.</span></code>):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">LaunchConfiguration</span></code>: This substitution gets a launch configuration value, as a string, by name.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Command</span></code>: Substitution that gets the output of a command as a string.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EnvironmentVariable</span></code>: This substitution gets an environment variable value, as a string, by name.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FindExecutable</span></code>: This substitution locates the full path to an executable on the PATH if it exists.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PathJoinSubstitution</span></code>: Substitution that join paths, in a platform independent way.</p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">launch.LaunchService</span></code></strong>: long-running activity that handles the event loop and dispatches actions.</p></li>
+</ul>
+</div>
+<div class="section" id="architecture-of-launch-ros">
+<h2>Architecture of <code class="docutils literal notranslate"><span class="pre">launch_ros</span></code><a class="headerlink" href="#architecture-of-launch-ros" title="Permalink to this headline"></a></h2>
+<p>The main classes are:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">launch_ros.Action</span></code></strong>, with basic actions (<code class="docutils literal notranslate"><span class="pre">launch_ros.actions</span></code>):</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Node</span></code>: executes a Node.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="launch-files">
+<h2>Launch files<a class="headerlink" href="#launch-files" title="Permalink to this headline"></a></h2>
+<p>Launch files are inside <code class="docutils literal notranslate"><span class="pre">launch/</span></code> directory, with the <code class="docutils literal notranslate"><span class="pre">.launch.py</span></code> suffix.</p>
+<p>Launch files should define the <code class="docutils literal notranslate"><span class="pre">generate_launch_description()</span></code> function, which returns a <code class="docutils literal notranslate"><span class="pre">launch.LaunchDescription()</span></code> to be used by the <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">launch</span></code> command.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">launch</span>
+<span class="kn">import</span> <span class="nn">launch.actions</span>
+<span class="kn">import</span> <span class="nn">launch.substitutions</span>
+<span class="kn">import</span> <span class="nn">launch_ros.actions</span>
+
+<span class="k">def</span> <span class="nf">generate_launch_description</span><span class="p">():</span>
+    
+    <span class="c1"># Declare arguments</span>
+    <span class="n">declared_arguments</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">declared_arguments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+        <span class="n">launch</span><span class="o">.</span><span class="n">actions</span><span class="o">.</span><span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+            <span class="s2">&quot;arg_name&quot;</span><span class="p">,</span>
+            <span class="n">default_value</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;&lt;value&gt;&#39;&#39;&#39;</span><span class="p">,</span>
+            <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;description&quot;</span><span class="p">,</span>       
+        <span class="p">)</span>
+    <span class="p">)</span>
+    <span class="c1">#...</span>
+
+    <span class="c1"># Generate nodes</span>
+    <span class="n">nodes</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+      <span class="n">my_node</span> <span class="o">=</span> <span class="n">launch_ros</span><span class="o">.</span><span class="n">actions</span><span class="o">.</span><span class="n">Node</span><span class="p">(</span>
+        <span class="n">package</span><span class="o">=</span><span class="s2">&quot;pkg_name&quot;</span><span class="p">,</span>
+        <span class="n">executable</span><span class="o">=</span><span class="s2">&quot;exec_name&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_name&quot;</span><span class="p">,</span>
+        <span class="n">output</span><span class="o">=</span><span class="s1">&#39;&#39;&#39;????&#39;&#39;&#39;</span><span class="p">,</span>
+        <span class="n">arguments</span><span class="o">=</span><span class="s1">&#39;&#39;&#39;???&#39;&#39;&#39;</span><span class="p">,</span>
+        <span class="n">parameters</span><span class="o">=</span><span class="s1">&#39;&#39;&#39;???&#39;&#39;&#39;</span><span class="p">,</span>
+      <span class="p">)</span>
+    <span class="p">)</span>
+
+
+
+    <span class="k">return</span> <span class="n">launch</span><span class="o">.</span><span class="n">LaunchDescription</span><span class="p">(</span><span class="n">declared_arguments</span> <span class="o">+</span> <span class="n">nodes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="launch-for-large-projects">
+<h2>Launch for large projects<a class="headerlink" href="#launch-for-large-projects" title="Permalink to this headline"></a></h2>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ROS2_filesystem.html" class="btn btn-neutral float-left" title="ROS2 filesystem" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../Robot_description/README.html" class="btn btn-neutral float-right" title="Robot description" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Assistive exoskeleton Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
