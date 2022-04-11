@@ -6,12 +6,21 @@
 Welcome to ROS2 notes's documentation!
 ======================================
 
+|
+
+.. image:: doc/images/logo_polimi.png
+  :width: 400
+  :align: center
+  :alt: polimi logo
+
+|
+|
 
 ROS theory and concepts
 -----------------------
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    
    doc/ROS2/ROS2_concepts.md
    doc/ROS2/ROS2_filesystem.md
@@ -20,7 +29,7 @@ ROS programming and application
 -------------------------------
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    doc/ROS2/Launch.md
    doc/Robot_description/README.md
@@ -30,7 +39,7 @@ Packages
 --------
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    doc/ros2_control/README.md
    doc/moveit/README.md
@@ -42,17 +51,23 @@ Raspberry
 ---------
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    doc/Raspberry/README.md
    
 
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+
+   doc/ROS1/README.md
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :hidden:
 
    doc/references
+
 
 .. Indices and tables
 .. ==================

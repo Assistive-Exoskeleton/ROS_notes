@@ -19,5 +19,5 @@ will continually publish `sensor_msgs/msg/JointState` messages for all of the mo
 - `source_list` (array of strings) - Each string in this array represents a topic name.  For each string, create a subscription to the named topic of type `sensor_msgs/msg/JointStates`.  Publication to that topic will update the joints named in the message.  Defaults to an empty array.
 - `delta` (double) - How much to automatically move joints during each iteration.  Defaults to 0.0.
 
-# `joint_state_publisher_gui`
+## `joint_state_publisher_gui`
 GUI (using Qt libraries) to change data about the position of joints.

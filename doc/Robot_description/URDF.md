@@ -1,11 +1,5 @@
 # URDF
-**Table of contents**
-- [URDF](#urdf)
-- [Description](#description)
-  - [Link](#link)
-  - [Joint](#joint)
 
-# Description
 The Unified Robotic Description Format (**URDF**) is an `XML` file format used in ROS to describe all elements of a robot. The drawback is that only *tree* structures with rigid links can be represented, ruling out parallel robots and flexible elements.
 
 The specification covers:
@@ -41,7 +35,9 @@ Elements:
   - `<mass>`: mass of the link represented by the value attribute (`<mass value="my_mass">`)
   - `<inertia>`: 3x3 rotational inertia matrix, represented in the inertia frame. Only 6 DOF as attributes: `ixx`, `ixy`, `ixz`, `iyy`, `iyz`, `izz`.
 - `<visual>`: visual properties of the link (e.g. shape), with attribute `name`. 
-  > Note: multiple instances can exist: the union of the geometry they define forms the final representation.
+  ```{note}
+  multiple instances can exist: the union of the geometry they define forms the final representation.
+  ```
   - `<origin>`: reference frame of the visual element with respect to that of the link. Same elements as inertial origin.
   - `<geometry>`: shape of the visual object
     - `<box>`, with attributes `size` and origin in the center.
@@ -51,7 +47,9 @@ Elements:
     - `<color rgba="r g b a">`
     - `<texture>`: texture from `filename`
 - `<collision>`: collision properties, with `name`.
-  > Note: multiple instances can exists. The final collision model is the union of the instances.
+  ```{note}
+  multiple instances can exists. The final collision model is the union of the instances.
+  ```
   - `<origin>`: reference frame of collision element relative to that of the link. Same elements as inertial origin.
   - `<geometry`> same elements as visual geometry.
 

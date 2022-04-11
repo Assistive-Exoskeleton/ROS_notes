@@ -1,7 +1,13 @@
 # GAZEBO
 Gazebo for ROS 2. 
-## Contents
 
-- [How it works]()
-- [URDF structure](Create_URDF.md)
-- [URDF add-ons](URDF_addons.md)
+
+```{toctree}
+---
+maxdepth: 1
+---
+
+how_works
+Create_URDF
+URDF_addons
+```

@@ -1,8 +1,10 @@
 # `ros2_control` URDF
 
 ## Hardware components description
-> Note: Use XML macro (`XACRO`) files instead of URDF directly.
-1. Each [hardware component](ros2_control_HI.md#hardware-components) is described in URDF using `<ros2_control>` tag.
+```{note}
+Use XML macro (`XACRO`) files instead of URDF directly.
+```
+1. Each [hardware component](ros2_control_HI.md#hardware-interface) is described in URDF using `<ros2_control>` tag.
     ```XML
     <ros2_control name="my_component" type="hardware_component_type">
 
@@ -45,7 +47,9 @@
 
     > **Interface types**: `"position"`, `"velocity"` and `"effort"` interface types are defined in `hardware_interface/types/hardware_interface_type_values.hpp`. However any interface type can be created defining a custom string (e.g. `"position_in_degrees"`)
 
-    > **Note**: joint names must be compatible with the controller's configuration
+    ```{note}
+    joint names must be compatible with the controller's configuration
+    ```
 
 - A `<sensor>` tag can be used to declare a read-only component (similar to joint but can have only `<state_interface>`)
 - A `<transmission>` tag can be used to define the URDF element describing actuator-joint relationship (e.g. gearboxes {=motoriduttori})

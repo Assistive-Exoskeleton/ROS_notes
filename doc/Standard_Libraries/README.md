@@ -9,9 +9,17 @@ Main libraries found:
 
   - [`sensor_msgs`](https://github.com/ros2/common_interfaces/tree/master/sensor_msgs)
   - ...
-- [x] `ros2cli` ([ros2cli.md](ros2cli.md)): ROS2 command line interface
-- [x] `rcl` ([rlc.md](rcl.md)): ROS client library
-- [x] `pluginlib` ([pluginlib.md](pluginlib.md))
-- [ ] `robot_state_publisher` ([`robot_state_publisher.md](robot_state_publisher.md))
-- [ ] `joint_state_publisher` ([`joint_state_publisher.md`](joint_state_publisher.md))
-- [ ] `tf` ([`tf.md`](tf.md))
+
+
+```{toctree}
+---
+maxdepth: 2
+---
+
+rcl
+pluginlib
+robot_state_publisher
+joint_state_publisher
+tf
+ros2cli
+```

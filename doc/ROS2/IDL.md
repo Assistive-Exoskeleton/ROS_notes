@@ -1,9 +1,4 @@
 # IDL (Interface Definition Language)
-**Contents**:
-- [IDL (Interface Definition Language)](#idl-interface-definition-language)
-  - [Messages](#messages)
-  - [Services](#services)
-  - [Actions](#actions)
 
 
 [`IDL`](https://docs.ros.org/en/rolling/Concepts/About-ROS-Interfaces.html) is the language used by ROS2 to describe interfaces (messages, services, actions). The defined interface in `IDL` is then passed to generators (`rosidl_default_generators` library) in order to obtain language_specific code (`Python`, `C++`, ...) to interact with the interfaces.

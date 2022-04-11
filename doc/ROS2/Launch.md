@@ -1,12 +1,6 @@
-# Launch
+# Launch files
 Launch libraries and launch files.
 
-**Table of contents:**
-- [Launch](#launch)
-  - [Architecture of `launch`](#architecture-of-launch)
-  - [Architecture of `launch_ros`](#architecture-of-launch_ros)
-  - [Launch files](#launch-files)
-  - [Launch for large projects](#launch-for-large-projects)
   
 The [launch system](https://docs.ros.org/en/galactic/Tutorials/Launch-system.html) in ROS 2 is responsible for helping the user describe the configuration of their system (programs to run, where to run them, arguments, ...) and then execute it as described. It is also responsible for monitoring the state of the processes launched, and reporting and/or reacting to changes in the state of those processes.
 

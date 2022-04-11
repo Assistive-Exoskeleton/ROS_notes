@@ -1,6 +1,4 @@
 *.code-workspace
 **.vscode
 _build
-_static
-_templates
 

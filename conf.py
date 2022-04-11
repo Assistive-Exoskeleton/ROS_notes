@@ -189,3 +189,4 @@ myst_enable_extensions = [
     "tasklist",
 ]
 
+myst_heading_anchors = 4

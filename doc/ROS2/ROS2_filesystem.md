@@ -1,30 +1,19 @@
 # ROS2 filesystem
-**Contents**:
-- [ROS2 filesystem](#ros2-filesystem)
-- [Environment variables](#environment-variables)
-- [Packages](#packages)
-  - [Package structure](#package-structure)
-  - [Workspaces](#workspaces)
-  - [Command line tools](#command-line-tools)
-  - [Package Manifest (`package.xml`)](#package-manifest-packagexml)
-    - [Dependencies](#dependencies)
-    - [Metapackages](#metapackages)
-  - [CMakeLists.txt #TODO](#cmakeliststxt-todo)
 
-# Environment variables
+## Environment variables
 In Linux and Unix based systems, environment variables are a set of dynamic named values, stored within the system that are used by applications launched in shells or subshells. In simple words, an environment variable is a variable with a **name** and an associated **value**.
 
 Sourcing ROS 2 setup files will set several environment variables necessary for operating ROS2. A list of variables can be printed through:
-```powershell
+```sh
 $ printenv | grep -i ROS
 ```
 
-# Packages
+## Packages
 A package can be considered a container for the ROS2 code, organized for installation or sharing. 
 
 Package creation in ROS2 uses **ament** as build system and [colcon](https://docs.ros.org/en/rolling/Tutorials/Colcon-Tutorial.html) as build tool. Officially supported methods for creating a package are **CMake** or **Python**.
 
-## Package structure
+### Package structure
 Minimum required contents for a package:
 
 |CMake				|Python				|Description|
@@ -45,7 +34,7 @@ ROS2 packages often contain also:
 |`action/`|action types|
 |`scripts/`|executable scripts|
 
-## Workspaces
+### Workspaces
 A single workspace can contain many packages, of different build types, but no nested packages. Best practice is to have a `/src` folder and creating packages in there:
 ```
 workspace_folder/
@@ -63,10 +52,10 @@ workspace_folder/
 			package.xml
 ```
 
-## Command line tools
+### Command line tools
 Useful commands for **packages**:
 - create a package (inside `workspace/src`):
-	```powershell
+	```sh
 	$ ros2 pkg create [-options] <package_name>
 	
 	-options:
@@ -74,7 +63,7 @@ Useful commands for **packages**:
 		--node-name <my_node>: 'creates a simple Hello World type executable in the package' 
 	```
 - build the workspace (inside `workspace/` main folder):
-	```powershell
+	```sh
 	$ colcon build [-options]
 	
 	-options:
@@ -83,14 +72,14 @@ Useful commands for **packages**:
 	```
 
 - use the new package and executable, adding the workspace to the path (inside `workspace/` main folder):
-	```powershell
+	```sh
 	$ . install/local_setup.bash
 	```
 
 - `rosdep`: install system dependencies of a package. 
   
   To install and update:
-  ```powershell
+  ```sh
   # installation
   $ sudo apt install python3-rosdep
   # Initialize rosdep (call only once after installation)
@@ -98,10 +87,12 @@ Useful commands for **packages**:
   # Update rosdep (DO NOT CALL AS SUDO)
   $ rosdep update
   ```
-  > Note: `python3-rosdep2` is not for ROS2, it's an older version of rosdep
+  ```{note}
+  `python3-rosdep2` is not for ROS2, it's an older version of rosdep
+  ```
 
   To install dependencies of all packages in workspace use (from `workspace/`):
-  ```powershell
+  ```sh
   $ rosdep install --from-paths src --ignore-src -r -y --rosdistro <my_distro>
   
   # --from-paths: the arguments will be considered paths to be searched, acting on all packages found there in
@@ -111,7 +102,7 @@ Useful commands for **packages**:
   # --rosdistro <my_distro>: e.g. rolling, galactic...
   ```
 
-## Package Manifest (`package.xml`)
+### Package Manifest (`package.xml`)
 The package manifest is an XML file called `package.xml` that defines properties about the package, such as *package name*, *version*, *authors*, *maintainers* and [dependencies](#dependencies). These information are important when the package gets released to the ROS community.
 
 Each `package.xml` has a `<package>` tag as root tag:
@@ -147,9 +138,11 @@ Other tags:
 </export>
 ```
 
->Note: when building with python, also the `setup.py` file must be edited with these fileds, and they need to match exactly in both files.
+```{note}
+when building with python, also the `setup.py` file must be edited with these fileds, and they need to match exactly in both files.
+```
 
-### Dependencies
+#### Dependencies
 The `package.xml` with minimal tags doesn't specify **dependencies**. There are 6 types of dependencies:
 > **Note**, the tag:
 > ```XML
@@ -182,7 +175,7 @@ The `package.xml` with minimal tags doesn't specify **dependencies**. There are 
   <doc_depend>pkg_name</doc_depend>
   ```
 
-### Metapackages
+#### Metapackages
 It's often convenient to group multiple packages as a single logical package or **metapackage**. A metapackage is a normal package with the following tag in `package.xml`:
 ```XML
 <export>
@@ -190,4 +183,4 @@ It's often convenient to group multiple packages as a single logical package or 
 </export>
 ```
 
-## CMakeLists.txt #TODO
+### CMakeLists.txt #TODO

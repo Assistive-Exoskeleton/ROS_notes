@@ -45,3 +45,14 @@ The complete motion planning pipeline chains together a motion planner with othe
 | **FixStartStatePathConstraints** | Applied when the start state for a motion plan does not obey the specified path constraints. It will attempt to plan a path between the current configuration of the robot to a new location where the path constraint is obeyed. The new location will serve as the start state for planning.|
 | **AddTimeParameterization**  | The motion planners will typically generate “kinematic paths”, i.e., paths that do not obey any velocity or acceleration constraints and are not time parameterized. This adapter will “time parameterize” the motion plans by applying velocity and acceleration constraints. |
 | **ResolveConstraintFrames**  | Goal constraints can be set using subframes (e.g. a pose goal in the frame cup/handle, where handle is a subframe on the object cup). This adapter changes the frame of constraints to an object or robot frame (e.g. cup).|
+
+## MoveIt planners
+
+```{toctree}
+---
+maxdepth: 2
+
+---
+
+moveit_OMPL
+```

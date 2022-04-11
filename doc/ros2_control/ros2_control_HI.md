@@ -1,5 +1,5 @@
-# Hardware components
-The [hardware components / resources](https://github.com/ros-controls/roadmap/blob/master/design_drafts/hardware_access.md) realize communication to physical hardware and represent its abstraction in the `ros2_control` framework. Hardware components are libraries (plugins) defined using `pluginlib`. the [RM](ros2_control_concepts.md#resource-manager-rm) dynamically loads those plugins at runtime and manages their [lifecycle](../Standard_Libraries/rcl.md#lifecycle), allowing flexibility. 
+# Hardware interface
+The [hardware components / resources](https://github.com/ros-controls/roadmap/blob/master/design_drafts/hardware_access.md) realize communication to physical hardware and represent its abstraction in the `ros2_control` framework. Hardware components are libraries (plugins) defined using `pluginlib`. the [RM](ros2_control_concepts.md#resource-manager) dynamically loads those plugins at runtime and manages their [lifecycle](../Standard_Libraries/rcl.md#lifecycle), allowing flexibility. 
 
 
 The hardware is composed and configured in [URDF](ros2_control_URDF.md#hardware-components-description).
@@ -9,10 +9,10 @@ There are 3 basic **[types](http://control.ros.org/api/namespacehardware__interf
 - **Sensor**: Robotic hardware used for sensing its environment. A sensor component is related to a joint (e.g. encoder) or a link (e.g. force-torque sensor). This component type has only reading capabilities.
 - **Actuator**: Simple (1 DOF) robotic hardware like motors, valves, and similar. An actuator implementation is related to only one joint. This component type has reading and writing capabilities. The actuator type can also be used with a multi-DOF robot if its hardware enables modular design
 
-# Writing a Hardware interface
-## Building hardware package
+## Writing a Hardware interface
+### Building hardware package
 As with usual packages, use `ros2 pkg create` to generate an `ament_cmake` build-type package for the hardware interface. 
-```powershell
+```sh
 $ ros2 pkg create --ament_cmake <hardware_pkg>
 ```
 
@@ -33,7 +33,7 @@ The package structure will be something like:
       ...
 ```
 
-## `visibility_control.h`
+### visibility_control.h
 `visibility_control.h` is a header containing various macros used for [visibility control](https://gcc.gnu.org/wiki/Visibility).
 
 These macros are useful when dealing with **shared libraries** (e.g. ros2 plugins) that are dynamically loaded at runtime. The purposes are manifold:
@@ -44,7 +44,7 @@ These macros are useful when dealing with **shared libraries** (e.g. ros2 plugin
 
 It also changes the **visibility** of certain symbols of `rclcpp` library, that the library itself cannot have, but a code in a different package in which the `rclcpp` header is imported must have in order to link.
 
-## `<hardware_resource>.hpp`
+### <hardware_resource>.hpp
 Header guards are used to encapsulate the header file:
 ```c++
 #ifndef <HARDWARE_PKG>__<HARDWARE_RESOURCE>_HPP_
@@ -154,7 +154,7 @@ Where:
   //OK = 0, ERROR = 1
   ```
 
-## `<hardware_resource>.cpp`
+### <hardware_resource>.cpp
 Again, include the `<hardware_resource>.hpp` header and encapsulate the class definition in the package `namespace`.
 
 Then implement the methods:
@@ -180,7 +180,7 @@ Then include `pluginlib/class_list_macros.hpp` and add a `PLUGINLIB_EXPORT_CLASS
 1. Hardware interface class `my_hardware_pkg::MyHardwareResource`
 2. Base class `hardware_interface::<Type>Interface`
 
-## `<hardware_pkg>.xml`
+### `<hardware_pkg>.xml`
 This files contains the definition of the library and class that have to be visible for `pluginlib`. The structure is like:
 ```XML
 <libary path="<hardware_pkg>">
@@ -192,9 +192,11 @@ This files contains the definition of the library and class that have to be visi
    <!-- other classes in this package ... -->
 </library>
 ```
-> Note: the plugin `name` defines the hardware interface type when the RM searches for it.
+```{note}
+the plugin `name` defines the hardware interface type when the RM searches for it.
+```
 
-## `CMakeLists.txt`
+### CMakeLists.txt
 To add compile directives:
 1. Dependencies, at least:
    ```CMake
@@ -267,7 +269,7 @@ To add compile directives:
    ament_package()
    ```
 
-## `package.xml`
+### package.xml
 Add dependencies:
 ```XML
 <depend>hardware_interface</depend>
@@ -276,7 +278,7 @@ Add dependencies:
 <depend>rclcpp_lifecycle</depend>
 ```
 
-# Testing #TODO
+## Testing #TODO
 **test to check if controller can be found and loaded**
 1. Create a `test/` folder and add a file `test_load_<HI_name>.cpp`
 2. you can copy this [`load_generic_system_2dof`](https://github.com/ros-controls/ros2_control/blob/master/hardware_interface/test/fake_components/test_generic_system.cpp#L441-L446).
@@ -302,5 +304,5 @@ endif()
 3.  test with `colcon test <HI_package>` to check if the controller can be found through `pluginlib` and loaded by the CM.
 
 
-## Fake components
+### Fake components
 Fake components are trivial simulations of hardware components, with an ideal behavior of mirroring commands to states. This fake HI can be added instead of the true HI for offline testing (i.e. launch, controllers, broadcaster, integrations with MoveIt) without hardware. [More info here](http://control.ros.org/ros2_control/hardware_interface/doc/fake_components_userdoc.html).
