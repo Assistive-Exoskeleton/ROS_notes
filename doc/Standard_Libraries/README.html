@@ -17,8 +17,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="ROS Control" href="../ros2_control/README.html" />
-    <link rel="prev" title="Robot description" href="../Robot_description/README.html" /> 
+    <link rel="next" title="rlc (ROS Client Library)" href="rcl.html" />
+    <link rel="prev" title="DH description" href="../Robot_description/DH.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -38,28 +38,33 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html">ROS2 concepts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html#ros2-graph-concepts">ROS2 graph concepts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html#names">Names</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html">ROS2 filesystem</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html#environment-variables">Environment variables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html#packages">Packages</a></li>
 </ul>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/Launch.html">Launch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/Launch.html">Launch files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Robot_description/README.html">Robot description</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">ROS2 standard libraries</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ROS2 standard libraries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rcl.html"><code class="docutils literal notranslate"><span class="pre">rlc</span></code> (ROS Client Library)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pluginlib.html">Plugin library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="robot_state_publisher.html">Robot state publisher #TODO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="joint_state_publisher.html">Joint State Publisher #TODO link</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf.html">tf2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ros2cli.html">Command Line Interface</a></li>
+</ul>
+</li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS2 Control</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#rviz-interface">RViz Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#using-rviz-todo">Using RViz #TODO</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rQt/README.html">RQt (formerly RQt2)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ROS1/README.html">ROS1</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
@@ -92,7 +97,7 @@
   <div class="tex2jax_ignore mathjax_ignore section" id="ros2-standard-libraries">
 <h1>ROS2 standard libraries<a class="headerlink" href="#ros2-standard-libraries" title="Permalink to this headline"></a></h1>
 <p>Main libraries found:</p>
-<ul class="contains-task-list">
+<ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">common_interfaces</span></code> (<a class="reference external" href="https://github.com/ros2/common_interfaces"><code class="docutils literal notranslate"><span class="pre">ros2/common_interfaces</span></code></a>): Set of packages containing common interface files (<code class="docutils literal notranslate"><span class="pre">.msg</span></code> and <code class="docutils literal notranslate"><span class="pre">.srv</span></code>). Main sources are:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/ros2/common_interfaces/tree/master/std_msgs"><code class="docutils literal notranslate"><span class="pre">std_msgs</span></code></a></p></li>
@@ -107,21 +112,60 @@
 <li><p>…</p></li>
 </ul>
 </li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <code class="docutils literal notranslate"><span class="pre">ros2cli</span></code> (<a class="reference internal" href="ros2cli.html"><span class="doc std std-doc">ros2cli.md</span></a>): ROS2 command line interface</p></li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <code class="docutils literal notranslate"><span class="pre">rcl</span></code> (<a class="reference internal" href="rcl.html"><span class="doc std std-doc">rlc.md</span></a>): ROS client library</p></li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <code class="docutils literal notranslate"><span class="pre">pluginlib</span></code> (<a class="reference internal" href="pluginlib.html"><span class="doc std std-doc">pluginlib.md</span></a>)</p></li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <code class="docutils literal notranslate"><span class="pre">robot_state_publisher</span></code> (<a class="reference internal" href="robot_state_publisher.html"><span class="doc std std-doc">`robot_state_publisher.md</span></a>)</p></li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <code class="docutils literal notranslate"><span class="pre">joint_state_publisher</span></code> (<a class="reference internal" href="joint_state_publisher.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">joint_state_publisher.md</span></code></span></a>)</p></li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <code class="docutils literal notranslate"><span class="pre">tf</span></code> (<a class="reference internal" href="tf.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">tf.md</span></code></span></a>)</p></li>
 </ul>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="rcl.html"><code class="docutils literal notranslate"><span class="pre">rlc</span></code> (ROS Client Library)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rcl.html#nodes-and-node-class">Nodes and <code class="docutils literal notranslate"><span class="pre">Node</span></code> class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rcl.html#topics">Topics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rcl.html#services">Services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rcl.html#context"><code class="docutils literal notranslate"><span class="pre">Context</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rcl.html#rcutilslogger"><code class="docutils literal notranslate"><span class="pre">RcutilsLogger</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rcl.html#execution-and-callbacks">Execution and callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rcl.html#quality-of-service">Quality of service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rcl.html#lifecycle">Lifecycle</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pluginlib.html">Plugin library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pluginlib.html#plugin-implementation">Plugin implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pluginlib.html#using-the-plugins">Using the plugins</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="robot_state_publisher.html">Robot state publisher #TODO</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="robot_state_publisher.html#topics">Topics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="robot_state_publisher.html#parameters">Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="joint_state_publisher.html">Joint State Publisher #TODO link</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="joint_state_publisher.html#published-topics">Published Topics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="joint_state_publisher.html#subscribed-topics">Subscribed Topics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="joint_state_publisher.html#parameters">Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="joint_state_publisher.html#joint-state-publisher-gui"><code class="docutils literal notranslate"><span class="pre">joint_state_publisher_gui</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tf.html">tf2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ros2cli.html">Command Line Interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ros2cli.html#help-and-documentation">Help and documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ros2cli.html#launch-and-run">Launch and run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ros2cli.html#nodes">Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ros2cli.html#interfaces">Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ros2cli.html#topics">Topics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ros2cli.html#services">Services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ros2cli.html#parameters">Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ros2cli.html#actions">Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ros2cli.html#packages">Packages</a></li>
+</ul>
+</li>
+</ul>
+</div>
 </div>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../Robot_description/README.html" class="btn btn-neutral float-left" title="Robot description" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../ros2_control/README.html" class="btn btn-neutral float-right" title="ROS Control" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../Robot_description/DH.html" class="btn btn-neutral float-left" title="DH description" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="rcl.html" class="btn btn-neutral float-right" title="rlc (ROS Client Library)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

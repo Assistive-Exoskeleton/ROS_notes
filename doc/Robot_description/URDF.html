@@ -16,7 +16,9 @@
         <script src="../../_static/doctools.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="XACRO" href="XACRO.html" />
+    <link rel="prev" title="Robot description" href="README.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -36,28 +38,34 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html">ROS2 concepts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html#ros2-graph-concepts">ROS2 graph concepts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html#names">Names</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html">ROS2 filesystem</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html#environment-variables">Environment variables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html#packages">Packages</a></li>
 </ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/Launch.html">Launch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="README.html">Robot description</a></li>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/Launch.html">Launch files</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="README.html">Robot description</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">URDF</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#link">Link</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#joint">Joint</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="XACRO.html">XACRO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DH.html">DH description</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../Standard_Libraries/README.html">ROS2 standard libraries</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS2 Control</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#rviz-interface">RViz Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#using-rviz-todo">Using RViz #TODO</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rQt/README.html">RQt (formerly RQt2)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ROS1/README.html">ROS1</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
@@ -77,6 +85,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="README.html">Robot description</a> &raquo;</li>
       <li>URDF</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/doc/Robot_description/URDF.md.txt" rel="nofollow"> View page source</a>
@@ -89,19 +98,6 @@
              
   <div class="tex2jax_ignore mathjax_ignore section" id="urdf">
 <h1>URDF<a class="headerlink" href="#urdf" title="Permalink to this headline"></a></h1>
-<p><strong>Table of contents</strong></p>
-<ul class="simple">
-<li><p><span class="xref myst">URDF</span></p></li>
-<li><p><span class="xref myst">Description</span></p>
-<ul>
-<li><p><span class="xref myst">Link</span></p></li>
-<li><p><span class="xref myst">Joint</span></p></li>
-</ul>
-</li>
-</ul>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="description">
-<h1>Description<a class="headerlink" href="#description" title="Permalink to this headline"></a></h1>
 <p>The Unified Robotic Description Format (<strong>URDF</strong>) is an <code class="docutils literal notranslate"><span class="pre">XML</span></code> file format used in ROS to describe all elements of a robot. The drawback is that only <em>tree</em> structures with rigid links can be represented, ruling out parallel robots and flexible elements.</p>
 <p>The specification covers:</p>
 <ul class="simple">
@@ -109,7 +105,7 @@
 <li><p>Viual representation of the robot</p></li>
 <li><p>Collision model of the robot</p></li>
 </ul>
-<p>The description of a robot consists of a set of <span class="xref myst">link elements</span> and a set of <span class="xref myst">joint elements</span>:</p>
+<p>The description of a robot consists of a set of <a class="reference internal" href="#link"><span class="std std-doc">link elements</span></a> and a set of <a class="reference internal" href="#joint"><span class="std std-doc">joint elements</span></a>:</p>
 <div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;robot</span> <span class="na">name=</span><span class="s">&quot;my_robot&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;link&gt;</span>...<span class="nt">&lt;/link&gt;</span>
     <span class="nt">&lt;link&gt;</span>...<span class="nt">&lt;/link&gt;</span>
@@ -145,9 +141,10 @@
 </ul>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">&lt;visual&gt;</span></code>: visual properties of the link (e.g. shape), with attribute <code class="docutils literal notranslate"><span class="pre">name</span></code>.</p>
-<blockquote>
-<div><p>Note: multiple instances can exist: the union of the geometry they define forms the final representation.</p>
-</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>multiple instances can exist: the union of the geometry they define forms the final representation.</p>
+</div>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">&lt;origin&gt;</span></code>: reference frame of the visual element with respect to that of the link. Same elements as inertial origin.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">&lt;geometry&gt;</span></code>: shape of the visual object</p>
@@ -166,9 +163,10 @@
 </ul>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">&lt;collision&gt;</span></code>: collision properties, with <code class="docutils literal notranslate"><span class="pre">name</span></code>.</p>
-<blockquote>
-<div><p>Note: multiple instances can exists. The final collision model is the union of the instances.</p>
-</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>multiple instances can exists. The final collision model is the union of the instances.</p>
+</div>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">&lt;origin&gt;</span></code>: reference frame of collision element relative to that of the link. Same elements as inertial origin.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">&lt;geometry</span></code>&gt; same elements as visual geometry.</p></li>
@@ -219,7 +217,10 @@
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="README.html" class="btn btn-neutral float-left" title="Robot description" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="XACRO.html" class="btn btn-neutral float-right" title="XACRO" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

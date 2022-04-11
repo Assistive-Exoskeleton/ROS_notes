@@ -1,23 +1,42 @@
-# ROS Control
-Notes for `ros2_control` package
+# ROS2 Control
+
+```{toctree}
+---
+maxdepth: 1
+hidden:
+---
+
+ros2_control_concepts
+ros2_control_URDF
+ros2_control_HI
+ros2_control_UI
+ros2_controllers
+```
+
 
 Theory and concepts
 - [x] [`ros2_control` concepts](ros2_control_concepts.md)
 
 Programming and application
+- [x] [`ros2_control` URDF](ros2_control_URDF.md)
 - [x] [`ros2_control` hardware interface](ros2_control_HI.md)
-- [ ] Watch [presentations](http://control.ros.org/resources/resources.html).
+- [x] [`ros2_control` user interfaces](ros2_control_UI.md)
+- [x] [`ros2_control` controllers](ros2_controllers.md)
 
-## Installation
+
+<h2> Installation </h2>
+
 `ros2_control` is now released for galactic:
-```powershell
+```sh
 $ sudo apt install ros-galactic-ros2-control
 $ sudo apt install ros-galactic-ros2-controllers
 # maybe also control-toolbox?
 ```
 
-## Workflow
+<h2> Workflow </h2>
+
 Usually the main packages are:
+
 1. `description` package, store URDF description files, rviz configurations and meshes
 2. `bringup` package, holds launch files and runtime configurations for robots
 3. `hardware` package, implements the hardware interfaces
@@ -32,3 +51,4 @@ The workflow can be thought as follows:
    - The [controllers `YAML`](ros2_controllers.md#configuring-controller-and-cm-yaml) config file, declaring the CM and controllers configuration (i.e. `update` rate, controllers to be activated and their parameters...)
    - optionally, write [custom controllers](ros2_controllers.md) if they're not provided by `ros2_controllers` package. 
 4. Implement the `bringup` package, with launch files starting `CM` node and controllers using a default [ros2_control node](https://github.com/ros-controls/ros2_control/blob/master/controller_manager/src/ros2_control_node.cpp)
+

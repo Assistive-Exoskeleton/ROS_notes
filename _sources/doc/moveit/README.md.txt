@@ -7,8 +7,8 @@ For further informations:
   * [Motion Planning](moveit_motion_planning.md)
   * [Kinematics](moveit_kinematics.md)
 
+<h2>Terminology</h2>
 
-## Terminology
 
 What is the difference between MoveIt 1 and MoveIt 2?
 
@@ -23,3 +23,20 @@ What is the difference between MoveIt and ROS?
 * MoveIt is a primary source of the functionality for manipulation (and mobile manipulation) in ROS.
 * MoveIt builds on the ROS messaging and build systems and utilizes some of the common tools in ROS like the ROS Visualizer (Rviz) and the ROS robot format (URDF).
 * MoveIt is a common entry point into ROS, especially through the use of the MoveIt Setup Assistant for configuring new robots.
+
+
+
+
+
+```{toctree}
+---
+maxdepth: 2
+hidden:
+---
+
+concepts
+moveit_motion_planning
+moveit_kinematics
+```
+
+  

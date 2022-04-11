@@ -1,20 +1,9 @@
-# 1. ROS documentation
-## 1.1. Contents
-- [1. ROS documentation](#1-ros-documentation)
-  - [1.1. Contents](#11-contents)
-- [2. Nodes](#2-nodes)
-  - [2.1. ROScore](#21-roscore)
-- [3. Master](#3-master)
-- [4. Parameter server](#4-parameter-server)
-- [5. Messages](#5-messages)
-- [6. Topics](#6-topics)
-- [7. Services](#7-services)
-- [9. Community level](#9-community-level)
+# Concepts
 
-# 2. Nodes
+## Nodes
 Useful commands for **nodes**:
 - to manage running nodes use `rosnode`:
-  ```powershell
+  ```sh
   #rosnode help
   $ rosnode -h
   #list active nodes
@@ -24,11 +13,11 @@ Useful commands for **nodes**:
   ...
   ```
 - run a single node:
-    ```powershell
+    ```sh
     $ rosrun [package_name] [node_name]
     ```
 - run nodes from launch files (`roscore` included):
-  ```powershell
+  ```sh
   $ roslaunch [package_name] [launch_file.launch]
   ```
   The launch file consists of some tags:
@@ -41,24 +30,26 @@ Useful commands for **nodes**:
   </launch>
   ```
 
-## 2.1. ROScore
-`roscore` is a collection of [nodes](#nodes) and programs that are pre-requisites of a ROS-based system. You **must** have a roscore running in order for ROS nodes to communicate.
-> Note: `roslaunch` automatically launches also `roscore`
+### ROScore
+`roscore` is a collection of [Nodes](#nodes) and programs that are pre-requisites of a ROS-based system. You **must** have a roscore running in order for ROS nodes to communicate.
+```{note}
+`roslaunch` automatically launches also `roscore`
+```
 
 `roscore` starts up:
 - a ROS [Master](#master)
 - a ROS [Parameter server](#parameter-server)
 - a `rosout` logging node (collects nodes debugging output)
 
-# 3. Master
+## Master
 The ROS Master provides naming and registration services to the rest of the nodes in the ROS system. It tracks publishers and subscribers to topics as well as services. The role of the Master is to enable individual ROS nodes to locate one another. Once these nodes have located each other they communicate with each other peer-to-peer. Nodes connect to other nodes directly; the Master only provides lookup information, much like a DNS server.
 
 The Master also provides the Parameter Server.
 
-# 4. Parameter server
+## Parameter server
 Useful commands for **parameters**:
 - To manage parameters use `rosparam`:
-  ```powershell
+  ```sh
   #rosparam help
   $ rosparam -h
   
@@ -73,19 +64,19 @@ Useful commands for **parameters**:
   $ rosparam load [file_name] [namespace]
   $ rosparam dump [file_name] [namespace]
   ```
-# 5. Messages
+## Messages
 ROS messages structures used by topics are stored in `package/msg/*.msg` files.
 
 To look at details of a message you can use:
-```powershell
+```sh
 $ rosmsg show <msg_type> #for topics
 $ rossrv show <service_type> #for services
 ```
 
-# 6. Topics
+## Topics
 Useful commands for **topics**:
 - To manage topics use `rostopic`:
-  ```powershell
+  ```sh
   #rostopic help
   $ rostopic -h
 
@@ -114,12 +105,12 @@ Useful commands for **topics**:
   ```
 
 
-# 7. Services
+## Services
 In ROS, services are defined using `package/srv/*.srv` files
 
 Useful commands for **services**:
 - To manage services use `rosservice`
-  ```powershell
+  ```sh
   #rosservice help
   $ rosservice -h
 
@@ -137,4 +128,4 @@ Useful commands for **services**:
 
   ...
   ```
-# 9. Community level
+## Community level

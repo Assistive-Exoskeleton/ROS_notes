@@ -1,18 +1,6 @@
-# Contents
-- [Contents](#contents)
-- [Environment variables](#environment-variables)
-- [Packages](#packages)
-  - [Catkin](#catkin)
-  - [Common files and directories](#common-files-and-directories)
-  - [Command line tools](#command-line-tools)
-  - [Package manifest](#package-manifest)
-    - [Dependencies](#dependencies)
-    - [Metapackages](#metapackages)
-  - [CMakeLists.txt](#cmakeliststxt)
-- [Message types](#message-types)
-- [Service types](#service-types)
+# Filesystem
 
-# Environment variables
+## Environment variables
 In Linux and Unix based systems, environment variables are a set of dynamic named values, stored within the system that are used by applications launched in shells or subshells. In simple words, an environment variable is a variable with a **name** and an associated **value**.
 
 Environment variables serve a variety of purposes for ROS:
@@ -20,28 +8,28 @@ Environment variables serve a variety of purposes for ROS:
   - `ROS_ROOT` and `ROS_PACKAGE_PATH` enable ROS to locate packages and stacks in the filesystem. 
   - `PYTHONPATH` enables python to find ROS libraries.
 - **Effecting a Node runtime**
-  - `ROS_MASTER_URI` tells a [Node](#nodes) where the [Master](#master) is.
-  - `ROS_IP` and `ROS_HOSTNAME` affect the network address of a [Node](#nodes)
-  - `ROS_NAMESPACE` changes the namespace of a [Node](#nodes).
+  - `ROS_MASTER_URI` tells a [Node](ROS_documentation.md#nodes) where the [Master](ROS_documentation.md#master) is.
+  - `ROS_IP` and `ROS_HOSTNAME` affect the network address of a [Node](ROS_documentation.md#nodes)
+  - `ROS_NAMESPACE` changes the namespace of a [Node](ROS_documentation.md#nodes).
   - `ROS_LOG_DIR` lets you set the directory where log files are written
 - **Modifying the build system**
 
 See [ROS guide](http://wiki.ros.org/ROS/EnvironmentVariables) for a list of ROS environment variables, or use:
-```powershell
+```sh
 $ printenv | grep ROS
 ```
 
-# Packages
+## Packages
 Software in ROS is organized in packages, containing anything that constitutes a module. Packages are directories descended from `ROS_PACKAGE_PATH` that have a `package.xml` file in it.
 
-```powershell
+```sh
 my_package/
   package.xml
 ```
 
-## Catkin
+### Catkin
 Catkin is the official build system for ROS. A catkin **workspace** is like:
-```powershell
+```sh
 workspace_folder/         #WORKSPACE
   build/                  #BUILD SPACE
   devel/                  #DEVEL SPACE
@@ -57,34 +45,34 @@ workspace_folder/         #WORKSPACE
       package.xml         #pkg_n manifest
 ```
 To create a catkin **workspace** just generate the two directories:
-```powershell
+```sh
 $ mkdir -p <workspace_name>/src
 ```
 To build the workspace (empty or existing) use (from `workspace/`):
-  ```powershell
+  ```sh
   $ catkin_make [make_targets]
   ``` 
 There are three layers of the build process:
 1. First, packages in the **source space** (`workspace/src/`) are built the **build space** (`workspace/build/`), where CMake and catkin keep cache and intermediate build files.
 2. Build targets are then placed in the **devel space** (`workspace/devel/` or `CATKIN_DEVEL_PREFIX`) prior to be installed. This provides an useful testing environment that doesn't require installing. It contains all **generated files** (libraries, executables, code...). Also there are `setup.*sh` scripts to add this devel space to the **environment**:
-   ```powershell
+   ```sh
    $ source devel/setup.bash
    ```
 3. Once targets are built, they can be **installed** into the **install space** (`workspace/install/` or `CMAKE_INSTALL_PREFIX`). This can be done with:
-   ```powershell
+   ```sh
    $ catkin_make install # might need sudo
    ```
   
 To create a catkin **package** you can also use:
-```powershell
+```sh
 $ catkin_create_pkg <package_name> [depend1] [depend2] [depend3]
 ```
 
 
 
-## Common files and directories
+### Common files and directories
 ROS packages follow a common structure:
-```powershell
+```sh
 CMakeLists.txt:   #CMake build file
 package.xml       #package manifest
 ----------
@@ -97,10 +85,10 @@ scripts/          #executable scripts
 
 
 
-## Command line tools
+### Command line tools
 To manage packages:
 - `rospack`: find and retrieve information about packages
-  ```powershell
+  ```sh
   $ rospack help
   $ rospack list #list all packages
   $ rospack find <pkg> #print path to pkg
@@ -111,7 +99,7 @@ To manage packages:
 - `rosdep`: install system dependencies of a package. 
   
   To install and update:
-  ```powershell
+  ```sh
   # installation on ROS Noetic
   $ sudo apt install python3-rosdep
   # Initialize rosdep (call only once after installation)
@@ -119,14 +107,16 @@ To manage packages:
   # Update rosdep (DO NOT CALL AS SUDO)
   $ rosdep update
   ```
-  > Note: `python3-rosdep2` is not for ROS2, it's an older version of rosdep
+  ```{note}
+  `python3-rosdep2` is not for ROS2, it's an older version of rosdep
+  ```
 
   To install dependencies of a package and also **build** it with catkin use:
-  ```powershell
+  ```sh
   $ rosdep install <package_name>
   ```
   To install dependencies of all packages in workspace use (from `workspace/`):
-  ```powershell
+  ```sh
   $ rosdep install --from-paths src --ignore-src -r -y
   
   --from-paths: 'the arguments will be considered paths to be searched, acting on all catkin packages found there in'
@@ -135,16 +125,16 @@ To manage packages:
   -y: 'Tell the package manager to default to y (yes) or fail when installing'
   ```
 - `roscd`: `cd` into a ROS package
-  ```powershell
+  ```sh
   $ roscd <pkg>
   $ roscd log #folder with log files
   ```
 - `rosls`: `ls` into a ROS package
-  ```powershell
+  ```sh
   $ rosls <pkg>
   ```
 
-## Package manifest
+### Package manifest
 The package manifest is an XML file called `package.xml` that defines properties about the package, such as *package name*, *version*, *authors*, *maintainers* and [dependencies](#dependencies). These information are important when the package gets released to the ROS community.
 
 Each `package.xml` has a `<package>` tag as root tag:
@@ -168,7 +158,7 @@ Other tags:
 <author></author>
 <url></url>
 ```
-### Dependencies
+#### Dependencies
 The `package.xml` with minimal tags doesn't specify **dependencies**. There are 6 types of dependencies:
 > **Note**, the tag:
 > ```XML
@@ -201,7 +191,7 @@ The `package.xml` with minimal tags doesn't specify **dependencies**. There are 
   <doc_depend>pkg_name</doc_depend>
   ```
 
-### Metapackages
+#### Metapackages
 It's often convenient to group multiple packages as a single logical package or **metapackage**. A metapackage is a normal package with the following tag in `package.xml`:
 ```XML
 <export>
@@ -210,7 +200,7 @@ It's often convenient to group multiple packages as a single logical package or 
 ```
 Other than a required `<buildtool_depends>` on `catkin`, metapackages can only have *execution dependencies* on packages of which they group.
 
-## CMakeLists.txt
+### CMakeLists.txt
 The file `CMakeLists.txt` is the input to the CMake build system for building software packages.
 
 In order to work, it has to follow this exact format in the exact order:
@@ -279,5 +269,5 @@ In order to work, it has to follow this exact format in the exact order:
     install()
     ```
 
-# Message types
-# Service types
+## Message types
+## Service types

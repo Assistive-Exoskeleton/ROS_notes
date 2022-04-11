@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ROS Control &mdash; ROS2 notes 2022 documentation</title>
+  <title>ROS2 Control &mdash; ROS2 notes 2022 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -17,8 +17,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="MoveIt" href="../moveit/README.html" />
-    <link rel="prev" title="ROS2 standard libraries" href="../Standard_Libraries/README.html" /> 
+    <link rel="next" title="ROS2-control concepts" href="ros2_control_concepts.html" />
+    <link rel="prev" title="Command Line Interface" href="../Standard_Libraries/ros2cli.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -38,32 +38,32 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html">ROS2 concepts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html#ros2-graph-concepts">ROS2 graph concepts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html#names">Names</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html">ROS2 filesystem</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html#environment-variables">Environment variables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html#packages">Packages</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/Launch.html">Launch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/Launch.html">Launch files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Robot_description/README.html">Robot description</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Standard_Libraries/README.html">ROS2 standard libraries</a></li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">ROS Control</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#workflow">Workflow</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ROS2 Control</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ros2_control_concepts.html">ROS2-control concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ros2_control_URDF.html"><code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> URDF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ros2_control_HI.html">Hardware interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ros2_control_UI.html"><code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> User Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ros2_controllers.html">Controllers</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#rviz-interface">RViz Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#using-rviz-todo">Using RViz #TODO</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rQt/README.html">RQt (formerly RQt2)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ROS1/README.html">ROS1</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
@@ -83,7 +83,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>ROS Control</li>
+      <li>ROS2 Control</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/doc/ros2_control/README.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -93,29 +93,29 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="ros-control">
-<h1>ROS Control<a class="headerlink" href="#ros-control" title="Permalink to this headline"></a></h1>
-<p>Notes for <code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> package</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="ros2-control">
+<h1>ROS2 Control<a class="headerlink" href="#ros2-control" title="Permalink to this headline"></a></h1>
+<div class="toctree-wrapper compound">
+</div>
 <p>Theory and concepts</p>
 <ul class="contains-task-list simple">
 <li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference internal" href="ros2_control_concepts.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> concepts</span></a></p></li>
 </ul>
 <p>Programming and application</p>
 <ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference internal" href="ros2_control_URDF.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> URDF</span></a></p></li>
 <li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference internal" href="ros2_control_HI.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> hardware interface</span></a></p></li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Watch <a class="reference external" href="http://control.ros.org/resources/resources.html">presentations</a>.</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference internal" href="ros2_control_UI.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> user interfaces</span></a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> <a class="reference internal" href="ros2_controllers.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> controllers</span></a></p></li>
 </ul>
-<div class="section" id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"></a></h2>
+<h2> Installation </h2>
 <p><code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> is now released for galactic:</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">ros-galactic-ros2-control</span>
-<span class="p">$</span> <span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">ros-galactic-ros2-controllers</span>
-<span class="c"># maybe also control-toolbox?</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ sudo apt install ros-galactic-ros2-control
+$ sudo apt install ros-galactic-ros2-controllers
+<span class="c1"># maybe also control-toolbox?</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="workflow">
-<h2>Workflow<a class="headerlink" href="#workflow" title="Permalink to this headline"></a></h2>
+<h2> Workflow </h2>
 <p>Usually the main packages are:</p>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">description</span></code> package, store URDF description files, rviz configurations and meshes</p></li>
@@ -134,21 +134,20 @@
 <li><p>Implement the <a class="reference internal" href="ros2_control_HI.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">hardware</span></code> package</span></a>, containing the hardware resources that will be requested by the controllers and managed by the RM.</p></li>
 <li><p>Implement the <code class="docutils literal notranslate"><span class="pre">controllers</span></code>, either in the bringup package or in a more specific package for controllers if they’re built. It contains:</p>
 <ul class="simple">
-<li><p>The <span class="xref myst">controllers <code class="docutils literal notranslate"><span class="pre">YAML</span></code></span> config file, declaring the CM and controllers configuration (i.e. <code class="docutils literal notranslate"><span class="pre">update</span></code> rate, controllers to be activated and their parameters…)</p></li>
+<li><p>The <a class="reference internal" href="ros2_controllers.html#configuring-controller-and-cm-yaml"><span class="std std-doc">controllers <code class="docutils literal notranslate"><span class="pre">YAML</span></code></span></a> config file, declaring the CM and controllers configuration (i.e. <code class="docutils literal notranslate"><span class="pre">update</span></code> rate, controllers to be activated and their parameters…)</p></li>
 <li><p>optionally, write <a class="reference internal" href="ros2_controllers.html"><span class="doc std std-doc">custom controllers</span></a> if they’re not provided by <code class="docutils literal notranslate"><span class="pre">ros2_controllers</span></code> package.</p></li>
 </ul>
 </li>
 <li><p>Implement the <code class="docutils literal notranslate"><span class="pre">bringup</span></code> package, with launch files starting <code class="docutils literal notranslate"><span class="pre">CM</span></code> node and controllers using a default <a class="reference external" href="https://github.com/ros-controls/ros2_control/blob/master/controller_manager/src/ros2_control_node.cpp">ros2_control node</a></p></li>
 </ol>
 </div>
-</div>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../Standard_Libraries/README.html" class="btn btn-neutral float-left" title="ROS2 standard libraries" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../moveit/README.html" class="btn btn-neutral float-right" title="MoveIt" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../Standard_Libraries/ros2cli.html" class="btn btn-neutral float-left" title="Command Line Interface" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ros2_control_concepts.html" class="btn btn-neutral float-right" title="ROS2-control concepts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

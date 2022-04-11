@@ -226,7 +226,7 @@ The base QoS profile currently includes settings for the following policies:
 
 For each of the policies that is not a duration, there is also the option of “system default”, which uses the default of the underlying middleware. For each of the policies that is a duration, there also exists a “default” option that means the duration is unspecified, which the underlying middleware will usually interpret as an infinitely long duration.
 
-# Lifecycle
+## Lifecycle
 A managed lifecycle allows greater control over the state of ROS system, ensuring all components have been instantiated correctly before starting behaving. This also allows nodes to be restarded/replaced on-line.
 
 A node with managed lifecycle presents a known interface and executes according to known life-cycle state-machine.

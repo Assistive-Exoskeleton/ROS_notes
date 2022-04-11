@@ -16,7 +16,9 @@
         <script src="../../_static/doctools.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Plugin library" href="pluginlib.html" />
+    <link rel="prev" title="ROS2 standard libraries" href="README.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -36,28 +38,43 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html">ROS2 concepts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html#ros2-graph-concepts">ROS2 graph concepts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html#names">Names</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html">ROS2 filesystem</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html#environment-variables">Environment variables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html#packages">Packages</a></li>
 </ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/Launch.html">Launch</a></li>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/Launch.html">Launch files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Robot_description/README.html">Robot description</a></li>
-<li class="toctree-l1"><a class="reference internal" href="README.html">ROS2 standard libraries</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="README.html">ROS2 standard libraries</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">rlc</span></code> (ROS Client Library)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nodes-and-node-class">Nodes and <code class="docutils literal notranslate"><span class="pre">Node</span></code> class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#topics">Topics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#services">Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#context"><code class="docutils literal notranslate"><span class="pre">Context</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rcutilslogger"><code class="docutils literal notranslate"><span class="pre">RcutilsLogger</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#execution-and-callbacks">Execution and callbacks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#quality-of-service">Quality of service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lifecycle">Lifecycle</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pluginlib.html">Plugin library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="robot_state_publisher.html">Robot state publisher #TODO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="joint_state_publisher.html">Joint State Publisher #TODO link</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf.html">tf2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ros2cli.html">Command Line Interface</a></li>
+</ul>
+</li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS2 Control</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#rviz-interface">RViz Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#using-rviz-todo">Using RViz #TODO</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rQt/README.html">RQt (formerly RQt2)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ROS1/README.html">ROS1</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
@@ -77,6 +94,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="README.html">ROS2 standard libraries</a> &raquo;</li>
       <li><code class="docutils literal notranslate"><span class="pre">rlc</span></code> (ROS Client Library)</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/doc/Standard_Libraries/rcl.md.txt" rel="nofollow"> View page source</a>
@@ -590,9 +608,8 @@
 </ul>
 <p>For each of the policies that is not a duration, there is also the option of “system default”, which uses the default of the underlying middleware. For each of the policies that is a duration, there also exists a “default” option that means the duration is unspecified, which the underlying middleware will usually interpret as an infinitely long duration.</p>
 </div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="lifecycle">
-<h1>Lifecycle<a class="headerlink" href="#lifecycle" title="Permalink to this headline"></a></h1>
+<div class="section" id="lifecycle">
+<h2>Lifecycle<a class="headerlink" href="#lifecycle" title="Permalink to this headline"></a></h2>
 <p>A managed lifecycle allows greater control over the state of ROS system, ensuring all components have been instantiated correctly before starting behaving. This also allows nodes to be restarded/replaced on-line.</p>
 <p>A node with managed lifecycle presents a known interface and executes according to known life-cycle state-machine.</p>
 <p><img alt="Lifecycle" src="../../_images/lifecycle.png" /></p>
@@ -624,11 +641,15 @@ There are 7 <strong>transitions</strong> exposed to supervisory processes:</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">ErrorProcessing</span></code>: This state may be entered from any user-code processing. The <code class="docutils literal notranslate"><span class="pre">onError()</span></code> callback is used to handle errors. If this succeeds, the state reverts to <code class="docutils literal notranslate"><span class="pre">Unconfigured</span></code>. Otherwise if it’s not possible to handle all errors, the state becomes <code class="docutils literal notranslate"><span class="pre">Finalized</span></code> in preparation for destruction.</p></li>
 </ol>
 </div>
+</div>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="README.html" class="btn btn-neutral float-left" title="ROS2 standard libraries" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pluginlib.html" class="btn btn-neutral float-right" title="Plugin library" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

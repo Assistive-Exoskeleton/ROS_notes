@@ -16,7 +16,9 @@
         <script src="../../_static/doctools.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="ROS2 filesystem" href="ROS2_filesystem.html" />
+    <link rel="prev" title="ROS2 concepts" href="ROS2_concepts.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -34,30 +36,44 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="ROS2_concepts.html">ROS2 concepts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ROS2_concepts.html#ros2-graph-concepts">ROS2 graph concepts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ROS2_concepts.html#names">Names</a></li>
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="ROS2_concepts.html">ROS2 concepts</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ROS2_concepts.html#nodes">Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ROS2_concepts.html#parameters">Parameters</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="ROS2_concepts.html#interfaces">Interfaces</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">IDL (Interface Definition Language)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#messages">Messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#services">Services</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#actions">Actions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ROS2_concepts.html#topics">Topics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ROS2_concepts.html#services">Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ROS2_concepts.html#actions">Actions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ROS2_concepts.html#names">Names</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="ROS2_filesystem.html">ROS2 filesystem</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ROS2_filesystem.html#environment-variables">Environment variables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ROS2_filesystem.html#packages">Packages</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="Launch.html">Launch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Launch.html">Launch files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Robot_description/README.html">Robot description</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Standard_Libraries/README.html">ROS2 standard libraries</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS2 Control</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#rviz-interface">RViz Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#using-rviz-todo">Using RViz #TODO</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rQt/README.html">RQt (formerly RQt2)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ROS1/README.html">ROS1</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
@@ -77,6 +93,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="ROS2_concepts.html">ROS2 concepts</a> &raquo;</li>
       <li>IDL (Interface Definition Language)</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/doc/ROS2/IDL.md.txt" rel="nofollow"> View page source</a>
@@ -89,16 +106,6 @@
              
   <div class="tex2jax_ignore mathjax_ignore section" id="idl-interface-definition-language">
 <h1>IDL (Interface Definition Language)<a class="headerlink" href="#idl-interface-definition-language" title="Permalink to this headline"></a></h1>
-<p><strong>Contents</strong>:</p>
-<ul class="simple">
-<li><p><span class="xref myst">IDL (Interface Definition Language)</span></p>
-<ul>
-<li><p><span class="xref myst">Messages</span></p></li>
-<li><p><span class="xref myst">Services</span></p></li>
-<li><p><span class="xref myst">Actions</span></p></li>
-</ul>
-</li>
-</ul>
 <p><a class="reference external" href="https://docs.ros.org/en/rolling/Concepts/About-ROS-Interfaces.html"><code class="docutils literal notranslate"><span class="pre">IDL</span></code></a> is the language used by ROS2 to describe interfaces (messages, services, actions). The defined interface in <code class="docutils literal notranslate"><span class="pre">IDL</span></code> is then passed to generators (<code class="docutils literal notranslate"><span class="pre">rosidl_default_generators</span></code> library) in order to obtain language_specific code (<code class="docutils literal notranslate"><span class="pre">Python</span></code>, <code class="docutils literal notranslate"><span class="pre">C++</span></code>, …) to interact with the interfaces.</p>
 <blockquote>
 <div><p>both line (<code class="docutils literal notranslate"><span class="pre">//</span></code>) and block (<code class="docutils literal notranslate"><span class="pre">/*</span> <span class="pre">...</span> <span class="pre">*/</span></code>) comments are supported by <code class="docutils literal notranslate"><span class="pre">IDL</span></code>.</p>
@@ -157,7 +164,10 @@
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ROS2_concepts.html" class="btn btn-neutral float-left" title="ROS2 concepts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ROS2_filesystem.html" class="btn btn-neutral float-right" title="ROS2 filesystem" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

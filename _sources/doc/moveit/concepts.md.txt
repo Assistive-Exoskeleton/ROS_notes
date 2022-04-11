@@ -71,7 +71,9 @@ The world geometry monitor builds world geometry using information from the sens
 
 - **Depth images**: handled by the depth image occupancy map updater plugin
 
-Note that you can add your own types of updaters as a plugin to the occupancy map monitor.
+```{note}
+you can add your own types of updaters as a plugin to the occupancy map monitor.
+```
 
 ### Extensible Capabilities
 

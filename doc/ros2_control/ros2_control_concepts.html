@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ROS2_control &mdash; ROS2 notes 2022 documentation</title>
+  <title>ROS2-control concepts &mdash; ROS2 notes 2022 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -16,7 +16,9 @@
         <script src="../../_static/doctools.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="ros2_control URDF" href="ros2_control_URDF.html" />
+    <link rel="prev" title="ROS2 Control" href="README.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -36,28 +38,37 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html">ROS2 concepts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html#ros2-graph-concepts">ROS2 graph concepts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html#names">Names</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html">ROS2 filesystem</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html#environment-variables">Environment variables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html#packages">Packages</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/Launch.html">Launch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/Launch.html">Launch files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Robot_description/README.html">Robot description</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Standard_Libraries/README.html">ROS2 standard libraries</a></li>
 </ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="README.html">ROS Control</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="README.html">ROS2 Control</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">ROS2-control concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#controller-manager">Controller manager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#resource-manager">Resource Manager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#control-loop">Control loop</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ros2_control_URDF.html"><code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> URDF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ros2_control_HI.html">Hardware interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ros2_control_UI.html"><code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> User Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ros2_controllers.html">Controllers</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#rviz-interface">RViz Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#using-rviz-todo">Using RViz #TODO</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rQt/README.html">RQt (formerly RQt2)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ROS1/README.html">ROS1</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
@@ -77,7 +88,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>ROS2_control</li>
+          <li><a href="README.html">ROS2 Control</a> &raquo;</li>
+      <li>ROS2-control concepts</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/doc/ros2_control/ros2_control_concepts.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -87,24 +99,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="ros2-control">
-<h1>ROS2_control<a class="headerlink" href="#ros2-control" title="Permalink to this headline"></a></h1>
-<ul class="simple">
-<li><p><span class="xref myst">ROS2_control</span></p>
-<ul>
-<li><p><span class="xref myst">Controller manager</span></p></li>
-<li><p><span class="xref myst">Resource Manager</span></p></li>
-<li><p><span class="xref myst">Control loop</span></p></li>
-</ul>
-</li>
-</ul>
+  <div class="tex2jax_ignore mathjax_ignore section" id="ros2-control-concepts">
+<h1>ROS2-control concepts<a class="headerlink" href="#ros2-control-concepts" title="Permalink to this headline"></a></h1>
 <p>The following figure shows the architecture of <code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> framework:</p>
 <p><img alt="ros_control_architecture" src="../../_images/ros2_control_architecture.png" /></p>
 <div class="section" id="controller-manager">
 <h2>Controller manager<a class="headerlink" href="#controller-manager" title="Permalink to this headline"></a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">controller_manager</span></code> (<a class="reference external" href="https://github.com/ros-controls/ros2_control/blob/master/controller_manager/src/controller_manager.cpp">CM</a>) has three main purposes:</p>
 <ol class="arabic simple">
-<li><p>CM connects the <strong>controllers</strong> and <strong>hardware components</strong> abstraction (through <span class="xref myst">Resource Manager</span>).</p></li>
+<li><p>CM connects the <strong>controllers</strong> and <strong>hardware components</strong> abstraction (through <a class="reference internal" href="#resource-manager"><span class="std std-doc">Resource Manager</span></a>).</p></li>
 <li><p>CM <strong>manages controllers</strong>’: their <strong>lifecycle</strong> (i.e. loading, activating, deactivating, unloading) and their <strong>update</strong>.</p></li>
 <li><p>CM also offers ROS <strong>services</strong> to the ROS world and the <strong>user</strong>.</p></li>
 </ol>
@@ -129,17 +132,17 @@
 <p>There are 2 helper scripts to interact with CM at launch:</p>
 <ul>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">spawner</span></code></strong>: loads, configures and start a controller on startup</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">ros2</span> <span class="n">run</span> <span class="n">controller_manager</span> <span class="n">spawner</span> <span class="p">[</span><span class="n">-options</span><span class="p">]</span> <span class="p">&lt;</span><span class="n">controller_name</span><span class="p">&gt;</span>
-<span class="c"># -options:</span>
-<span class="c">#   -p &lt;param_file&gt;: parameter file to be loaded into controller node before configure</span>
-<span class="c">#   -t &lt;controller_type&gt;: type of controller. If not provided it should exist in CM namespace.</span>
-<span class="c">#   --stopped: load controller without starting it</span>
-<span class="c">#   ... </span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ros2 run controller_manager spawner <span class="o">[</span>-options<span class="o">]</span> &lt;controller_name&gt;
+<span class="c1"># -options:</span>
+<span class="c1">#   -p &lt;param_file&gt;: parameter file to be loaded into controller node before configure</span>
+<span class="c1">#   -t &lt;controller_type&gt;: type of controller. If not provided it should exist in CM namespace.</span>
+<span class="c1">#   --stopped: load controller without starting it</span>
+<span class="c1">#   ... </span>
 </pre></div>
 </div>
 </li>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">unspawner</span></code></strong>: stops and unloads a controller</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">ros2</span> <span class="n">run</span> <span class="n">controller_manager</span> <span class="n">unspawner</span> <span class="p">[</span><span class="n">-options</span><span class="p">]</span> <span class="p">&lt;</span><span class="n">controller_name</span><span class="p">&gt;</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ros2 run controller_manager unspawner <span class="o">[</span>-options<span class="o">]</span> &lt;controller_name&gt;
 </pre></div>
 </div>
 </li>
@@ -147,7 +150,7 @@
 </div>
 <div class="section" id="resource-manager">
 <h2>Resource Manager<a class="headerlink" href="#resource-manager" title="Permalink to this headline"></a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">resource_manager</span></code> (<a class="reference external" href="https://github.com/ros-controls/ros2_control/blob/master/hardware_interface/src/resource_manager.cpp">RM</a>) <strong>abstracts physical hardware</strong> and its drivers (<span class="xref myst"><strong>hardware components</strong></span>) for the <code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> framework.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">resource_manager</span></code> (<a class="reference external" href="https://github.com/ros-controls/ros2_control/blob/master/hardware_interface/src/resource_manager.cpp">RM</a>) <strong>abstracts physical hardware</strong> and its drivers (<a class="reference internal" href="ros2_control_HI.html#hardware-interface"><span class="std std-doc"><strong>hardware components</strong></span></a>) for the <code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> framework.</p>
 <p>RM has different purposes:</p>
 <ul class="simple">
 <li><p>parses the <a class="reference internal" href="ros2_control_URDF.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> URDF</span></a> and loads/instantiate the respective logic components (i.e. <code class="docutils literal notranslate"><span class="pre">joint</span></code> and <code class="docutils literal notranslate"><span class="pre">sensor</span></code>) and HW components (<code class="docutils literal notranslate"><span class="pre">system</span></code>, <code class="docutils literal notranslate"><span class="pre">sensor</span></code> and <code class="docutils literal notranslate"><span class="pre">actuator</span></code>) using <a class="reference internal" href="../Standard_Libraries/pluginlib.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">pluginlib</span></code></span></a>-library</p></li>
@@ -172,7 +175,10 @@
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="README.html" class="btn btn-neutral float-left" title="ROS2 Control" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ros2_control_URDF.html" class="btn btn-neutral float-right" title="ros2_control URDF" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

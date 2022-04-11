@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contents &mdash; ROS2 notes 2022 documentation</title>
+  <title>Filesystem &mdash; ROS2 notes 2022 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -16,7 +16,9 @@
         <script src="../../_static/doctools.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="References" href="../references.html" />
+    <link rel="prev" title="Concepts" href="ROS_documentation.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -36,28 +38,42 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html">ROS2 concepts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html#ros2-graph-concepts">ROS2 graph concepts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html#names">Names</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html">ROS2 filesystem</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html#environment-variables">Environment variables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html#packages">Packages</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/Launch.html">Launch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/Launch.html">Launch files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Robot_description/README.html">Robot description</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Standard_Libraries/README.html">ROS2 standard libraries</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS2 Control</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#rviz-interface">RViz Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#using-rviz-todo">Using RViz #TODO</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rQt/README.html">RQt (formerly RQt2)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="README.html">ROS1</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ROS_documentation.html">Concepts</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Filesystem</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#environment-variables">Environment variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#packages">Packages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#catkin">Catkin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#common-files-and-directories">Common files and directories</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#command-line-tools">Command line tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#package-manifest">Package manifest</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cmakelists-txt">CMakeLists.txt</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#message-types">Message types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#service-types">Service types</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
@@ -77,9 +93,10 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Contents</li>
+          <li><a href="README.html">ROS1</a> &raquo;</li>
+      <li>Filesystem</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../_sources/doc/ROS1 " rel="nofollow"> View page source</a>
+            <a href="../../_sources/doc/ROS1/ROS_filesystem.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -87,31 +104,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="contents">
-<h1>Contents<a class="headerlink" href="#contents" title="Permalink to this headline"></a></h1>
-<ul class="simple">
-<li><p><span class="xref myst">Contents</span></p></li>
-<li><p><span class="xref myst">Environment variables</span></p></li>
-<li><p><span class="xref myst">Packages</span></p>
-<ul>
-<li><p><span class="xref myst">Catkin</span></p></li>
-<li><p><span class="xref myst">Common files and directories</span></p></li>
-<li><p><span class="xref myst">Command line tools</span></p></li>
-<li><p><span class="xref myst">Package manifest</span></p>
-<ul>
-<li><p><span class="xref myst">Dependencies</span></p></li>
-<li><p><span class="xref myst">Metapackages</span></p></li>
-</ul>
-</li>
-<li><p><span class="xref myst">CMakeLists.txt</span></p></li>
-</ul>
-</li>
-<li><p><span class="xref myst">Message types</span></p></li>
-<li><p><span class="xref myst">Service types</span></p></li>
-</ul>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="environment-variables">
-<h1>Environment variables<a class="headerlink" href="#environment-variables" title="Permalink to this headline"></a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="filesystem">
+<h1>Filesystem<a class="headerlink" href="#filesystem" title="Permalink to this headline"></a></h1>
+<div class="section" id="environment-variables">
+<h2>Environment variables<a class="headerlink" href="#environment-variables" title="Permalink to this headline"></a></h2>
 <p>In Linux and Unix based systems, environment variables are a set of dynamic named values, stored within the system that are used by applications launched in shells or subshells. In simple words, an environment variable is a variable with a <strong>name</strong> and an associated <strong>value</strong>.</p>
 <p>Environment variables serve a variety of purposes for ROS:</p>
 <ul class="simple">
@@ -123,142 +119,143 @@
 </li>
 <li><p><strong>Effecting a Node runtime</strong></p>
 <ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">ROS_MASTER_URI</span></code> tells a <span class="xref myst">Node</span> where the <span class="xref myst">Master</span> is.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ROS_IP</span></code> and <code class="docutils literal notranslate"><span class="pre">ROS_HOSTNAME</span></code> affect the network address of a <span class="xref myst">Node</span></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ROS_NAMESPACE</span></code> changes the namespace of a <span class="xref myst">Node</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ROS_MASTER_URI</span></code> tells a <a class="reference internal" href="ROS_documentation.html#nodes"><span class="std std-doc">Node</span></a> where the <a class="reference internal" href="ROS_documentation.html#master"><span class="std std-doc">Master</span></a> is.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ROS_IP</span></code> and <code class="docutils literal notranslate"><span class="pre">ROS_HOSTNAME</span></code> affect the network address of a <a class="reference internal" href="ROS_documentation.html#nodes"><span class="std std-doc">Node</span></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ROS_NAMESPACE</span></code> changes the namespace of a <a class="reference internal" href="ROS_documentation.html#nodes"><span class="std std-doc">Node</span></a>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">ROS_LOG_DIR</span></code> lets you set the directory where log files are written</p></li>
 </ul>
 </li>
 <li><p><strong>Modifying the build system</strong></p></li>
 </ul>
 <p>See <a class="reference external" href="http://wiki.ros.org/ROS/EnvironmentVariables">ROS guide</a> for a list of ROS environment variables, or use:</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">printenv</span> <span class="p">|</span> <span class="n">grep</span> <span class="n">ROS</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ printenv <span class="p">|</span> grep ROS
 </pre></div>
 </div>
 </div>
-<div class="tex2jax_ignore mathjax_ignore section" id="packages">
-<h1>Packages<a class="headerlink" href="#packages" title="Permalink to this headline"></a></h1>
+<div class="section" id="packages">
+<h2>Packages<a class="headerlink" href="#packages" title="Permalink to this headline"></a></h2>
 <p>Software in ROS is organized in packages, containing anything that constitutes a module. Packages are directories descended from <code class="docutils literal notranslate"><span class="pre">ROS_PACKAGE_PATH</span></code> that have a <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> file in it.</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">my_package</span><span class="p">/</span>
-  <span class="n">package</span><span class="p">.</span><span class="n">xml</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>my_package/
+  package.xml
 </pre></div>
 </div>
 <div class="section" id="catkin">
-<h2>Catkin<a class="headerlink" href="#catkin" title="Permalink to this headline"></a></h2>
+<h3>Catkin<a class="headerlink" href="#catkin" title="Permalink to this headline"></a></h3>
 <p>Catkin is the official build system for ROS. A catkin <strong>workspace</strong> is like:</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">workspace_folder</span><span class="p">/</span>         <span class="c">#WORKSPACE</span>
-  <span class="n">build</span><span class="p">/</span>                  <span class="c">#BUILD SPACE</span>
-  <span class="n">devel</span><span class="p">/</span>                  <span class="c">#DEVEL SPACE</span>
-  <span class="n">install</span><span class="p">/</span>                <span class="c">#INSTALL SPACE</span>
-  <span class="n">src</span><span class="p">/</span>                    <span class="c">#SOURCE SPACE</span>
-    <span class="n">CMakeLists</span><span class="p">.</span><span class="n">txt</span>        <span class="c">#&#39;Toplevel&#39; CMake file</span>
-    <span class="n">pkg_1</span><span class="p">/</span>
-      <span class="n">CMakeLists</span><span class="p">.</span><span class="n">txt</span>      <span class="c">#pkg_1 CMake file</span>
-      <span class="n">package</span><span class="p">.</span><span class="n">xml</span>         <span class="c">#pkg_1 manifest</span>
-    <span class="p">...</span>
-    <span class="n">pkg_n</span><span class="p">/</span>
-      <span class="n">CMakeLists</span><span class="p">.</span><span class="n">txt</span>      <span class="c">#pkg_n CMake file</span>
-      <span class="n">package</span><span class="p">.</span><span class="n">xml</span>         <span class="c">#pkg_n manifest</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>workspace_folder/         <span class="c1">#WORKSPACE</span>
+  build/                  <span class="c1">#BUILD SPACE</span>
+  devel/                  <span class="c1">#DEVEL SPACE</span>
+  install/                <span class="c1">#INSTALL SPACE</span>
+  src/                    <span class="c1">#SOURCE SPACE</span>
+    CMakeLists.txt        <span class="c1">#&#39;Toplevel&#39; CMake file</span>
+    pkg_1/
+      CMakeLists.txt      <span class="c1">#pkg_1 CMake file</span>
+      package.xml         <span class="c1">#pkg_1 manifest</span>
+    ...
+    pkg_n/
+      CMakeLists.txt      <span class="c1">#pkg_n CMake file</span>
+      package.xml         <span class="c1">#pkg_n manifest</span>
 </pre></div>
 </div>
 <p>To create a catkin <strong>workspace</strong> just generate the two directories:</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">mkdir</span> <span class="n">-p</span> <span class="p">&lt;</span><span class="n">workspace_name</span><span class="p">&gt;/</span><span class="n">src</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ mkdir -p &lt;workspace_name&gt;/src
 </pre></div>
 </div>
 <p>To build the workspace (empty or existing) use (from <code class="docutils literal notranslate"><span class="pre">workspace/</span></code>):</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">catkin_make</span> <span class="no">[make_targets]</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ catkin_make <span class="o">[</span>make_targets<span class="o">]</span>
 </pre></div>
 </div>
 <p>There are three layers of the build process:</p>
 <ol class="arabic">
 <li><p>First, packages in the <strong>source space</strong> (<code class="docutils literal notranslate"><span class="pre">workspace/src/</span></code>) are built the <strong>build space</strong> (<code class="docutils literal notranslate"><span class="pre">workspace/build/</span></code>), where CMake and catkin keep cache and intermediate build files.</p></li>
 <li><p>Build targets are then placed in the <strong>devel space</strong> (<code class="docutils literal notranslate"><span class="pre">workspace/devel/</span></code> or <code class="docutils literal notranslate"><span class="pre">CATKIN_DEVEL_PREFIX</span></code>) prior to be installed. This provides an useful testing environment that doesn’t require installing. It contains all <strong>generated files</strong> (libraries, executables, code…). Also there are <code class="docutils literal notranslate"><span class="pre">setup.*sh</span></code> scripts to add this devel space to the <strong>environment</strong>:</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">source</span> <span class="n">devel</span><span class="p">/</span><span class="n">setup</span><span class="p">.</span><span class="n">bash</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">source</span> devel/setup.bash
 </pre></div>
 </div>
 </li>
 <li><p>Once targets are built, they can be <strong>installed</strong> into the <strong>install space</strong> (<code class="docutils literal notranslate"><span class="pre">workspace/install/</span></code> or <code class="docutils literal notranslate"><span class="pre">CMAKE_INSTALL_PREFIX</span></code>). This can be done with:</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">catkin_make</span> <span class="n">install</span> <span class="c"># might need sudo</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ catkin_make install <span class="c1"># might need sudo</span>
 </pre></div>
 </div>
 </li>
 </ol>
 <p>To create a catkin <strong>package</strong> you can also use:</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">catkin_create_pkg</span> <span class="p">&lt;</span><span class="n">package_name</span><span class="p">&gt;</span> <span class="no">[depend1] [depend2] [depend3]</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ catkin_create_pkg &lt;package_name&gt; <span class="o">[</span>depend1<span class="o">]</span> <span class="o">[</span>depend2<span class="o">]</span> <span class="o">[</span>depend3<span class="o">]</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="common-files-and-directories">
-<h2>Common files and directories<a class="headerlink" href="#common-files-and-directories" title="Permalink to this headline"></a></h2>
+<h3>Common files and directories<a class="headerlink" href="#common-files-and-directories" title="Permalink to this headline"></a></h3>
 <p>ROS packages follow a common structure:</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span>CMakeLists.txt:   #CMake build file
-package.xml       #package manifest
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>CMakeLists.txt:   <span class="c1">#CMake build file</span>
+package.xml       <span class="c1">#package manifest</span>
 ----------
-include/pkg_name  #C++ include headers
-msg/              #folder containing message types
-src/              #source files
-srv/              #folder containing service types
-scripts/          #executable scripts
+include/pkg_name  <span class="c1">#C++ include headers</span>
+msg/              <span class="c1">#folder containing message types</span>
+src/              <span class="c1">#source files</span>
+srv/              <span class="c1">#folder containing service types</span>
+scripts/          <span class="c1">#executable scripts</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="command-line-tools">
-<h2>Command line tools<a class="headerlink" href="#command-line-tools" title="Permalink to this headline"></a></h2>
+<h3>Command line tools<a class="headerlink" href="#command-line-tools" title="Permalink to this headline"></a></h3>
 <p>To manage packages:</p>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">rospack</span></code>: find and retrieve information about packages</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">rospack</span> <span class="n">help</span>
-<span class="p">$</span> <span class="n">rospack</span> <span class="n">list</span> <span class="c">#list all packages</span>
-<span class="p">$</span> <span class="n">rospack</span> <span class="n">find</span> <span class="p">&lt;</span><span class="n">pkg</span><span class="p">&gt;</span> <span class="c">#print path to pkg</span>
-<span class="p">$</span> <span class="n">rospack</span> <span class="n">depends</span> <span class="p">&lt;</span><span class="n">pkg</span><span class="p">&gt;</span> <span class="c">#list all dependencies</span>
-<span class="p">$</span> <span class="n">rospack</span> <span class="n">depends1</span> <span class="p">&lt;</span><span class="n">pkg</span><span class="p">&gt;</span> <span class="c">#list all first-order dependencies</span>
-<span class="p">$</span> <span class="n">rospack</span> <span class="n">depends-on</span> <span class="p">&lt;</span><span class="n">pkg</span><span class="p">&gt;</span> <span class="c">#list all packages that depend on pkg</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ rospack <span class="nb">help</span>
+$ rospack list <span class="c1">#list all packages</span>
+$ rospack find &lt;pkg&gt; <span class="c1">#print path to pkg</span>
+$ rospack depends &lt;pkg&gt; <span class="c1">#list all dependencies</span>
+$ rospack depends1 &lt;pkg&gt; <span class="c1">#list all first-order dependencies</span>
+$ rospack depends-on &lt;pkg&gt; <span class="c1">#list all packages that depend on pkg</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">rosdep</span></code>: install system dependencies of a package.</p>
 <p>To install and update:</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="c"># installation on ROS Noetic</span>
-<span class="p">$</span> <span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">python3-rosdep</span>
-<span class="c"># Initialize rosdep (call only once after installation)</span>
-<span class="p">$</span> <span class="n">sudo</span> <span class="n">rosdep</span> <span class="n">init</span>
-<span class="c"># Update rosdep (DO NOT CALL AS SUDO)</span>
-<span class="p">$</span> <span class="n">rosdep</span> <span class="n">update</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># installation on ROS Noetic</span>
+$ sudo apt install python3-rosdep
+<span class="c1"># Initialize rosdep (call only once after installation)</span>
+$ sudo rosdep init
+<span class="c1"># Update rosdep (DO NOT CALL AS SUDO)</span>
+$ rosdep update
 </pre></div>
 </div>
-<blockquote>
-<div><p>Note: <code class="docutils literal notranslate"><span class="pre">python3-rosdep2</span></code> is not for ROS2, it’s an older version of rosdep</p>
-</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">python3-rosdep2</span></code> is not for ROS2, it’s an older version of rosdep</p>
+</div>
 <p>To install dependencies of a package and also <strong>build</strong> it with catkin use:</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">rosdep</span> <span class="n">install</span> <span class="p">&lt;</span><span class="n">package_name</span><span class="p">&gt;</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ rosdep install &lt;package_name&gt;
 </pre></div>
 </div>
 <p>To install dependencies of all packages in workspace use (from <code class="docutils literal notranslate"><span class="pre">workspace/</span></code>):</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span>$ rosdep install --from-paths src --ignore-src -r -y
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ rosdep install --from-paths src --ignore-src -r -y
 
---from-paths: &#39;the arguments will be considered paths to be searched, acting on all catkin packages found there in&#39;
---ignore-src: &#39;rosdep will ignore keys that are found to be catkin or ament packages anywhere in the ROS_PACKAGE_PATH, AMENT_PREFIX_PATH or in any of the directories given by the --from-paths option&#39;
--r: &#39;Continue installing despite errors&#39;
--y: &#39;Tell the package manager to default to y (yes) or fail when installing&#39;
+--from-paths: <span class="s1">&#39;the arguments will be considered paths to be searched, acting on all catkin packages found there in&#39;</span>
+--ignore-src: <span class="s1">&#39;rosdep will ignore keys that are found to be catkin or ament packages anywhere in the ROS_PACKAGE_PATH, AMENT_PREFIX_PATH or in any of the directories given by the --from-paths option&#39;</span>
+-r: <span class="s1">&#39;Continue installing despite errors&#39;</span>
+-y: <span class="s1">&#39;Tell the package manager to default to y (yes) or fail when installing&#39;</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">roscd</span></code>: <code class="docutils literal notranslate"><span class="pre">cd</span></code> into a ROS package</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">roscd</span> <span class="p">&lt;</span><span class="n">pkg</span><span class="p">&gt;</span>
-<span class="p">$</span> <span class="n">roscd</span> <span class="n">log</span> <span class="c">#folder with log files</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ roscd &lt;pkg&gt;
+$ roscd log <span class="c1">#folder with log files</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">rosls</span></code>: <code class="docutils literal notranslate"><span class="pre">ls</span></code> into a ROS package</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">rosls</span> <span class="p">&lt;</span><span class="n">pkg</span><span class="p">&gt;</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ rosls &lt;pkg&gt;
 </pre></div>
 </div>
 </li>
 </ul>
 </div>
 <div class="section" id="package-manifest">
-<h2>Package manifest<a class="headerlink" href="#package-manifest" title="Permalink to this headline"></a></h2>
-<p>The package manifest is an XML file called <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> that defines properties about the package, such as <em>package name</em>, <em>version</em>, <em>authors</em>, <em>maintainers</em> and <span class="xref myst">dependencies</span>. These information are important when the package gets released to the ROS community.</p>
+<h3>Package manifest<a class="headerlink" href="#package-manifest" title="Permalink to this headline"></a></h3>
+<p>The package manifest is an XML file called <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> that defines properties about the package, such as <em>package name</em>, <em>version</em>, <em>authors</em>, <em>maintainers</em> and <a class="reference internal" href="#dependencies"><span class="std std-doc">dependencies</span></a>. These information are important when the package gets released to the ROS community.</p>
 <p>Each <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> has a <code class="docutils literal notranslate"><span class="pre">&lt;package&gt;</span></code> tag as root tag:</p>
 <div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;package</span> <span class="na">format=</span><span class="s">&quot;2&quot;</span><span class="nt">&gt;</span>
 
@@ -281,7 +278,7 @@ scripts/          #executable scripts
 </pre></div>
 </div>
 <div class="section" id="dependencies">
-<h3>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline"></a></h3>
+<h4>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline"></a></h4>
 <p>The <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> with minimal tags doesn’t specify <strong>dependencies</strong>. There are 6 types of dependencies:</p>
 <blockquote>
 <div><p><strong>Note</strong>, the tag:</p>
@@ -324,7 +321,7 @@ scripts/          #executable scripts
 </ul>
 </div>
 <div class="section" id="metapackages">
-<h3>Metapackages<a class="headerlink" href="#metapackages" title="Permalink to this headline"></a></h3>
+<h4>Metapackages<a class="headerlink" href="#metapackages" title="Permalink to this headline"></a></h4>
 <p>It’s often convenient to group multiple packages as a single logical package or <strong>metapackage</strong>. A metapackage is a normal package with the following tag in <code class="docutils literal notranslate"><span class="pre">package.xml</span></code>:</p>
 <div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;export&gt;</span>
   <span class="nt">&lt;metapackage</span> <span class="nt">/&gt;</span>
@@ -335,7 +332,7 @@ scripts/          #executable scripts
 </div>
 </div>
 <div class="section" id="cmakelists-txt">
-<h2>CMakeLists.txt<a class="headerlink" href="#cmakelists-txt" title="Permalink to this headline"></a></h2>
+<h3>CMakeLists.txt<a class="headerlink" href="#cmakelists-txt" title="Permalink to this headline"></a></h3>
 <p>The file <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> is the input to the CMake build system for building software packages.</p>
 <p>In order to work, it has to follow this exact format in the exact order:</p>
 <ol class="arabic">
@@ -411,17 +408,21 @@ scripts/          #executable scripts
 </ol>
 </div>
 </div>
-<div class="tex2jax_ignore mathjax_ignore section" id="message-types">
-<h1>Message types<a class="headerlink" href="#message-types" title="Permalink to this headline"></a></h1>
+<div class="section" id="message-types">
+<h2>Message types<a class="headerlink" href="#message-types" title="Permalink to this headline"></a></h2>
 </div>
-<div class="tex2jax_ignore mathjax_ignore section" id="service-types">
-<h1>Service types<a class="headerlink" href="#service-types" title="Permalink to this headline"></a></h1>
+<div class="section" id="service-types">
+<h2>Service types<a class="headerlink" href="#service-types" title="Permalink to this headline"></a></h2>
+</div>
 </div>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ROS_documentation.html" class="btn btn-neutral float-left" title="Concepts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../references.html" class="btn btn-neutral float-right" title="References" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

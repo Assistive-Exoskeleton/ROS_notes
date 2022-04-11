@@ -1,8 +1,4 @@
-# ROS2_control
-- [ROS2_control](#ros2_control)
-  - [Controller manager](#controller-manager)
-  - [Resource Manager](#resource-manager)
-  - [Control loop](#control-loop)
+# ROS2-control concepts
 
 The following figure shows the architecture of `ros2_control` framework:
 
@@ -22,7 +18,7 @@ Parameter|description
 
 There are 2 helper scripts to interact with CM at launch:
 - **`spawner`**: loads, configures and start a controller on startup
-  ```powershell
+  ```sh
   $ ros2 run controller_manager spawner [-options] <controller_name>
   # -options:
   #   -p <param_file>: parameter file to be loaded into controller node before configure
@@ -31,13 +27,13 @@ There are 2 helper scripts to interact with CM at launch:
   #   ... 
   ```
 - **`unspawner`**: stops and unloads a controller
-  ```powershell
+  ```sh
   $ ros2 run controller_manager unspawner [-options] <controller_name>
   ```
 
 
 ## Resource Manager
-The `resource_manager` ([RM](https://github.com/ros-controls/ros2_control/blob/master/hardware_interface/src/resource_manager.cpp)) **abstracts physical hardware** and its drivers ([**hardware components**](ros2_control_HI.md#hardware-components)) for the `ros2_control` framework. 
+The `resource_manager` ([RM](https://github.com/ros-controls/ros2_control/blob/master/hardware_interface/src/resource_manager.cpp)) **abstracts physical hardware** and its drivers ([**hardware components**](ros2_control_HI.md#hardware-interface)) for the `ros2_control` framework. 
 
 RM has different purposes:
 - parses the [`ros2_control` URDF](ros2_control_URDF.md) and loads/instantiate the respective logic components (i.e. `joint` and `sensor`) and HW components (`system`, `sensor` and `actuator`) using [`pluginlib`](../Standard_Libraries/pluginlib.md)-library

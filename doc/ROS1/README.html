@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RQt runtime monitor &mdash; ROS2 notes 2022 documentation</title>
+  <title>ROS1 &mdash; ROS2 notes 2022 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -16,7 +16,9 @@
         <script src="../../_static/doctools.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Concepts" href="ROS_documentation.html" />
+    <link rel="prev" title="Raspberry - servo" href="../Raspberry/Rpi_servo.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -36,28 +38,29 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html">ROS2 concepts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html#ros2-graph-concepts">ROS2 graph concepts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html#names">Names</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html">ROS2 filesystem</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html#environment-variables">Environment variables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html#packages">Packages</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/Launch.html">Launch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/Launch.html">Launch files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Robot_description/README.html">Robot description</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Standard_Libraries/README.html">ROS2 standard libraries</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS2 Control</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#rviz-interface">RViz Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#using-rviz-todo">Using RViz #TODO</a></li>
-<li class="toctree-l1"><a class="reference internal" href="README.html">RQt (formerly RQt2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rQt/README.html">RQt (formerly RQt2)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ROS1</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ROS_documentation.html">Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ROS_filesystem.html">Filesystem</a></li>
+</ul>
+</li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
@@ -77,9 +80,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>RQt runtime monitor</li>
+      <li>ROS1</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../_sources/doc/rQt/rqt_runtime_monitor.md.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/doc/ROS1/README.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -87,15 +90,42 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="rqt-runtime-monitor">
-<h1>RQt runtime monitor<a class="headerlink" href="#rqt-runtime-monitor" title="Permalink to this headline"></a></h1>
-<p>rqt_runtime_monitor provides a GUI plugin viewing DiagnosticsArray messages.</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="ros1">
+<h1>ROS1<a class="headerlink" href="#ros1" title="Permalink to this headline"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Questa sezione dev’essere rivisitata come “differenze” rispetto a ROS2, non come sezione a sé, perché molte cose si sovrappongono e vanno messe nella guida principale (che è per ROS2). Si può anche evitare finché non dobbiamo usare ROS1 per qualche motivo (ad esempio quando e se dovremo unire il sistema già scritto per ROS1)</p>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ROS_documentation.html">Concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ROS_documentation.html#nodes">Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ROS_documentation.html#master">Master</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ROS_documentation.html#parameter-server">Parameter server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ROS_documentation.html#messages">Messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ROS_documentation.html#topics">Topics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ROS_documentation.html#services">Services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ROS_documentation.html#community-level">Community level</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ROS_filesystem.html">Filesystem</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ROS_filesystem.html#environment-variables">Environment variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ROS_filesystem.html#packages">Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ROS_filesystem.html#message-types">Message types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ROS_filesystem.html#service-types">Service types</a></li>
+</ul>
+</li>
+</ul>
+</div>
 </div>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../Raspberry/Rpi_servo.html" class="btn btn-neutral float-left" title="Raspberry - servo" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ROS_documentation.html" class="btn btn-neutral float-right" title="Concepts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

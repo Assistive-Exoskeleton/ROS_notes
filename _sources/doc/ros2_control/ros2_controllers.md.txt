@@ -59,10 +59,10 @@ The available **broadcasters** are:
 [`joint_state_broadcaster`](http://control.ros.org/ros2_controllers/joint_state_broadcaster/doc/userdoc.html)| reads all state interfaces and reports them on `/joint_states` and `/dynamic_joint_states`. It's not a real controller and takes no command.
 [IMU sensor broadcaster](http://control.ros.org/ros2_controllers/imu_sensor_broadcaster/doc/userdoc.html)| the controller is a wrapper around IMUSensor semantic component.
 
-# Writing a controller
+## Writing a controller
 As hardware interfaces, controllers are libraries dynamically loaded by CM through `pluginlib`. The [implementation](http://control.ros.org/ros2_controllers/doc/writing_new_controller.html) is very similar to that of an hardware interface, but the `update` method is used instead of `read` and `write` methods. Note it should be implemented with **real-time** constraints in mind. When this method is called, the state interfaces have the most recent values from the hardware, and new commands for the hardware should be written into command interfaces.
 
-## Configuring controller and CM (YAML)
+### Configuring controller and CM (YAML)
 #TODO
 
 In the `bringup` package, include a `config/<robot_name_controllers>.yaml` file. Inside, configure the controller manager and controllers parameters.

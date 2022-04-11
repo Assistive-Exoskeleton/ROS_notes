@@ -16,7 +16,9 @@
         <script src="../../_static/doctools.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="ROS2 Control" href="../ros2_control/README.html" />
+    <link rel="prev" title="tf2" href="tf.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -36,28 +38,44 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html">ROS2 concepts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html#ros2-graph-concepts">ROS2 graph concepts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html#names">Names</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html">ROS2 filesystem</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html#environment-variables">Environment variables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html#packages">Packages</a></li>
 </ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/Launch.html">Launch</a></li>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/Launch.html">Launch files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Robot_description/README.html">Robot description</a></li>
-<li class="toctree-l1"><a class="reference internal" href="README.html">ROS2 standard libraries</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="README.html">ROS2 standard libraries</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="rcl.html"><code class="docutils literal notranslate"><span class="pre">rlc</span></code> (ROS Client Library)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pluginlib.html">Plugin library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="robot_state_publisher.html">Robot state publisher #TODO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="joint_state_publisher.html">Joint State Publisher #TODO link</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf.html">tf2</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Command Line Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#help-and-documentation">Help and documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#launch-and-run">Launch and run</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nodes">Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#interfaces">Interfaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#topics">Topics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#services">Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parameters">Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#actions">Actions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#packages">Packages</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS2 Control</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#rviz-interface">RViz Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#using-rviz-todo">Using RViz #TODO</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rQt/README.html">RQt (formerly RQt2)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ROS1/README.html">ROS1</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
@@ -77,6 +95,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="README.html">ROS2 standard libraries</a> &raquo;</li>
       <li>Command Line Interface</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/doc/Standard_Libraries/ros2cli.md.txt" rel="nofollow"> View page source</a>
@@ -89,43 +108,27 @@
              
   <div class="tex2jax_ignore mathjax_ignore section" id="command-line-interface">
 <h1>Command Line Interface<a class="headerlink" href="#command-line-interface" title="Permalink to this headline"></a></h1>
-<p><strong>Contents</strong>:</p>
-<ul class="simple">
-<li><p><span class="xref myst">Command Line Interface</span></p>
-<ul>
-<li><p><span class="xref myst">Help and documentation</span></p></li>
-<li><p><span class="xref myst">Launch and run</span></p></li>
-<li><p><span class="xref myst">Nodes</span></p></li>
-<li><p><span class="xref myst">Interfaces</span></p></li>
-<li><p><span class="xref myst">Topics</span></p></li>
-<li><p><span class="xref myst">Services</span></p></li>
-<li><p><span class="xref myst">Parameters</span></p></li>
-<li><p><span class="xref myst">Actions</span></p></li>
-<li><p><span class="xref myst">Packages</span></p></li>
-</ul>
-</li>
-</ul>
 <p><a class="reference external" href="https://github.com/ros2/ros2cli"><code class="docutils literal notranslate"><span class="pre">ros2cli</span></code></a> is the command line interface library. All <code class="docutils literal notranslate"><span class="pre">ros2cli</span></code> tools start with the prefix <code class="docutils literal notranslate"><span class="pre">ros2</span></code> followed by a <strong>command</strong>, a <strong>verb</strong> and (possibly) <strong>arguments</strong>.</p>
 <div class="section" id="help-and-documentation">
 <h2>Help and documentation<a class="headerlink" href="#help-and-documentation" title="Permalink to this headline"></a></h2>
 <p>For any <strong>command</strong> the documentation is accessible through:</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">ros2</span> <span class="p">&lt;</span><span class="n">command</span><span class="p">&gt;</span> <span class="p">-</span><span class="n">-help</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ros2 &lt;command&gt; --help
 </pre></div>
 </div>
 <p>Also for any <strong>verb</strong> the documentation is accessible through:</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">ros2</span> <span class="p">&lt;</span><span class="n">command</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="n">verb</span><span class="p">&gt;</span> <span class="n">-h</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ros2 &lt;command&gt; &lt;verb&gt; -h
 </pre></div>
 </div>
 </div>
 <div class="section" id="launch-and-run">
 <h2>Launch and run<a class="headerlink" href="#launch-and-run" title="Permalink to this headline"></a></h2>
 <p>To run an executable:</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">ros2</span> <span class="n">run</span> <span class="p">&lt;</span><span class="n">package_name</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="n">executable_name</span><span class="p">&gt;</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ros2 run &lt;package_name&gt; &lt;executable_name&gt;
 </pre></div>
 </div>
 <p>See also <a class="reference external" href="https://design.ros2.org/articles/ros_command_line_arguments.html">ROS2 node configuration via command line arguments</a></p>
 <p>To launch a <code class="docutils literal notranslate"><span class="pre">.launch.py</span></code> file:</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">ros2</span> <span class="n">launch</span> <span class="p">&lt;</span><span class="n">package_name</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="n">launch_file</span><span class="p">.</span><span class="n">launch</span><span class="p">.</span><span class="n">py</span><span class="p">&gt;</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ros2 launch &lt;package_name&gt; &lt;launch_file.launch.py&gt;
 </pre></div>
 </div>
 </div>
@@ -134,12 +137,12 @@
 <p>Nodes cli tools use the command <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">node</span></code>:</p>
 <ul>
 <li><p>list running nodes:</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">ros2</span> <span class="n">node</span> <span class="n">list</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ros2 node list
 </pre></div>
 </div>
 </li>
 <li><p>info about nodes (subscribers, publishers, services, and actions that interact with that node):</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">ros2</span> <span class="n">node</span> <span class="n">info</span> <span class="p">&lt;</span><span class="n">node_name</span><span class="p">&gt;</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ros2 node info &lt;node_name&gt;
 </pre></div>
 </div>
 </li>
@@ -150,54 +153,55 @@
 <p>The various ROS2 interfaces (messages, topics, services, actions) cli tools use the command <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">interface</span></code>:</p>
 <ul>
 <li><p>list all available interface types:</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">ros2</span> <span class="n">interface</span> <span class="n">list</span> <span class="p">[</span><span class="n">-options</span><span class="p">]</span>
-<span class="c"># -options:</span>
-<span class="c">#   --only-msgs: list only messages</span>
-<span class="c">#	--only-srvs: list only services</span>
-<span class="c">#	--only-actions: list only actions </span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ros2 interface list <span class="o">[</span>-options<span class="o">]</span>
+<span class="c1"># -options:</span>
+<span class="c1">#   --only-msgs: list only messages</span>
+<span class="c1">#	--only-srvs: list only services</span>
+<span class="c1">#	--only-actions: list only actions </span>
 </pre></div>
 </div>
 </li>
 <li><p>output the interface definition:</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">ros2</span> <span class="n">interface</span> <span class="n">show</span> <span class="p">&lt;</span><span class="n">interface_type</span><span class="p">&gt;</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ros2 interface show &lt;interface_type&gt;
 </pre></div>
 </div>
 </li>
 </ul>
-<blockquote>
-<div><p>Each interface has its own command (e.g. <code class="docutils literal notranslate"><span class="pre">topic</span></code>, <code class="docutils literal notranslate"><span class="pre">service</span></code>, <code class="docutils literal notranslate"><span class="pre">action</span></code>). Note that <strong>arguments</strong> passed to an interface call (e.g. <code class="docutils literal notranslate"><span class="pre">topic</span> <span class="pre">pub</span></code>, <code class="docutils literal notranslate"><span class="pre">service</span> <span class="pre">call</span></code>, <code class="docutils literal notranslate"><span class="pre">action</span> <span class="pre">send_goal</span></code>) are written in <code class="docutils literal notranslate"><span class="pre">YAML</span></code> format, a dictionary-like syntax similar to json.</p>
-</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Each interface has its own command (e.g. <code class="docutils literal notranslate"><span class="pre">topic</span></code>, <code class="docutils literal notranslate"><span class="pre">service</span></code>, <code class="docutils literal notranslate"><span class="pre">action</span></code>). Note that <strong>arguments</strong> passed to an interface call (e.g. <code class="docutils literal notranslate"><span class="pre">topic</span> <span class="pre">pub</span></code>, <code class="docutils literal notranslate"><span class="pre">service</span> <span class="pre">call</span></code>, <code class="docutils literal notranslate"><span class="pre">action</span> <span class="pre">send_goal</span></code>) are written in <code class="docutils literal notranslate"><span class="pre">YAML</span></code> format, a dictionary-like syntax similar to json.</p>
+</div>
 </div>
 <div class="section" id="topics">
 <h2>Topics<a class="headerlink" href="#topics" title="Permalink to this headline"></a></h2>
 <p>Topics cli tools use the command <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">topic</span></code>:</p>
 <ul>
 <li><p>list running topics:</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">ros2</span> <span class="n">topic</span> <span class="n">list</span> <span class="p">[</span><span class="n">-options</span><span class="p">]</span>
-<span class="c">#-options:</span>
-<span class="c">#	-t: list also topic types</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ros2 topic list <span class="o">[</span>-options<span class="o">]</span>
+<span class="c1">#-options:</span>
+<span class="c1">#	-t: list also topic types</span>
 </pre></div>
 </div>
 </li>
 <li><p>Display info about a topic (type, count of publishers and subscribers)</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">ros2</span> <span class="n">topic</span> <span class="n">info</span> <span class="p">&lt;</span><span class="n">topic_name</span><span class="p">&gt;</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ros2 topic info &lt;topic_name&gt;
 </pre></div>
 </div>
 </li>
 <li><p>add an echo subscriber for a topic and echo the output on the terminal:</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">ros2</span> <span class="n">topic</span> <span class="nb">echo </span><span class="p">&lt;</span><span class="n">topic_name</span><span class="p">&gt;</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ros2 topic <span class="nb">echo</span> &lt;topic_name&gt;
 </pre></div>
 </div>
 </li>
 <li><p>publish data to a topic from command line</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">ros2</span> <span class="n">topic</span> <span class="n">pub</span> <span class="p">[-</span><span class="n">-once</span> <span class="p">|</span> <span class="p">-</span><span class="n">-rate</span><span class="p">]</span> <span class="p">&lt;</span><span class="n">topic_name</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="n">msg_type</span><span class="p">&gt;</span> <span class="p">[</span><span class="s1">&#39;&lt;args&gt;&#39;</span><span class="p">]</span>
-<span class="c">#--once: publish the message only once then exit</span>
-<span class="c">#--rate &lt;Hz&gt;: decide a frequency of publishing</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ros2 topic pub <span class="o">[</span>--once <span class="p">|</span> --rate<span class="o">]</span> &lt;topic_name&gt; &lt;msg_type&gt; <span class="o">[</span><span class="s1">&#39;&lt;args&gt;&#39;</span><span class="o">]</span>
+<span class="c1">#--once: publish the message only once then exit</span>
+<span class="c1">#--rate &lt;Hz&gt;: decide a frequency of publishing</span>
 </pre></div>
 </div>
 </li>
 <li><p>view the rate at which data is published:</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">ros2</span> <span class="n">topic</span> <span class="n">hz</span> <span class="p">&lt;</span><span class="n">topic_name</span><span class="p">&gt;</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ros2 topic hz &lt;topic_name&gt;
 </pre></div>
 </div>
 </li>
@@ -208,14 +212,14 @@
 <p>Services cli tools use the command <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">service</span></code>:</p>
 <ul>
 <li><p>list active services:</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">ros2</span> <span class="n">service</span> <span class="n">list</span> <span class="p">[</span><span class="n">-options</span><span class="p">]</span>
-<span class="c">#-options:</span>
-<span class="c">#	-t: list also service types</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ros2 service list <span class="o">[</span>-options<span class="o">]</span>
+<span class="c1">#-options:</span>
+<span class="c1">#	-t: list also service types</span>
 </pre></div>
 </div>
 </li>
 <li><p>call a service:</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">ros2</span> <span class="n">service</span> <span class="n">call</span> <span class="p">&lt;</span><span class="n">service_name</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="n">service_type</span><span class="p">&gt;</span> <span class="p">[</span><span class="s1">&#39;&lt;args&gt;&#39;</span><span class="p">]</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ros2 service call &lt;service_name&gt; &lt;service_type&gt; <span class="o">[</span><span class="s1">&#39;&lt;args&gt;&#39;</span><span class="o">]</span>
 </pre></div>
 </div>
 </li>
@@ -226,27 +230,27 @@
 <p>Parameters cli tools use the command <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">param</span></code>:</p>
 <ul>
 <li><p>list available parameters:</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">ros2</span> <span class="k">param</span> <span class="n">list</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ros2 param list
 </pre></div>
 </div>
 </li>
 <li><p>see a parameter type and current value:</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">ros2</span> <span class="k">param</span> <span class="n">get</span> <span class="p">&lt;</span><span class="n">node_name</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="n">parameter_name</span><span class="p">&gt;</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ros2 param get &lt;node_name&gt; &lt;parameter_name&gt;
 </pre></div>
 </div>
 </li>
 <li><p>set a parameter value:</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">ros2</span> <span class="k">param</span> <span class="nb">set </span><span class="p">&lt;</span><span class="n">node_name</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="n">parameter_name</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="n">value</span><span class="p">&gt;</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ros2 param <span class="nb">set</span> &lt;node_name&gt; &lt;parameter_name&gt; &lt;value&gt;
 </pre></div>
 </div>
 </li>
 <li><p>save current parameter into a file in yaml format:</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">ros2</span> <span class="k">param</span> <span class="n">dump</span> <span class="p">&lt;</span><span class="n">node_name</span><span class="p">&gt;</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ros2 param dump &lt;node_name&gt;
 </pre></div>
 </div>
 </li>
 <li><p>load parameter from file:</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">ros2</span> <span class="k">param</span> <span class="n">load</span> <span class="p">&lt;</span><span class="n">node_name</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="n">parameter_file</span><span class="p">&gt;</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ros2 param load &lt;node_name&gt; &lt;parameter_file&gt;
 </pre></div>
 </div>
 </li>
@@ -257,21 +261,21 @@
 <p>Actions cli tools use the command <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">action</span></code>:</p>
 <ul>
 <li><p>list active actions:</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">ros2</span> <span class="n">action</span> <span class="n">list</span> <span class="p">[</span><span class="n">-options</span><span class="p">]</span>
-<span class="c">#-options:</span>
-<span class="c">#	-t: list also action types</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ros2 action list <span class="o">[</span>-options<span class="o">]</span>
+<span class="c1">#-options:</span>
+<span class="c1">#	-t: list also action types</span>
 </pre></div>
 </div>
 </li>
 <li><p>display action info (clients and servers nodes)</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">ros2</span> <span class="n">action</span> <span class="n">info</span> <span class="p">&lt;</span><span class="n">action_name</span><span class="p">&gt;</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ros2 action info &lt;action_name&gt;
 </pre></div>
 </div>
 </li>
 <li><p>send an action goal</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">ros2</span> <span class="n">action</span> <span class="n">send_goal</span> <span class="p">&lt;</span><span class="n">action_name</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="n">action_type</span><span class="p">&gt;</span> <span class="p">[</span><span class="s1">&#39;&lt;args&gt;&#39;</span><span class="p">]</span> <span class="p">[</span><span class="n">-options</span><span class="p">]</span>
-<span class="c">#-options:</span>
-<span class="c">#	--feedback: also display feedback</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ros2 action send_goal &lt;action_name&gt; &lt;action_type&gt; <span class="o">[</span><span class="s1">&#39;&lt;args&gt;&#39;</span><span class="o">]</span> <span class="o">[</span>-options<span class="o">]</span>
+<span class="c1">#-options:</span>
+<span class="c1">#	--feedback: also display feedback</span>
 </pre></div>
 </div>
 </li>
@@ -282,12 +286,12 @@
 <p>Packages cli tools use the command <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">pkg</span></code>:</p>
 <ul>
 <li><p>list available packages:</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">ros2</span> <span class="n">pkg</span> <span class="n">list</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ros2 pkg list
 </pre></div>
 </div>
 </li>
 <li><p>create a new package:</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">ros2</span> <span class="n">pkg</span> <span class="n">create</span> <span class="p">...</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ros2 pkg create ...
 </pre></div>
 </div>
 </li>
@@ -298,7 +302,10 @@
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tf.html" class="btn btn-neutral float-left" title="tf2" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../ros2_control/README.html" class="btn btn-neutral float-right" title="ROS2 Control" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

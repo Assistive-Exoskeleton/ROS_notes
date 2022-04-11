@@ -3,7 +3,7 @@ XACRO is an XML macro language, used to construct shorter and more readable XML 
 
 ## URDF with XACRO
 The `xacro` program runs all the macros and outputs the result.
-```powershell
+```sh
 #example
 $ xacro model.xacro > model.urdf
 ```

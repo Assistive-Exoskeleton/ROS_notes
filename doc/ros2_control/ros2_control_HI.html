@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hardware components &mdash; ROS2 notes 2022 documentation</title>
+  <title>Hardware interface &mdash; ROS2 notes 2022 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -16,7 +16,9 @@
         <script src="../../_static/doctools.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="ros2_control User Interfaces" href="ros2_control_UI.html" />
+    <link rel="prev" title="ros2_control URDF" href="ros2_control_URDF.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -36,28 +38,48 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html">ROS2 concepts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html#ros2-graph-concepts">ROS2 graph concepts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html#names">Names</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html">ROS2 filesystem</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html#environment-variables">Environment variables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html#packages">Packages</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/Launch.html">Launch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/Launch.html">Launch files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Robot_description/README.html">Robot description</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Standard_Libraries/README.html">ROS2 standard libraries</a></li>
 </ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="README.html">ROS Control</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="README.html">ROS2 Control</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ros2_control_concepts.html">ROS2-control concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ros2_control_URDF.html"><code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> URDF</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Hardware interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#writing-a-hardware-interface">Writing a Hardware interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#building-hardware-package">Building hardware package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#visibility-control-h">visibility_control.h</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hardware-resource-hpp">&lt;hardware_resource&gt;.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hardware-resource-cpp">&lt;hardware_resource&gt;.cpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hardware-pkg-xml"><code class="docutils literal notranslate"><span class="pre">&lt;hardware_pkg&gt;.xml</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cmakelists-txt">CMakeLists.txt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#package-xml">package.xml</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#testing-todo">Testing #TODO</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#fake-components">Fake components</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ros2_control_UI.html"><code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> User Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ros2_controllers.html">Controllers</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#rviz-interface">RViz Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#using-rviz-todo">Using RViz #TODO</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rQt/README.html">RQt (formerly RQt2)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ROS1/README.html">ROS1</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
@@ -77,7 +99,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Hardware components</li>
+          <li><a href="README.html">ROS2 Control</a> &raquo;</li>
+      <li>Hardware interface</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/doc/ros2_control/ros2_control_HI.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -87,23 +110,22 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="hardware-components">
-<h1>Hardware components<a class="headerlink" href="#hardware-components" title="Permalink to this headline"></a></h1>
-<p>The <a class="reference external" href="https://github.com/ros-controls/roadmap/blob/master/design_drafts/hardware_access.md">hardware components / resources</a> realize communication to physical hardware and represent its abstraction in the <code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> framework. Hardware components are libraries (plugins) defined using <code class="docutils literal notranslate"><span class="pre">pluginlib</span></code>. the <span class="xref myst">RM</span> dynamically loads those plugins at runtime and manages their <span class="xref myst">lifecycle</span>, allowing flexibility.</p>
-<p>The hardware is composed and configured in <span class="xref myst">URDF</span>.</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="hardware-interface">
+<h1>Hardware interface<a class="headerlink" href="#hardware-interface" title="Permalink to this headline"></a></h1>
+<p>The <a class="reference external" href="https://github.com/ros-controls/roadmap/blob/master/design_drafts/hardware_access.md">hardware components / resources</a> realize communication to physical hardware and represent its abstraction in the <code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> framework. Hardware components are libraries (plugins) defined using <code class="docutils literal notranslate"><span class="pre">pluginlib</span></code>. the <a class="reference internal" href="ros2_control_concepts.html#resource-manager"><span class="std std-doc">RM</span></a> dynamically loads those plugins at runtime and manages their <a class="reference internal" href="../Standard_Libraries/rcl.html#lifecycle"><span class="std std-doc">lifecycle</span></a>, allowing flexibility.</p>
+<p>The hardware is composed and configured in <a class="reference internal" href="ros2_control_URDF.html#hardware-components-description"><span class="std std-doc">URDF</span></a>.</p>
 <p>There are 3 basic <strong><a class="reference external" href="http://control.ros.org/api/namespacehardware__interface.html">types</a></strong> of hardware components/resources:</p>
 <ul class="simple">
 <li><p><strong>System</strong>: Complex (multi-DOF) robotic hardware. The main difference between the Actuator component is the possibility to use complex transmissions like needed for humanoid robot’s hands. It has reading and writing capabilities. Used when there is only one logical communication channel to the hardware</p></li>
 <li><p><strong>Sensor</strong>: Robotic hardware used for sensing its environment. A sensor component is related to a joint (e.g. encoder) or a link (e.g. force-torque sensor). This component type has only reading capabilities.</p></li>
 <li><p><strong>Actuator</strong>: Simple (1 DOF) robotic hardware like motors, valves, and similar. An actuator implementation is related to only one joint. This component type has reading and writing capabilities. The actuator type can also be used with a multi-DOF robot if its hardware enables modular design</p></li>
 </ul>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="writing-a-hardware-interface">
-<h1>Writing a Hardware interface<a class="headerlink" href="#writing-a-hardware-interface" title="Permalink to this headline"></a></h1>
+<div class="section" id="writing-a-hardware-interface">
+<h2>Writing a Hardware interface<a class="headerlink" href="#writing-a-hardware-interface" title="Permalink to this headline"></a></h2>
 <div class="section" id="building-hardware-package">
-<h2>Building hardware package<a class="headerlink" href="#building-hardware-package" title="Permalink to this headline"></a></h2>
+<h3>Building hardware package<a class="headerlink" href="#building-hardware-package" title="Permalink to this headline"></a></h3>
 <p>As with usual packages, use <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">pkg</span> <span class="pre">create</span></code> to generate an <code class="docutils literal notranslate"><span class="pre">ament_cmake</span></code> build-type package for the hardware interface.</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">ros2</span> <span class="n">pkg</span> <span class="n">create</span> <span class="p">-</span><span class="n">-ament_cmake</span> <span class="p">&lt;</span><span class="n">hardware_pkg</span><span class="p">&gt;</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ros2 pkg create --ament_cmake &lt;hardware_pkg&gt;
 </pre></div>
 </div>
 <p>The package structure will be something like:</p>
@@ -124,7 +146,7 @@
 </div>
 </div>
 <div class="section" id="visibility-control-h">
-<h2><code class="docutils literal notranslate"><span class="pre">visibility_control.h</span></code><a class="headerlink" href="#visibility-control-h" title="Permalink to this headline"></a></h2>
+<h3>visibility_control.h<a class="headerlink" href="#visibility-control-h" title="Permalink to this headline"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">visibility_control.h</span></code> is a header containing various macros used for <a class="reference external" href="https://gcc.gnu.org/wiki/Visibility">visibility control</a>.</p>
 <p>These macros are useful when dealing with <strong>shared libraries</strong> (e.g. ros2 plugins) that are dynamically loaded at runtime. The purposes are manifold:</p>
 <ul class="simple">
@@ -136,7 +158,7 @@
 <p>It also changes the <strong>visibility</strong> of certain symbols of <code class="docutils literal notranslate"><span class="pre">rclcpp</span></code> library, that the library itself cannot have, but a code in a different package in which the <code class="docutils literal notranslate"><span class="pre">rclcpp</span></code> header is imported must have in order to link.</p>
 </div>
 <div class="section" id="hardware-resource-hpp">
-<h2><code class="docutils literal notranslate"><span class="pre">&lt;hardware_resource&gt;.hpp</span></code><a class="headerlink" href="#hardware-resource-hpp" title="Permalink to this headline"></a></h2>
+<h3>&lt;hardware_resource&gt;.hpp<a class="headerlink" href="#hardware-resource-hpp" title="Permalink to this headline"></a></h3>
 <p>Header guards are used to encapsulate the header file:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef &lt;HARDWARE_PKG&gt;__&lt;HARDWARE_RESOURCE&gt;_HPP_</span>
 <span class="cp">#define &lt;HARDWARE_PKG&gt;__&lt;HARDWARE_RESOURCE&gt;_HPP_</span>
@@ -198,7 +220,7 @@
 <span class="p">}</span> 
 </pre></div>
 </div>
-<p>The hardware resource <span class="xref myst">lifecycle</span> is managed through <code class="docutils literal notranslate"><span class="pre">LifecycleNodeInterface</span></code> callbacks, extended by <code class="docutils literal notranslate"><span class="pre">hardware_interface::&lt;Type&gt;Interface</span></code>, which are overridden:</p>
+<p>The hardware resource <a class="reference internal" href="../Standard_Libraries/rcl.html#lifecycle"><span class="std std-doc">lifecycle</span></a> is managed through <code class="docutils literal notranslate"><span class="pre">LifecycleNodeInterface</span></code> callbacks, extended by <code class="docutils literal notranslate"><span class="pre">hardware_interface::&lt;Type&gt;Interface</span></code>, which are overridden:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">CallbackReturn</span> <span class="nf">on_configure</span><span class="p">(</span><span class="n">State</span> <span class="o">&amp;</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
 <span class="n">CallbackReturn</span> <span class="nf">on_cleanup</span><span class="p">(</span><span class="n">State</span> <span class="o">&amp;</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
 <span class="n">CallbackReturn</span> <span class="nf">on_shutdown</span><span class="p">(</span><span class="n">State</span> <span class="o">&amp;</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
@@ -259,7 +281,7 @@
 </ul>
 </div>
 <div class="section" id="hardware-resource-cpp">
-<h2><code class="docutils literal notranslate"><span class="pre">&lt;hardware_resource&gt;.cpp</span></code><a class="headerlink" href="#hardware-resource-cpp" title="Permalink to this headline"></a></h2>
+<h3>&lt;hardware_resource&gt;.cpp<a class="headerlink" href="#hardware-resource-cpp" title="Permalink to this headline"></a></h3>
 <p>Again, include the <code class="docutils literal notranslate"><span class="pre">&lt;hardware_resource&gt;.hpp</span></code> header and encapsulate the class definition in the package <code class="docutils literal notranslate"><span class="pre">namespace</span></code>.</p>
 <p>Then implement the methods:</p>
 <ul>
@@ -289,7 +311,7 @@
 </ol>
 </div>
 <div class="section" id="hardware-pkg-xml">
-<h2><code class="docutils literal notranslate"><span class="pre">&lt;hardware_pkg&gt;.xml</span></code><a class="headerlink" href="#hardware-pkg-xml" title="Permalink to this headline"></a></h2>
+<h3><code class="docutils literal notranslate"><span class="pre">&lt;hardware_pkg&gt;.xml</span></code><a class="headerlink" href="#hardware-pkg-xml" title="Permalink to this headline"></a></h3>
 <p>This files contains the definition of the library and class that have to be visible for <code class="docutils literal notranslate"><span class="pre">pluginlib</span></code>. The structure is like:</p>
 <div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;libary</span> <span class="na">path=</span><span class="s">&quot;&lt;hardware_pkg&gt;&quot;</span><span class="nt">&gt;</span>
    <span class="nt">&lt;class</span> <span class="na">name=</span><span class="s">&quot;&lt;hardware_pkg&gt;/&lt;HardwareResource&gt;&quot;</span>
@@ -301,12 +323,13 @@
 <span class="nt">&lt;/library&gt;</span>
 </pre></div>
 </div>
-<blockquote>
-<div><p>Note: the plugin <code class="docutils literal notranslate"><span class="pre">name</span></code> defines the hardware interface type when the RM searches for it.</p>
-</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>the plugin <code class="docutils literal notranslate"><span class="pre">name</span></code> defines the hardware interface type when the RM searches for it.</p>
+</div>
 </div>
 <div class="section" id="cmakelists-txt">
-<h2><code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code><a class="headerlink" href="#cmakelists-txt" title="Permalink to this headline"></a></h2>
+<h3>CMakeLists.txt<a class="headerlink" href="#cmakelists-txt" title="Permalink to this headline"></a></h3>
 <p>To add compile directives:</p>
 <ol class="arabic">
 <li><p>Dependencies, at least:</p>
@@ -390,7 +413,7 @@
 </ol>
 </div>
 <div class="section" id="package-xml">
-<h2><code class="docutils literal notranslate"><span class="pre">package.xml</span></code><a class="headerlink" href="#package-xml" title="Permalink to this headline"></a></h2>
+<h3>package.xml<a class="headerlink" href="#package-xml" title="Permalink to this headline"></a></h3>
 <p>Add dependencies:</p>
 <div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;depend&gt;</span>hardware_interface<span class="nt">&lt;/depend&gt;</span>
 <span class="nt">&lt;depend&gt;</span>pluginlib<span class="nt">&lt;/depend&gt;</span>
@@ -400,8 +423,8 @@
 </div>
 </div>
 </div>
-<div class="tex2jax_ignore mathjax_ignore section" id="testing-todo">
-<h1>Testing #TODO<a class="headerlink" href="#testing-todo" title="Permalink to this headline"></a></h1>
+<div class="section" id="testing-todo">
+<h2>Testing #TODO<a class="headerlink" href="#testing-todo" title="Permalink to this headline"></a></h2>
 <p><strong>test to check if controller can be found and loaded</strong></p>
 <ol class="arabic simple">
 <li><p>Create a <code class="docutils literal notranslate"><span class="pre">test/</span></code> folder and add a file <code class="docutils literal notranslate"><span class="pre">test_load_&lt;HI_name&gt;.cpp</span></code></p></li>
@@ -433,15 +456,19 @@
 <li><p>test with <code class="docutils literal notranslate"><span class="pre">colcon</span> <span class="pre">test</span> <span class="pre">&lt;HI_package&gt;</span></code> to check if the controller can be found through <code class="docutils literal notranslate"><span class="pre">pluginlib</span></code> and loaded by the CM.</p></li>
 </ol>
 <div class="section" id="fake-components">
-<h2>Fake components<a class="headerlink" href="#fake-components" title="Permalink to this headline"></a></h2>
+<h3>Fake components<a class="headerlink" href="#fake-components" title="Permalink to this headline"></a></h3>
 <p>Fake components are trivial simulations of hardware components, with an ideal behavior of mirroring commands to states. This fake HI can be added instead of the true HI for offline testing (i.e. launch, controllers, broadcaster, integrations with MoveIt) without hardware. <a class="reference external" href="http://control.ros.org/ros2_control/hardware_interface/doc/fake_components_userdoc.html">More info here</a>.</p>
+</div>
 </div>
 </div>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ros2_control_URDF.html" class="btn btn-neutral float-left" title="ros2_control URDF" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ros2_control_UI.html" class="btn btn-neutral float-right" title="ros2_control User Interfaces" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

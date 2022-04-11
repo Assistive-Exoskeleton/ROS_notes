@@ -16,7 +16,9 @@
         <script src="../../_static/doctools.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Hardware interface" href="ros2_control_HI.html" />
+    <link rel="prev" title="ROS2-control concepts" href="ros2_control_concepts.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -36,28 +38,35 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html">ROS2 concepts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html#ros2-graph-concepts">ROS2 graph concepts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html#names">Names</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html">ROS2 filesystem</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html#environment-variables">Environment variables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html#packages">Packages</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../ROS2/Launch.html">Launch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/Launch.html">Launch files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Robot_description/README.html">Robot description</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Standard_Libraries/README.html">ROS2 standard libraries</a></li>
 </ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="README.html">ROS Control</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="README.html">ROS2 Control</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ros2_control_concepts.html">ROS2-control concepts</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> URDF</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#hardware-components-description">Hardware components description</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ros2_control_HI.html">Hardware interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ros2_control_UI.html"><code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> User Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ros2_controllers.html">Controllers</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#rviz-interface">RViz Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#using-rviz-todo">Using RViz #TODO</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rQt/README.html">RQt (formerly RQt2)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ROS1/README.html">ROS1</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
@@ -77,6 +86,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="README.html">ROS2 Control</a> &raquo;</li>
       <li><code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> URDF</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/doc/ros2_control/ros2_control_URDF.md.txt" rel="nofollow"> View page source</a>
@@ -91,11 +101,12 @@
 <h1><code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> URDF<a class="headerlink" href="#ros2-control-urdf" title="Permalink to this headline"></a></h1>
 <div class="section" id="hardware-components-description">
 <h2>Hardware components description<a class="headerlink" href="#hardware-components-description" title="Permalink to this headline"></a></h2>
-<blockquote>
-<div><p>Note: Use XML macro (<code class="docutils literal notranslate"><span class="pre">XACRO</span></code>) files instead of URDF directly.</p>
-</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Use XML macro (<code class="docutils literal notranslate"><span class="pre">XACRO</span></code>) files instead of URDF directly.</p>
+</div>
 <ol class="arabic">
-<li><p>Each <span class="xref myst">hardware component</span> is described in URDF using <code class="docutils literal notranslate"><span class="pre">&lt;ros2_control&gt;</span></code> tag.</p>
+<li><p>Each <a class="reference internal" href="ros2_control_HI.html#hardware-interface"><span class="std std-doc">hardware component</span></a> is described in URDF using <code class="docutils literal notranslate"><span class="pre">&lt;ros2_control&gt;</span></code> tag.</p>
 <div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;ros2_control</span> <span class="na">name=</span><span class="s">&quot;my_component&quot;</span> <span class="na">type=</span><span class="s">&quot;hardware_component_type&quot;</span><span class="nt">&gt;</span>
 
 <span class="nt">&lt;/ros2_control&gt;</span>
@@ -172,9 +183,10 @@
 <blockquote>
 <div><p><strong>Interface types</strong>: <code class="docutils literal notranslate"><span class="pre">&quot;position&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;velocity&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;effort&quot;</span></code> interface types are defined in <code class="docutils literal notranslate"><span class="pre">hardware_interface/types/hardware_interface_type_values.hpp</span></code>. However any interface type can be created defining a custom string (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;position_in_degrees&quot;</span></code>)</p>
 </div></blockquote>
-<blockquote>
-<div><p><strong>Note</strong>: joint names must be compatible with the controller’s configuration</p>
-</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>joint names must be compatible with the controller’s configuration</p>
+</div>
 </li>
 </ol>
 <ul>
@@ -196,7 +208,10 @@
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ros2_control_concepts.html" class="btn btn-neutral float-left" title="ROS2-control concepts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ros2_control_HI.html" class="btn btn-neutral float-right" title="Hardware interface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

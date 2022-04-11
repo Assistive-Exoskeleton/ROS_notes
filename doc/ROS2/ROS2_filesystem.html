@@ -17,8 +17,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Launch" href="Launch.html" />
-    <link rel="prev" title="ROS2 concepts" href="ROS2_concepts.html" /> 
+    <link rel="next" title="Launch files" href="Launch.html" />
+    <link rel="prev" title="IDL (Interface Definition Language)" href="IDL.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -38,39 +38,40 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="ROS2_concepts.html">ROS2 concepts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ROS2_concepts.html#ros2-graph-concepts">ROS2 graph concepts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ROS2_concepts.html#names">Names</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">ROS2 filesystem</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#environment-variables">Environment variables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#packages">Packages</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#package-structure">Package structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#workspaces">Workspaces</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#command-line-tools">Command line tools</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#package-manifest-package-xml">Package Manifest (<code class="docutils literal notranslate"><span class="pre">package.xml</span></code>)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#dependencies">Dependencies</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#metapackages">Metapackages</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ROS2 filesystem</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#environment-variables">Environment variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#packages">Packages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#package-structure">Package structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#workspaces">Workspaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#command-line-tools">Command line tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#package-manifest-package-xml">Package Manifest (<code class="docutils literal notranslate"><span class="pre">package.xml</span></code>)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#metapackages">Metapackages</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#cmakelists-txt-todo">CMakeLists.txt #TODO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cmakelists-txt-todo">CMakeLists.txt #TODO</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="Launch.html">Launch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Launch.html">Launch files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Robot_description/README.html">Robot description</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Standard_Libraries/README.html">ROS2 standard libraries</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS2 Control</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#rviz-interface">RViz Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html#using-rviz-todo">Using RViz #TODO</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rQt/README.html">RQt (formerly RQt2)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ROS1/README.html">ROS1</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
@@ -102,40 +103,20 @@
              
   <div class="tex2jax_ignore mathjax_ignore section" id="ros2-filesystem">
 <h1>ROS2 filesystem<a class="headerlink" href="#ros2-filesystem" title="Permalink to this headline"></a></h1>
-<p><strong>Contents</strong>:</p>
-<ul class="simple">
-<li><p><span class="xref myst">ROS2 filesystem</span></p></li>
-<li><p><span class="xref myst">Environment variables</span></p></li>
-<li><p><span class="xref myst">Packages</span></p>
-<ul>
-<li><p><span class="xref myst">Package structure</span></p></li>
-<li><p><span class="xref myst">Workspaces</span></p></li>
-<li><p><span class="xref myst">Command line tools</span></p></li>
-<li><p><span class="xref myst">Package Manifest (<code class="docutils literal notranslate"><span class="pre">package.xml</span></code>)</span></p>
-<ul>
-<li><p><span class="xref myst">Dependencies</span></p></li>
-<li><p><span class="xref myst">Metapackages</span></p></li>
-</ul>
-</li>
-<li><p><span class="xref myst">CMakeLists.txt #TODO</span></p></li>
-</ul>
-</li>
-</ul>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="environment-variables">
-<h1>Environment variables<a class="headerlink" href="#environment-variables" title="Permalink to this headline"></a></h1>
+<div class="section" id="environment-variables">
+<h2>Environment variables<a class="headerlink" href="#environment-variables" title="Permalink to this headline"></a></h2>
 <p>In Linux and Unix based systems, environment variables are a set of dynamic named values, stored within the system that are used by applications launched in shells or subshells. In simple words, an environment variable is a variable with a <strong>name</strong> and an associated <strong>value</strong>.</p>
 <p>Sourcing ROS 2 setup files will set several environment variables necessary for operating ROS2. A list of variables can be printed through:</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">printenv</span> <span class="p">|</span> <span class="n">grep</span> <span class="n">-i</span> <span class="n">ROS</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ printenv <span class="p">|</span> grep -i ROS
 </pre></div>
 </div>
 </div>
-<div class="tex2jax_ignore mathjax_ignore section" id="packages">
-<h1>Packages<a class="headerlink" href="#packages" title="Permalink to this headline"></a></h1>
+<div class="section" id="packages">
+<h2>Packages<a class="headerlink" href="#packages" title="Permalink to this headline"></a></h2>
 <p>A package can be considered a container for the ROS2 code, organized for installation or sharing.</p>
 <p>Package creation in ROS2 uses <strong>ament</strong> as build system and <a class="reference external" href="https://docs.ros.org/en/rolling/Tutorials/Colcon-Tutorial.html">colcon</a> as build tool. Officially supported methods for creating a package are <strong>CMake</strong> or <strong>Python</strong>.</p>
 <div class="section" id="package-structure">
-<h2>Package structure<a class="headerlink" href="#package-structure" title="Permalink to this headline"></a></h2>
+<h3>Package structure<a class="headerlink" href="#package-structure" title="Permalink to this headline"></a></h3>
 <p>Minimum required contents for a package:</p>
 <table class="colwidths-auto docutils align-default">
 <thead>
@@ -193,7 +174,7 @@
 </table>
 </div>
 <div class="section" id="workspaces">
-<h2>Workspaces<a class="headerlink" href="#workspaces" title="Permalink to this headline"></a></h2>
+<h3>Workspaces<a class="headerlink" href="#workspaces" title="Permalink to this headline"></a></h3>
 <p>A single workspace can contain many packages, of different build types, but no nested packages. Best practice is to have a <code class="docutils literal notranslate"><span class="pre">/src</span></code> folder and creating packages in there:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">workspace_folder</span><span class="o">/</span>
 	<span class="n">src</span><span class="o">/</span>
@@ -212,61 +193,62 @@
 </div>
 </div>
 <div class="section" id="command-line-tools">
-<h2>Command line tools<a class="headerlink" href="#command-line-tools" title="Permalink to this headline"></a></h2>
+<h3>Command line tools<a class="headerlink" href="#command-line-tools" title="Permalink to this headline"></a></h3>
 <p>Useful commands for <strong>packages</strong>:</p>
 <ul>
 <li><p>create a package (inside <code class="docutils literal notranslate"><span class="pre">workspace/src</span></code>):</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span>$ ros2 pkg create [-options] &lt;package_name&gt;
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ros2 pkg create <span class="o">[</span>-options<span class="o">]</span> &lt;package_name&gt;
 
 -options:
-	--build-type {ament_python|ament_cmake}: &#39;choose the type of method for building the package&#39;
-	--node-name &lt;my_node&gt;: &#39;creates a simple Hello World type executable in the package&#39; 
+	--build-type <span class="o">{</span>ament_python<span class="p">|</span>ament_cmake<span class="o">}</span>: <span class="s1">&#39;choose the type of method for building the package&#39;</span>
+	--node-name &lt;my_node&gt;: <span class="s1">&#39;creates a simple Hello World type executable in the package&#39;</span> 
 </pre></div>
 </div>
 </li>
 <li><p>build the workspace (inside <code class="docutils literal notranslate"><span class="pre">workspace/</span></code> main folder):</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span>$ colcon build [-options]
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ colcon build <span class="o">[</span>-options<span class="o">]</span>
 
 -options:
-	--packages-select &lt;package_name&gt;: &#39;build only selected package&#39;
-	--symlink-install: &#39;use symlinks instead of copying files where possible&#39;
+	--packages-select &lt;package_name&gt;: <span class="s1">&#39;build only selected package&#39;</span>
+	--symlink-install: <span class="s1">&#39;use symlinks instead of copying files where possible&#39;</span>
 </pre></div>
 </div>
 </li>
 <li><p>use the new package and executable, adding the workspace to the path (inside <code class="docutils literal notranslate"><span class="pre">workspace/</span></code> main folder):</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="p">.</span> <span class="n">install</span><span class="p">/</span><span class="n">local_setup</span><span class="p">.</span><span class="n">bash</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ . install/local_setup.bash
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">rosdep</span></code>: install system dependencies of a package.</p>
 <p>To install and update:</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="c"># installation</span>
-<span class="p">$</span> <span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">python3-rosdep</span>
-<span class="c"># Initialize rosdep (call only once after installation)</span>
-<span class="p">$</span> <span class="n">sudo</span> <span class="n">rosdep</span> <span class="n">init</span>
-<span class="c"># Update rosdep (DO NOT CALL AS SUDO)</span>
-<span class="p">$</span> <span class="n">rosdep</span> <span class="n">update</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># installation</span>
+$ sudo apt install python3-rosdep
+<span class="c1"># Initialize rosdep (call only once after installation)</span>
+$ sudo rosdep init
+<span class="c1"># Update rosdep (DO NOT CALL AS SUDO)</span>
+$ rosdep update
 </pre></div>
 </div>
-<blockquote>
-<div><p>Note: <code class="docutils literal notranslate"><span class="pre">python3-rosdep2</span></code> is not for ROS2, it’s an older version of rosdep</p>
-</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">python3-rosdep2</span></code> is not for ROS2, it’s an older version of rosdep</p>
+</div>
 <p>To install dependencies of all packages in workspace use (from <code class="docutils literal notranslate"><span class="pre">workspace/</span></code>):</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">rosdep</span> <span class="n">install</span> <span class="p">-</span><span class="n">-from-paths</span> <span class="n">src</span> <span class="p">-</span><span class="n">-ignore-src</span> <span class="n">-r</span> <span class="n">-y</span> <span class="p">-</span><span class="n">-rosdistro</span> <span class="p">&lt;</span><span class="n">my_distro</span><span class="p">&gt;</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ rosdep install --from-paths src --ignore-src -r -y --rosdistro &lt;my_distro&gt;
 
-<span class="c"># --from-paths: the arguments will be considered paths to be searched, acting on all packages found there in</span>
-<span class="c"># --ignore-src, -i: rosdep will ignore keys that are found to be packages anywhere in the ROS_PACKAGE_PATH, AMENT_PREFIX_PATH or in any of the directories given by the --from-paths option</span>
-<span class="c"># -r: Continue installing despite errors</span>
-<span class="c"># -y: Tell the package manager to default to y (yes) or fail when installing</span>
-<span class="c"># --rosdistro &lt;my_distro&gt;: e.g. rolling, galactic...</span>
+<span class="c1"># --from-paths: the arguments will be considered paths to be searched, acting on all packages found there in</span>
+<span class="c1"># --ignore-src, -i: rosdep will ignore keys that are found to be packages anywhere in the ROS_PACKAGE_PATH, AMENT_PREFIX_PATH or in any of the directories given by the --from-paths option</span>
+<span class="c1"># -r: Continue installing despite errors</span>
+<span class="c1"># -y: Tell the package manager to default to y (yes) or fail when installing</span>
+<span class="c1"># --rosdistro &lt;my_distro&gt;: e.g. rolling, galactic...</span>
 </pre></div>
 </div>
 </li>
 </ul>
 </div>
 <div class="section" id="package-manifest-package-xml">
-<h2>Package Manifest (<code class="docutils literal notranslate"><span class="pre">package.xml</span></code>)<a class="headerlink" href="#package-manifest-package-xml" title="Permalink to this headline"></a></h2>
-<p>The package manifest is an XML file called <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> that defines properties about the package, such as <em>package name</em>, <em>version</em>, <em>authors</em>, <em>maintainers</em> and <span class="xref myst">dependencies</span>. These information are important when the package gets released to the ROS community.</p>
+<h3>Package Manifest (<code class="docutils literal notranslate"><span class="pre">package.xml</span></code>)<a class="headerlink" href="#package-manifest-package-xml" title="Permalink to this headline"></a></h3>
+<p>The package manifest is an XML file called <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> that defines properties about the package, such as <em>package name</em>, <em>version</em>, <em>authors</em>, <em>maintainers</em> and <a class="reference internal" href="#dependencies"><span class="std std-doc">dependencies</span></a>. These information are important when the package gets released to the ROS community.</p>
 <p>Each <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> has a <code class="docutils literal notranslate"><span class="pre">&lt;package&gt;</span></code> tag as root tag:</p>
 <div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
 <span class="cp">&lt;?xml-model href=&quot;http://download.ros.org/schema/package_format3.xsd&quot; schematypens=&quot;http://www.w3.org/2001/XMLSchema&quot;?&gt;</span>
@@ -299,11 +281,12 @@
 <span class="nt">&lt;/export&gt;</span>
 </pre></div>
 </div>
-<blockquote>
-<div><p>Note: when building with python, also the <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> file must be edited with these fileds, and they need to match exactly in both files.</p>
-</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>when building with python, also the <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> file must be edited with these fileds, and they need to match exactly in both files.</p>
+</div>
 <div class="section" id="dependencies">
-<h3>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline"></a></h3>
+<h4>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline"></a></h4>
 <p>The <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> with minimal tags doesn’t specify <strong>dependencies</strong>. There are 6 types of dependencies:</p>
 <blockquote>
 <div><p><strong>Note</strong>, the tag:</p>
@@ -346,7 +329,7 @@
 </ul>
 </div>
 <div class="section" id="metapackages">
-<h3>Metapackages<a class="headerlink" href="#metapackages" title="Permalink to this headline"></a></h3>
+<h4>Metapackages<a class="headerlink" href="#metapackages" title="Permalink to this headline"></a></h4>
 <p>It’s often convenient to group multiple packages as a single logical package or <strong>metapackage</strong>. A metapackage is a normal package with the following tag in <code class="docutils literal notranslate"><span class="pre">package.xml</span></code>:</p>
 <div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;export&gt;</span>
   <span class="nt">&lt;metapackage</span> <span class="nt">/&gt;</span>
@@ -356,7 +339,8 @@
 </div>
 </div>
 <div class="section" id="cmakelists-txt-todo">
-<h2>CMakeLists.txt #TODO<a class="headerlink" href="#cmakelists-txt-todo" title="Permalink to this headline"></a></h2>
+<h3>CMakeLists.txt #TODO<a class="headerlink" href="#cmakelists-txt-todo" title="Permalink to this headline"></a></h3>
+</div>
 </div>
 </div>
 
@@ -364,8 +348,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="ROS2_concepts.html" class="btn btn-neutral float-left" title="ROS2 concepts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="Launch.html" class="btn btn-neutral float-right" title="Launch" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="IDL.html" class="btn btn-neutral float-left" title="IDL (Interface Definition Language)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Launch.html" class="btn btn-neutral float-right" title="Launch files" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Concepts &mdash; ROS2 notes 2022 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Filesystem" href="ROS_filesystem.html" />
+    <link rel="prev" title="ROS1" href="README.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> ROS2 notes
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html">ROS2 concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html">ROS2 filesystem</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/Launch.html">Launch files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Robot_description/README.html">Robot description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Standard_Libraries/README.html">ROS2 standard libraries</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS2 Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rQt/README.html">RQt (formerly RQt2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="README.html">ROS1</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nodes">Nodes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#roscore">ROScore</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#master">Master</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parameter-server">Parameter server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#messages">Messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#topics">Topics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#services">Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#community-level">Community level</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ROS_filesystem.html">Filesystem</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ROS2 notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="README.html">ROS1</a> &raquo;</li>
+      <li>Concepts</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doc/ROS1/ROS_documentation.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="concepts">
+<h1>Concepts<a class="headerlink" href="#concepts" title="Permalink to this headline"></a></h1>
+<div class="section" id="nodes">
+<h2>Nodes<a class="headerlink" href="#nodes" title="Permalink to this headline"></a></h2>
+<p>Useful commands for <strong>nodes</strong>:</p>
+<ul>
+<li><p>to manage running nodes use <code class="docutils literal notranslate"><span class="pre">rosnode</span></code>:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1">#rosnode help</span>
+$ rosnode -h
+<span class="c1">#list active nodes</span>
+$ rosnode list <span class="o">[</span>namespace<span class="o">]</span>
+<span class="c1">#print node info</span>
+$ rosnode info &lt;node&gt;
+...
+</pre></div>
+</div>
+</li>
+<li><p>run a single node:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ rosrun <span class="o">[</span>package_name<span class="o">]</span> <span class="o">[</span>node_name<span class="o">]</span>
+</pre></div>
+</div>
+</li>
+<li><p>run nodes from launch files (<code class="docutils literal notranslate"><span class="pre">roscore</span></code> included):</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ roslaunch <span class="o">[</span>package_name<span class="o">]</span> <span class="o">[</span>launch_file.launch<span class="o">]</span>
+</pre></div>
+</div>
+<p>The launch file consists of some tags:</p>
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;launch&gt;</span> <span class="c">&lt;!--identifies the file as launch--&gt;</span>
+  <span class="nt">&lt;group</span> <span class="na">ns=</span><span class="s">&quot;namespace_name&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;node</span> <span class="na">pkg=</span><span class="s">&quot;pkg_name&quot;</span> <span class="na">name=</span><span class="s">&quot;node_name&quot;</span> <span class="na">type=</span><span class="s">&quot;node_type&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/group&gt;</span>
+  ...
+<span class="nt">&lt;/launch&gt;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<div class="section" id="roscore">
+<h3>ROScore<a class="headerlink" href="#roscore" title="Permalink to this headline"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">roscore</span></code> is a collection of <a class="reference internal" href="#nodes"><span class="std std-doc">Nodes</span></a> and programs that are pre-requisites of a ROS-based system. You <strong>must</strong> have a roscore running in order for ROS nodes to communicate.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">roslaunch</span></code> automatically launches also <code class="docutils literal notranslate"><span class="pre">roscore</span></code></p>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">roscore</span></code> starts up:</p>
+<ul class="simple">
+<li><p>a ROS <a class="reference internal" href="#master"><span class="std std-doc">Master</span></a></p></li>
+<li><p>a ROS <a class="reference internal" href="#parameter-server"><span class="std std-doc">Parameter server</span></a></p></li>
+<li><p>a <code class="docutils literal notranslate"><span class="pre">rosout</span></code> logging node (collects nodes debugging output)</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="master">
+<h2>Master<a class="headerlink" href="#master" title="Permalink to this headline"></a></h2>
+<p>The ROS Master provides naming and registration services to the rest of the nodes in the ROS system. It tracks publishers and subscribers to topics as well as services. The role of the Master is to enable individual ROS nodes to locate one another. Once these nodes have located each other they communicate with each other peer-to-peer. Nodes connect to other nodes directly; the Master only provides lookup information, much like a DNS server.</p>
+<p>The Master also provides the Parameter Server.</p>
+</div>
+<div class="section" id="parameter-server">
+<h2>Parameter server<a class="headerlink" href="#parameter-server" title="Permalink to this headline"></a></h2>
+<p>Useful commands for <strong>parameters</strong>:</p>
+<ul>
+<li><p>To manage parameters use <code class="docutils literal notranslate"><span class="pre">rosparam</span></code>:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1">#rosparam help</span>
+$ rosparam -h
+
+<span class="c1">#list parameter names</span>
+$ rosparam list
+
+<span class="c1">#set and get parameters</span>
+$ rosparam <span class="nb">set</span> &lt;parameter&gt; &lt;args&gt;
+$ rosparam get &lt;parameter&gt;
+
+<span class="c1">#manage parameters from files</span>
+$ rosparam load <span class="o">[</span>file_name<span class="o">]</span> <span class="o">[</span>namespace<span class="o">]</span>
+$ rosparam dump <span class="o">[</span>file_name<span class="o">]</span> <span class="o">[</span>namespace<span class="o">]</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="messages">
+<h2>Messages<a class="headerlink" href="#messages" title="Permalink to this headline"></a></h2>
+<p>ROS messages structures used by topics are stored in <code class="docutils literal notranslate"><span class="pre">package/msg/*.msg</span></code> files.</p>
+<p>To look at details of a message you can use:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ rosmsg show &lt;msg_type&gt; <span class="c1">#for topics</span>
+$ rossrv show &lt;service_type&gt; <span class="c1">#for services</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="topics">
+<h2>Topics<a class="headerlink" href="#topics" title="Permalink to this headline"></a></h2>
+<p>Useful commands for <strong>topics</strong>:</p>
+<ul>
+<li><p>To manage topics use <code class="docutils literal notranslate"><span class="pre">rostopic</span></code>:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1">#rostopic help</span>
+$ rostopic -h
+
+<span class="c1">#list active topics</span>
+$ rostopic list <span class="o">[</span>topic<span class="o">]</span> <span class="o">[</span>-options<span class="o">]</span>
+<span class="c1">#   -options:</span>
+<span class="c1">#     -v: verbose, display also type, publishers</span>
+<span class="c1">#         and subscribers</span>
+
+<span class="c1">#print topic info</span>
+$ rostopic info &lt;topic&gt;
+
+<span class="c1">#print topic/message type</span>
+$ rostopic <span class="nb">type</span> &lt;topic&gt;
+
+<span class="c1">#publish onto a topic</span>
+$ rostopic pub <span class="o">[</span>options<span class="o">]</span> &lt;topic&gt; &lt;type&gt; &lt;args&gt;
+<span class="c1">#   -options:</span>
+<span class="c1">#     -1: publish just once</span>
+<span class="c1">#     -r &lt;hz&gt;: publish continuously at rate &lt;hz&gt;</span>
+
+<span class="c1">#subscribe shell to a topic and print output</span>
+$ rostopic <span class="nb">echo</span> &lt;topic&gt;
+
+...
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="services">
+<h2>Services<a class="headerlink" href="#services" title="Permalink to this headline"></a></h2>
+<p>In ROS, services are defined using <code class="docutils literal notranslate"><span class="pre">package/srv/*.srv</span></code> files</p>
+<p>Useful commands for <strong>services</strong>:</p>
+<ul>
+<li><p>To manage services use <code class="docutils literal notranslate"><span class="pre">rosservice</span></code></p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1">#rosservice help</span>
+$ rosservice -h
+
+<span class="c1">#list active services</span>
+$ rosservice list
+
+<span class="c1">#print info about a service</span>
+$ rosservice info &lt;service&gt;
+
+<span class="c1">#print service/messages type</span>
+$ rosservice <span class="nb">type</span> &lt;service&gt;
+
+<span class="c1">#call a service</span>
+$ rosservice call &lt;service&gt; <span class="o">[</span>args<span class="o">]</span>
+
+...
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="community-level">
+<h2>Community level<a class="headerlink" href="#community-level" title="Permalink to this headline"></a></h2>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="README.html" class="btn btn-neutral float-left" title="ROS1" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ROS_filesystem.html" class="btn btn-neutral float-right" title="Filesystem" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Assistive exoskeleton Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

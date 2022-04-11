@@ -12,14 +12,14 @@
 
 With pluginlib, one does not have to explicitly link their application against the library containing the classes – instead pluginlib can open a library containing exported classes at any point without the application having any prior awareness of the library or the header file containing the class definition. Plugins are useful for extending/modifying application behavior without needing the application source code.
 
-# Plugin implementation
+## Plugin implementation
 The implementation of a plugin follows some steps:
 1. [Base class](#base-class)<!---->
 2. [Plugin class](#plugin-class)
 3. [XML plugin declaration](#xml-plugin-declaration)
 4. [CMake plugin declaration](#cmake-plugin-declaration)
 
-## Base class
+### Base class
 We start declaring a base (abstract) class. With `pluginlib`, a constructor without parameters is required. Therefore, if any parameter is required, we can use the `initialize` method:
 ```cpp
 #ifndef MY_PKG_BASE_MY_CLASS_BASE_HPP
@@ -38,7 +38,7 @@ namespace my_pkg_base
 #endif //   MY_PKG_BASE_MY_CLASS_BASE_HPP
 ```
 
-## Plugin class
+### Plugin class
 Now we implement the class for the plugins (inside `my_plugins` package for example)
 ```cpp
 #include <my_pkg_base/my_class_base.hpp>
@@ -69,7 +69,7 @@ Plugins are exported using `PLUGINLIB_EXPORT_CLASS` macro, which registers the c
 - The first argument is the fully-qualified type of the **plugin class**.
 - The second argument is the fully-qualified type of the **base class**.
 
-## XML plugin declaration
+### XML plugin declaration
 The **plugin loader** still needs a way to find the library in which plugins exist, in order to create plugin instances. To do so, we create a `plugins.xml` file (inside `my_plugins` pkg) with the necessary information:
 ```XML
 <library path="my_plugins">
@@ -90,7 +90,7 @@ The **plugin loader** still needs a way to find the library in which plugins exi
     `base_class_type`|fully qualified base class type for the plugin.
     `description`|description of the plugin
 
-## CMake plugin declaration
+### CMake plugin declaration
 The last step is to export the plugins via `CMakeLists.txt`. After `find_package(pluginlib REQUIRED)` add:
 ```cmake
 add_library(my_plugins src/my_plugins.cpp)
@@ -126,7 +126,7 @@ ament_export_targets(
 )
 ```
 
-# Using the plugins
+## Using the plugins
 Plugins can now be used in any package. For example we can create a node like:
 ```cpp
 #include <pluginlib/class_loader.hpp>
