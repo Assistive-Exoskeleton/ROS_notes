@@ -8,6 +8,5 @@ maxdepth: 1
 ---
 
 how_works
-Create_URDF
-URDF_addons
+URDF
 ```

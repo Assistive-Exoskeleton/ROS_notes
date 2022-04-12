@@ -1,4 +1,58 @@
-# URDF add-ons
+# URDF
+
+## URDF Structure 
+<pre>
+Robot
+├── link1
+│   ├── visual
+│   │   ├── geometry
+│   │   ├── origin
+│   │   └── material
+│   └── [inertial]
+│       ├── mass
+│       └── inertia
+├── link2
+│   └── ...
+├── joint1
+│   ├── axis
+│   ├── origin
+│   ├── parent
+│   ├── child
+│   ├── limit
+│   └── dynamics
+├── joint2
+│   └── ...
+<span├──  style="color:red">ros2_control
+│   ├── hardware
+│   │   └── plugin
+│   └── joint
+│       ├── command_interface
+│       ├── state_interface1
+│       ├── [state_interface2]
+│       └── [state_interface3]
+└── gazebo
+    └── plugin
+        └── parameters</span>
+</pre>
+
+## Special Characters in Joint Names
+
+Joint names should not contain any of the following special characters: -,[,],(,)
+
+## Safety Limits
+
+Some URDFs have safety limits set in addition to the joint limits of the robot. Here’s an example of the safety controller specified for the Panda head pan joint:
+
+```xml
+<safety_controller k_position="100" k_velocity="1.5" soft_lower_limit="-2.857" soft_upper_limit="2.857"/>
+```
+
+The “soft_lower_limit” field and the “soft_upper_limit” field specify the joint position limits for this joint. MoveIt will compare these limits to the hard limits for the joint specified in the URDF and choose the limits that are more conservative.
+
+```{note}
+If the “soft_lower_limit” and the “soft_upper_limit” in the safety_controller are set to 0.0, your joint will be unable to move. MoveIt relies on you to specify the correct robot model.
+```
+
 
 ## Add ros2_control tag to a URDF
 
@@ -107,4 +161,3 @@ robot model is loaded. For example, the following XML will load the default plug
   </plugin>
 </gazebo>
 ```
-
