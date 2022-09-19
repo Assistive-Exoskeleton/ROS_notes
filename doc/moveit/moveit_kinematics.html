@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MoveIt - kinematics plugin &mdash; ROS2 notes 2022 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -47,8 +48,11 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS2 Control</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="README.html">MoveIt</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="README.html">MoveIt2</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="concepts.html">Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MSA.html">MSA - Moveit setup Assistant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SRDF.html">SRDF and URDF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="perception.html">Perception Pipeline</a></li>
 <li class="toctree-l2"><a class="reference internal" href="moveit_motion_planning.html">MoveIt - motion planning plugin</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">MoveIt - kinematics plugin</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#ikfast-kinematics-solver">IKFast Kinematics Solver</a></li>
@@ -64,6 +68,7 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Docker/README.html">ROS and docker containers</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ROS1/README.html">ROS1</a></li>
@@ -86,7 +91,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="README.html">MoveIt</a> &raquo;</li>
+          <li><a href="README.html">MoveIt2</a> &raquo;</li>
       <li>MoveIt - kinematics plugin</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/doc/moveit/moveit_kinematics.md.txt" rel="nofollow"> View page source</a>
@@ -97,10 +102,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="moveit-kinematics-plugin">
+  <section class="tex2jax_ignore mathjax_ignore" id="moveit-kinematics-plugin">
 <h1>MoveIt - kinematics plugin<a class="headerlink" href="#moveit-kinematics-plugin" title="Permalink to this headline"></a></h1>
 <p>MoveIt uses a plugin infrastructure, especially targeted towards allowing users to write their own inverse kinematics algorithms. Forward kinematics and finding jacobians is integrated within the RobotState class itself. The default inverse kinematics plugin for MoveIt is configured using the <code class="docutils literal notranslate"><span class="pre">KDL</span></code> numerical jacobian-based solver. This plugin is automatically configured by the MoveIt Setup Assistant.</p>
-<div class="section" id="ikfast-kinematics-solver">
+<section id="ikfast-kinematics-solver">
 <h2>IKFast Kinematics Solver<a class="headerlink" href="#ikfast-kinematics-solver" title="Permalink to this headline"></a></h2>
 <p>Often, users may choose to implement their own kinematics solvers. A popular approach to implementing such a solver is using the IKFast package to generate the C++ code needed to work with your particular robot.</p>
 <p>IKFast automatically analyses any complex kinematic chain for common patterns that allow for an analytic solution and generates C++ code to find them. As a consequence, IKFast provides extremely stable solutions that can be found in a few microseconds on recent processors.</p>
@@ -110,8 +115,8 @@
 </div></blockquote>
 <p>The IKFast plugin can be used as a drop-in replacement for the default <code class="docutils literal notranslate"><span class="pre">KDL</span></code> IK Solver, but with greatly increased performance.</p>
 <p>To generate the plugin , follow <a class="reference external" href="https://moveit.picknik.ai/galactic/doc/examples/ikfast/ikfast_tutorial.html">this</a> guide (make sure to know working principles of <a class="reference external" href="https://www.docker.com/">docker</a> containers).</p>
-</div>
-<div class="section" id="collision-checking">
+</section>
+<section id="collision-checking">
 <h2>Collision Checking<a class="headerlink" href="#collision-checking" title="Permalink to this headline"></a></h2>
 <p>Collision checking in MoveIt is configured inside a Planning Scene using the <code class="docutils literal notranslate"><span class="pre">CollisionWorld</span></code> object. MoveIt is set up so that users never really have to worry about how collision checking is happening. Collision checking in MoveIt is mainly carried out using the <code class="docutils literal notranslate"><span class="pre">FCL</span></code> package - the primary collision checking library of MoveIt.</p>
 <p>MoveIt supports collision checking for different types of objects including:</p>
@@ -120,12 +125,12 @@
 <li><p>Primitive Shapes - e.g. boxes, cylinders, cones, spheres and planes</p></li>
 <li><p>Octomap - the <code class="docutils literal notranslate"><span class="pre">Octomap</span></code> object can be directly used for collision checking</p></li>
 </ul>
-</div>
-<div class="section" id="allowed-collision-matrix-acm">
+</section>
+<section id="allowed-collision-matrix-acm">
 <h2>Allowed Collision Matrix (ACM)<a class="headerlink" href="#allowed-collision-matrix-acm" title="Permalink to this headline"></a></h2>
 <p>Collision checking is a very expensive operation often accounting for close to 90% of the computational expense during motion planning. The <code class="docutils literal notranslate"><span class="pre">Allowed</span> <span class="pre">Collision</span> <span class="pre">Matrix</span></code> or <code class="docutils literal notranslate"><span class="pre">ACM</span></code> encodes a binary value corresponding to the need to check for collision between pairs of bodies (which could be on the robot or in the world). If the value corresponding to two bodies is set to <code class="docutils literal notranslate"><span class="pre">true</span></code> in the ACM, it specifies that a collision check between the two bodies is either not required or wanted. The collision checking would not be required if, e.g., the two bodies are always so far away that they can never collide with each other. Alternatively, the two bodies could be in contact with each other by default, in which case the collision detection should be disabled for the pair in the ACM.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

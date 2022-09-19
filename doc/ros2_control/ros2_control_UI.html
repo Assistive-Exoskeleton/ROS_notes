@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ros2_control User Interfaces &mdash; ROS2 notes 2022 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -61,13 +62,14 @@
 <li class="toctree-l2"><a class="reference internal" href="ros2_controllers.html">Controllers</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rQt/README.html">RQt (formerly RQt2)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Docker/README.html">ROS and docker containers</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ROS1/README.html">ROS1</a></li>
@@ -101,11 +103,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="ros2-control-user-interfaces">
+  <section class="tex2jax_ignore mathjax_ignore" id="ros2-control-user-interfaces">
 <h1><code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> User Interfaces<a class="headerlink" href="#ros2-control-user-interfaces" title="Permalink to this headline"></a></h1>
 <p>Users interact with the <code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> framework using <a class="reference internal" href="ros2_control_concepts.html#controller-manager"><span class="std std-doc">Controller Manager</span></a>’s <strong>services</strong>.
 While service calls can be used directly from the command line or via nodes, there exists a user-friendly <a class="reference external" href="https://github.com/ros-controls/ros2_control/tree/master/ros2controlcli"><code class="docutils literal notranslate"><span class="pre">ros2_control</span> <span class="pre">CLI</span></code></a> which integrates with the <a class="reference internal" href="../Standard_Libraries/ros2cli.html"><span class="doc std std-doc">ros2 cli</span></a>. This supports auto-complete and has a range of common commands available.</p>
-<div class="section" id="ros2-control-cli">
+<section id="ros2-control-cli">
 <h2><code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> <a class="reference external" href="https://github.com/ros-controls/ros2_control/tree/master/ros2controlcli">CLI</a><a class="headerlink" href="#ros2-control-cli" title="Permalink to this headline"></a></h2>
 <p>The user can interact with the <strong>CM</strong> through command line interface. The basic command is <strong>control</strong>:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ros2 control &lt;verb&gt; <span class="o">[</span>-options<span class="o">]</span>
@@ -115,7 +117,7 @@ While service calls can be used directly from the command line or via nodes, the
 <span class="c1">#       --include-hidden-nodes</span>
 </pre></div>
 </div>
-<div class="section" id="queries">
+<section id="queries">
 <h3>Queries<a class="headerlink" href="#queries" title="Permalink to this headline"></a></h3>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">list_controllers</span></code>: output a lists of loaded controllers, their type and status:</p>
@@ -134,8 +136,8 @@ While service calls can be used directly from the command line or via nodes, the
 </div>
 </li>
 </ul>
-</div>
-<div class="section" id="controller-lifecycle-management">
+</section>
+<section id="controller-lifecycle-management">
 <h3>Controller lifecycle management<a class="headerlink" href="#controller-lifecycle-management" title="Permalink to this headline"></a></h3>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">load_controller</span></code>: load a controller in the CM</p>
@@ -175,9 +177,9 @@ While service calls can be used directly from the command line or via nodes, the
 </div>
 </li>
 </ul>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>

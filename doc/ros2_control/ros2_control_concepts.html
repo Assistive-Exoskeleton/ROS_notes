@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ROS2-control concepts &mdash; ROS2 notes 2022 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -59,13 +60,14 @@
 <li class="toctree-l2"><a class="reference internal" href="ros2_controllers.html">Controllers</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rQt/README.html">RQt (formerly RQt2)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Docker/README.html">ROS and docker containers</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ROS1/README.html">ROS1</a></li>
@@ -99,11 +101,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="ros2-control-concepts">
+  <section class="tex2jax_ignore mathjax_ignore" id="ros2-control-concepts">
 <h1>ROS2-control concepts<a class="headerlink" href="#ros2-control-concepts" title="Permalink to this headline"></a></h1>
 <p>The following figure shows the architecture of <code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> framework:</p>
 <p><img alt="ros_control_architecture" src="../../_images/ros2_control_architecture.png" /></p>
-<div class="section" id="controller-manager">
+<section id="controller-manager">
 <h2>Controller manager<a class="headerlink" href="#controller-manager" title="Permalink to this headline"></a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">controller_manager</span></code> (<a class="reference external" href="https://github.com/ros-controls/ros2_control/blob/master/controller_manager/src/controller_manager.cpp">CM</a>) has three main purposes:</p>
 <ol class="arabic simple">
@@ -147,8 +149,8 @@
 </div>
 </li>
 </ul>
-</div>
-<div class="section" id="resource-manager">
+</section>
+<section id="resource-manager">
 <h2>Resource Manager<a class="headerlink" href="#resource-manager" title="Permalink to this headline"></a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">resource_manager</span></code> (<a class="reference external" href="https://github.com/ros-controls/ros2_control/blob/master/hardware_interface/src/resource_manager.cpp">RM</a>) <strong>abstracts physical hardware</strong> and its drivers (<a class="reference internal" href="ros2_control_HI.html#hardware-interface"><span class="std std-doc"><strong>hardware components</strong></span></a>) for the <code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> framework.</p>
 <p>RM has different purposes:</p>
@@ -160,8 +162,8 @@
 <p>RM abstracts hardware resources from their logical components, such that a controller does not have to know which hardware commands which joint. It also keeps a ledger of controllers and the claimed resources, in order to distribute them. This abstraction enables re-usability of implemented hardware components, and flexible hardware application for <code class="docutils literal notranslate"><span class="pre">state</span></code> and <code class="docutils literal notranslate"><span class="pre">command</span></code> interfaces.</p>
 <p>RM internally maintains a mapping of each individual hardware resource and their interfaces. This mapping can be indexed through a simple <code class="docutils literal notranslate"><span class="pre">_logical_component_/_interface_name_</span></code> lookup (e.g. <code class="docutils literal notranslate"><span class="pre">joint_name/position</span></code>)</p>
 <p>In the control loop execution, the RM’s <code class="docutils literal notranslate"><span class="pre">read()</span></code> and <code class="docutils literal notranslate"><span class="pre">write()</span></code> methods deal with communication to the hardware components.</p>
-</div>
-<div class="section" id="control-loop">
+</section>
+<section id="control-loop">
 <h2>Control loop<a class="headerlink" href="#control-loop" title="Permalink to this headline"></a></h2>
 <p>In the most basic form, the loop consists in:</p>
 <ol class="arabic simple">
@@ -169,8 +171,8 @@
 <li><p><strong>update</strong> controllers through <code class="docutils literal notranslate"><span class="pre">CM</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">update()</span></code> method</p></li>
 <li><p><strong>write command</strong> to HW through <code class="docutils literal notranslate"><span class="pre">CM</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">write()</span></code> method</p></li>
 </ol>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

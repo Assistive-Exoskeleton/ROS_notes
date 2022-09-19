@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>IDL (Interface Definition Language) &mdash; ROS2 notes 2022 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -64,13 +65,14 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS2 Control</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rQt/README.html">RQt (formerly RQt2)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Docker/README.html">ROS and docker containers</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ROS1/README.html">ROS1</a></li>
@@ -104,13 +106,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="idl-interface-definition-language">
+  <section class="tex2jax_ignore mathjax_ignore" id="idl-interface-definition-language">
 <h1>IDL (Interface Definition Language)<a class="headerlink" href="#idl-interface-definition-language" title="Permalink to this headline"></a></h1>
 <p><a class="reference external" href="https://docs.ros.org/en/rolling/Concepts/About-ROS-Interfaces.html"><code class="docutils literal notranslate"><span class="pre">IDL</span></code></a> is the language used by ROS2 to describe interfaces (messages, services, actions). The defined interface in <code class="docutils literal notranslate"><span class="pre">IDL</span></code> is then passed to generators (<code class="docutils literal notranslate"><span class="pre">rosidl_default_generators</span></code> library) in order to obtain language_specific code (<code class="docutils literal notranslate"><span class="pre">Python</span></code>, <code class="docutils literal notranslate"><span class="pre">C++</span></code>, …) to interact with the interfaces.</p>
 <blockquote>
 <div><p>both line (<code class="docutils literal notranslate"><span class="pre">//</span></code>) and block (<code class="docutils literal notranslate"><span class="pre">/*</span> <span class="pre">...</span> <span class="pre">*/</span></code>) comments are supported by <code class="docutils literal notranslate"><span class="pre">IDL</span></code>.</p>
 </div></blockquote>
-<div class="section" id="messages">
+<section id="messages">
 <h2>Messages<a class="headerlink" href="#messages" title="Permalink to this headline"></a></h2>
 <p>Messages are the basic type of interfaces. The other ROS2 interfaces are built upon messages. Messages are described and defined in <code class="docutils literal notranslate"><span class="pre">.msg</span></code> files in the <code class="docutils literal notranslate"><span class="pre">msg/</span></code> directory of a ROS2 package.</p>
 <p>A message definition in <code class="docutils literal notranslate"><span class="pre">IDL</span></code> is written through:</p>
@@ -136,30 +138,30 @@
 <p>Constant names have to be UPPERCASE.</p>
 </li>
 </ul>
-</div>
-<div class="section" id="services">
+</section>
+<section id="services">
 <h2>Services<a class="headerlink" href="#services" title="Permalink to this headline"></a></h2>
 <p>Services are described and defined in <code class="docutils literal notranslate"><span class="pre">.srv</span></code> files inside <code class="docutils literal notranslate"><span class="pre">srv/</span></code> directory of a package.</p>
 <p>A service description file consists of a <strong>request</strong> and a <strong>response</strong> messages, separated by <code class="docutils literal notranslate"><span class="pre">---</span></code>. Any two <strong>messages</strong> concatenated with a <code class="docutils literal notranslate"><span class="pre">---</span></code> are a legal service description:</p>
 <div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="c1">//REQUEST message</span>
-<span class="o">---</span>
+<span class="o">---</span><span class="w"></span>
 <span class="c1">//RESPONSE message</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="actions">
+</section>
+<section id="actions">
 <h2>Actions<a class="headerlink" href="#actions" title="Permalink to this headline"></a></h2>
 <p>Actions are described and defined in <code class="docutils literal notranslate"><span class="pre">.action</span></code> files inside <code class="docutils literal notranslate"><span class="pre">action/</span></code> directory of a package.</p>
 <p>Similar to services, an action description file consists of a <strong>request</strong>, a <strong>result</strong> and a <strong>feedback</strong> messages, separated by <code class="docutils literal notranslate"><span class="pre">---</span></code>:</p>
 <div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="c1">//REQUEST message</span>
-<span class="o">---</span>
+<span class="o">---</span><span class="w"></span>
 <span class="c1">//RESULT message</span>
-<span class="o">---</span>
+<span class="o">---</span><span class="w"></span>
 <span class="c1">//FEEDBACK message</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

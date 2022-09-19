@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Filesystem &mdash; ROS2 notes 2022 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -47,13 +48,14 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS2 Control</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rQt/README.html">RQt (formerly RQt2)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Docker/README.html">ROS and docker containers</a></li>
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="README.html">ROS1</a><ul class="current">
@@ -104,9 +106,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="filesystem">
+  <section class="tex2jax_ignore mathjax_ignore" id="filesystem">
 <h1>Filesystem<a class="headerlink" href="#filesystem" title="Permalink to this headline"></a></h1>
-<div class="section" id="environment-variables">
+<section id="environment-variables">
 <h2>Environment variables<a class="headerlink" href="#environment-variables" title="Permalink to this headline"></a></h2>
 <p>In Linux and Unix based systems, environment variables are a set of dynamic named values, stored within the system that are used by applications launched in shells or subshells. In simple words, an environment variable is a variable with a <strong>name</strong> and an associated <strong>value</strong>.</p>
 <p>Environment variables serve a variety of purposes for ROS:</p>
@@ -131,15 +133,15 @@
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ printenv <span class="p">|</span> grep ROS
 </pre></div>
 </div>
-</div>
-<div class="section" id="packages">
+</section>
+<section id="packages">
 <h2>Packages<a class="headerlink" href="#packages" title="Permalink to this headline"></a></h2>
 <p>Software in ROS is organized in packages, containing anything that constitutes a module. Packages are directories descended from <code class="docutils literal notranslate"><span class="pre">ROS_PACKAGE_PATH</span></code> that have a <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> file in it.</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>my_package/
   package.xml
 </pre></div>
 </div>
-<div class="section" id="catkin">
+<section id="catkin">
 <h3>Catkin<a class="headerlink" href="#catkin" title="Permalink to this headline"></a></h3>
 <p>Catkin is the official build system for ROS. A catkin <strong>workspace</strong> is like:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>workspace_folder/         <span class="c1">#WORKSPACE</span>
@@ -183,8 +185,8 @@
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ catkin_create_pkg &lt;package_name&gt; <span class="o">[</span>depend1<span class="o">]</span> <span class="o">[</span>depend2<span class="o">]</span> <span class="o">[</span>depend3<span class="o">]</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="common-files-and-directories">
+</section>
+<section id="common-files-and-directories">
 <h3>Common files and directories<a class="headerlink" href="#common-files-and-directories" title="Permalink to this headline"></a></h3>
 <p>ROS packages follow a common structure:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>CMakeLists.txt:   <span class="c1">#CMake build file</span>
@@ -197,8 +199,8 @@ srv/              <span class="c1">#folder containing service types</span>
 scripts/          <span class="c1">#executable scripts</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="command-line-tools">
+</section>
+<section id="command-line-tools">
 <h3>Command line tools<a class="headerlink" href="#command-line-tools" title="Permalink to this headline"></a></h3>
 <p>To manage packages:</p>
 <ul>
@@ -252,8 +254,8 @@ $ roscd log <span class="c1">#folder with log files</span>
 </div>
 </li>
 </ul>
-</div>
-<div class="section" id="package-manifest">
+</section>
+<section id="package-manifest">
 <h3>Package manifest<a class="headerlink" href="#package-manifest" title="Permalink to this headline"></a></h3>
 <p>The package manifest is an XML file called <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> that defines properties about the package, such as <em>package name</em>, <em>version</em>, <em>authors</em>, <em>maintainers</em> and <a class="reference internal" href="#dependencies"><span class="std std-doc">dependencies</span></a>. These information are important when the package gets released to the ROS community.</p>
 <p>Each <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> has a <code class="docutils literal notranslate"><span class="pre">&lt;package&gt;</span></code> tag as root tag:</p>
@@ -277,7 +279,7 @@ $ roscd log <span class="c1">#folder with log files</span>
 <span class="nt">&lt;url&gt;&lt;/url&gt;</span>
 </pre></div>
 </div>
-<div class="section" id="dependencies">
+<section id="dependencies">
 <h4>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline"></a></h4>
 <p>The <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> with minimal tags doesn’t specify <strong>dependencies</strong>. There are 6 types of dependencies:</p>
 <blockquote>
@@ -319,8 +321,8 @@ $ roscd log <span class="c1">#folder with log files</span>
 </div>
 </li>
 </ul>
-</div>
-<div class="section" id="metapackages">
+</section>
+<section id="metapackages">
 <h4>Metapackages<a class="headerlink" href="#metapackages" title="Permalink to this headline"></a></h4>
 <p>It’s often convenient to group multiple packages as a single logical package or <strong>metapackage</strong>. A metapackage is a normal package with the following tag in <code class="docutils literal notranslate"><span class="pre">package.xml</span></code>:</p>
 <div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;export&gt;</span>
@@ -329,15 +331,15 @@ $ roscd log <span class="c1">#folder with log files</span>
 </pre></div>
 </div>
 <p>Other than a required <code class="docutils literal notranslate"><span class="pre">&lt;buildtool_depends&gt;</span></code> on <code class="docutils literal notranslate"><span class="pre">catkin</span></code>, metapackages can only have <em>execution dependencies</em> on packages of which they group.</p>
-</div>
-</div>
-<div class="section" id="cmakelists-txt">
+</section>
+</section>
+<section id="cmakelists-txt">
 <h3>CMakeLists.txt<a class="headerlink" href="#cmakelists-txt" title="Permalink to this headline"></a></h3>
 <p>The file <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> is the input to the CMake build system for building software packages.</p>
 <p>In order to work, it has to follow this exact format in the exact order:</p>
 <ol class="arabic">
 <li><p><strong>Required CMake version</strong> (<code class="docutils literal notranslate"><span class="pre">catkin</span></code> requires &gt; 2.8.3):</p>
-<div class="highlight-CMake notranslate"><div class="highlight"><pre><span></span><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span> <span class="s">2.8.3</span><span class="p">)</span>
+<div class="highlight-CMake notranslate"><div class="highlight"><pre><span></span><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span><span class="w"> </span><span class="s">2.8.3</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
@@ -348,11 +350,11 @@ $ roscd log <span class="c1">#folder with log files</span>
 <p>Note in CMake you can reference the project name later, using the variable <code class="docutils literal notranslate"><span class="pre">${PROJECT_NAME}</span></code>.</p>
 </li>
 <li><p><strong>Find other CMake/Catkin packages needed for build</strong>:</p>
-<div class="highlight-CMake notranslate"><div class="highlight"><pre><span></span><span class="nb">find_package</span><span class="p">(</span><span class="s">catkin</span> <span class="s">REQUIRED</span><span class="p">)</span>
+<div class="highlight-CMake notranslate"><div class="highlight"><pre><span></span><span class="nb">find_package</span><span class="p">(</span><span class="s">catkin</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>If your project depends on other wet packages, they are automatically turned into components (in terms of CMake) of catkin:</p>
-<div class="highlight-CMake notranslate"><div class="highlight"><pre><span></span><span class="nb">find_package</span><span class="p">(</span><span class="s">catkin</span> <span class="s">REQUIRED</span> <span class="s">COMPONENTS</span> <span class="s">&lt;pkg_name&gt;</span><span class="p">)</span>
+<div class="highlight-CMake notranslate"><div class="highlight"><pre><span></span><span class="nb">find_package</span><span class="p">(</span><span class="s">catkin</span><span class="w"> </span><span class="s">REQUIRED</span><span class="w"> </span><span class="s">COMPONENTS</span><span class="w"> </span><span class="s">&lt;pkg_name&gt;</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
@@ -376,10 +378,10 @@ $ roscd log <span class="c1">#folder with log files</span>
 </li>
 <li><p><strong>Specify package build info export</strong>:</p>
 <div class="highlight-CMake notranslate"><div class="highlight"><pre><span></span><span class="nb">catkin_package</span><span class="p">(</span>
-<span class="s">INCLUDE_DIRS</span> <span class="s">include</span> <span class="c">#exported include paths</span>
-<span class="s">LIBRARIES</span> <span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span> <span class="c">#exported libraries</span>
-<span class="s">CATKIN_DEPENDS</span> <span class="s">&lt;pkg&gt;</span> <span class="c">#catkin dependencies</span>
-<span class="s">DEPENDS</span> <span class="s">&lt;pkg&gt;</span> <span class="c">#non-catkin dependencies</span>
+<span class="s">INCLUDE_DIRS</span><span class="w"> </span><span class="s">include</span><span class="w"> </span><span class="c">#exported include paths</span>
+<span class="s">LIBRARIES</span><span class="w"> </span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span><span class="w"> </span><span class="c">#exported libraries</span>
+<span class="s">CATKIN_DEPENDS</span><span class="w"> </span><span class="s">&lt;pkg&gt;</span><span class="w"> </span><span class="c">#catkin dependencies</span>
+<span class="s">DEPENDS</span><span class="w"> </span><span class="s">&lt;pkg&gt;</span><span class="w"> </span><span class="c">#non-catkin dependencies</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -406,15 +408,15 @@ $ roscd log <span class="c1">#folder with log files</span>
 </div>
 </li>
 </ol>
-</div>
-</div>
-<div class="section" id="message-types">
+</section>
+</section>
+<section id="message-types">
 <h2>Message types<a class="headerlink" href="#message-types" title="Permalink to this headline"></a></h2>
-</div>
-<div class="section" id="service-types">
+</section>
+<section id="service-types">
 <h2>Service types<a class="headerlink" href="#service-types" title="Permalink to this headline"></a></h2>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

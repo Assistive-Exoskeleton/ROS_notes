@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Concepts &mdash; ROS2 notes 2022 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -47,13 +48,14 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS2 Control</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rQt/README.html">RQt (formerly RQt2)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Docker/README.html">ROS and docker containers</a></li>
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="README.html">ROS1</a><ul class="current">
@@ -103,9 +105,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="concepts">
+  <section class="tex2jax_ignore mathjax_ignore" id="concepts">
 <h1>Concepts<a class="headerlink" href="#concepts" title="Permalink to this headline"></a></h1>
-<div class="section" id="nodes">
+<section id="nodes">
 <h2>Nodes<a class="headerlink" href="#nodes" title="Permalink to this headline"></a></h2>
 <p>Useful commands for <strong>nodes</strong>:</p>
 <ul>
@@ -130,7 +132,7 @@ $ rosnode info &lt;node&gt;
 </pre></div>
 </div>
 <p>The launch file consists of some tags:</p>
-<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;launch&gt;</span> <span class="c">&lt;!--identifies the file as launch--&gt;</span>
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;launch&gt;</span> <span class="cm">&lt;!--identifies the file as launch--&gt;</span>
   <span class="nt">&lt;group</span> <span class="na">ns=</span><span class="s">&quot;namespace_name&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;node</span> <span class="na">pkg=</span><span class="s">&quot;pkg_name&quot;</span> <span class="na">name=</span><span class="s">&quot;node_name&quot;</span> <span class="na">type=</span><span class="s">&quot;node_type&quot;</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;/group&gt;</span>
@@ -140,7 +142,7 @@ $ rosnode info &lt;node&gt;
 </div>
 </li>
 </ul>
-<div class="section" id="roscore">
+<section id="roscore">
 <h3>ROScore<a class="headerlink" href="#roscore" title="Permalink to this headline"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">roscore</span></code> is a collection of <a class="reference internal" href="#nodes"><span class="std std-doc">Nodes</span></a> and programs that are pre-requisites of a ROS-based system. You <strong>must</strong> have a roscore running in order for ROS nodes to communicate.</p>
 <div class="admonition note">
@@ -153,14 +155,14 @@ $ rosnode info &lt;node&gt;
 <li><p>a ROS <a class="reference internal" href="#parameter-server"><span class="std std-doc">Parameter server</span></a></p></li>
 <li><p>a <code class="docutils literal notranslate"><span class="pre">rosout</span></code> logging node (collects nodes debugging output)</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="master">
+</section>
+</section>
+<section id="master">
 <h2>Master<a class="headerlink" href="#master" title="Permalink to this headline"></a></h2>
 <p>The ROS Master provides naming and registration services to the rest of the nodes in the ROS system. It tracks publishers and subscribers to topics as well as services. The role of the Master is to enable individual ROS nodes to locate one another. Once these nodes have located each other they communicate with each other peer-to-peer. Nodes connect to other nodes directly; the Master only provides lookup information, much like a DNS server.</p>
 <p>The Master also provides the Parameter Server.</p>
-</div>
-<div class="section" id="parameter-server">
+</section>
+<section id="parameter-server">
 <h2>Parameter server<a class="headerlink" href="#parameter-server" title="Permalink to this headline"></a></h2>
 <p>Useful commands for <strong>parameters</strong>:</p>
 <ul>
@@ -182,8 +184,8 @@ $ rosparam dump <span class="o">[</span>file_name<span class="o">]</span> <span 
 </div>
 </li>
 </ul>
-</div>
-<div class="section" id="messages">
+</section>
+<section id="messages">
 <h2>Messages<a class="headerlink" href="#messages" title="Permalink to this headline"></a></h2>
 <p>ROS messages structures used by topics are stored in <code class="docutils literal notranslate"><span class="pre">package/msg/*.msg</span></code> files.</p>
 <p>To look at details of a message you can use:</p>
@@ -191,8 +193,8 @@ $ rosparam dump <span class="o">[</span>file_name<span class="o">]</span> <span 
 $ rossrv show &lt;service_type&gt; <span class="c1">#for services</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="topics">
+</section>
+<section id="topics">
 <h2>Topics<a class="headerlink" href="#topics" title="Permalink to this headline"></a></h2>
 <p>Useful commands for <strong>topics</strong>:</p>
 <ul>
@@ -226,8 +228,8 @@ $ rostopic <span class="nb">echo</span> &lt;topic&gt;
 </div>
 </li>
 </ul>
-</div>
-<div class="section" id="services">
+</section>
+<section id="services">
 <h2>Services<a class="headerlink" href="#services" title="Permalink to this headline"></a></h2>
 <p>In ROS, services are defined using <code class="docutils literal notranslate"><span class="pre">package/srv/*.srv</span></code> files</p>
 <p>Useful commands for <strong>services</strong>:</p>
@@ -253,11 +255,11 @@ $ rosservice call &lt;service&gt; <span class="o">[</span>args<span class="o">]<
 </div>
 </li>
 </ul>
-</div>
-<div class="section" id="community-level">
+</section>
+<section id="community-level">
 <h2>Community level<a class="headerlink" href="#community-level" title="Permalink to this headline"></a></h2>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

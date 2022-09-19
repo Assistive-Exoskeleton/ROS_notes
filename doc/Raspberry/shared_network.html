@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shared network &mdash; ROS2 notes 2022 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -47,7 +48,7 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS2 Control</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rQt/README.html">RQt (formerly RQt2)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
@@ -66,6 +67,7 @@
 <li class="toctree-l2"><a class="reference internal" href="Rpi_servo.html">Raspberry - servo</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../Docker/README.html">ROS and docker containers</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ROS1/README.html">ROS1</a></li>
@@ -99,22 +101,22 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="shared-network">
+  <section class="tex2jax_ignore mathjax_ignore" id="shared-network">
 <h1>Shared network<a class="headerlink" href="#shared-network" title="Permalink to this headline"></a></h1>
-<div class="section" id="ros-domain-id">
+<section id="ros-domain-id">
 <h2>ROS DOMAIN ID<a class="headerlink" href="#ros-domain-id" title="Permalink to this headline"></a></h2>
 <p>Il middleware usato di default da ROS 2 per le comunicazioni è <code class="docutils literal notranslate"><span class="pre">DDS</span></code>. Nel DDS, il <code class="docutils literal notranslate"><span class="pre">Domain</span> <span class="pre">ID</span></code> è utilizzato per poter far comunicare diversi network logici condividendo lo stesso network fisico, nello specifico, il Domain ID è usato dal DDS per settare le <code class="docutils literal notranslate"><span class="pre">porte</span> <span class="pre">UDP</span></code> che verranno utilizzate per la ricerca dei nodi e la comunicazione (i nodi in ROS 2 che condividono lo stesso dominio possono rintracciarsi e scambiarsi messaggi).</p>
 <p>Di default il Domain ID utilizzato è 0, ma nel caso si vogliano evitando interferenze tra gruppi di computer sullo stesso network, è possibile impostare un diverso Domain ID per ogni gruppo.</p>
-</div>
-<div class="section" id="implementazione-automatica-delle-porte-udp">
+</section>
+<section id="implementazione-automatica-delle-porte-udp">
 <h2>Implementazione automatica delle porte UDP<a class="headerlink" href="#implementazione-automatica-delle-porte-udp" title="Permalink to this headline"></a></h2>
 <p>Ci sono diverse strategie usate per far sì che le applicazioni DDS comunichino tra di loro nonostante l’utilizzo di un firewall.</p>
 <p>Le porte usate in una implementazione DDS sono specificate dall’ OMG DDS Interoperability Wire Protocol Specification (<strong>DDS-RTPS</strong>), di default, ogni DomainParticipant apre 4 porte UDP/IP: due di queste sono porte <code class="docutils literal notranslate"><span class="pre">multicast</span></code> e sono condivide su tutto il dominio dei partecipanti nello stesso Domain ID. Le altre due sono porte <code class="docutils literal notranslate"><span class="pre">unicast</span></code> e sono differenti per ciascun partecipante.</p>
 <p>L’indirizzo IP del multicast usato per la rilevazione dei nodi è 239.255.0.1 (come da specifiche DDS-RTPS).</p>
 <p>Le porte utilizzate dipendono da una formula legata al Domain ID e il numero di partecipanti (<a class="reference external" href="https://community.rti.com/content/forum-topic/statically-configure-firewall-let-omg-dds-traffic-through">clicca qui</a> per andare nel dettaglio).</p>
 <p>Considerando che le porte UDP sono un unsigned 16-bit integer (massimo 65535 valori), il valore massimo impostabile come Domain ID è <code class="docutils literal notranslate"><span class="pre">232</span></code>.</p>
-</div>
-<div class="section" id="specifiche-legate-alla-piattaforma">
+</section>
+<section id="specifiche-legate-alla-piattaforma">
 <h2>Specifiche legate alla piattaforma<a class="headerlink" href="#specifiche-legate-alla-piattaforma" title="Permalink to this headline"></a></h2>
 <p>Per la massima compatibilità, è utile evitare di allocare il Domain ID nel range delle <code class="docutils literal notranslate"><span class="pre">porte</span> <span class="pre">effimere</span></code>; Le porte effimere sono porte temporanee assegnate dallo stack IP di una macchina e vengono assegnate a questo scopo da un intervallo di porte designato. Utilizzando porte all’esterno del pool delle porte effimere permette di ridurre eventuali interferenze con servizi di rete del pc.</p>
 <p>In base al sistema operativo, il pool delle porte effimere è:</p>
@@ -142,17 +144,17 @@
 </table>
 <p>*il range delle porte effimere è configurabile editando il file in <code class="docutils literal notranslate"><span class="pre">/proc/sys/net/ipv4/ip_local_port_range</span></code>.</p>
 <p>** il range delle porte effimere è configurabile usando <code class="docutils literal notranslate"><span class="pre">netsh</span></code>.</p>
-</div>
-<div class="section" id="specifiche-sui-processi">
+</section>
+<section id="specifiche-sui-processi">
 <h2>Specifiche sui processi<a class="headerlink" href="#specifiche-sui-processi" title="Permalink to this headline"></a></h2>
 <p>Per ogni processo ROS 2 che viene eseguito su un computer, un partecipante DDS è creato; Siccome ogni partecipante DDS occupa fino a due porte su un computer, eseguire più di 120 processi ROS 2 su un computer può intaccare il corretto funzionamento del network (di default sono usati più Domain ID, in generale cosa non voluta). <strong>Importante</strong> ricordare che quando si utilizza un Domain ID al limite superiore (per esempio per linux usando 101 o 232) il massimo numero di processi diminuisce, poiché il range di porte UDP non è completo.</p>
-</div>
-<div class="section" id="implementazione-con-simulink">
+</section>
+<section id="implementazione-con-simulink">
 <h2>Implementazione con simulink<a class="headerlink" href="#implementazione-con-simulink" title="Permalink to this headline"></a></h2>
 <p>È possibile implementare un nodo simulink scritto in C++ grazie all’integrazione di ROS morenia da matlab R2020b.</p>
 <p>Ulteriori informazioni <a class="reference external" href="https://it.mathworks.com/help/ros/ug/generate-a-standalone-ros2-node-from-simulink.html">qui</a>.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

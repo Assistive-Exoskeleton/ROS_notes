@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ROS2 filesystem &mdash; ROS2 notes 2022 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -62,13 +63,14 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS2 Control</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rQt/README.html">RQt (formerly RQt2)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Docker/README.html">ROS and docker containers</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ROS1/README.html">ROS1</a></li>
@@ -101,21 +103,21 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="ros2-filesystem">
+  <section class="tex2jax_ignore mathjax_ignore" id="ros2-filesystem">
 <h1>ROS2 filesystem<a class="headerlink" href="#ros2-filesystem" title="Permalink to this headline"></a></h1>
-<div class="section" id="environment-variables">
+<section id="environment-variables">
 <h2>Environment variables<a class="headerlink" href="#environment-variables" title="Permalink to this headline"></a></h2>
 <p>In Linux and Unix based systems, environment variables are a set of dynamic named values, stored within the system that are used by applications launched in shells or subshells. In simple words, an environment variable is a variable with a <strong>name</strong> and an associated <strong>value</strong>.</p>
 <p>Sourcing ROS 2 setup files will set several environment variables necessary for operating ROS2. A list of variables can be printed through:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ printenv <span class="p">|</span> grep -i ROS
 </pre></div>
 </div>
-</div>
-<div class="section" id="packages">
+</section>
+<section id="packages">
 <h2>Packages<a class="headerlink" href="#packages" title="Permalink to this headline"></a></h2>
 <p>A package can be considered a container for the ROS2 code, organized for installation or sharing.</p>
 <p>Package creation in ROS2 uses <strong>ament</strong> as build system and <a class="reference external" href="https://docs.ros.org/en/rolling/Tutorials/Colcon-Tutorial.html">colcon</a> as build tool. Officially supported methods for creating a package are <strong>CMake</strong> or <strong>Python</strong>.</p>
-<div class="section" id="package-structure">
+<section id="package-structure">
 <h3>Package structure<a class="headerlink" href="#package-structure" title="Permalink to this headline"></a></h3>
 <p>Minimum required contents for a package:</p>
 <table class="colwidths-auto docutils align-default">
@@ -172,8 +174,8 @@
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="workspaces">
+</section>
+<section id="workspaces">
 <h3>Workspaces<a class="headerlink" href="#workspaces" title="Permalink to this headline"></a></h3>
 <p>A single workspace can contain many packages, of different build types, but no nested packages. Best practice is to have a <code class="docutils literal notranslate"><span class="pre">/src</span></code> folder and creating packages in there:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">workspace_folder</span><span class="o">/</span>
@@ -191,8 +193,8 @@
 			<span class="n">package</span><span class="o">.</span><span class="n">xml</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="command-line-tools">
+</section>
+<section id="command-line-tools">
 <h3>Command line tools<a class="headerlink" href="#command-line-tools" title="Permalink to this headline"></a></h3>
 <p>Useful commands for <strong>packages</strong>:</p>
 <ul>
@@ -245,8 +247,8 @@ $ rosdep update
 </div>
 </li>
 </ul>
-</div>
-<div class="section" id="package-manifest-package-xml">
+</section>
+<section id="package-manifest-package-xml">
 <h3>Package Manifest (<code class="docutils literal notranslate"><span class="pre">package.xml</span></code>)<a class="headerlink" href="#package-manifest-package-xml" title="Permalink to this headline"></a></h3>
 <p>The package manifest is an XML file called <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> that defines properties about the package, such as <em>package name</em>, <em>version</em>, <em>authors</em>, <em>maintainers</em> and <a class="reference internal" href="#dependencies"><span class="std std-doc">dependencies</span></a>. These information are important when the package gets released to the ROS community.</p>
 <p>Each <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> has a <code class="docutils literal notranslate"><span class="pre">&lt;package&gt;</span></code> tag as root tag:</p>
@@ -285,7 +287,7 @@ $ rosdep update
 <p class="admonition-title">Note</p>
 <p>when building with python, also the <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> file must be edited with these fileds, and they need to match exactly in both files.</p>
 </div>
-<div class="section" id="dependencies">
+<section id="dependencies">
 <h4>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline"></a></h4>
 <p>The <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> with minimal tags doesn’t specify <strong>dependencies</strong>. There are 6 types of dependencies:</p>
 <blockquote>
@@ -327,8 +329,8 @@ $ rosdep update
 </div>
 </li>
 </ul>
-</div>
-<div class="section" id="metapackages">
+</section>
+<section id="metapackages">
 <h4>Metapackages<a class="headerlink" href="#metapackages" title="Permalink to this headline"></a></h4>
 <p>It’s often convenient to group multiple packages as a single logical package or <strong>metapackage</strong>. A metapackage is a normal package with the following tag in <code class="docutils literal notranslate"><span class="pre">package.xml</span></code>:</p>
 <div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;export&gt;</span>
@@ -336,13 +338,13 @@ $ rosdep update
 <span class="nt">&lt;/export&gt;</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="cmakelists-txt-todo">
+</section>
+</section>
+<section id="cmakelists-txt-todo">
 <h3>CMakeLists.txt #TODO<a class="headerlink" href="#cmakelists-txt-todo" title="Permalink to this headline"></a></h3>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>

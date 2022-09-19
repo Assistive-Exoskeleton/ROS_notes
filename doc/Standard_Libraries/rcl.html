@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>rlc (ROS Client Library) &mdash; ROS2 notes 2022 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -65,13 +66,14 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS2 Control</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rQt/README.html">RQt (formerly RQt2)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Docker/README.html">ROS and docker containers</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ROS1/README.html">ROS1</a></li>
@@ -105,7 +107,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="rlc-ros-client-library">
+  <section class="tex2jax_ignore mathjax_ignore" id="rlc-ros-client-library">
 <h1><code class="docutils literal notranslate"><span class="pre">rlc</span></code> (ROS Client Library)<a class="headerlink" href="#rlc-ros-client-library" title="Permalink to this headline"></a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">rcl</span></code> provides the standard APIs for interacting with ROS2 (<em>node</em>, <em>topic</em>, <em>service</em>, <em>action</em>, <em>parameter</em>, <em>logging</em>, <em>context</em>, …). The language-specific libraries are built on the <a class="reference external" href="https://github.com/ros2/rcl">C-library <code class="docutils literal notranslate"><span class="pre">rcl</span></code></a>.</p>
 <table class="colwidths-auto docutils align-default">
@@ -129,7 +131,7 @@
 <p>import with:</p>
 <ul>
 <li><p>C++</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;rclcpp/rclcpp.hpp&quot;</span><span class="cp"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;rclcpp/rclcpp.hpp&quot;</span><span class="cp"></span>
 </pre></div>
 </div>
 </li>
@@ -171,7 +173,7 @@
 </table>
 </li>
 </ul>
-<div class="section" id="nodes-and-node-class">
+<section id="nodes-and-node-class">
 <h2>Nodes and <code class="docutils literal notranslate"><span class="pre">Node</span></code> class<a class="headerlink" href="#nodes-and-node-class" title="Permalink to this headline"></a></h2>
 <p>Main methods:</p>
 <ul>
@@ -391,8 +393,8 @@
 </div></blockquote>
 </li>
 </ul>
-</div>
-<div class="section" id="topics">
+</section>
+<section id="topics">
 <h2>Topics<a class="headerlink" href="#topics" title="Permalink to this headline"></a></h2>
 <p>There are two main classes:</p>
 <ol class="arabic">
@@ -426,8 +428,8 @@
 </ul>
 </li>
 </ol>
-</div>
-<div class="section" id="services">
+</section>
+<section id="services">
 <h2>Services<a class="headerlink" href="#services" title="Permalink to this headline"></a></h2>
 <p>There are two main classes:</p>
 <ol class="arabic">
@@ -511,12 +513,12 @@
 </ul>
 </li>
 </ol>
-</div>
-<div class="section" id="context">
+</section>
+<section id="context">
 <h2><code class="docutils literal notranslate"><span class="pre">Context</span></code><a class="headerlink" href="#context" title="Permalink to this headline"></a></h2>
 <p>A <code class="docutils literal notranslate"><span class="pre">Context</span></code> encapsulates the lifecycle of init and shutdown. The context is used in the creation of top level entities like nodes and guard conditions, as well as to shutdown a specific instance of init.</p>
-</div>
-<div class="section" id="rcutilslogger">
+</section>
+<section id="rcutilslogger">
 <h2><code class="docutils literal notranslate"><span class="pre">RcutilsLogger</span></code><a class="headerlink" href="#rcutilslogger" title="Permalink to this headline"></a></h2>
 <p>Main class for logging information about a node. It’s instantiated by <code class="docutils literal notranslate"><span class="pre">Node.get_logger()</span></code> method. Main methods:</p>
 <ul>
@@ -544,16 +546,16 @@
 <blockquote>
 <div><p>There are also individual functions depending on severity: <code class="docutils literal notranslate"><span class="pre">RcutilsLogger.debug(message)</span></code>, <code class="docutils literal notranslate"><span class="pre">RcutilsLogger.info(message)</span></code> … They simply call the <code class="docutils literal notranslate"><span class="pre">log</span></code> function with the <code class="docutils literal notranslate"><span class="pre">severity</span></code> argument predefined.</p>
 </div></blockquote>
-</div>
-<div class="section" id="execution-and-callbacks">
+</section>
+<section id="execution-and-callbacks">
 <h2>Execution and callbacks<a class="headerlink" href="#execution-and-callbacks" title="Permalink to this headline"></a></h2>
 <p>Callbacks are units of work like subscription callbacks, timer callbacks, service calls, and received client responses. There are two components that control the execution of callbacks: <strong>executors</strong> and <strong>callback groups</strong>.</p>
 <ul class="simple">
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">Executor</span></code></strong>: controls the threading model used to process callbacks (which thread callbacks get executed in).</p></li>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">CallbackGroup</span></code></strong>: used to enforce concurrency rules for callbacks.</p></li>
 </ul>
-</div>
-<div class="section" id="quality-of-service">
+</section>
+<section id="quality-of-service">
 <h2>Quality of service<a class="headerlink" href="#quality-of-service" title="Permalink to this headline"></a></h2>
 <p><strong><a class="reference external" href="https://docs.ros.org/en/rolling/Concepts/About-Quality-of-Service-Settings.html">QoS</a> policies</strong> allow to tune communication between nodes. A set of QoS policies combine to form a <strong>QoS profile</strong>. ROS2 provides predefined QoS profiles to simplify the choice of correct policies for a given use case.</p>
 <blockquote>
@@ -607,8 +609,8 @@
 </li>
 </ul>
 <p>For each of the policies that is not a duration, there is also the option of “system default”, which uses the default of the underlying middleware. For each of the policies that is a duration, there also exists a “default” option that means the duration is unspecified, which the underlying middleware will usually interpret as an infinitely long duration.</p>
-</div>
-<div class="section" id="lifecycle">
+</section>
+<section id="lifecycle">
 <h2>Lifecycle<a class="headerlink" href="#lifecycle" title="Permalink to this headline"></a></h2>
 <p>A managed lifecycle allows greater control over the state of ROS system, ensuring all components have been instantiated correctly before starting behaving. This also allows nodes to be restarded/replaced on-line.</p>
 <p>A node with managed lifecycle presents a known interface and executes according to known life-cycle state-machine.</p>
@@ -640,8 +642,8 @@ There are 7 <strong>transitions</strong> exposed to supervisory processes:</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">ShuttingDown</span></code>: the <code class="docutils literal notranslate"><span class="pre">onShutdown()</span></code> callback does cleanup before node destruction. The originating state is passed to the method.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">ErrorProcessing</span></code>: This state may be entered from any user-code processing. The <code class="docutils literal notranslate"><span class="pre">onError()</span></code> callback is used to handle errors. If this succeeds, the state reverts to <code class="docutils literal notranslate"><span class="pre">Unconfigured</span></code>. Otherwise if it’s not possible to handle all errors, the state becomes <code class="docutils literal notranslate"><span class="pre">Finalized</span></code> in preparation for destruction.</p></li>
 </ol>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

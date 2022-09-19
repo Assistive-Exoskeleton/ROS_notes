@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RViz &mdash; ROS2 notes 2022 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -47,7 +48,7 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS2 Control</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt2</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">RViz</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#rviz-interface">RViz Interface</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#displays">Displays</a></li>
@@ -65,6 +66,7 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Docker/README.html">ROS and docker containers</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ROS1/README.html">ROS1</a></li>
@@ -97,7 +99,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="rviz">
+  <section class="tex2jax_ignore mathjax_ignore" id="rviz">
 <h1>RViz<a class="headerlink" href="#rviz" title="Permalink to this headline"></a></h1>
 <ul class="simple">
 <li><p><a class="reference internal" href="#rviz"><span class="std std-doc">RViz</span></a></p></li>
@@ -116,16 +118,16 @@
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ros2 run rviz2 rviz2
 </pre></div>
 </div>
-<div class="section" id="rviz-interface">
+<section id="rviz-interface">
 <h2>RViz Interface<a class="headerlink" href="#rviz-interface" title="Permalink to this headline"></a></h2>
 <p><img alt="rviz2_main" src="../../_images/rviz2_main.png" /></p>
-<div class="section" id="displays">
+<section id="displays">
 <h3>Displays<a class="headerlink" href="#displays" title="Permalink to this headline"></a></h3>
 <p>A display is something that draws in the 3D world (e.g. the robot state). Each display has its own list of <strong>properties</strong> and its <strong>status</strong> visible in the <code class="docutils literal notranslate"><span class="pre">Displays</span></code> panel. Clicking on a display property also visualize a <strong>description</strong> on the bottom.</p>
 <p>To add a display, click the <code class="docutils literal notranslate"><span class="pre">Add</span></code> button in the <code class="docutils literal notranslate"><span class="pre">Displays</span></code> panel. The <a class="reference external" href="http://wiki.ros.org/rviz/UserGuide#Built-in_Display_Types"><strong><code class="docutils literal notranslate"><span class="pre">display</span> <span class="pre">type</span></code></strong></a> details what kind of data this display will visualize. The text box in the middle gives a description of the selected display type. Finally, you must give the display a <strong>unique name</strong>.</p>
 <p><img alt="rviz2_addDisplay" src="../../_images/rviz2_addDisplay.png" /></p>
-</div>
-<div class="section" id="configurations">
+</section>
+<section id="configurations">
 <h3>Configurations<a class="headerlink" href="#configurations" title="Permalink to this headline"></a></h3>
 <p>Different display configurations can be useful for RViz. Therefore, RViz lets us <strong>load</strong> and <strong>save</strong> different configurations.</p>
 <p><img alt="rviz2_menu" src="../../_images/rviz2_menu.png" /></p>
@@ -135,8 +137,8 @@
 <li><p>Tool properties</p></li>
 <li><p>Camera type and settings of initial viewpoint.</p></li>
 </ul>
-</div>
-<div class="section" id="views">
+</section>
+<section id="views">
 <h3>Views<a class="headerlink" href="#views" title="Permalink to this headline"></a></h3>
 <p>There are different camera types available in the <code class="docutils literal notranslate"><span class="pre">Views</span></code> panel. They consists both of different ways to control the camera and different types of projection.</p>
 <p><img alt="rviz2_views_menu" src="../../_images/rviz2_views.png" /></p>
@@ -153,16 +155,16 @@
 <li><p>A <strong>view configuration</strong>: position, orientation, camera type and pose …</p></li>
 <li><p>A <strong>view controller type</strong>.</p></li>
 </ul>
-</div>
-<div class="section" id="frames">
+</section>
+<section id="frames">
 <h3>Frames<a class="headerlink" href="#frames" title="Permalink to this headline"></a></h3>
 <p>RViz uses <a class="reference internal" href="../Standard_Libraries/tf.html#tf2"><span class="std std-doc"><strong>tf</strong></span></a> transform system for transforming data from the coordinate frame it arrives in into a global reference frame. There are two important coordinate frames in RViz:</p>
 <ul class="simple">
 <li><p><strong>Fixed Frame</strong>: reference used to denote the “world” frame. For correct results, a fixed frame should not be moving relative to the world.</p></li>
 <li><p><strong>Target Frame</strong>: reference for the camera view.</p></li>
 </ul>
-</div>
-<div class="section" id="tools">
+</section>
+<section id="tools">
 <h3>Tools<a class="headerlink" href="#tools" title="Permalink to this headline"></a></h3>
 <p>Tools are visible in the toolbar:</p>
 <p><img alt="toolbar" src="../../_images/rviz2_toolbar.png" /></p>
@@ -172,17 +174,17 @@
 <li><p><strong>2D pose estimate</strong>: used to set an initial pose to seed the localization system (sent on the <code class="docutils literal notranslate"><span class="pre">/initialpose</span></code> ROS topic)</p></li>
 <li><p>…</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="using-rviz-todo">
+</section>
+</section>
+<section id="using-rviz-todo">
 <h2>Using RViz #TODO<a class="headerlink" href="#using-rviz-todo" title="Permalink to this headline"></a></h2>
 <p>There are two main ways to put data into RViz world:</p>
 <ol class="arabic simple">
 <li><p>Sensor and state information, using plugins for many kinds of available topics</p></li>
 <li><p>Visualization markers (primitive shapes)</p></li>
 </ol>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

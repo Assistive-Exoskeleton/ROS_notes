@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Plugin library &mdash; ROS2 notes 2022 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -65,13 +66,14 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS2 Control</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rQt/README.html">RQt (formerly RQt2)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Docker/README.html">ROS and docker containers</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ROS1/README.html">ROS1</a></li>
@@ -105,7 +107,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="plugin-library">
+  <section class="tex2jax_ignore mathjax_ignore" id="plugin-library">
 <h1>Plugin library<a class="headerlink" href="#plugin-library" title="Permalink to this headline"></a></h1>
 <p><strong>Contents</strong>:</p>
 <ul class="simple">
@@ -122,7 +124,7 @@
 </ul>
 <p><code class="docutils literal notranslate"><span class="pre">pluginlib</span></code> is a C++ library for loading and unloading plugins within a ROS package. Plugins are dynamically loadable classes that are loaded from a runtime library.</p>
 <p>With pluginlib, one does not have to explicitly link their application against the library containing the classes – instead pluginlib can open a library containing exported classes at any point without the application having any prior awareness of the library or the header file containing the class definition. Plugins are useful for extending/modifying application behavior without needing the application source code.</p>
-<div class="section" id="plugin-implementation">
+<section id="plugin-implementation">
 <h2>Plugin implementation<a class="headerlink" href="#plugin-implementation" title="Permalink to this headline"></a></h2>
 <p>The implementation of a plugin follows some steps:</p>
 <ol class="arabic simple">
@@ -131,51 +133,51 @@
 <li><p><a class="reference internal" href="#xml-plugin-declaration"><span class="std std-doc">XML plugin declaration</span></a></p></li>
 <li><p><a class="reference internal" href="#cmake-plugin-declaration"><span class="std std-doc">CMake plugin declaration</span></a></p></li>
 </ol>
-<div class="section" id="base-class">
+<section id="base-class">
 <h3>Base class<a class="headerlink" href="#base-class" title="Permalink to this headline"></a></h3>
 <p>We start declaring a base (abstract) class. With <code class="docutils literal notranslate"><span class="pre">pluginlib</span></code>, a constructor without parameters is required. Therefore, if any parameter is required, we can use the <code class="docutils literal notranslate"><span class="pre">initialize</span></code> method:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef MY_PKG_BASE_MY_CLASS_BASE_HPP</span>
 <span class="cp">#define MY_PKG_BASE_MY_CLASS_BASE_HPP</span>
-<span class="k">namespace</span> <span class="n">my_pkg_base</span>
-<span class="p">{</span>
-    <span class="k">class</span> <span class="nc">MyClassBase</span>
-    <span class="p">{</span>
-        <span class="k">public</span><span class="o">:</span>
-            <span class="k">virtual</span> <span class="kt">void</span> <span class="n">initialize</span><span class="p">(</span><span class="cm">/*parameters*/</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-            <span class="k">virtual</span> <span class="o">~</span><span class="n">MyClassBase</span><span class="p">(){}</span>
-        <span class="k">protected</span><span class="o">:</span>
-            <span class="n">MyClassBase</span><span class="p">(){}</span>
-    <span class="p">};</span>
-<span class="p">}</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">my_pkg_base</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">MyClassBase</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="w">            </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">initialize</span><span class="p">(</span><span class="cm">/*parameters*/</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">MyClassBase</span><span class="p">(){}</span><span class="w"></span>
+<span class="w">        </span><span class="k">protected</span><span class="o">:</span><span class="w"></span>
+<span class="w">            </span><span class="n">MyClassBase</span><span class="p">(){}</span><span class="w"></span>
+<span class="w">    </span><span class="p">};</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 <span class="cp">#endif </span><span class="c1">//   MY_PKG_BASE_MY_CLASS_BASE_HPP</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="plugin-class">
+</section>
+<section id="plugin-class">
 <h3>Plugin class<a class="headerlink" href="#plugin-class" title="Permalink to this headline"></a></h3>
 <p>Now we implement the class for the plugins (inside <code class="docutils literal notranslate"><span class="pre">my_plugins</span></code> package for example)</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;my_pkg_base/my_class_base.hpp&gt;</span><span class="cp"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;my_pkg_base/my_class_base.hpp&gt;</span><span class="cp"></span>
 
-<span class="k">namespace</span> <span class="n">my_plugins</span>
-<span class="p">{</span>
-    <span class="k">class</span> <span class="nc">FirstPlugin</span> <span class="o">:</span> <span class="k">public</span> <span class="n">my_pkg_base</span><span class="o">::</span><span class="n">MyClassBase</span>
-    <span class="p">{</span>
-        <span class="k">public</span><span class="o">:</span>
-            <span class="kt">void</span> <span class="n">initialize</span> <span class="p">(</span><span class="cm">/*parameters*/</span><span class="p">)</span> <span class="k">override</span>
-            <span class="p">{</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">my_plugins</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">FirstPlugin</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">my_pkg_base</span><span class="o">::</span><span class="n">MyClassBase</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="w">            </span><span class="kt">void</span><span class="w"> </span><span class="n">initialize</span><span class="w"> </span><span class="p">(</span><span class="cm">/*parameters*/</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
 
-            <span class="p">}</span>
-        <span class="c1">//other methods and attributes</span>
-    <span class="p">};</span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="c1">//other methods and attributes</span>
+<span class="w">    </span><span class="p">};</span><span class="w"></span>
 
-    <span class="c1">//other plugins</span>
-<span class="p">}</span>
+<span class="w">    </span><span class="c1">//other plugins</span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="cp">#include</span> <span class="cpf">&lt;pluginlib/class_list_macros.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;pluginlib/class_list_macros.hpp&gt;</span><span class="cp"></span>
 
-<span class="n">PLUGINLIB_EXPORT_CLASS</span><span class="p">(</span><span class="n">my_plugins</span><span class="o">::</span><span class="n">FirstPlugin</span><span class="p">,</span> <span class="n">my_pkg_base</span><span class="o">::</span><span class="n">MyClassBase</span><span class="p">)</span>
+<span class="n">PLUGINLIB_EXPORT_CLASS</span><span class="p">(</span><span class="n">my_plugins</span><span class="o">::</span><span class="n">FirstPlugin</span><span class="p">,</span><span class="w"> </span><span class="n">my_pkg_base</span><span class="o">::</span><span class="n">MyClassBase</span><span class="p">)</span><span class="w"></span>
 <span class="c1">//other plugins&#39; macros</span>
-<span class="p">...</span>
+<span class="p">...</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Plugins are exported using <code class="docutils literal notranslate"><span class="pre">PLUGINLIB_EXPORT_CLASS</span></code> macro, which registers the classes as actual plugins.</p>
@@ -183,8 +185,8 @@
 <li><p>The first argument is the fully-qualified type of the <strong>plugin class</strong>.</p></li>
 <li><p>The second argument is the fully-qualified type of the <strong>base class</strong>.</p></li>
 </ul>
-</div>
-<div class="section" id="xml-plugin-declaration">
+</section>
+<section id="xml-plugin-declaration">
 <h3>XML plugin declaration<a class="headerlink" href="#xml-plugin-declaration" title="Permalink to this headline"></a></h3>
 <p>The <strong>plugin loader</strong> still needs a way to find the library in which plugins exist, in order to create plugin instances. To do so, we create a <code class="docutils literal notranslate"><span class="pre">plugins.xml</span></code> file (inside <code class="docutils literal notranslate"><span class="pre">my_plugins</span></code> pkg) with the necessary information:</p>
 <div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;library</span> <span class="na">path=</span><span class="s">&quot;my_plugins&quot;</span><span class="nt">&gt;</span>
@@ -193,7 +195,7 @@
         <span class="nt">&lt;description&gt;</span>FirstPlugin description<span class="nt">&lt;/description&gt;</span>
     <span class="nt">&lt;/class&gt;</span>
 
-  <span class="c">&lt;!-- other plugins --&gt;</span>
+  <span class="cm">&lt;!-- other plugins --&gt;</span>
 <span class="nt">&lt;/library&gt;</span>
 </pre></div>
 </div>
@@ -220,69 +222,69 @@
 </table>
 </li>
 </ul>
-</div>
-<div class="section" id="cmake-plugin-declaration">
+</section>
+<section id="cmake-plugin-declaration">
 <h3>CMake plugin declaration<a class="headerlink" href="#cmake-plugin-declaration" title="Permalink to this headline"></a></h3>
 <p>The last step is to export the plugins via <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code>. After <code class="docutils literal notranslate"><span class="pre">find_package(pluginlib</span> <span class="pre">REQUIRED)</span></code> add:</p>
-<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">add_library</span><span class="p">(</span><span class="s">my_plugins</span> <span class="s">src/my_plugins.cpp</span><span class="p">)</span>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">add_library</span><span class="p">(</span><span class="s">my_plugins</span><span class="w"> </span><span class="s">src/my_plugins.cpp</span><span class="p">)</span>
 
-<span class="nb">target_include_directories</span><span class="p">(</span><span class="s">my_plugins</span> <span class="s">PUBLIC</span>
+<span class="nb">target_include_directories</span><span class="p">(</span><span class="s">my_plugins</span><span class="w"> </span><span class="s">PUBLIC</span>
 <span class="s">&lt;BUILD_INTERFACE:</span><span class="o">${</span><span class="nv">CMAKE_CURRENT_SOURCE_DIR</span><span class="o">}</span><span class="s">/include&gt;</span>
 <span class="s">&lt;INSTALL_INTERFACE:include&gt;</span><span class="p">)</span>
 
 <span class="nb">ament_target_dependencies</span><span class="p">(</span>
-  <span class="s">my_plugins</span>
-  <span class="s">my_pkg_base</span>
-  <span class="s">pluginlib</span>
+<span class="w">  </span><span class="s">my_plugins</span>
+<span class="w">  </span><span class="s">my_pkg_base</span>
+<span class="w">  </span><span class="s">pluginlib</span>
 <span class="p">)</span>
 
-<span class="nb">pluginlib_export_plugin_description_file</span><span class="p">(</span><span class="s">my_pkg_base</span> <span class="s">plugins.xml</span><span class="p">)</span>
+<span class="nb">pluginlib_export_plugin_description_file</span><span class="p">(</span><span class="s">my_pkg_base</span><span class="w"> </span><span class="s">plugins.xml</span><span class="p">)</span>
 
 <span class="nb">install</span><span class="p">(</span>
-  <span class="s">TARGETS</span> <span class="s">my_plugins</span>
-  <span class="s">EXPORT</span> <span class="s">export_</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span>
-  <span class="s">ARCHIVE</span> <span class="s">DESTINATION</span> <span class="s">lib</span>
-  <span class="s">LIBRARY</span> <span class="s">DESTINATION</span> <span class="s">lib</span>
-  <span class="s">RUNTIME</span> <span class="s">DESTINATION</span> <span class="s">bin</span>
+<span class="w">  </span><span class="s">TARGETS</span><span class="w"> </span><span class="s">my_plugins</span>
+<span class="w">  </span><span class="s">EXPORT</span><span class="w"> </span><span class="s">export_</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span>
+<span class="w">  </span><span class="s">ARCHIVE</span><span class="w"> </span><span class="s">DESTINATION</span><span class="w"> </span><span class="s">lib</span>
+<span class="w">  </span><span class="s">LIBRARY</span><span class="w"> </span><span class="s">DESTINATION</span><span class="w"> </span><span class="s">lib</span>
+<span class="w">  </span><span class="s">RUNTIME</span><span class="w"> </span><span class="s">DESTINATION</span><span class="w"> </span><span class="s">bin</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 <p>And before <code class="docutils literal notranslate"><span class="pre">ament_package</span></code> add:</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">ament_export_libraries</span><span class="p">(</span>
-  <span class="s">my_plugins</span>
+<span class="w">  </span><span class="s">my_plugins</span>
 <span class="p">)</span>
 <span class="nb">ament_export_targets</span><span class="p">(</span>
-  <span class="s">export_</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span>
+<span class="w">  </span><span class="s">export_</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span>
 <span class="p">)</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="using-the-plugins">
+</section>
+</section>
+<section id="using-the-plugins">
 <h2>Using the plugins<a class="headerlink" href="#using-the-plugins" title="Permalink to this headline"></a></h2>
 <p>Plugins can now be used in any package. For example we can create a node like:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;pluginlib/class_loader.hpp&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;my_pkg_base/my_class_base.hpp&gt;</span><span class="cp"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;pluginlib/class_loader.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;my_pkg_base/my_class_base.hpp&gt;</span><span class="cp"></span>
 
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="c1">//...</span>
-    <span class="n">pluginlib</span><span class="o">::</span><span class="n">ClassLoader</span><span class="o">&lt;</span><span class="n">my_pkg_base</span><span class="o">::</span><span class="n">MyClassBase</span><span class="o">&gt;</span> <span class="n">poly_loader</span><span class="p">(</span><span class="s">&quot;my_pkg_base&quot;</span><span class="p">,</span> <span class="s">&quot;my_pkg_base::MyClassBase&quot;</span><span class="p">);</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">**</span><span class="w"> </span><span class="n">argv</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">//...</span>
+<span class="w">    </span><span class="n">pluginlib</span><span class="o">::</span><span class="n">ClassLoader</span><span class="o">&lt;</span><span class="n">my_pkg_base</span><span class="o">::</span><span class="n">MyClassBase</span><span class="o">&gt;</span><span class="w"> </span><span class="n">poly_loader</span><span class="p">(</span><span class="s">&quot;my_pkg_base&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;my_pkg_base::MyClassBase&quot;</span><span class="p">);</span><span class="w"></span>
 
-    <span class="k">try</span>
-    <span class="p">{</span>
-        <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">my_pkg_base</span><span class="o">::</span><span class="n">MyClassBase</span><span class="o">&gt;</span> <span class="n">myObject</span> <span class="o">=</span> <span class="n">poly_loader</span><span class="p">.</span><span class="n">createSharedInstance</span><span class="p">(</span><span class="s">&quot;my_plugins::FirstPlugin&quot;</span><span class="p">);</span>
-        <span class="n">myObject</span><span class="o">-&gt;</span><span class="n">initialize</span><span class="p">(</span><span class="cm">/*parameters*/</span><span class="p">);</span>
+<span class="w">    </span><span class="k">try</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">my_pkg_base</span><span class="o">::</span><span class="n">MyClassBase</span><span class="o">&gt;</span><span class="w"> </span><span class="n">myObject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">poly_loader</span><span class="p">.</span><span class="n">createSharedInstance</span><span class="p">(</span><span class="s">&quot;my_plugins::FirstPlugin&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">myObject</span><span class="o">-&gt;</span><span class="n">initialize</span><span class="p">(</span><span class="cm">/*parameters*/</span><span class="p">);</span><span class="w"></span>
 
-        <span class="c1">//other code</span>
-    <span class="p">}</span>
-    <span class="k">catch</span><span class="p">(</span><span class="n">pluginlib</span><span class="o">::</span><span class="n">PluginlibException</span><span class="o">&amp;</span> <span class="n">ex</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Plugin failed to load. Error: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">ex</span><span class="p">.</span><span class="n">what</span><span class="p">());</span>
-    <span class="p">}</span>
+<span class="w">        </span><span class="c1">//other code</span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">catch</span><span class="p">(</span><span class="n">pluginlib</span><span class="o">::</span><span class="n">PluginlibException</span><span class="o">&amp;</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Plugin failed to load. Error: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ex</span><span class="p">.</span><span class="n">what</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -298,8 +300,8 @@
 <blockquote>
 <div><p>Importantly, the package in which this node is defined does NOT depend on the <code class="docutils literal notranslate"><span class="pre">my_plugins</span></code> class. The plugins will be loaded dynamically without any dependency needing to be declared.</p>
 </div></blockquote>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>URDF &mdash; ROS2 notes 2022 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -56,13 +57,14 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS2 Control</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rQt/README.html">RQt (formerly RQt2)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Docker/README.html">ROS and docker containers</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ROS1/README.html">ROS1</a></li>
@@ -96,7 +98,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="urdf">
+  <section class="tex2jax_ignore mathjax_ignore" id="urdf">
 <h1>URDF<a class="headerlink" href="#urdf" title="Permalink to this headline"></a></h1>
 <p>The Unified Robotic Description Format (<strong>URDF</strong>) is an <code class="docutils literal notranslate"><span class="pre">XML</span></code> file format used in ROS to describe all elements of a robot. The drawback is that only <em>tree</em> structures with rigid links can be represented, ruling out parallel robots and flexible elements.</p>
 <p>The specification covers:</p>
@@ -115,7 +117,7 @@
 <span class="nt">&lt;/robot&gt;</span>
 </pre></div>
 </div>
-<div class="section" id="link">
+<section id="link">
 <h2>Link<a class="headerlink" href="#link" title="Permalink to this headline"></a></h2>
 <p>Links represent the skeleton of the robot. The link element describes a <strong>rigid body</strong> with an inertia, visual features and collision properties.</p>
 <p>Attributes:</p>
@@ -173,8 +175,8 @@
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="joint">
+</section>
+<section id="joint">
 <h2>Joint<a class="headerlink" href="#joint" title="Permalink to this headline"></a></h2>
 <p>The joint element describes the kinematics and dynamics of the joint, also specifying safety limits of the joint.</p>
 <p>Attributes:</p>
@@ -211,8 +213,8 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">&lt;mimic&gt;</span></code>: used to specify that the defined joint mimics another existing joint.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">&lt;safety_controller&gt;</span></code>: more strict boundary than lower and upper joint limits, specifying when the safety controller starts limiting the position of the joint (soft limit).</p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

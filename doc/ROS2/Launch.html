@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Launch files &mdash; ROS2 notes 2022 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -53,13 +54,14 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS2 Control</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rQt/README.html">RQt (formerly RQt2)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Docker/README.html">ROS and docker containers</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ROS1/README.html">ROS1</a></li>
@@ -92,12 +94,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="launch-files">
+  <section class="tex2jax_ignore mathjax_ignore" id="launch-files">
 <h1>Launch files<a class="headerlink" href="#launch-files" title="Permalink to this headline"></a></h1>
 <p>Launch libraries and launch files.</p>
 <p>The <a class="reference external" href="https://docs.ros.org/en/galactic/Tutorials/Launch-system.html">launch system</a> in ROS 2 is responsible for helping the user describe the configuration of their system (programs to run, where to run them, arguments, …) and then execute it as described. It is also responsible for monitoring the state of the processes launched, and reporting and/or reacting to changes in the state of those processes.</p>
 <p>Launch files written in Python can start and stop different nodes as well as trigger and act on various events. The package providing this framework is <a class="reference external" href="https://github.com/ros2/launch_ros"><code class="docutils literal notranslate"><span class="pre">launch_ros</span></code></a>, which uses the non-ROS-specific <a class="reference external" href="https://github.com/ros2/launch"><code class="docutils literal notranslate"><span class="pre">launch</span></code></a> framework underneath.</p>
-<div class="section" id="architecture-of-launch">
+<section id="architecture-of-launch">
 <h2>Architecture of <code class="docutils literal notranslate"><span class="pre">launch</span></code><a class="headerlink" href="#architecture-of-launch" title="Permalink to this headline"></a></h2>
 <p>The main classes are:</p>
 <ul>
@@ -121,8 +123,8 @@
 </li>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">launch.LaunchService</span></code></strong>: long-running activity that handles the event loop and dispatches actions.</p></li>
 </ul>
-</div>
-<div class="section" id="architecture-of-launch-ros">
+</section>
+<section id="architecture-of-launch-ros">
 <h2>Architecture of <code class="docutils literal notranslate"><span class="pre">launch_ros</span></code><a class="headerlink" href="#architecture-of-launch-ros" title="Permalink to this headline"></a></h2>
 <p>The main classes are:</p>
 <ul class="simple">
@@ -132,8 +134,8 @@
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="id1">
+</section>
+<section id="id1">
 <h2>Launch files<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
 <p>Launch files are inside <code class="docutils literal notranslate"><span class="pre">launch/</span></code> directory, with the <code class="docutils literal notranslate"><span class="pre">.launch.py</span></code> suffix.</p>
 <p>Launch files should define the <code class="docutils literal notranslate"><span class="pre">generate_launch_description()</span></code> function, which returns a <code class="docutils literal notranslate"><span class="pre">launch.LaunchDescription()</span></code> to be used by the <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">launch</span></code> command.</p>
@@ -173,11 +175,11 @@
     <span class="k">return</span> <span class="n">launch</span><span class="o">.</span><span class="n">LaunchDescription</span><span class="p">(</span><span class="n">declared_arguments</span> <span class="o">+</span> <span class="n">nodes</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="launch-for-large-projects">
+</section>
+<section id="launch-for-large-projects">
 <h2>Launch for large projects<a class="headerlink" href="#launch-for-large-projects" title="Permalink to this headline"></a></h2>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

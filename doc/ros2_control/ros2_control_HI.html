@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hardware interface &mdash; ROS2 notes 2022 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -70,13 +71,14 @@
 <li class="toctree-l2"><a class="reference internal" href="ros2_controllers.html">Controllers</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rQt/README.html">RQt (formerly RQt2)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Docker/README.html">ROS and docker containers</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ROS1/README.html">ROS1</a></li>
@@ -110,7 +112,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="hardware-interface">
+  <section class="tex2jax_ignore mathjax_ignore" id="hardware-interface">
 <h1>Hardware interface<a class="headerlink" href="#hardware-interface" title="Permalink to this headline"></a></h1>
 <p>The <a class="reference external" href="https://github.com/ros-controls/roadmap/blob/master/design_drafts/hardware_access.md">hardware components / resources</a> realize communication to physical hardware and represent its abstraction in the <code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> framework. Hardware components are libraries (plugins) defined using <code class="docutils literal notranslate"><span class="pre">pluginlib</span></code>. the <a class="reference internal" href="ros2_control_concepts.html#resource-manager"><span class="std std-doc">RM</span></a> dynamically loads those plugins at runtime and manages their <a class="reference internal" href="../Standard_Libraries/rcl.html#lifecycle"><span class="std std-doc">lifecycle</span></a>, allowing flexibility.</p>
 <p>The hardware is composed and configured in <a class="reference internal" href="ros2_control_URDF.html#hardware-components-description"><span class="std std-doc">URDF</span></a>.</p>
@@ -120,9 +122,9 @@
 <li><p><strong>Sensor</strong>: Robotic hardware used for sensing its environment. A sensor component is related to a joint (e.g. encoder) or a link (e.g. force-torque sensor). This component type has only reading capabilities.</p></li>
 <li><p><strong>Actuator</strong>: Simple (1 DOF) robotic hardware like motors, valves, and similar. An actuator implementation is related to only one joint. This component type has reading and writing capabilities. The actuator type can also be used with a multi-DOF robot if its hardware enables modular design</p></li>
 </ul>
-<div class="section" id="writing-a-hardware-interface">
+<section id="writing-a-hardware-interface">
 <h2>Writing a Hardware interface<a class="headerlink" href="#writing-a-hardware-interface" title="Permalink to this headline"></a></h2>
-<div class="section" id="building-hardware-package">
+<section id="building-hardware-package">
 <h3>Building hardware package<a class="headerlink" href="#building-hardware-package" title="Permalink to this headline"></a></h3>
 <p>As with usual packages, use <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">pkg</span> <span class="pre">create</span></code> to generate an <code class="docutils literal notranslate"><span class="pre">ament_cmake</span></code> build-type package for the hardware interface.</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ros2 pkg create --ament_cmake &lt;hardware_pkg&gt;
@@ -144,8 +146,8 @@
       <span class="o">...</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="visibility-control-h">
+</section>
+<section id="visibility-control-h">
 <h3>visibility_control.h<a class="headerlink" href="#visibility-control-h" title="Permalink to this headline"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">visibility_control.h</span></code> is a header containing various macros used for <a class="reference external" href="https://gcc.gnu.org/wiki/Visibility">visibility control</a>.</p>
 <p>These macros are useful when dealing with <strong>shared libraries</strong> (e.g. ros2 plugins) that are dynamically loaded at runtime. The purposes are manifold:</p>
@@ -156,8 +158,8 @@
 <li><p>Manages compatibility between <a class="reference external" href="https://docs.microsoft.com/en-us/cpp/cpp/dllexport-dllimport?view=msvc-170">Windows</a> shared libraries (i.e. <code class="docutils literal notranslate"><span class="pre">DLL</span></code>, Dynamic Link Libraries) and <code class="docutils literal notranslate"><span class="pre">ELF</span></code> systems (e.g. <strong>Linux</strong>) shared libraries (i.e. <code class="docutils literal notranslate"><span class="pre">DSO</span></code>, Dynamic Shared Objects)</p></li>
 </ul>
 <p>It also changes the <strong>visibility</strong> of certain symbols of <code class="docutils literal notranslate"><span class="pre">rclcpp</span></code> library, that the library itself cannot have, but a code in a different package in which the <code class="docutils literal notranslate"><span class="pre">rclcpp</span></code> header is imported must have in order to link.</p>
-</div>
-<div class="section" id="hardware-resource-hpp">
+</section>
+<section id="hardware-resource-hpp">
 <h3>&lt;hardware_resource&gt;.hpp<a class="headerlink" href="#hardware-resource-hpp" title="Permalink to this headline"></a></h3>
 <p>Header guards are used to encapsulate the header file:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef &lt;HARDWARE_PKG&gt;__&lt;HARDWARE_RESOURCE&gt;_HPP_</span>
@@ -171,8 +173,8 @@
 <p>Includes:</p>
 <ul>
 <li><p>The custom hardware resource will extend a <strong>base hardware interface class</strong>:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;hardware_interface/&lt;type&gt;_interface.hpp&quot; </span><span class="cp"></span>
-<span class="cm">/* hardware_interface::&lt;Type&gt;Interface */</span> 
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;hardware_interface/&lt;type&gt;_interface.hpp&quot;</span><span class="c1"> </span><span class="cp"></span>
+<span class="cm">/* hardware_interface::&lt;Type&gt;Interface */</span><span class="w"> </span>
 </pre></div>
 </div>
 <p>Where:</p>
@@ -182,114 +184,114 @@
 </ul>
 </li>
 <li><p>Other headers for the hardware interfaces and their respective classes are:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;hardware_interface/handle.hpp&quot;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;hardware_interface/handle.hpp&quot;</span><span class="cp"></span>
 <span class="cm">/* hardware_interface::StateInterface</span>
-<span class="cm">   hardware_interface::CommandInterface */</span>
+<span class="cm">   hardware_interface::CommandInterface */</span><span class="w"></span>
 
-<span class="cp">#include</span> <span class="cpf">&quot;hardware_interface/hardware_info.hpp&quot;</span><span class="cp"></span>
-<span class="cm">/* hardware_interface::HardwareInfo */</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;hardware_interface/hardware_info.hpp&quot;</span><span class="cp"></span>
+<span class="cm">/* hardware_interface::HardwareInfo */</span><span class="w"></span>
 
-<span class="cp">#include</span> <span class="cpf">&quot;hardware_interface/types/hardware_interface_return_values.hpp&quot;</span><span class="cp"></span>
- <span class="cm">/* hardware_interface::return_type */</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;hardware_interface/types/hardware_interface_return_values.hpp&quot;</span><span class="cp"></span>
+<span class="w"> </span><span class="cm">/* hardware_interface::return_type */</span><span class="w"></span>
 </pre></div>
 </div>
 </li>
 <li><p>The hardware resource lifecycle is managed through node lifecycle methods:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;rclcpp_lifecycle/node_interfaces/lifecycle_node_interface.hpp&quot;</span><span class="cp"></span>
-<span class="cm">/* rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface */</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;rclcpp_lifecycle/node_interfaces/lifecycle_node_interface.hpp&quot;</span><span class="cp"></span>
+<span class="cm">/* rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface */</span><span class="w"></span>
 
-<span class="cp">#include</span> <span class="cpf">&quot;rclcpp_lifecycle/state.hpp&quot;  </span><span class="cp"></span>
-<span class="cm">/* rclcpp_lifecycle::State */</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;rclcpp_lifecycle/state.hpp&quot;</span><span class="c1">  </span><span class="cp"></span>
+<span class="cm">/* rclcpp_lifecycle::State */</span><span class="w"></span>
 </pre></div>
 </div>
 </li>
 </ul>
 <p>The hardware resource class is encapsulated in the <code class="docutils literal notranslate"><span class="pre">namespace</span></code> of hardware package written in <em>snake_case</em> (lowercase with underscores)</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">//includes...</span>
-<span class="k">namespace</span> <span class="n">hardware_pkg</span>
-<span class="p">{</span>
-   <span class="c1">//...</span>
-<span class="p">}</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">hardware_pkg</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="c1">//...</span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Then, the class of the hardware component/resource is declared, by extending the base class of the chosen hardware component:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">//includes, namespace...</span>
-<span class="k">class</span> <span class="nc">MyHardwareResource</span> <span class="o">:</span> <span class="k">public</span> <span class="n">hardware_interface</span><span class="o">::</span><span class="n">SystemInterface</span> <span class="c1">//or Actuator, Sensor</span>
-<span class="p">{</span>
-   <span class="c1">//...</span>
-<span class="p">}</span> 
+<span class="k">class</span><span class="w"> </span><span class="nc">MyHardwareResource</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">hardware_interface</span><span class="o">::</span><span class="n">SystemInterface</span><span class="w"> </span><span class="c1">//or Actuator, Sensor</span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="c1">//...</span>
+<span class="p">}</span><span class="w"> </span>
 </pre></div>
 </div>
 <p>The hardware resource <a class="reference internal" href="../Standard_Libraries/rcl.html#lifecycle"><span class="std std-doc">lifecycle</span></a> is managed through <code class="docutils literal notranslate"><span class="pre">LifecycleNodeInterface</span></code> callbacks, extended by <code class="docutils literal notranslate"><span class="pre">hardware_interface::&lt;Type&gt;Interface</span></code>, which are overridden:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">CallbackReturn</span> <span class="nf">on_configure</span><span class="p">(</span><span class="n">State</span> <span class="o">&amp;</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
-<span class="n">CallbackReturn</span> <span class="nf">on_cleanup</span><span class="p">(</span><span class="n">State</span> <span class="o">&amp;</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
-<span class="n">CallbackReturn</span> <span class="nf">on_shutdown</span><span class="p">(</span><span class="n">State</span> <span class="o">&amp;</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
-<span class="n">CallbackReturn</span> <span class="nf">on_activate</span><span class="p">(</span><span class="n">State</span> <span class="o">&amp;</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
-<span class="n">CallbackReturn</span> <span class="nf">on_deactivate</span><span class="p">(</span><span class="n">State</span> <span class="o">&amp;</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
-<span class="n">CallbackReturn</span> <span class="nf">on_error</span><span class="p">(</span><span class="n">State</span> <span class="o">&amp;</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">CallbackReturn</span><span class="w"> </span><span class="nf">on_configure</span><span class="p">(</span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
+<span class="n">CallbackReturn</span><span class="w"> </span><span class="nf">on_cleanup</span><span class="p">(</span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
+<span class="n">CallbackReturn</span><span class="w"> </span><span class="nf">on_shutdown</span><span class="p">(</span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
+<span class="n">CallbackReturn</span><span class="w"> </span><span class="nf">on_activate</span><span class="p">(</span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
+<span class="n">CallbackReturn</span><span class="w"> </span><span class="nf">on_deactivate</span><span class="p">(</span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
+<span class="n">CallbackReturn</span><span class="w"> </span><span class="nf">on_error</span><span class="p">(</span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Where:</p>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">CallbackReturn</span></code> is the return value of <code class="docutils literal notranslate"><span class="pre">LifecycleNodeInterface</span></code>:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">rclcpp_lifecycle</span><span class="o">::</span><span class="n">node_interfaces</span><span class="o">::</span><span class="n">LifecycleNodeInterface</span><span class="o">::</span><span class="n">CallbackReturn</span><span class="p">;</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">rclcpp_lifecycle</span><span class="o">::</span><span class="n">node_interfaces</span><span class="o">::</span><span class="n">LifecycleNodeInterface</span><span class="o">::</span><span class="n">CallbackReturn</span><span class="p">;</span><span class="w"></span>
 <span class="c1">//SUCCESS ; FAILURE ; ERROR</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">State</span></code> represents the previous state of the lifecycle from which the callback was called:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">rclcpp_lifecycle</span><span class="o">::</span><span class="n">State</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">rclcpp_lifecycle</span><span class="o">::</span><span class="n">State</span><span class="w"></span>
 <span class="c1">//e.g. Unconfigured, Inactive, Active, Finalized</span>
 </pre></div>
 </div>
 </li>
 </ul>
 <p>Also <code class="docutils literal notranslate"><span class="pre">&lt;InterfaceType&gt;Interface</span></code> methods are overridden:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">CallbackReturn</span> <span class="nf">on_init</span><span class="p">(</span><span class="n">HardwareInfo</span> <span class="o">&amp;</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
-<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">StateInterface</span><span class="o">&gt;</span> <span class="n">export_state_interfaces</span><span class="p">()</span> <span class="k">override</span><span class="p">;</span>
-<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">CommandInterface</span><span class="o">&gt;</span> <span class="n">export_command_interfaces</span><span class="p">()</span> <span class="k">override</span><span class="p">;</span>
-<span class="n">return_type</span> <span class="nf">prepare_command_mode_switch</span><span class="p">(</span><span class="cm">/**/</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
-<span class="n">return_type</span> <span class="nf">perform_command_mode_switch</span><span class="p">(</span><span class="cm">/**/</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
-<span class="n">return_type</span> <span class="nf">read</span><span class="p">()</span> <span class="k">override</span><span class="p">;</span>
-<span class="n">return_type</span> <span class="nf">write</span><span class="p">()</span> <span class="k">override</span><span class="p">;</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">CallbackReturn</span><span class="w"> </span><span class="nf">on_init</span><span class="p">(</span><span class="n">HardwareInfo</span><span class="w"> </span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">StateInterface</span><span class="o">&gt;</span><span class="w"> </span><span class="n">export_state_interfaces</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">CommandInterface</span><span class="o">&gt;</span><span class="w"> </span><span class="n">export_command_interfaces</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
+<span class="n">return_type</span><span class="w"> </span><span class="nf">prepare_command_mode_switch</span><span class="p">(</span><span class="cm">/**/</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
+<span class="n">return_type</span><span class="w"> </span><span class="nf">perform_command_mode_switch</span><span class="p">(</span><span class="cm">/**/</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
+<span class="n">return_type</span><span class="w"> </span><span class="nf">read</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
+<span class="n">return_type</span><span class="w"> </span><span class="nf">write</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Where:</p>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">HardwareInfo</span></code> is a struct containing parsed URDF data for <code class="docutils literal notranslate"><span class="pre">ros2_control</span></code>:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">hardware_interface</span><span class="o">::</span><span class="n">HardwareInfo</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">hardware_interface</span><span class="o">::</span><span class="n">HardwareInfo</span><span class="w"></span>
 <span class="c1">//name, type, hardware_class_type, hardware_parameters, joints, sensors, transmissions...</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">StateInterface</span></code> is a read-only handle:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">hardware_interface</span><span class="o">::</span><span class="n">StateInterface</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">hardware_interface</span><span class="o">::</span><span class="n">StateInterface</span><span class="w"></span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">CommandInterface</span></code> is a read-write handle:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">hardware_interface</span><span class="o">::</span><span class="n">CommandInterface</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">hardware_interface</span><span class="o">::</span><span class="n">CommandInterface</span><span class="w"></span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">return_type</span></code> is the return type of <code class="docutils literal notranslate"><span class="pre">hardware_interface</span></code>:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">hardware_interface</span><span class="o">::</span><span class="n">return_type</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">hardware_interface</span><span class="o">::</span><span class="n">return_type</span><span class="w"></span>
 <span class="c1">//OK = 0, ERROR = 1</span>
 </pre></div>
 </div>
 </li>
 </ul>
-</div>
-<div class="section" id="hardware-resource-cpp">
+</section>
+<section id="hardware-resource-cpp">
 <h3>&lt;hardware_resource&gt;.cpp<a class="headerlink" href="#hardware-resource-cpp" title="Permalink to this headline"></a></h3>
 <p>Again, include the <code class="docutils literal notranslate"><span class="pre">&lt;hardware_resource&gt;.hpp</span></code> header and encapsulate the class definition in the package <code class="docutils literal notranslate"><span class="pre">namespace</span></code>.</p>
 <p>Then implement the methods:</p>
 <ul>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">on_init</span></code></strong>: lifecycle callback that instantiates the resource and sets the state to <code class="docutils literal notranslate"><span class="pre">Unconfigured</span></code>. Initializes all member variables and process parameters from the <code class="docutils literal notranslate"><span class="pre">hardware_interface::HardwareInfo</span></code> argument. The parent method <code class="docutils literal notranslate"><span class="pre">on_init</span></code> is called first:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">CallbackReturn</span> <span class="n">MyHardwareResource</span><span class="o">::</span><span class="n">on_init</span><span class="p">(</span><span class="n">HardwareInfo</span> <span class="o">&amp;</span> <span class="n">info</span><span class="p">){</span>
-   <span class="n">hardware_interface</span><span class="o">::</span><span class="n">SystemInterface</span><span class="o">::</span><span class="n">on_init</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
-   <span class="c1">//now process &#39;info_&#39;</span>
-<span class="p">}</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">CallbackReturn</span><span class="w"> </span><span class="nf">MyHardwareResource::on_init</span><span class="p">(</span><span class="n">HardwareInfo</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">info</span><span class="p">){</span><span class="w"></span>
+<span class="w">   </span><span class="n">hardware_interface</span><span class="o">::</span><span class="n">SystemInterface</span><span class="o">::</span><span class="n">on_init</span><span class="p">(</span><span class="n">info</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="c1">//now process &#39;info_&#39;</span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>This generates a <code class="docutils literal notranslate"><span class="pre">info_</span></code> attribute, which is the <code class="docutils literal notranslate"><span class="pre">HardwareInfo</span></code> struct containing the parsed <code class="docutils literal notranslate"><span class="pre">ros2control</span></code> URDF.</p>
@@ -309,8 +311,8 @@
 <li><p>Hardware interface class <code class="docutils literal notranslate"><span class="pre">my_hardware_pkg::MyHardwareResource</span></code></p></li>
 <li><p>Base class <code class="docutils literal notranslate"><span class="pre">hardware_interface::&lt;Type&gt;Interface</span></code></p></li>
 </ol>
-</div>
-<div class="section" id="hardware-pkg-xml">
+</section>
+<section id="hardware-pkg-xml">
 <h3><code class="docutils literal notranslate"><span class="pre">&lt;hardware_pkg&gt;.xml</span></code><a class="headerlink" href="#hardware-pkg-xml" title="Permalink to this headline"></a></h3>
 <p>This files contains the definition of the library and class that have to be visible for <code class="docutils literal notranslate"><span class="pre">pluginlib</span></code>. The structure is like:</p>
 <div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;libary</span> <span class="na">path=</span><span class="s">&quot;&lt;hardware_pkg&gt;&quot;</span><span class="nt">&gt;</span>
@@ -319,7 +321,7 @@
           <span class="na">base_class_type=</span><span class="s">&quot;hardware_interface::&lt;Type&gt;Interface&quot;</span><span class="nt">&gt;</span>
       <span class="nt">&lt;description&gt;</span>hardware pkg description<span class="nt">&lt;/description&gt;</span>
    <span class="nt">&lt;/class&gt;</span>
-   <span class="c">&lt;!-- other classes in this package ... --&gt;</span>
+   <span class="cm">&lt;!-- other classes in this package ... --&gt;</span>
 <span class="nt">&lt;/library&gt;</span>
 </pre></div>
 </div>
@@ -327,81 +329,81 @@
 <p class="admonition-title">Note</p>
 <p>the plugin <code class="docutils literal notranslate"><span class="pre">name</span></code> defines the hardware interface type when the RM searches for it.</p>
 </div>
-</div>
-<div class="section" id="cmakelists-txt">
+</section>
+<section id="cmakelists-txt">
 <h3>CMakeLists.txt<a class="headerlink" href="#cmakelists-txt" title="Permalink to this headline"></a></h3>
 <p>To add compile directives:</p>
 <ol class="arabic">
 <li><p>Dependencies, at least:</p>
-<div class="highlight-CMake notranslate"><div class="highlight"><pre><span></span><span class="nb">find_package</span><span class="p">(</span><span class="s">ament_cmake</span> <span class="s">REQUIRED</span><span class="p">)</span>
-<span class="nb">find_package</span><span class="p">(</span><span class="s">hardware_interface</span> <span class="s">REQUIRED</span><span class="p">)</span>
-<span class="nb">find_package</span><span class="p">(</span><span class="s">pluginlib</span> <span class="s">REQUIRED</span><span class="p">)</span>
-<span class="nb">find_package</span><span class="p">(</span><span class="s">rclcpp</span> <span class="s">REQUIRED</span><span class="p">)</span>
-<span class="nb">find_package</span><span class="p">(</span><span class="s">rclcpp_lifecycle</span> <span class="s">REQUIRED</span><span class="p">)</span>
+<div class="highlight-CMake notranslate"><div class="highlight"><pre><span></span><span class="nb">find_package</span><span class="p">(</span><span class="s">ament_cmake</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
+<span class="nb">find_package</span><span class="p">(</span><span class="s">hardware_interface</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
+<span class="nb">find_package</span><span class="p">(</span><span class="s">pluginlib</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
+<span class="nb">find_package</span><span class="p">(</span><span class="s">rclcpp</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
+<span class="nb">find_package</span><span class="p">(</span><span class="s">rclcpp_lifecycle</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
 <span class="c"># other dependencies ...</span>
 </pre></div>
 </div>
 </li>
 <li><p>Compile directive for a shared library:</p>
 <div class="highlight-CMake notranslate"><div class="highlight"><pre><span></span><span class="nb">add_library</span><span class="p">(</span>
-   <span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span>
-   <span class="s">SHARED</span>
-   <span class="s">src/&lt;hardware_resource&gt;.cpp</span>
-   <span class="c"># other source files to be compiled ...</span>
+<span class="w">   </span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span>
+<span class="w">   </span><span class="s">SHARED</span>
+<span class="w">   </span><span class="s">src/&lt;hardware_resource&gt;.cpp</span>
+<span class="w">   </span><span class="c"># other source files to be compiled ...</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </li>
 <li><p>Include directories for the library:</p>
 <div class="highlight-CMake notranslate"><div class="highlight"><pre><span></span><span class="nb">target_include_directories</span><span class="p">(</span>
-   <span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span>
-   <span class="s">PRIVATE</span>
-   <span class="s">include</span>
-   <span class="c"># other include directories</span>
+<span class="w">   </span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span>
+<span class="w">   </span><span class="s">PRIVATE</span>
+<span class="w">   </span><span class="s">include</span>
+<span class="w">   </span><span class="c"># other include directories</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </li>
 <li><p>Ament dependencies needed by the library, at least:</p>
 <div class="highlight-CMake notranslate"><div class="highlight"><pre><span></span><span class="nb">ament_target_dependencies</span><span class="p">(</span>
-   <span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span>
-   <span class="s">hardware_interface</span>
-   <span class="s">pluginlib</span>
-   <span class="s">rclcpp</span>
-   <span class="s">rclcpp_lifecycle</span>
+<span class="w">   </span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span>
+<span class="w">   </span><span class="s">hardware_interface</span>
+<span class="w">   </span><span class="s">pluginlib</span>
+<span class="w">   </span><span class="s">rclcpp</span>
+<span class="w">   </span><span class="s">rclcpp_lifecycle</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </li>
 <li><p>Export for pluginlib description file:</p>
-<div class="highlight-CMake notranslate"><div class="highlight"><pre><span></span><span class="nb">pluginlib_export_plugin_description_file</span><span class="p">(</span><span class="s">hardware_interface</span> <span class="s">&lt;hardware_pkg&gt;.xml</span><span class="p">)</span>
+<div class="highlight-CMake notranslate"><div class="highlight"><pre><span></span><span class="nb">pluginlib_export_plugin_description_file</span><span class="p">(</span><span class="s">hardware_interface</span><span class="w"> </span><span class="s">&lt;hardware_pkg&gt;.xml</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
 <li><p>Install directives for targets and include directories:</p>
 <div class="highlight-CMake notranslate"><div class="highlight"><pre><span></span><span class="nb">install</span><span class="p">(</span>
-   <span class="s">TARGETS</span> <span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span>
-   <span class="s">DESTINATION</span> <span class="s">lib</span>
+<span class="w">   </span><span class="s">TARGETS</span><span class="w"> </span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span>
+<span class="w">   </span><span class="s">DESTINATION</span><span class="w"> </span><span class="s">lib</span>
 <span class="p">)</span>
 <span class="nb">install</span><span class="p">(</span>
-   <span class="s">DIRECTORY</span> <span class="s">include/</span>
-   <span class="s">DESTINATION</span> <span class="s">include</span>
+<span class="w">   </span><span class="s">DIRECTORY</span><span class="w"> </span><span class="s">include/</span>
+<span class="w">   </span><span class="s">DESTINATION</span><span class="w"> </span><span class="s">include</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </li>
 <li><p>(optional) export directives</p>
 <div class="highlight-CMake notranslate"><div class="highlight"><pre><span></span><span class="nb">ament_export_include_directories</span><span class="p">(</span>
-   <span class="s">include</span>
+<span class="w">   </span><span class="s">include</span>
 <span class="p">)</span>
 <span class="nb">ament_export_libraries</span><span class="p">(</span>
-   <span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span>
+<span class="w">   </span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span>
 <span class="p">)</span>
 <span class="nb">ament_export_dependencies</span><span class="p">(</span>
-   <span class="s">hardware_interface</span>
-   <span class="s">pluginlib</span>
-   <span class="s">rclcpp</span>
-   <span class="s">rclcpp_lifecycle</span>
+<span class="w">   </span><span class="s">hardware_interface</span>
+<span class="w">   </span><span class="s">pluginlib</span>
+<span class="w">   </span><span class="s">rclcpp</span>
+<span class="w">   </span><span class="s">rclcpp_lifecycle</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -411,8 +413,8 @@
 </div>
 </li>
 </ol>
-</div>
-<div class="section" id="package-xml">
+</section>
+<section id="package-xml">
 <h3>package.xml<a class="headerlink" href="#package-xml" title="Permalink to this headline"></a></h3>
 <p>Add dependencies:</p>
 <div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;depend&gt;</span>hardware_interface<span class="nt">&lt;/depend&gt;</span>
@@ -421,9 +423,9 @@
 <span class="nt">&lt;depend&gt;</span>rclcpp_lifecycle<span class="nt">&lt;/depend&gt;</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="testing-todo">
+</section>
+</section>
+<section id="testing-todo">
 <h2>Testing #TODO<a class="headerlink" href="#testing-todo" title="Permalink to this headline"></a></h2>
 <p><strong>test to check if controller can be found and loaded</strong></p>
 <ol class="arabic simple">
@@ -437,7 +439,7 @@
 </ol>
 <div class="highlight-CMake notranslate"><div class="highlight"><pre><span></span><span class="c">#???</span>
 <span class="nb">if</span><span class="p">(</span><span class="s">BUILD_TESTING</span><span class="p">)</span>
-  <span class="nb">find_package</span><span class="p">(</span><span class="s">ament_cmake_gtest</span> <span class="s">REQUIRED</span><span class="p">)</span>
+<span class="w">  </span><span class="nb">find_package</span><span class="p">(</span><span class="s">ament_cmake_gtest</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
 <span class="nb">endif</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -455,12 +457,12 @@
 <li><p>source the <code class="docutils literal notranslate"><span class="pre">setup.bash</span></code> in the <code class="docutils literal notranslate"><span class="pre">install</span></code> folder</p></li>
 <li><p>test with <code class="docutils literal notranslate"><span class="pre">colcon</span> <span class="pre">test</span> <span class="pre">&lt;HI_package&gt;</span></code> to check if the controller can be found through <code class="docutils literal notranslate"><span class="pre">pluginlib</span></code> and loaded by the CM.</p></li>
 </ol>
-<div class="section" id="fake-components">
+<section id="fake-components">
 <h3>Fake components<a class="headerlink" href="#fake-components" title="Permalink to this headline"></a></h3>
 <p>Fake components are trivial simulations of hardware components, with an ideal behavior of mirroring commands to states. This fake HI can be added instead of the true HI for offline testing (i.e. launch, controllers, broadcaster, integrations with MoveIt) without hardware. <a class="reference external" href="http://control.ros.org/ros2_control/hardware_interface/doc/fake_components_userdoc.html">More info here</a>.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>

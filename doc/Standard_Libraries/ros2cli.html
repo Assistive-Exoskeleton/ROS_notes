@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Command Line Interface &mdash; ROS2 notes 2022 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -66,13 +67,14 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS2 Control</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rQt/README.html">RQt (formerly RQt2)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Docker/README.html">ROS and docker containers</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ROS1/README.html">ROS1</a></li>
@@ -106,10 +108,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="command-line-interface">
+  <section class="tex2jax_ignore mathjax_ignore" id="command-line-interface">
 <h1>Command Line Interface<a class="headerlink" href="#command-line-interface" title="Permalink to this headline"></a></h1>
 <p><a class="reference external" href="https://github.com/ros2/ros2cli"><code class="docutils literal notranslate"><span class="pre">ros2cli</span></code></a> is the command line interface library. All <code class="docutils literal notranslate"><span class="pre">ros2cli</span></code> tools start with the prefix <code class="docutils literal notranslate"><span class="pre">ros2</span></code> followed by a <strong>command</strong>, a <strong>verb</strong> and (possibly) <strong>arguments</strong>.</p>
-<div class="section" id="help-and-documentation">
+<section id="help-and-documentation">
 <h2>Help and documentation<a class="headerlink" href="#help-and-documentation" title="Permalink to this headline"></a></h2>
 <p>For any <strong>command</strong> the documentation is accessible through:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ros2 &lt;command&gt; --help
@@ -119,8 +121,8 @@
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ros2 &lt;command&gt; &lt;verb&gt; -h
 </pre></div>
 </div>
-</div>
-<div class="section" id="launch-and-run">
+</section>
+<section id="launch-and-run">
 <h2>Launch and run<a class="headerlink" href="#launch-and-run" title="Permalink to this headline"></a></h2>
 <p>To run an executable:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ros2 run &lt;package_name&gt; &lt;executable_name&gt;
@@ -131,8 +133,8 @@
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ros2 launch &lt;package_name&gt; &lt;launch_file.launch.py&gt;
 </pre></div>
 </div>
-</div>
-<div class="section" id="nodes">
+</section>
+<section id="nodes">
 <h2>Nodes<a class="headerlink" href="#nodes" title="Permalink to this headline"></a></h2>
 <p>Nodes cli tools use the command <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">node</span></code>:</p>
 <ul>
@@ -147,8 +149,8 @@
 </div>
 </li>
 </ul>
-</div>
-<div class="section" id="interfaces">
+</section>
+<section id="interfaces">
 <h2>Interfaces<a class="headerlink" href="#interfaces" title="Permalink to this headline"></a></h2>
 <p>The various ROS2 interfaces (messages, topics, services, actions) cli tools use the command <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">interface</span></code>:</p>
 <ul>
@@ -171,8 +173,8 @@
 <p class="admonition-title">Note</p>
 <p>Each interface has its own command (e.g. <code class="docutils literal notranslate"><span class="pre">topic</span></code>, <code class="docutils literal notranslate"><span class="pre">service</span></code>, <code class="docutils literal notranslate"><span class="pre">action</span></code>). Note that <strong>arguments</strong> passed to an interface call (e.g. <code class="docutils literal notranslate"><span class="pre">topic</span> <span class="pre">pub</span></code>, <code class="docutils literal notranslate"><span class="pre">service</span> <span class="pre">call</span></code>, <code class="docutils literal notranslate"><span class="pre">action</span> <span class="pre">send_goal</span></code>) are written in <code class="docutils literal notranslate"><span class="pre">YAML</span></code> format, a dictionary-like syntax similar to json.</p>
 </div>
-</div>
-<div class="section" id="topics">
+</section>
+<section id="topics">
 <h2>Topics<a class="headerlink" href="#topics" title="Permalink to this headline"></a></h2>
 <p>Topics cli tools use the command <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">topic</span></code>:</p>
 <ul>
@@ -206,8 +208,8 @@
 </div>
 </li>
 </ul>
-</div>
-<div class="section" id="services">
+</section>
+<section id="services">
 <h2>Services<a class="headerlink" href="#services" title="Permalink to this headline"></a></h2>
 <p>Services cli tools use the command <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">service</span></code>:</p>
 <ul>
@@ -224,8 +226,8 @@
 </div>
 </li>
 </ul>
-</div>
-<div class="section" id="parameters">
+</section>
+<section id="parameters">
 <h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline"></a></h2>
 <p>Parameters cli tools use the command <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">param</span></code>:</p>
 <ul>
@@ -255,8 +257,8 @@
 </div>
 </li>
 </ul>
-</div>
-<div class="section" id="actions">
+</section>
+<section id="actions">
 <h2>Actions<a class="headerlink" href="#actions" title="Permalink to this headline"></a></h2>
 <p>Actions cli tools use the command <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">action</span></code>:</p>
 <ul>
@@ -280,8 +282,8 @@
 </div>
 </li>
 </ul>
-</div>
-<div class="section" id="packages">
+</section>
+<section id="packages">
 <h2>Packages<a class="headerlink" href="#packages" title="Permalink to this headline"></a></h2>
 <p>Packages cli tools use the command <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">pkg</span></code>:</p>
 <ul>
@@ -296,8 +298,8 @@
 </div>
 </li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

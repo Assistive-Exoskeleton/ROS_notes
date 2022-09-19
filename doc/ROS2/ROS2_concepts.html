@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ROS2 concepts &mdash; ROS2 notes 2022 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -63,13 +64,14 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS2 Control</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rQt/README.html">RQt (formerly RQt2)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Docker/README.html">ROS and docker containers</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ROS1/README.html">ROS1</a></li>
@@ -102,26 +104,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="ros2-concepts">
+  <section class="tex2jax_ignore mathjax_ignore" id="ros2-concepts">
 <h1>ROS2 concepts<a class="headerlink" href="#ros2-concepts" title="Permalink to this headline"></a></h1>
 <p>The ROS2 <strong>graph</strong> or <strong>computation graph</strong> is the peer-to-peer network of ROS elements processing data together at one time. It encompasses all executables and the connections between them if you were to map them all out and visualize them.</p>
-<div class="section" id="nodes">
+<section id="nodes">
 <h2>Nodes<a class="headerlink" href="#nodes" title="Permalink to this headline"></a></h2>
 <p>Nodes in ROS are responsible for each single module purpose. Nodes communicate data with one another through <a class="reference internal" href="#topics"><span class="std std-doc">topics</span></a>, <a class="reference internal" href="#services"><span class="std std-doc">services</span></a>, <a class="reference internal" href="#actions"><span class="std std-doc">actions</span></a> or <a class="reference internal" href="#parameters"><span class="std std-doc">parameters</span></a>.</p>
 <p>A single executable (C++, Python…) can contain one or more nodes.</p>
 <p><img alt="Nodes" src="../../_images/nodes.gif" /></p>
 <p>All nodes have a <a class="reference internal" href="#graph-resource-name"><span class="std std-doc">name</span></a> that uniquely identifies them to the rest of the system.</p>
-</div>
-<div class="section" id="parameters">
+</section>
+<section id="parameters">
 <h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline"></a></h2>
 <p>A parameter is a configuration state of a node/system. Parameters are dynamically reconfigurable and built off of ROS services.</p>
-</div>
-<div class="section" id="interfaces">
+</section>
+<section id="interfaces">
 <h2>Interfaces<a class="headerlink" href="#interfaces" title="Permalink to this headline"></a></h2>
 <p>ROS applications typically communicate through <a class="reference external" href="https://docs.ros.org/en/galactic/Concepts/About-ROS-Interfaces.html">interfaces</a> of one of three types: messages, services and actions. ROS2 uses a simplified description language, the <strong>interface definition language</strong> (<a class="reference internal" href="IDL.html"><span class="doc std std-doc">IDL</span></a>) to define interfaces.</p>
 <div class="toctree-wrapper compound">
 </div>
-<div class="section" id="topics">
+<section id="topics">
 <h3>Topics<a class="headerlink" href="#topics" title="Permalink to this headline"></a></h3>
 <p>Topics act as a bus for nodes to exchange <strong>messages</strong>. Communication via topics is N-to-N through a <strong>Publisher-Subscriber model</strong>:</p>
 <ul class="simple">
@@ -130,14 +132,14 @@
 </ul>
 <p><img alt="topics" src="../../_images/topics.gif" /></p>
 <p>Nodes need to know the <a class="reference internal" href="#package-resource-name"><span class="std std-doc"><strong>type</strong></span></a> of the message to be able to understand the information. A topic type is defined by the message type published on it.</p>
-</div>
-<div class="section" id="services">
+</section>
+<section id="services">
 <h3>Services<a class="headerlink" href="#services" title="Permalink to this headline"></a></h3>
 <p>Services are another method of communication for nodes. Services are based on a <strong>Request-Response model</strong>. Services only provide data when they are specifically called by a client.</p>
 <p><img alt="services" src="../../_images/services.gif" /></p>
 <p>Like topics, services have a <a class="reference internal" href="#package-resource-name"><span class="std std-doc"><strong>type</strong></span></a>.</p>
-</div>
-<div class="section" id="actions">
+</section>
+<section id="actions">
 <h3>Actions<a class="headerlink" href="#actions" title="Permalink to this headline"></a></h3>
 <p>Another communication type intended for long-running tasks. Actions consist of:</p>
 <ul class="simple">
@@ -151,11 +153,11 @@
 <p>both the <strong>action server</strong> and the <strong>action client</strong> can stop a goal to be processed. When the server stops a goal it’s said to <em>abort</em> the goal.</p>
 </div>
 <p><img alt="actions" src="../../_images/actions.gif" /></p>
-</div>
-</div>
-<div class="section" id="names">
+</section>
+</section>
+<section id="names">
 <h2>Names<a class="headerlink" href="#names" title="Permalink to this headline"></a></h2>
-<div class="section" id="graph-resource-name">
+<section id="graph-resource-name">
 <h3>Graph Resource Name<a class="headerlink" href="#graph-resource-name" title="Permalink to this headline"></a></h3>
 <p>Graph Resource Names provide a hierarchical naming structure that is used for all resources in a <strong>ROS graph</strong>.</p>
 <p>Each resource is defined within a <strong>namespace</strong>, which it may share with other resources. In general, resources can:</p>
@@ -192,8 +194,8 @@
 <p class="admonition-title">Note</p>
 <p>any name within a ROS2 Node can be <a class="reference internal" href="../Standard_Libraries/ros2cli.html#launch-and-run"><span class="std std-doc">remapped</span></a> when the Node is launched at the command-line.</p>
 </div>
-</div>
-<div class="section" id="package-resource-name">
+</section>
+<section id="package-resource-name">
 <h3>Package resource name<a class="headerlink" href="#package-resource-name" title="Permalink to this headline"></a></h3>
 <p>Package Resource Names are used in ROS to simplify the process of referring to files and data types on disk. They are just the name of the package that the resource is in plus the name of the resource</p>
 <blockquote>
@@ -205,9 +207,9 @@
 <li><p><strong>Service</strong> (srv) types</p></li>
 <li><p><strong>Actions</strong> (action) types</p></li>
 </ul>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>

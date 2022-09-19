@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SRDF and URDF &mdash; ROS2 notes 2022 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Perception Pipeline" href="perception.html" />
+    <link rel="prev" title="MSA - Moveit setup Assistant" href="MSA.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> ROS2 notes
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_concepts.html">ROS2 concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/ROS2_filesystem.html">ROS2 filesystem</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ROS2/Launch.html">Launch files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Robot_description/README.html">Robot description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Standard_Libraries/README.html">ROS2 standard libraries</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS2 Control</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="README.html">MoveIt2</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="concepts.html">Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MSA.html">MSA - Moveit setup Assistant</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">SRDF and URDF</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#urdf">URDF</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#collision-checking">Collision Checking</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test-your-urdf">Test your URDF</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#srdf">SRDF</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#srdf-structure">SRDF Structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#virtual-joints">Virtual Joints</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#passive-joints">Passive Joints</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#groups">Groups</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#collection-of-joints">Collection of Joints</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#collection-of-links">Collection of Links</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#serial-chain">Serial Chain</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#collection-of-sub-groups">Collection of Sub-Groups</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#end-effectors">End-Effectors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#self-collisions">Self-Collisions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#robot-poses">Robot Poses</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="perception.html">Perception Pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="moveit_motion_planning.html">MoveIt - motion planning plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="moveit_kinematics.html">MoveIt - kinematics plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rQt/README.html">RQt (formerly RQt2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Docker/README.html">ROS and docker containers</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ROS1/README.html">ROS1</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ROS2 notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="README.html">MoveIt2</a> &raquo;</li>
+      <li>SRDF and URDF</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doc/moveit/SRDF.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="srdf-and-urdf">
+<h1>SRDF and URDF<a class="headerlink" href="#srdf-and-urdf" title="Permalink to this headline"></a></h1>
+<section id="urdf">
+<h2>URDF<a class="headerlink" href="#urdf" title="Permalink to this headline"></a></h2>
+<p>MoveIt starts with a URDF (Universal Robot Description Format), the native format for describing robots in ROS. In this tutorial, you will find resources for the URDF, important tips and also a list of MoveIt specific requirements.</p>
+<p><strong>Resources available:</strong></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../gazebo/URDF.html"><span class="doc std std-doc">URDF principles</span></a></p></li>
+<li><p><a class="reference external" href="https://wiki.ros.org/sw_urdf_exporter">SOLIDWORKS URDF Plugin</a> - A plugin that lets you generate a URDF directly from a SOLIDWORKS model.</p></li>
+</ul>
+<section id="collision-checking">
+<h3>Collision Checking<a class="headerlink" href="#collision-checking" title="Permalink to this headline"></a></h3>
+<p>MoveIt uses the meshes specified in the URDF for collision checking. The URDF allows you to specify two sets of meshes separately for visualization and collision checking. In general, the visualization meshes can be detailed and pretty, but the collision meshes should be much less detailed. The number of triangles in a mesh affects the amount of time it takes to collision check a robot link. The number of triangles in the whole robot should be on the order of a few thousand.</p>
+</section>
+<section id="test-your-urdf">
+<h3>Test your URDF<a class="headerlink" href="#test-your-urdf" title="Permalink to this headline"></a></h3>
+<p>It is very important to test your URDF out and make sure things are ok. The easiest ways are:</p>
+<ul class="simple">
+<li><p>VsCode extension <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-iot.vscode-ros">ROS</a>, then use URDF preview.</p></li>
+<li><p>Build basic ROS2 package and launch <code class="docutils literal notranslate"><span class="pre">description</span></code> package; the easiest way to check joints domains is to include <code class="docutils literal notranslate"><span class="pre">robot_state_publisher_gui</span></code> package into lauch file. (check <a class="reference external" href="https://github.com/Assistive-Exoskeleton/Templates_ROS2">templates repository</a> to easily create basic ROS packages).</p></li>
+<li><p>Matlab tools for ROS/ROS2.</p></li>
+</ul>
+</section>
+</section>
+<section id="srdf">
+<h2>SRDF<a class="headerlink" href="#srdf" title="Permalink to this headline"></a></h2>
+<p>The SRDF or Semantic Robot Description Format complement the URDF and specifies joint groups, default robot configurations, additional collision checking information, and additional transforms that may be needed to completely specify the robot’s pose. The recommended way to generate a SRDF is using the MoveIt Setup Assistant.</p>
+<section id="srdf-structure">
+<h3>SRDF Structure<a class="headerlink" href="#srdf-structure" title="Permalink to this headline"></a></h3>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+
+ <span class="cm">&lt;!-- This does not replace URDF, and is not an extension of URDF.</span>
+<span class="cm">      This is a format for representing semantic information about the robot structure.</span>
+<span class="cm">      A URDF file must exist for this robot as well, where the joints and the links that are referenced are defined --&gt;</span>
+ <span class="nt">&lt;robot</span> <span class="na">name=</span><span class="s">&quot;some robot&quot;</span><span class="nt">&gt;</span>
+
+   <span class="nt">&lt;group</span> <span class="na">name=</span><span class="s">&quot;group1&quot;</span><span class="nt">&gt;</span>
+      <span class="cm">&lt;!-- when a link is specified, the parent joint of that link (if it exists) is automatically included --&gt;</span>
+      <span class="nt">&lt;link</span> <span class="na">name=</span><span class="s">&quot;...&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;link</span> <span class="na">name=</span><span class="s">&quot;...&quot;</span><span class="nt">/&gt;</span>
+
+      <span class="cm">&lt;!-- when a joint is specified, the child link of that joint (which will always exist) is automatically included --&gt;</span>
+      <span class="nt">&lt;joint</span> <span class="na">name=</span><span class="s">&quot;...&quot;</span> <span class="nt">/&gt;</span>
+
+      <span class="cm">&lt;!-- when a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group --&gt;</span>
+      <span class="nt">&lt;chain</span> <span class="na">base_link=</span><span class="s">&quot;l_shoulder_pan_link&quot;</span> <span class="na">tip_link=</span><span class="s">&quot;l_wrist_roll_link&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;chain</span> <span class="na">base_link=</span><span class="s">&quot;r_shoulder_pan_link&quot;</span> <span class="na">tip_link=</span><span class="s">&quot;r_wrist_roll_link&quot;</span><span class="nt">/&gt;</span>
+   <span class="nt">&lt;/group&gt;</span>
+
+   <span class="cm">&lt;!-- groups can also be formed by referencing to already defined group names --&gt;</span>
+   <span class="nt">&lt;group</span> <span class="na">name=</span><span class="s">&quot;arms&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;group</span> <span class="na">name=</span><span class="s">&quot;left_arm&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;group</span> <span class="na">name=</span><span class="s">&quot;right_arm&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;link</span> <span class="na">name=</span><span class="s">&quot;...&quot;</span> <span class="nt">/&gt;</span>
+   <span class="nt">&lt;/group&gt;</span>
+
+   <span class="cm">&lt;!-- define a named state/configuration of a group --&gt;</span>
+   <span class="nt">&lt;group_state</span> <span class="na">name=</span><span class="s">&quot;name of this state&quot;</span> <span class="na">group=</span><span class="s">&quot;name of group the state is for&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;joint</span> <span class="na">name=</span><span class="s">&quot;name of joint in group&quot;</span> <span class="na">value=</span><span class="s">&quot;&quot;</span> <span class="nt">/&gt;</span>
+      <span class="cm">&lt;!-- all joints must be specified for the state to be valid --&gt;</span>
+   <span class="nt">&lt;/group_state&gt;</span>
+
+   <span class="cm">&lt;!-- Define how the robot moves in its environment, i.e., connection to robot&#39;s root link --&gt;</span>
+   <span class="nt">&lt;virtual_joint</span> <span class="na">name=</span><span class="s">&quot;world_joint&quot;</span> <span class="na">type=</span><span class="s">&quot;planar&quot;</span> <span class="na">parent_frame=</span><span class="s">&quot;some fixed frame&quot;</span> <span class="na">child_link=</span><span class="s">&quot;robot&#39;s root link name&quot;</span><span class="nt">/&gt;</span> <span class="cm">&lt;!-- type can be planar, floating or fixed --&gt;</span>
+
+   <span class="cm">&lt;!-- We can then include the virtual joint in groups --&gt;</span>
+   <span class="nt">&lt;group</span> <span class="na">name=</span><span class="s">&quot;whole_body&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;group</span> <span class="na">name=</span><span class="s">&quot;arms&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;joint</span> <span class="na">name=</span><span class="s">&quot;world_joint&quot;</span><span class="nt">/&gt;</span>
+   <span class="nt">&lt;/group&gt;</span>
+
+
+   <span class="cm">&lt;!-- define end effectors --&gt;</span>
+   <span class="nt">&lt;end_effector</span> <span class="na">name=</span><span class="s">&quot;some diff name&quot;</span> <span class="na">parent_link=</span><span class="s">&quot;...&quot;</span> <span class="na">group=</span><span class="s">&quot;group_name&quot;</span><span class="nt">/&gt;</span>
+
+   <span class="cm">&lt;!-- By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. There can be many such tags in this file.--&gt;</span>
+   <span class="nt">&lt;disable_collisions</span> <span class="na">link1=</span><span class="s">&quot;link1&quot;</span> <span class="na">link2=</span><span class="s">&quot;link2&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;/robot&gt;</span>
+</pre></div>
+</div>
+<p>For further information, check <a class="reference external" href="https://wiki.ros.org/srdf">official wiki</a>.</p>
+</section>
+<section id="virtual-joints">
+<h3>Virtual Joints<a class="headerlink" href="#virtual-joints" title="Permalink to this headline"></a></h3>
+<p>The URDF contains information only about the physical joints on the robot. Often, additional joints need to be defined to specify the pose of the root link on the robot with respect to a world coordinate system. In such cases, a virtual joint is used to specify this connection. E.g., a mobile robot like the PR2 that moves around in the plane is specified using a planar virtual joint that attaches the world coordinate frame to the frame of the robot. A fixed robot (like an industrial manipulator) should be attached to the world using a fixed joint.</p>
+</section>
+<section id="passive-joints">
+<h3>Passive Joints<a class="headerlink" href="#passive-joints" title="Permalink to this headline"></a></h3>
+<p>Passive joints are unactuated joints on a robot, e.g. passive casters on a differential drive robots. They are specified separately in the SRDF to make sure that different components in the motion planning or control pipelines know that the joints cannot be directly controlled. If your robot has unactuated casters, they should be specified as passive casters.</p>
+</section>
+<section id="groups">
+<h3>Groups<a class="headerlink" href="#groups" title="Permalink to this headline"></a></h3>
+<p>a ‘Group’ (sometimes called ‘JointGroup’ or ‘Planning Group’) is a central concept in MoveIt. MoveIt always acts on a particular group. MoveIt will only consider moving the joints in the group that it is planning for – other joints are left stationary. (A motion plan where all joints in the robot may move can be achieved by creating a group containing all joints.) A group is simply a collection of joints and links. Each group can be specified in one of several different ways:</p>
+</section>
+<section id="collection-of-joints">
+<h3>Collection of Joints<a class="headerlink" href="#collection-of-joints" title="Permalink to this headline"></a></h3>
+<p>A group can be specified as a collection of joints. All the child links of each joint are automatically included in the group.</p>
+</section>
+<section id="collection-of-links">
+<h3>Collection of Links<a class="headerlink" href="#collection-of-links" title="Permalink to this headline"></a></h3>
+<p>A group can also be specified as a collection of links. All the parent joints of the links are also included in the group.</p>
+</section>
+<section id="serial-chain">
+<h3>Serial Chain<a class="headerlink" href="#serial-chain" title="Permalink to this headline"></a></h3>
+<p>A serial chain is specified using the base link and the tip link. The tip link in a chain is the child link of the last joint in the chain. The base link in a chain is the parent link for the first joint in the chain.</p>
+</section>
+<section id="collection-of-sub-groups">
+<h3>Collection of Sub-Groups<a class="headerlink" href="#collection-of-sub-groups" title="Permalink to this headline"></a></h3>
+<p>A group can also be a collection of groups. E.g., you can define left_arm and right_arm as two groups and then define a new group called both_arms that includes these two groups.</p>
+</section>
+<section id="end-effectors">
+<h3>End-Effectors<a class="headerlink" href="#end-effectors" title="Permalink to this headline"></a></h3>
+<p>Certain groups in a robot can be given a special designation as an end-effector. An end-effector is typically connected to another group (like an arm) through a fixed joint. Note that when specifying groups that are end-effectors, it’s important to make sure that there are no common links between the end-effector and the parent group it is connected to.</p>
+</section>
+<section id="self-collisions">
+<h3>Self-Collisions<a class="headerlink" href="#self-collisions" title="Permalink to this headline"></a></h3>
+<p>The Default Self-Collision Matrix Generator (part of Setup Assistant) searches for pairs of links on the robot that can safely be disabled from collision checking, decreasing motion planning processing time. These pairs of links are disabled when they are always in collision, never in collision, in collision in the robot’s default position or when the links are adjacent to each other on the kinematic chain. The sampling density specifies how many random robot positions to check for self collision. Higher densities require more computation time while lower densities have a higher possibility of disabling pairs that should not be disabled. The default value is 10,000 collision checks. Collision checking is done in parallel to decrease processing time.</p>
+</section>
+<section id="robot-poses">
+<h3>Robot Poses<a class="headerlink" href="#robot-poses" title="Permalink to this headline"></a></h3>
+<p>The SRDF can also store fixed configurations of the robot. A typical example of the SRDF in this case is in defining a HOME position for a manipulator. The configuration is stored with a string id, which can be used to recover the configuration later.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="MSA.html" class="btn btn-neutral float-left" title="MSA - Moveit setup Assistant" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="perception.html" class="btn btn-neutral float-right" title="Perception Pipeline" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Assistive exoskeleton Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

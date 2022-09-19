@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Concepts &mdash; ROS2 notes 2022 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -17,8 +18,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="MoveIt - motion planning plugin" href="moveit_motion_planning.html" />
-    <link rel="prev" title="MoveIt" href="README.html" /> 
+    <link rel="next" title="MSA - Moveit setup Assistant" href="MSA.html" />
+    <link rel="prev" title="MoveIt2" href="README.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -47,7 +48,7 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS2 Control</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="README.html">MoveIt</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="README.html">MoveIt2</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Concepts</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#the-move-group-node">The move_group node</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#user-interface">User Interface</a></li>
@@ -62,6 +63,9 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="MSA.html">MSA - Moveit setup Assistant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SRDF.html">SRDF and URDF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="perception.html">Perception Pipeline</a></li>
 <li class="toctree-l2"><a class="reference internal" href="moveit_motion_planning.html">MoveIt - motion planning plugin</a></li>
 <li class="toctree-l2"><a class="reference internal" href="moveit_kinematics.html">MoveIt - kinematics plugin</a></li>
 </ul>
@@ -72,6 +76,7 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Docker/README.html">ROS and docker containers</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ROS1/README.html">ROS1</a></li>
@@ -94,7 +99,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="README.html">MoveIt</a> &raquo;</li>
+          <li><a href="README.html">MoveIt2</a> &raquo;</li>
       <li>Concepts</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/doc/moveit/concepts.md.txt" rel="nofollow"> View page source</a>
@@ -105,16 +110,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="concepts">
+  <section class="tex2jax_ignore mathjax_ignore" id="concepts">
 <h1>Concepts<a class="headerlink" href="#concepts" title="Permalink to this headline"></a></h1>
 <p>The following is an overview of how MoveIt works.</p>
 <p><img alt="moveitpipeline" src="../../_images/moveit_pipeline.png" /></p>
-<div class="section" id="the-move-group-node">
+<section id="the-move-group-node">
 <h2>The move_group node<a class="headerlink" href="#the-move-group-node" title="Permalink to this headline"></a></h2>
 <p>The figure above shows the high-level system architecture for the primary node provided by MoveIt called move_group. This node serves as an integrator: pulling all the individual components together to provide a set of ROS actions and services for users to use.</p>
 <p><img alt="movegroup" src="../../_images/move_group.png" /></p>
-</div>
-<div class="section" id="user-interface">
+</section>
+<section id="user-interface">
 <h2>User Interface<a class="headerlink" href="#user-interface" title="Permalink to this headline"></a></h2>
 <p>The users can access the actions and services provided by move_group in three ways:</p>
 <ul class="simple">
@@ -123,8 +128,8 @@
 <li><p>Through a GUI - using the Motion Planning plugin to Rviz (the ROS visualizer)</p></li>
 </ul>
 <p>move_group can be configured using the ROS param server from where it will also get the URDF and SRDF for the robot.</p>
-</div>
-<div class="section" id="configuration">
+</section>
+<section id="configuration">
 <h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline"></a></h2>
 <p>move_group is a ROS node. It uses the ROS param server to get three kinds of information:</p>
 <ul class="simple">
@@ -132,23 +137,23 @@
 <li><p>SRDF - move_group looks for the robot_description_semantic parameter on the ROS param server to get the SRDF for the robot. The SRDF is typically created (once) by a user using the MoveIt Setup Assistant (only for ROS1 at 2022).</p></li>
 <li><p>MoveIt configuration - move_group will look on the ROS param server for other configuration specific to MoveIt including joint limits, kinematics, motion planning, perception and other information. Config files for these components are automatically generated by the MoveIt setup assistant and stored in the config directory of the corresponding MoveIt config package for the robot.</p></li>
 </ul>
-</div>
-<div class="section" id="robot-interface">
+</section>
+<section id="robot-interface">
 <h2>Robot Interface<a class="headerlink" href="#robot-interface" title="Permalink to this headline"></a></h2>
 <p>move_group talks to the robot through ROS topics and actions. It communicates with the robot to get current state information (positions of the joints, etc.), to get point clouds and other sensor data from the robot sensors and to talk to the controllers on the robot.</p>
-<div class="section" id="joint-state-information">
+<section id="joint-state-information">
 <h3>Joint State Information<a class="headerlink" href="#joint-state-information" title="Permalink to this headline"></a></h3>
 <p>move_group listens on the /joint_states topic for determining the current state information - i.e. determining where each joint of the robot is. move_group is capable of listening to multiple publishers on this topic even if they are publishing only partial information about the robot state (e.g. separate publishers may be used for the arm and mobile base of a robot). Note that move_group will not setup its own joint state publisher - this is something that has to be implemented on each robot.</p>
-</div>
-<div class="section" id="transform-information">
+</section>
+<section id="transform-information">
 <h3>Transform Information<a class="headerlink" href="#transform-information" title="Permalink to this headline"></a></h3>
 <p>move_group monitors transform information using the ROS TF library. This allows the node to get global information about the robot’s pose (among other things). E.g., the ROS navigation stack will publish the transform between the map frame and base frame of the robot to TF. move_group can use TF to figure out this transform for internal use. Note that move_group only listens to TF. To publish TF information from your robot, you will need to have a robot_state_publisher node running on your robot.</p>
-</div>
-<div class="section" id="controller-interface">
+</section>
+<section id="controller-interface">
 <h3>Controller Interface<a class="headerlink" href="#controller-interface" title="Permalink to this headline"></a></h3>
 <p>move_group talks to the controllers on the robot using the FollowJointTrajectoryAction interface. This is a ROS action interface. A server on the robot needs to service this action - this server is not provided by move_group itself. move_group will only instantiate a client to talk to this controller action server on your robot.</p>
-</div>
-<div class="section" id="planning-scene">
+</section>
+<section id="planning-scene">
 <h3>Planning Scene<a class="headerlink" href="#planning-scene" title="Permalink to this headline"></a></h3>
 <p><img alt="" src="../../_images/planning_scene.png" /></p>
 <p>move_group uses the Planning Scene Monitor to maintain a planning scene, which is a representation of the world and the current state of the robot. The robot state can include any objects attached to (carried by) the robot which are considered to be rigidly attached to the robot.
@@ -158,11 +163,11 @@ The planning scene monitor listens to:</p>
 <li><p><strong>Sensor Information</strong>: using the world geometry monitor described below</p></li>
 <li><p><strong>World geometry information</strong>: from user input on the planning_scene topic (as a planning scene diff).</p></li>
 </ul>
-<div class="section" id="world-geometry-monitor">
+<section id="world-geometry-monitor">
 <h4><strong>World Geometry Monitor</strong><a class="headerlink" href="#world-geometry-monitor" title="Permalink to this headline"></a></h4>
 <p>The world geometry monitor builds world geometry using information from the sensors on the robot and from user input. It uses the occupancy map monitor  to build a 3D representation of the environment around the robot and augments that with information on the planning_scene topic for adding object information.</p>
-</div>
-<div class="section" id="d-perception">
+</section>
+<section id="d-perception">
 <h4><strong>3D Perception</strong><a class="headerlink" href="#d-perception" title="Permalink to this headline"></a></h4>
 <p>3D perception in MoveIt is handled by the occupancy map monitor. The occupancy map monitor uses a plugin architecture to handle different kinds of sensor input as shown in the Figure above. In particular, MoveIt has inbuilt support for handling two kinds of inputs:</p>
 <ul class="simple">
@@ -173,9 +178,9 @@ The planning scene monitor listens to:</p>
 <p class="admonition-title">Note</p>
 <p>you can add your own types of updaters as a plugin to the occupancy map monitor.</p>
 </div>
-</div>
-</div>
-<div class="section" id="extensible-capabilities">
+</section>
+</section>
+<section id="extensible-capabilities">
 <h3>Extensible Capabilities<a class="headerlink" href="#extensible-capabilities" title="Permalink to this headline"></a></h3>
 <p>move_group is structured to be easily extensible - individual capabilities like pick and place, <code class="docutils literal notranslate"><span class="pre">kinematics</span></code>, <code class="docutils literal notranslate"><span class="pre">motion</span> <span class="pre">planning</span></code> are actually implemented as separate plugins with a common base class. The plugins are configurable using ROS through a set of ROS yaml parameters and through the use of the ROS pluginlib library. Most users will not have to configure move_group plugins since they come automatically configured in the launch files generated by the MoveIt Setup Assistant.</p>
 <p>MoveIt plugins are:</p>
@@ -183,16 +188,16 @@ The planning scene monitor listens to:</p>
 <li><p><a class="reference internal" href="moveit_motion_planning.html"><span class="doc std std-doc">Motion Planning</span></a></p></li>
 <li><p><a class="reference internal" href="moveit_kinematics.html"><span class="doc std std-doc">Kinematics</span></a></p></li>
 </ul>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="README.html" class="btn btn-neutral float-left" title="MoveIt" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="moveit_motion_planning.html" class="btn btn-neutral float-right" title="MoveIt - motion planning plugin" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="README.html" class="btn btn-neutral float-left" title="MoveIt2" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="MSA.html" class="btn btn-neutral float-right" title="MSA - Moveit setup Assistant" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

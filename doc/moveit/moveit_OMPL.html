@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Open Motion Planning Library (OMPL) &mdash; ROS2 notes 2022 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -47,8 +48,11 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS2 Control</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="README.html">MoveIt</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="README.html">MoveIt2</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="concepts.html">Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MSA.html">MSA - Moveit setup Assistant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SRDF.html">SRDF and URDF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="perception.html">Perception Pipeline</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="moveit_motion_planning.html">MoveIt - motion planning plugin</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="moveit_motion_planning.html#the-motion-plan-request">The Motion Plan Request</a></li>
 <li class="toctree-l3"><a class="reference internal" href="moveit_motion_planning.html#the-motion-plan-result">The Motion Plan Result</a></li>
@@ -68,6 +72,7 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Docker/README.html">ROS and docker containers</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ROS1/README.html">ROS1</a></li>
@@ -90,7 +95,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="README.html">MoveIt</a> &raquo;</li>
+          <li><a href="README.html">MoveIt2</a> &raquo;</li>
           <li><a href="moveit_motion_planning.html">MoveIt - motion planning plugin</a> &raquo;</li>
       <li>Open Motion Planning Library (OMPL)</li>
       <li class="wy-breadcrumbs-aside">
@@ -102,11 +107,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="open-motion-planning-library-ompl">
+  <section class="tex2jax_ignore mathjax_ignore" id="open-motion-planning-library-ompl">
 <h1>Open Motion Planning Library (OMPL)<a class="headerlink" href="#open-motion-planning-library-ompl" title="Permalink to this headline"></a></h1>
 <p>OMPL is an open-source motion planning library that primarily implements randomized motion planners. MoveIt integrates directly with OMPL and uses the motion planners from that library as its primary/default set of planners. The planners in OMPL are abstract; i.e. OMPL has no concept of a robot. Instead, MoveIt configures OMPL and provides the back-end for OMPL to work with problems in Robotics.</p>
 <p><a class="reference external" href="http://ompl.kavrakilab.org/">reference</a></p>
-</div>
+</section>
 
 
            </div>

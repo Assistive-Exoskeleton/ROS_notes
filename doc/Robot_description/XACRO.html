@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>XACRO &mdash; ROS2 notes 2022 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -58,13 +59,14 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS2 Control</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rQt/README.html">RQt (formerly RQt2)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Docker/README.html">ROS and docker containers</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ROS1/README.html">ROS1</a></li>
@@ -98,10 +100,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="xacro">
+  <section class="tex2jax_ignore mathjax_ignore" id="xacro">
 <h1>XACRO<a class="headerlink" href="#xacro" title="Permalink to this headline"></a></h1>
 <p>XACRO is an XML macro language, used to construct shorter and more readable XML files.</p>
-<div class="section" id="urdf-with-xacro">
+<section id="urdf-with-xacro">
 <h2>URDF with XACRO<a class="headerlink" href="#urdf-with-xacro" title="Permalink to this headline"></a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">xacro</span></code> program runs all the macros and outputs the result.</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1">#example</span>
@@ -115,7 +117,7 @@ $ xacro model.xacro &gt; model.urdf
 <span class="p">)</span><span class="c1"># equivalent to $xacro model.xacro</span>
 </pre></div>
 </div>
-<div class="section" id="writing-the-xacro-file">
+<section id="writing-the-xacro-file">
 <h3>Writing the XACRO file<a class="headerlink" href="#writing-the-xacro-file" title="Permalink to this headline"></a></h3>
 <p>At the top the <code class="docutils literal notranslate"><span class="pre">namespace</span></code> must be specified in order for the file to parse properly.</p>
 <div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
@@ -191,9 +193,9 @@ $ xacro model.xacro &gt; model.urdf
 <li><p>use a “reflect” parameter (+1 or -1) in case of simmetries of the robot</p></li>
 <li><p>…</p></li>
 </ul>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>

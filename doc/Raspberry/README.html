@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Install ROS on Raspberry &mdash; ROS2 notes 2022 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -18,7 +19,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="ROS installation" href="installation.html" />
-    <link rel="prev" title="URDF add-ons" href="../gazebo/URDF_addons.html" /> 
+    <link rel="prev" title="URDF" href="../gazebo/URDF.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -47,7 +48,7 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS2 Control</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rQt/README.html">RQt (formerly RQt2)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
@@ -59,6 +60,7 @@
 <li class="toctree-l2"><a class="reference internal" href="Rpi_servo.html">Raspberry - servo</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../Docker/README.html">ROS and docker containers</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ROS1/README.html">ROS1</a></li>
@@ -91,7 +93,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="install-ros-on-raspberry">
+  <section class="tex2jax_ignore mathjax_ignore" id="install-ros-on-raspberry">
 <h1>Install ROS on Raspberry<a class="headerlink" href="#install-ros-on-raspberry" title="Permalink to this headline"></a></h1>
 <h2> Prerequisites </h2>
 <div class="admonition warning">
@@ -106,13 +108,13 @@
 <p>If is not possible to use the Ethernet connection, a preliminary setup is required.</p>
 <p>With the SD card still inserted in the laptop, open a file manager and locate the “system-boot” partition on the card. It contains initial configuration files that load during the first boot process.</p>
 <p>Edit the network-config file to add Wi-Fi credentials.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="nl">wifis</span><span class="p">:</span>
-  <span class="nl">wlan0</span><span class="p">:</span>
-    <span class="nl">dhcp4</span><span class="p">:</span> <span class="nb">true</span>
-    <span class="nl">optional</span><span class="p">:</span> <span class="nb">true</span>
-    <span class="n">access</span><span class="o">-</span><span class="nl">points</span><span class="p">:</span>
-      <span class="s">&quot;home network&quot;</span><span class="o">:</span>
-        <span class="nl">password</span><span class="p">:</span> <span class="s">&quot;123456789&quot;</span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="nl">wifis</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nl">wlan0</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nl">dhcp4</span><span class="p">:</span><span class="w"> </span><span class="nb">true</span><span class="w"></span>
+<span class="w">    </span><span class="nl">optional</span><span class="p">:</span><span class="w"> </span><span class="nb">true</span><span class="w"></span>
+<span class="w">    </span><span class="n">access</span><span class="o">-</span><span class="n">points</span><span class="o">:</span><span class="w"></span>
+<span class="w">      </span><span class="s">&quot;home network&quot;</span><span class="o">:</span><span class="w"></span>
+<span class="w">        </span><span class="nl">password</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;123456789&quot;</span><span class="w"></span>
 </pre></div>
 </div>
 <blockquote>
@@ -130,14 +132,14 @@
 </div></blockquote>
 <p>line in the network-config file with lines that specify the intended IP address as well as its default gateway and DNS server. You can do this for either the eth0 or wlan0 interface (or both). <strong>It is important to get the indenting right for this work correctly.</strong></p>
 <p>For example, if is planned to give the pi the address 192.168.1.23 in the 192.168.1.0/24 subnet with a default gateway of 192.168.1.1 and a DNS server of 192.168.1.53 then the following text would work. The same structure works for both the eth0 or wlan0 sections in the file:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="nl">ethernets</span><span class="p">:</span>
-  <span class="nl">eth0</span><span class="p">:</span>
-    <span class="nl">addresses</span><span class="p">:</span>
-      <span class="o">-</span> <span class="mf">192.168.101.23</span><span class="o">/</span><span class="mi">24</span>
-    <span class="nl">gateway4</span><span class="p">:</span> <span class="mf">192.168.1.1</span>
-    <span class="nl">nameservers</span><span class="p">:</span>
-      <span class="nl">addresses</span><span class="p">:</span> <span class="p">[</span><span class="mf">192.168.1.23</span><span class="p">]</span>
-    <span class="nl">optional</span><span class="p">:</span> <span class="nb">true</span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="nl">ethernets</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nl">eth0</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nl">addresses</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="mf">192.168.101.23</span><span class="o">/</span><span class="mi">24</span><span class="w"></span>
+<span class="w">    </span><span class="nl">gateway4</span><span class="p">:</span><span class="w"> </span><span class="mf">192.168.1.1</span><span class="w"></span>
+<span class="w">    </span><span class="nl">nameservers</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nl">addresses</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">192.168.1.23</span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="nl">optional</span><span class="p">:</span><span class="w"> </span><span class="nb">true</span><span class="w"></span>
 </pre></div>
 </div>
 <h3> Change Network config after first boot </h3>
@@ -147,13 +149,13 @@
 </div>
 <div class="toctree-wrapper compound">
 </div>
-</div>
+</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../gazebo/URDF_addons.html" class="btn btn-neutral float-left" title="URDF add-ons" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../gazebo/URDF.html" class="btn btn-neutral float-left" title="URDF" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="installation.html" class="btn btn-neutral float-right" title="ROS installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

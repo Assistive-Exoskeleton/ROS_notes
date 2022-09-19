@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MoveIt - motion planning plugin &mdash; ROS2 notes 2022 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -18,7 +19,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Open Motion Planning Library (OMPL)" href="moveit_OMPL.html" />
-    <link rel="prev" title="Concepts" href="concepts.html" /> 
+    <link rel="prev" title="Perception Pipeline" href="perception.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -47,8 +48,11 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS2 Control</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="README.html">MoveIt</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="README.html">MoveIt2</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="concepts.html">Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MSA.html">MSA - Moveit setup Assistant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SRDF.html">SRDF and URDF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="perception.html">Perception Pipeline</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">MoveIt - motion planning plugin</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#the-motion-plan-request">The Motion Plan Request</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#the-motion-plan-result">The Motion Plan Result</a></li>
@@ -68,6 +72,7 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Docker/README.html">ROS and docker containers</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ROS1/README.html">ROS1</a></li>
@@ -90,7 +95,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="README.html">MoveIt</a> &raquo;</li>
+          <li><a href="README.html">MoveIt2</a> &raquo;</li>
       <li>MoveIt - motion planning plugin</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/doc/moveit/moveit_motion_planning.md.txt" rel="nofollow"> View page source</a>
@@ -101,7 +106,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="moveit-motion-planning-plugin">
+  <section class="tex2jax_ignore mathjax_ignore" id="moveit-motion-planning-plugin">
 <h1>MoveIt - motion planning plugin<a class="headerlink" href="#moveit-motion-planning-plugin" title="Permalink to this headline"></a></h1>
 <p>MoveIt works with motion planners through a plugin interface. This allows MoveIt to communicate with and use different motion planners from multiple libraries, making MoveIt easily extensible. The interface to the motion planners is through a ROS Action or service (offered by the <code class="docutils literal notranslate"><span class="pre">move_group</span></code> node).</p>
 <p>Planners available in MoveIt are (descending order of popularity/support within MoveIt):</p>
@@ -112,7 +117,7 @@
 <li><p><strong>Search-Based Planning Library (SBPL)</strong>, a generic set of motion planners using search based planning that discretize the space. Integration into latest version of MoveIt is work in progress.</p></li>
 <li><p><strong>Covariant Hamiltonian Optimization for Motion Planning (CHOMP)</strong>, a novel gradient-based trajectory optimization procedure that makes many everyday motion planning problems both simple and trainable (Ratliff et al., 2009c). While most high-dimensional motion planners separate trajectory generation into distinct planning and optimization stages, this algorithm capitalizes on covariant gradient and functional gradient approaches to the optimization stage to design a motion planning algorithm based entirely on trajectory optimization. Given an infeasible naive trajectory, CHOMP reacts to the surrounding environment to quickly pull the trajectory out of collision while simultaneously optimizing dynamical quantities such as joint velocities and accelerations. It rapidly converges to a smooth collision-free trajectory that can be executed efficiently on the robot. Integration into latest version of MoveIt is work in progress.</p></li>
 </ul>
-<div class="section" id="the-motion-plan-request">
+<section id="the-motion-plan-request">
 <h2>The Motion Plan Request<a class="headerlink" href="#the-motion-plan-request" title="Permalink to this headline"></a></h2>
 <p>The motion plan request specifies what you would like the motion planner to do. Typically, you will be asking the motion planner to move an arm to a different location (in joint space) or the end-effector to a new pose. Collisions are checked for by default (including self-collisions and attached objects). You can also specify the planner via the <code class="docutils literal notranslate"><span class="pre">planning_pipeline</span></code> and <code class="docutils literal notranslate"><span class="pre">planner_id</span></code> parameters, and the constraints for the motion planner to check - the inbuilt constraints provided by MoveIt are kinematic constraints:</p>
 <ul class="simple">
@@ -122,12 +127,12 @@
 <li><p><strong>Joint constraints</strong>: restrict a joint to lie between two values.</p></li>
 <li><p><strong>User-specified constraints</strong>: it is also possible to specify your own constraints with a user-defined callback.</p></li>
 </ul>
-</div>
-<div class="section" id="the-motion-plan-result">
+</section>
+<section id="the-motion-plan-result">
 <h2>The Motion Plan Result<a class="headerlink" href="#the-motion-plan-result" title="Permalink to this headline"></a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">move_group</span></code> node will generate a desired trajectory in response to your motion plan request. This trajectory will move the arm (or any group of joints) to the desired location. Note that the result coming out of <code class="docutils literal notranslate"><span class="pre">move_group</span></code> is a trajectory and not just a path. <code class="docutils literal notranslate"><span class="pre">move_group</span></code> will use the desired maximum velocities and accelerations (if specified) to generate a trajectory that obeys velocity and acceleration constraints at the joint level.</p>
-</div>
-<div class="section" id="motion-planning-adapters">
+</section>
+<section id="motion-planning-adapters">
 <h2>Motion planning adapters<a class="headerlink" href="#motion-planning-adapters" title="Permalink to this headline"></a></h2>
 <p><img alt="motion planning adapters" src="../../_images/motion_planner.png" /></p>
 <p>The complete motion planning pipeline chains together a motion planner with other components called <strong>planning request adapters</strong>. Planning request adapters allow for pre-processing motion plan requests and post-processing motion plan responses. Pre-processing is useful in several situations, e.g. when a start state for the robot is slightly outside the specified joint limits for the robot. Post-processing is needed for several other operations, e.g. to convert paths generated for a robot into time-parameterized trajectories. MoveIt provides a set of default motion planning adapters that each perform a very specific function:</p>
@@ -158,22 +163,22 @@
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="moveit-planners">
+</section>
+<section id="moveit-planners">
 <h2>MoveIt planners<a class="headerlink" href="#moveit-planners" title="Permalink to this headline"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="moveit_OMPL.html">Open Motion Planning Library (OMPL)</a></li>
 </ul>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="concepts.html" class="btn btn-neutral float-left" title="Concepts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="perception.html" class="btn btn-neutral float-left" title="Perception Pipeline" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="moveit_OMPL.html" class="btn btn-neutral float-right" title="Open Motion Planning Library (OMPL)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

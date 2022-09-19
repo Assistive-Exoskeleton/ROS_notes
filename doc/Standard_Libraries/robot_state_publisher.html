@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Robot state publisher #TODO &mdash; ROS2 notes 2022 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -59,13 +60,14 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS2 Control</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rQt/README.html">RQt (formerly RQt2)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gazebo/README.html">GAZEBO</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Docker/README.html">ROS and docker containers</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ROS1/README.html">ROS1</a></li>
@@ -99,10 +101,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="robot-state-publisher-todo">
+  <section class="tex2jax_ignore mathjax_ignore" id="robot-state-publisher-todo">
 <h1>Robot state publisher #TODO<a class="headerlink" href="#robot-state-publisher-todo" title="Permalink to this headline"></a></h1>
 <p><a class="reference external" href="https://github.com/ros/robot_state_publisher/tree/ros2"><code class="docutils literal notranslate"><span class="pre">robot_state_publisher</span></code></a> uses the URDF specified by the parameter <code class="docutils literal notranslate"><span class="pre">robot_description</span></code> and the joint positions from the topic <code class="docutils literal notranslate"><span class="pre">/joint_states</span></code> to calculate the forward kinematics of the robot and publish the results via <code class="docutils literal notranslate"><span class="pre">tf</span></code>.</p>
-<div class="section" id="topics">
+<section id="topics">
 <h2>Topics<a class="headerlink" href="#topics" title="Permalink to this headline"></a></h2>
 <p>Robot State Publisher <strong>publishes</strong> on:</p>
 <ul class="simple">
@@ -114,8 +116,8 @@
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">/joint_states</span> <span class="pre">[sensor_msgs/msg/JointState]</span></code>: The joint state updates to the robot poses. The RobotStatePublisher class takes these updates, does transformations and then publishes the results on the <code class="docutils literal notranslate"><span class="pre">tf2</span></code> topics.</p></li>
 </ul>
-</div>
-<div class="section" id="parameters">
+</section>
+<section id="parameters">
 <h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">robot_description</span> <span class="pre">[string]</span></code>: The original description of the robot in URDF form. This <strong>must</strong> be set at startup time. Updates to it are reflected in <code class="docutils literal notranslate"><span class="pre">/robot_description</span></code> topic.</p></li>
@@ -123,8 +125,8 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">ignore_timestamp</span> <span class="pre">[bool]</span></code> - Whether to accept all joint states no matter what the timestamp (<code class="docutils literal notranslate"><span class="pre">true</span></code>), or to only publish joint state updates if they are newer than the last publish_frequency (<code class="docutils literal notranslate"><span class="pre">false</span></code>). Defaults to <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">frame_prefix</span> <span class="pre">[string]</span></code> - An arbitrary prefix to add to the published tf2 frames. Defaults to the empty string.</p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

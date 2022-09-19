@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>rqt_moveit &mdash; ROS2 notes 2022 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -47,7 +48,7 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../ros2_control/README.html">ROS2 Control</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../moveit/README.html">MoveIt2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rViz/README.html">RViz</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="README.html">RQt (formerly RQt2)</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="README.html#advantages">Advantages</a></li>
@@ -70,6 +71,7 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Docker/README.html">ROS and docker containers</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ROS1/README.html">ROS1</a></li>
@@ -103,7 +105,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="rqt-moveit">
+  <section class="tex2jax_ignore mathjax_ignore" id="rqt-moveit">
 <h1>rqt_moveit<a class="headerlink" href="#rqt-moveit" title="Permalink to this headline"></a></h1>
 <p>An rqt-based tool that assists monitoring tasks for MoveIt! motion planner developers and users. Currently the following items are monitored if they are either running, existing or published:</p>
 <ul class="simple">
@@ -112,12 +114,12 @@
 <li><p>Topic: Following types are monitored. Published “names” are ignored:<br />
 [sensor_msgs/PointCloud, sensor_msgs/PointCloud2, sensor_msgs/Image, sensor_msgs/CameraInfo]</p></li>
 </ul>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="rqt-robot-dashboard">
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="rqt-robot-dashboard">
 <h1>rqt_robot_dashboard<a class="headerlink" href="#rqt-robot-dashboard" title="Permalink to this headline"></a></h1>
 <p>rqt_robot_dashboard provides an infrastructure for building robot dashboard plugins in rqt.</p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="rqt-robot-monitor">
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="rqt-robot-monitor">
 <h1>rqt_robot_monitor<a class="headerlink" href="#rqt-robot-monitor" title="Permalink to this headline"></a></h1>
 <p>rqt_robot_monitor displays diagnostics_agg topics messages that are published by diagnostic_aggregator. rqt_robot_monitor is a direct port to rqt of robot_monitor. All diagnostics are fall into one of three tree panes depending on the status of diagnostics (normal, warning, error/stale). Status are shown in trees to represent their hierarchy. Worse status dominates the higher level status.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Ex. &#39;Computer&#39; category has 3 sub devices. 2 are green but 1 is error. Then &#39;Computer&#39; becomes error. 
@@ -125,24 +127,24 @@
 </div>
 <p>You can look at the detail of each status by double-clicking the tree nodes.
 Currently re-usable API to other pkgs are not explicitly provided.</p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="rqt-robot-steering">
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="rqt-robot-steering">
 <h1>rqt_robot_steering<a class="headerlink" href="#rqt-robot-steering" title="Permalink to this headline"></a></h1>
 <p>rqt_robot_steering provides a GUI plugin for steering a robot using Twist messages.</p>
-<div class="section" id="usage-example-with-care-o-bot">
+<section id="usage-example-with-care-o-bot">
 <h2>Usage Example (with care-o-bot)<a class="headerlink" href="#usage-example-with-care-o-bot" title="Permalink to this headline"></a></h2>
 <p>As noted, rqt_robot_steering publishes geometry_msgs/Twist as a name of /cmd_vel by default. This name may vary per robot/application; e.g. <a class="reference external" href="http://wiki.ros.org/Robots/Care-O-bot">Care-o-bot</a> also publishes geometry_msgs/Twist but as base_controller/command (see <a class="reference external" href="http://wiki.ros.org/cob_teleop#Published_Topics">cob_teleop#Published_Topics</a>. So, type that name into the topic field at the top of rqt_robot_steering GUI and it gets applied immediately.</p>
 <p>To verify, use also <a class="reference external" href="http://wiki.ros.org/rqt_topic">rqt_topic</a> (or run from commandline rostopic echo) to see if the topics base_controller/command are actually published.</p>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="rqt-runtime-monitor">
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="rqt-runtime-monitor">
 <h1>rqt_runtime_monitor<a class="headerlink" href="#rqt-runtime-monitor" title="Permalink to this headline"></a></h1>
 <p>rqt_runtime_monitor provides a GUI plugin viewing DiagnosticsArray messages.</p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="rqt-tf-tree">
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="rqt-tf-tree">
 <h1>rqt_tf_tree<a class="headerlink" href="#rqt-tf-tree" title="Permalink to this headline"></a></h1>
 <p>rqt_tf_tree provides a GUI plugin for visualizing the ROS TF frame tree.</p>
-</div>
+</section>
 
 
            </div>
