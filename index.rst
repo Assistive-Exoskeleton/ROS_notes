@@ -47,14 +47,14 @@ Packages
    doc/rQt/README.md
    doc/gazebo/README.md
 
-Raspberry
+Others
 ---------
 
 .. toctree::
    :maxdepth: 1
 
    doc/Raspberry/README.md
-   
+   doc/Docker/README.md
 
 .. toctree::
    :maxdepth: 1
