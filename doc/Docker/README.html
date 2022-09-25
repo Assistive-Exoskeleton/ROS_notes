@@ -55,7 +55,14 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../Raspberry/README.html">Install ROS on Raspberry</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">ROS and docker containers</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ROS and docker containers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#docker-basics">Docker basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-create-a-ros2-container-with-moveit-image">How to create a ROS2 container with moveit image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ros2-container-developer-mode">ROS2 container - developer mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#docker-images-management">Docker images management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ROS1/README.html">ROS1</a></li>
@@ -90,42 +97,118 @@
              
   <section class="tex2jax_ignore mathjax_ignore" id="ros-and-docker-containers">
 <h1>ROS and docker containers<a class="headerlink" href="#ros-and-docker-containers" title="Permalink to this headline"></a></h1>
-<p>Processo per creare il container con la roba di Bridge:</p>
+<section id="docker-basics">
+<h2>Docker basics<a class="headerlink" href="#docker-basics" title="Permalink to this headline"></a></h2>
+<p>At any particular instance, a Docker container can be found in 6 possible states:</p>
+<ul class="simple">
+<li><p><strong>Created</strong>: Docker assigns the created state to the containers that were never started ever since they were created. Hence, no CPU or memory is used by the containers in this state.</p></li>
+<li><p><strong>Running</strong>: When we start a container having created a state using the docker start command, it attains the running state.
+This state signifies that the processes are running in the isolated environment inside the container.</p></li>
+<li><p><strong>Restarting</strong>: this state denotes that the container is under the process of restart.</p></li>
+<li><p><strong>Exited</strong> : This state is achieved when the process inside the container terminates. In this state, no CPU and memory are consumed by the container. A container in the exited state cannot be accessed using the docker exec command (execute a command in a container). However, we can start the container using the docker start or docker restart and then access it.</p></li>
+<li><p><strong>Paused</strong>: Paused is the state of a Docker container that suspends all the processes for an indefinite time. A paused container consumes the same memory used while running the container, but the CPU is released completely.
+A Docker container can be paused using the docker pause command.</p></li>
+<li><p><strong>Dead</strong>: The dead state of a Docker container means that the container is non-functioning. This state is achieved when we try to remove the container, but it cannot be removed because some resources are still in use by an external process. Containers in a dead state cannot be restarted. They can only be removed.</p></li>
+</ul>
+<p>Initial commands are Create - Start - Run.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Create</span></code> adds a writeable container on top of your image and sets it up for running whatever command you specified in your CMD. The container ID is reported back but it’s not started.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Start</span></code> will start any stopped containers. This includes freshly created containers.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Run</span></code> is a combination of create and start. It creates the container and starts it.</p>
+<p>The syntax of the docker run command is as follows:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ docker run [OPTIONS] IMAGE[:TAG|@DIGEST] [COMMAND] [ARG...]
+</pre></div>
+</div>
+<p>To list the running containers, simply execute the docker ps command:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ docker ps
+</pre></div>
+</div>
+<p>To show all the containers (even containers not running), the command is:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ docker ps -a
+</pre></div>
+</div>
+<p>To remove the container from the host, you can use the docker rm command. The syntax is as follows:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ docker rm [OPTIONS] CONTAINER [CONTAINER...]
+</pre></div>
+</div>
+<p>Option <code class="docutils literal notranslate"><span class="pre">-it</span></code> allow to use an interactive shell.</p>
+<p>To run docker commands without sudo privileges, run:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo groupadd docker
 sudo usermod -aG docker <span class="nv">$USER</span>
-
-docker run -it -e <span class="s2">&quot;DISPLAY=</span><span class="nv">$DISPLAY</span><span class="s2">&quot;</span> -v <span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.Xauthority:/root/.Xauthority:ro&quot;</span> --mount <span class="nv">src</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span><span class="s2">&quot;</span>,target<span class="o">=</span>/MY_DISK,type<span class="o">=</span><span class="nb">bind</span>  --name Bridge_control --network host osrf/ros:humble-desktop
-
-sudo apt update <span class="o">&amp;&amp;</span> sudo apt upgrade
-
-git switch Humble
-
-rosdep install --from-paths src -y --ignore-src
-
-sudo apt install ros-humble-moveit-configs-utils
-
-colcon build --symlink-install --packages-ignore bridge_control_hybrid
-
-<span class="nb">source</span> install/setup.sh
-
-ros2 launch bridge_control_bringup bridge_moveit_planning.launch.py
 </pre></div>
 </div>
-<p>Per avviare il container già creato manualmente:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker start Bridge_control <span class="o">&amp;&amp;</span> docker <span class="nb">exec</span> -it Bridge_control bash
-./ros_entrypoint.sh
-<span class="nb">cd</span> MY_DISK/GitHub/Bridge_ROS2_control/
-<span class="nb">source</span> install/setup.sh
+<p>Then reboot.</p>
+</section>
+<section id="how-to-create-a-ros2-container-with-moveit-image">
+<h2>How to create a ROS2 container with moveit image<a class="headerlink" href="#how-to-create-a-ros2-container-with-moveit-image" title="Permalink to this headline"></a></h2>
+<p>Commands to create a container with moveit2 and ros2 packages.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker pull ubuntu:jammy
+
+docker run -it -e <span class="s2">&quot;DISPLAY=</span><span class="nv">$DISPLAY</span><span class="s2">&quot;</span> -v <span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.Xauthority:/root/.Xauthority:ro&quot;</span> --name MY_PROJECT --network host moveit/moveit2:humble-release
 </pre></div>
 </div>
-<p>Per avviare il container già creato eseguendo automaticamente il planning (<strong>no rebuild</strong>):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker start Bridge_control <span class="o">&amp;&amp;</span> docker <span class="nb">exec</span> -it Bridge_control bash -c <span class="s2">&quot;./ros_entrypoint.sh; cd MY_DISK/GitHub/Bridge_ROS2_control/; ./install/setup.sh; ros2 launch bridge_control_bringup bridge_moveit_planning.launch.py&quot;</span>
+<p>exit from container and copy your ros2 workspace with</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>docker cp FOLDER_TO_COPY MY_PROJECT:NEW_FOLDER_NAME
 </pre></div>
 </div>
-<p>Per avviare il container già creato eseguendo automaticamente il planning (<strong>rebuild</strong>):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker start Bridge_control <span class="o">&amp;&amp;</span> docker <span class="nb">exec</span> -it Bridge_control bash -c <span class="s2">&quot;./ros_entrypoint.sh; cd MY_DISK/GitHub/Bridge_ROS2_control/; colcon build --symlink-install --packages-ignore bridge_control_hybrid; ./install/setup.sh; ros2 launch bridge_control_bringup bridge_moveit_planning.launch.py&quot;</span>
+<p>Restart your container with</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>docker start MY_PROJECT -i
 </pre></div>
 </div>
+<p>then move into project directory and</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span> <span class="o">&amp;&amp;</span> <span class="n">sudo</span> <span class="n">apt</span> <span class="n">upgrade</span>
+
+<span class="n">rosdep</span> <span class="n">install</span> <span class="o">--</span><span class="n">from</span><span class="o">-</span><span class="n">paths</span> <span class="n">src</span> <span class="o">-</span><span class="n">y</span> <span class="o">--</span><span class="n">ignore</span><span class="o">-</span><span class="n">src</span>
+
+<span class="n">colcon</span> <span class="n">build</span> <span class="o">--</span><span class="n">symlink</span><span class="o">-</span><span class="n">install</span>
+</pre></div>
+</div>
+<p>To source your project at container start, in the running container type:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt install nano
+<span class="nb">cd</span> /
+nano ros_entrypoint.sh
+</pre></div>
+</div>
+<p>paste “source /MY_PROJECT/install/setup.sh” before “exec ‘$&#64;’”. From now on, at each startup, container will automatically source ROS2 and your compiled project.</p>
+</section>
+<section id="ros2-container-developer-mode">
+<h2>ROS2 container - developer mode<a class="headerlink" href="#ros2-container-developer-mode" title="Permalink to this headline"></a></h2>
+<p>Follow this steps to create a container with mounted folder of host system. This allows to edit the project on the host machine and execute it in the container. <strong>Useful when project is under developement</strong>.<br />
+Follow each step of standard container creation, but with this variation:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run -it -e <span class="s2">&quot;DISPLAY=</span><span class="nv">$DISPLAY</span><span class="s2">&quot;</span> -v <span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.Xauthority:/root/.Xauthority:ro&quot;</span> --mount <span class="nv">src</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span><span class="s2">&quot;</span>,target<span class="o">=</span>/MY_DISK,type<span class="o">=</span><span class="nb">bind</span> --name MY_PROJECT --network host moveit/moveit2:humble-release
+</pre></div>
+</div>
+<p>When starting container, ensure to cd into mounted folder.</p>
+<p>Remember also to rebuilt the project everytime a file is modified and source the install/setup.sh file.</p>
+</section>
+<section id="docker-images-management">
+<h2>Docker images management<a class="headerlink" href="#docker-images-management" title="Permalink to this headline"></a></h2>
+<p>To create a new image from an existing container:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>docker commit MY_PROJECT REPOSITORY:TAG
+</pre></div>
+</div>
+<p>If you want to export the image in a file:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>docker save IMAGE &gt; IMAGE.tar
+</pre></div>
+</div>
+<p>To load the image in another computer running docker:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>docker load &lt; IMAGE.tar
+</pre></div>
+</div>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline"></a></h2>
+<p>Problem with <strong>display server</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">could</span> <span class="ow">not</span> <span class="n">connect</span> <span class="n">to</span> <span class="n">display</span> <span class="p">:</span><span class="mi">0</span>
+<span class="n">This</span> <span class="n">application</span> <span class="n">failed</span> <span class="n">to</span> <span class="n">start</span> <span class="n">because</span> <span class="n">no</span> <span class="n">Qt</span> <span class="n">platform</span> <span class="n">plugin</span> <span class="n">could</span> <span class="n">be</span> <span class="n">initialized</span><span class="o">.</span> <span class="n">Reinstalling</span> <span class="n">the</span> <span class="n">application</span> <span class="n">may</span> <span class="n">fix</span> <span class="n">this</span> <span class="n">problem</span><span class="o">.</span>
+
+<span class="n">Available</span> <span class="n">platform</span> <span class="n">plugins</span> <span class="n">are</span><span class="p">:</span> <span class="n">eglfs</span><span class="p">,</span> <span class="n">linuxfb</span><span class="p">,</span> <span class="n">minimal</span><span class="p">,</span> <span class="n">minimalegl</span><span class="p">,</span> <span class="n">offscreen</span><span class="p">,</span> <span class="n">vnc</span><span class="p">,</span> <span class="n">xcb</span><span class="o">.</span> 
+</pre></div>
+</div>
+<p>Solution is, in a new terminal of the host:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xhost +local:docker 
+</pre></div>
+</div>
+</section>
 </section>
 
 
