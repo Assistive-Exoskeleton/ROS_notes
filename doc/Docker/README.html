@@ -60,7 +60,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#how-to-create-a-ros2-container-with-moveit-image">How to create a ROS2 container with moveit image</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ros2-container-developer-mode">ROS2 container - developer mode</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#docker-images-management">Docker images management</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
 </ul>
 </li>
 </ul>
@@ -137,13 +136,18 @@ sudo usermod -aG docker <span class="nv">$USER</span>
 </pre></div>
 </div>
 <p>Then reboot.</p>
+<p>GUIs are shown only if you add</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xhost +local:docker 
+</pre></div>
+</div>
+<p>in the <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> file.</p>
 </section>
 <section id="how-to-create-a-ros2-container-with-moveit-image">
 <h2>How to create a ROS2 container with moveit image<a class="headerlink" href="#how-to-create-a-ros2-container-with-moveit-image" title="Permalink to this headline"></a></h2>
 <p>Commands to create a container with moveit2 and ros2 packages.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker pull ubuntu:jammy
 
-docker run -it -e <span class="s2">&quot;DISPLAY=</span><span class="nv">$DISPLAY</span><span class="s2">&quot;</span> -v <span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.Xauthority:/root/.Xauthority:ro&quot;</span> --name MY_PROJECT --network host moveit/moveit2:humble-release
+docker run -it -e <span class="s2">&quot;DISPLAY=</span><span class="nv">$DISPLAY</span><span class="s2">&quot;</span> -v <span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.Xauthority:/root/.Xauthority:ro&quot;</span> --name MY_PROJECT --network host --privileged moveit/moveit2:humble-release
 </pre></div>
 </div>
 <p>exit from container and copy your ros2 workspace with</p>
@@ -174,7 +178,7 @@ nano ros_entrypoint.sh
 <h2>ROS2 container - developer mode<a class="headerlink" href="#ros2-container-developer-mode" title="Permalink to this headline"></a></h2>
 <p>Follow this steps to create a container with mounted folder of host system. This allows to edit the project on the host machine and execute it in the container. <strong>Useful when project is under developement</strong>.<br />
 Follow each step of standard container creation, but with this variation:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run -it -e <span class="s2">&quot;DISPLAY=</span><span class="nv">$DISPLAY</span><span class="s2">&quot;</span> -v <span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.Xauthority:/root/.Xauthority:ro&quot;</span> --mount <span class="nv">src</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span><span class="s2">&quot;</span>,target<span class="o">=</span>/MY_DISK,type<span class="o">=</span><span class="nb">bind</span> --name MY_PROJECT --network host moveit/moveit2:humble-release
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run -it -e <span class="s2">&quot;DISPLAY=</span><span class="nv">$DISPLAY</span><span class="s2">&quot;</span> -v <span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.Xauthority:/root/.Xauthority:ro&quot;</span> --mount <span class="nv">src</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span><span class="s2">&quot;</span>,target<span class="o">=</span>/MY_DISK,type<span class="o">=</span><span class="nb">bind</span> --name MY_PROJECT --network host --privileged moveit/moveit2:humble-release
 </pre></div>
 </div>
 <p>When starting container, ensure to cd into mounted folder.</p>
@@ -192,20 +196,6 @@ Follow each step of standard container creation, but with this variation:</p>
 </div>
 <p>To load the image in another computer running docker:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>docker load &lt; IMAGE.tar
-</pre></div>
-</div>
-</section>
-<section id="troubleshooting">
-<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline"></a></h2>
-<p>Problem with <strong>display server</strong>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">could</span> <span class="ow">not</span> <span class="n">connect</span> <span class="n">to</span> <span class="n">display</span> <span class="p">:</span><span class="mi">0</span>
-<span class="n">This</span> <span class="n">application</span> <span class="n">failed</span> <span class="n">to</span> <span class="n">start</span> <span class="n">because</span> <span class="n">no</span> <span class="n">Qt</span> <span class="n">platform</span> <span class="n">plugin</span> <span class="n">could</span> <span class="n">be</span> <span class="n">initialized</span><span class="o">.</span> <span class="n">Reinstalling</span> <span class="n">the</span> <span class="n">application</span> <span class="n">may</span> <span class="n">fix</span> <span class="n">this</span> <span class="n">problem</span><span class="o">.</span>
-
-<span class="n">Available</span> <span class="n">platform</span> <span class="n">plugins</span> <span class="n">are</span><span class="p">:</span> <span class="n">eglfs</span><span class="p">,</span> <span class="n">linuxfb</span><span class="p">,</span> <span class="n">minimal</span><span class="p">,</span> <span class="n">minimalegl</span><span class="p">,</span> <span class="n">offscreen</span><span class="p">,</span> <span class="n">vnc</span><span class="p">,</span> <span class="n">xcb</span><span class="o">.</span> 
-</pre></div>
-</div>
-<p>Solution is, in a new terminal of the host:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xhost +local:docker 
 </pre></div>
 </div>
 </section>
