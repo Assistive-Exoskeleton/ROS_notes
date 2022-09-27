@@ -49,6 +49,12 @@ sudo usermod -aG docker $USER
 ```
 Then reboot. 
 
+GUIs are shown only if you add 
+
+    xhost +local:docker 
+
+in the `.bashrc` file.  
+
 
 ## How to create a ROS2 container with moveit image
 
@@ -57,7 +63,7 @@ Commands to create a container with moveit2 and ros2 packages.
 ``` bash
 docker pull ubuntu:jammy
 
-docker run -it -e "DISPLAY=$DISPLAY" -v "$HOME/.Xauthority:/root/.Xauthority:ro" --name MY_PROJECT --network host moveit/moveit2:humble-release
+docker run -it -e "DISPLAY=$DISPLAY" -v "$HOME/.Xauthority:/root/.Xauthority:ro" --name MY_PROJECT --network host --privileged moveit/moveit2:humble-release
 ```
 exit from container and copy your ros2 workspace with 
 
@@ -94,7 +100,7 @@ paste "source /MY_PROJECT/install/setup.sh" before "exec '$@'". From now on, at 
 Follow this steps to create a container with mounted folder of host system. This allows to edit the project on the host machine and execute it in the container. **Useful when project is under developement**.  
 Follow each step of standard container creation, but with this variation:
 ```bash
-docker run -it -e "DISPLAY=$DISPLAY" -v "$HOME/.Xauthority:/root/.Xauthority:ro" --mount src="$(pwd)",target=/MY_DISK,type=bind --name MY_PROJECT --network host moveit/moveit2:humble-release
+docker run -it -e "DISPLAY=$DISPLAY" -v "$HOME/.Xauthority:/root/.Xauthority:ro" --mount src="$(pwd)",target=/MY_DISK,type=bind --name MY_PROJECT --network host --privileged moveit/moveit2:humble-release
 ```
 
 When starting container, ensure to cd into mounted folder.
@@ -115,16 +121,6 @@ To load the image in another computer running docker:
     
     docker load < IMAGE.tar
 
-## Troubleshooting
-Problem with **display server**:
-```
-could not connect to display :0
-This application failed to start because no Qt platform plugin could be initialized. Reinstalling the application may fix this problem.
 
-Available platform plugins are: eglfs, linuxfb, minimal, minimalegl, offscreen, vnc, xcb. 
-```
-Solution is, in a new terminal of the host:
-
-    xhost +local:docker 
 
 
